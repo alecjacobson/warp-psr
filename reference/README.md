@@ -26,6 +26,13 @@ Files in each fixture directory:
 - `oracle.txt`: `iso`, `transform` and `q` (value + model-space gradient).
 - `oracle_instrumented.txt`: the same plus `node` rows (depth, x, y, z,
   flags, inherited ghost status, incidental reference index, coefficient).
+- `preprocess.txt`: ordered aggregate position/normal sums and density coefficients
+  before tree padding (which relocates the reference root coefficient).
+- `splats.txt`: normalized sample positions, raw depth, density weight, top level,
+  blend fraction, and weighted normals.
+- `operators.txt` (opt-in `WARP_PSR_OPERATORS=/absolute/fixture/path`): per-level
+  matrices, complete right-hand sides, and restriction matrices, keyed by exported
+  reference indices that map back to canonical tree coordinates.
 - `stages.txt`: resolved settings, density scale, aggregated sample position sums
   and weights, canonical density and normal coefficients, and unscreened FEM load.
 - `manifest.json`: revision, source/build settings, checksums, seeds and hardware.
