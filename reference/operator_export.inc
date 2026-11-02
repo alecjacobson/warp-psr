@@ -2,6 +2,18 @@
 if(const char* directory = std::getenv("WARP_PSR_OPERATORS")) {
     std::ofstream dump(std::string(directory)+"/operators.txt");
     dump << std::setprecision(17);
+    if(iInfo) implicit.tree.tree().processNodes([&](const auto* node) {
+        int d,off[Dim]; implicit.tree.depthAndOffset(node,d,off);
+        if(d<0 || GetGhostFlag<Dim>(node)) return;
+        size_t begin,end; iInfo->range(node,begin,end);
+        for(size_t p=begin; p<end; ++p) {
+            const auto& info=(*iInfo)[p];
+            dump << "point " << d;
+            for(int a=0;a<Dim;++a) dump << ' ' << off[a];
+            for(int a=0;a<Dim;++a) dump << ' ' << info.position[a];
+            dump << ' ' << info.weight << ' ' << info.dualValues[0] << '\n';
+        }
+    });
     typename FEMIntegrator::template System<Sigs, IsotropicUIntPack<Dim,1>> op({0.,1.});
     for(int d=0; d<=int(params.solveDepth); ++d) {
         auto A=implicit.tree.systemMatrix(Sigs(),op,d,std::make_tuple(iInfo));

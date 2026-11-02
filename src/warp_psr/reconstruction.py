@@ -1,0 +1,115 @@
+"""Independent GPU PSR/SPSR reconstruction for the pinned degree-one profile."""
+from dataclasses import dataclass
+import math
+import time
+import warp as wp
+from .samples import prepare_samples, point_div
+from .density import build_density
+from .normals import build_normal_field
+from .tree import build_tree
+from .integration import integration_grid
+from .solver import solve_levels
+from .field import LevelField
+from .transforms import evaluation_transform
+
+@wp.kernel
+def _centroids(sums: wp.array(dtype=wp.vec3), weights: wp.array(dtype=float), out: wp.array(dtype=wp.vec3)):
+    i=wp.tid()
+    out[i]=point_div(sums[i],weights[i])
+
+@wp.kernel
+def _isovalue(values: wp.array(dtype=float), weights: wp.array(dtype=float), out: wp.array(dtype=float)):
+    total=wp.float64(0.0)
+    weight=wp.float64(0.0)
+    for i in range(values.shape[0]):
+        total+=wp.float64(values[i]*weights[i])
+        weight+=wp.float64(weights[i])
+    out[0]=float(total/weight)
+
+@dataclass
+class Reconstruction:
+    field: LevelField
+    metadata: dict
+    diagnostics: dict
+
+    @property
+    def iso_value(self):
+        return self.field.iso_value
+
+    def evaluate(self,queries):
+        return self.field.evaluate(queries)
+
+
+def reconstruct(positions,normals,*,depth=6,full_depth=3,base_depth=None,solve_depth=None,
+                kernel_depth=None,samples_per_node=1.5,scale=1.1,point_weight=2.0,
+                exact_interpolation=False,iters=8,base_v_cycles=1,cg_accuracy=1e-3):
+    """Reconstruct oriented CUDA ``wp.vec3`` arrays; point_weight=0 selects PSR.
+
+    Degree one, Neumann boundaries, confidence disabled, library alignDir=0.
+    The return value evaluates the implicit function and its model-space gradient;
+    the surface is ``value == result.iso_value``. Mesh extraction is external.
+    """
+    if base_depth is None:base_depth=full_depth
+    if solve_depth is None:solve_depth=depth
+    if kernel_depth is None:kernel_depth=max(depth-2,0)
+    depths=(depth,full_depth,base_depth,solve_depth,kernel_depth)
+    if any(not isinstance(v,int) or isinstance(v,bool) for v in depths):
+        raise ValueError('Depth parameters must be integers')
+    if not 1<=base_depth<=full_depth<=solve_depth<=depth<=15 or not 0<=kernel_depth<=depth:
+        raise ValueError('Require 1 <= base_depth <= full_depth <= solve_depth <= depth <= 15 and 0 <= kernel_depth <= depth')
+    if not isinstance(iters,int) or iters<1 or not isinstance(base_v_cycles,int) or base_v_cycles<1:
+        raise ValueError('iters and base_v_cycles must be positive integers')
+    if not math.isfinite(point_weight) or point_weight<0 or not math.isfinite(cg_accuracy) or cg_accuracy<=0:
+        raise ValueError('Require finite nonnegative point_weight and positive cg_accuracy')
+    if not math.isfinite(samples_per_node) or samples_per_node<=0 or not math.isfinite(scale) or scale<=1:
+        raise ValueError('Require finite positive samples_per_node and scale > 1')
+    if positions.dtype!=wp.vec3 or normals.dtype!=wp.vec3 or not positions.device.is_cuda or normals.device!=positions.device:
+        raise ValueError('Reconstruction currently requires float32 wp.vec3 arrays on the same CUDA device')
+    device=positions.device
+    timings={}
+    def stage(name,func):
+        wp.synchronize_device(device)
+        start=time.perf_counter()
+        result=func()
+        wp.synchronize_device(device)
+        timings[name]=time.perf_counter()-start
+        return result
+    with wp.ScopedDevice(device):
+        samples=stage('samples',lambda:prepare_samples(positions,normals,depth=depth,scale=scale))
+        density=stage('density',lambda:build_density(samples,depth,kernel_depth,samples_per_node))
+        normal=stage('normal_field',lambda:build_normal_field(samples,density,base_depth,depth))
+        tree=stage('tree',lambda:build_tree(normal,depth,full_depth,base_depth))
+        geometry=stage('integration_grid',lambda:integration_grid(tree,normal,depth))
+        correction,levels=stage('assembly_and_solve',lambda:solve_levels(tree,geometry,normal,density,base_depth=base_depth,solve_depth=solve_depth,point_weight=point_weight,exact=exact_interpolation,iters=iters,base_v_cycles=base_v_cycles,cg_accuracy=cg_accuracy))
+        count=sum(len(level.keys) for level in tree.basis)
+        keys=wp.empty(count,dtype=wp.int64,device=device)
+        coefficients=wp.empty(count,dtype=float,device=device)
+        offset=0
+        for d,level in enumerate(tree.basis):
+            wp.copy(keys,level.keys,dest_offset=offset)
+            wp.copy(coefficients,correction[d],dest_offset=offset)
+            offset+=len(level.keys)
+        identity=(1.,0.,0.,0.,1.,0.,0.,0.,1.)
+        cube_field=LevelField(keys,coefficients,identity,(0.,0.,0.),depth,0.)
+        centroids=wp.empty(len(samples.keys),dtype=wp.vec3,device=device)
+        wp.launch(_centroids,len(centroids),inputs=[samples.position_sums,samples.weights,centroids],device=device)
+        value,_,_=cube_field.evaluate(centroids)
+        iso=wp.empty(1,dtype=float,device=device)
+        wp.launch(_isovalue,1,inputs=[value,samples.weights,iso],device=device)
+        transforms=wp.empty(2,dtype=wp.mat44,device=device)
+        wp.launch(evaluation_transform,1,inputs=[samples.transform,transforms],device=device)
+        start=time.perf_counter()
+        transform=transforms.numpy().tolist()
+        isovalue=float(iso.numpy()[0])
+        status_sync=time.perf_counter()-start
+        matrix=transform[1]
+        field=LevelField(keys,coefficients,tuple(matrix[r][c] for r in range(3) for c in range(3)),tuple(matrix[r][3] for r in range(3)),depth,isovalue)
+    metadata={"precision":"float32","device":str(device),"basis_counts":[len(l.keys) for l in tree.basis],
+              "integration_cells":geometry.cell_count(),"timings_seconds":timings,
+              "measured_host_sync_seconds":samples.host_sync_seconds+density.sync_seconds+tree.host_sync_seconds+normal.records.sync_seconds+status_sync,
+              "sync_measurement_scope":"sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+              "exact_interpolation_behavior":"empty constraints in pinned reference (issue #16)" if exact_interpolation else "level-clustered approximate constraints",
+              "cube_to_model":transform[0],
+              "parameters":{"depth":depth,"full_depth":full_depth,"base_depth":base_depth,"solve_depth":solve_depth,"kernel_depth":kernel_depth,"samples_per_node":samples_per_node,"scale":scale,"point_weight":point_weight,"exact_interpolation":exact_interpolation,"iters":iters,"base_v_cycles":base_v_cycles,"cg_accuracy":cg_accuracy},
+              "profile":"pinned cascadic degree-1 Neumann"}
+    return Reconstruction(field,metadata,{"tree":tree,"density":density,"normals":normal,"levels":levels})

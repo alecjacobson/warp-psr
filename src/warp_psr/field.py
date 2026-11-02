@@ -7,6 +7,8 @@ from dataclasses import dataclass
 from functools import lru_cache
 import warp as wp
 
+wp.set_module_options({"fuse_fp":False})
+
 
 @wp.func
 def basis_key(d: int, x: int, y: int, z: int):
@@ -109,7 +111,7 @@ class LevelField:
         """
         dtype = self.coefficients.dtype
         vec = wp.types.vector(length=3, dtype=dtype)
-        if queries.dtype != vec or queries.device != self.coefficients.device:
+        if not wp.types.types_equal(queries.dtype, vec) or queries.device != self.coefficients.device:
             raise ValueError("Query precision/device must match coefficients")
         if self.keys.device != queries.device:
             raise ValueError("Keys and coefficients must share the query device")

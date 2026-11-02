@@ -32,20 +32,28 @@ def uniform_space(depth, dtype=wp.float32):
                                      element_basis=fem.ElementBasis.BSPLINE)
 
 
-def assemble_stiffness(space, device=None):
+def assemble_stiffness(space, device=None, trial_space=None, accumulation_dtype=None):
     domain = fem.Cells(space.geometry)
-    u, v = fem.make_trial(space, domain=domain), fem.make_test(space, domain=domain)
+    u, v = fem.make_trial(trial_space or space, domain=domain), fem.make_test(space, domain=domain)
     quadrature = fem.RegularQuadrature(domain, order=2)
     return fem.integrate(stiffness, quadrature=quadrature, fields={"u": u, "v": v},
-                         output_dtype=space.dtype, device=device)
+                         output_dtype=accumulation_dtype or space.dtype, device=device)
 
 
-def assemble_screening(space, positions, effective_weights):
+def assemble_screening(space, positions, effective_weights, trial_space=None, accumulation_dtype=None):
     """Sum w_s phi_i(p_s) phi_j(p_s); weights are NOT the public pointWeight."""
     if positions.shape[0] != effective_weights.shape[0]:
         raise ValueError("One effective weight per point is required")
     domain = fem.Cells(space.geometry)
     quadrature = fem.PicQuadrature(domain, positions, measures=effective_weights)
-    u, v = fem.make_trial(space, domain=domain), fem.make_test(space, domain=domain)
+    u, v = fem.make_trial(trial_space or space, domain=domain), fem.make_test(space, domain=domain)
     return fem.integrate(mass, quadrature=quadrature, fields={"u": u, "v": v},
-                         output_dtype=space.dtype, device=positions.device)
+                         output_dtype=accumulation_dtype or space.dtype, device=positions.device)
+
+
+def assemble_point_load(space, positions, effective_weights):
+    domain = fem.Cells(space.geometry)
+    quadrature = fem.PicQuadrature(domain, positions, measures=effective_weights)
+    v = fem.make_test(space, domain=domain)
+    return fem.integrate(value, quadrature=quadrature, fields={"u":v},
+                         output_dtype=wp.float64, device=positions.device)
