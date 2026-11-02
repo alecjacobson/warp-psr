@@ -10,7 +10,13 @@ import warp as wp
 import warp.utils
 from .field import basis_key
 
-wp.set_module_options({"enable_fp_fuse": False})
+wp.set_module_options({"fuse_fp": False})
+
+
+@wp.func
+def point_div(v: wp.vec3, s: float):
+    # Preserve the reference component-wise division order explicitly.
+    return wp.vec3(v[0]/s,v[1]/s,v[2]/s)
 
 
 @wp.kernel
@@ -39,6 +45,9 @@ def _transform(bounds: wp.array(dtype=float), scale: float, transform: wp.array(
     else:
         inv = float(wp.float64(1.0)/wp.float64(width))
         transform[0] = inv
+        determinant=inv*(inv*inv)
+        normal_scale=(inv*inv)/determinant * float(wp.pow(wp.float64(determinant),wp.float64(1.0)/wp.float64(3.0)))
+        transform[4]=normal_scale
         for a in range(3):
             axis = (a+1)%3  # PointExtent::Frame(0): y, z, x
             origin = (bounds[axis+3]+bounds[axis])/2.0 - width/2.0
@@ -55,7 +64,7 @@ def _classify(points: wp.array(dtype=wp.vec3), normals: wp.array(dtype=wp.vec3),
     n = normals[i]
     inv = transform[0]
     p = wp.vec3(p[1]*inv+transform[1], p[2]*inv+transform[2], p[0]*inv+transform[3])
-    n = wp.vec3(n[1],n[2],n[0])
+    n = wp.vec3(n[1],n[2],n[0])*transform[4]
     # Reference normal stream transform for a similarity is rotation only.
     length2 = wp.dot(n,n)
     q[i] = p
@@ -63,7 +72,7 @@ def _classify(points: wp.array(dtype=wp.vec3), normals: wp.array(dtype=wp.vec3),
     keys[i] = wp.int64(0x7fffffffffffffff)
     unit_normals[i] = wp.vec3(0.0)
     if length2 > 0.0 and wp.isfinite(length2) and wp.min(p)>=0.0 and wp.max(p)<=1.0:
-        unit_normals[i] = n/wp.sqrt(length2)
+        unit_normals[i] = point_div(n,wp.sqrt(length2))
         res = 1 << depth
         # Reference ChildIndex uses > center: exact split planes belong below.
         x = wp.max(0, int(wp.ceil(p[0]*float(res)))-1)
@@ -91,7 +100,7 @@ def _count(prefix: wp.array(dtype=int), count: wp.array(dtype=int)):
 def _groups(keys: wp.array(dtype=wp.int64), order: wp.array(dtype=int), marks: wp.array(dtype=int),
             prefix: wp.array(dtype=int), positions: wp.array(dtype=wp.vec3), normals: wp.array(dtype=wp.vec3),
             unique: wp.array(dtype=wp.int64), sums: wp.array(dtype=wp.vec3), normal_sums: wp.array(dtype=wp.vec3),
-            weights: wp.array(dtype=float)):
+            weights: wp.array(dtype=float), first_indices: wp.array(dtype=int)):
     i=wp.tid()
     if marks[i] != 0:
         g=prefix[i]-1
@@ -111,6 +120,7 @@ def _groups(keys: wp.array(dtype=wp.int64), order: wp.array(dtype=int), marks: w
         sums[g]=p
         normal_sums[g]=n
         weights[g]=weight
+        first_indices[g]=order[i]
 
 
 @dataclass
@@ -122,6 +132,7 @@ class SampleGroups:
     transform: wp.array
     positions: wp.array
     normals: wp.array
+    first_indices: wp.array
     host_sync_seconds: float
     host_status_reads: int = 2
 
@@ -145,7 +156,7 @@ def prepare_samples(points, normals, depth=8, scale=1.1):
         raise ValueError("sample processing requires both arrays on the same CUDA device")
     device, count = points.device, points.shape[0]
     bounds=wp.empty(6,dtype=float,device=device)
-    transform=wp.zeros(4,dtype=float,device=device)
+    transform=wp.zeros(5,dtype=float,device=device)
     status=wp.zeros(1,dtype=int,device=device)
     wp.launch(_init_bounds,3,inputs=[bounds],device=device)
     wp.launch(_bounds,count,inputs=[points,bounds,status],device=device)
@@ -175,5 +186,6 @@ def prepare_samples(points, normals, depth=8, scale=1.1):
     sums=wp.empty(groups,dtype=wp.vec3,device=device)
     normal_sums=wp.empty_like(sums)
     weights=wp.empty(groups,dtype=float,device=device)
-    wp.launch(_groups,count,inputs=[keys,order,marks,prefix,q,ns,unique,sums,normal_sums,weights],device=device)
-    return SampleGroups(unique,sums,normal_sums,weights,transform,q,ns,sync)
+    first_indices=wp.empty(groups,dtype=int,device=device)
+    wp.launch(_groups,count,inputs=[keys,order,marks,prefix,q,ns,unique,sums,normal_sums,weights,first_indices],device=device)
+    return SampleGroups(unique,sums,normal_sums,weights,transform,q,ns,first_indices,sync)

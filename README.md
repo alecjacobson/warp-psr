@@ -7,10 +7,10 @@ The target is the same adaptive implicit field as pinned PoissonRecon, not only 
 visually similar mesh.
 
 **Status: under development. A complete GPU reconstruction API is not available.**
-Implemented building blocks include GPU sample normalization/aggregation, Warp FEM
-stiffness and point-screening assembly, and sparse per-level field evaluation.
-Density estimation, adaptive tree completion and the reconstruction solver remain
-in progress.
+Implemented building blocks include GPU sample normalization/aggregation, density
+estimation, normal splatting, active tree/support completion, Warp FEM forms, and
+sparse per-level field evaluation. The reconstruction solver, full hierarchy flag
+validation, and broader precision/profile coverage remain in progress.
 Progress and known problems are tracked in [issues](https://github.com/alecjacobson/warp-psr/issues).
 Performance optimization follows the field-compatibility gates.
 
@@ -88,6 +88,10 @@ measured errors. All production modules use Warp; NumPy, SciPy, C++ oracle code
 and mesh visualization are confined to development tools/tests. The uniform-grid
 helper is bounded and explicitly for verification, not a dense reconstruction
 fallback. No end-to-end performance or reconstruction-accuracy claim is made.
+
+The GPU preprocessing tests now compare density coefficients, normal coefficients,
+splat decisions, and all active node/basis keys against sphere, torus, and sparse
+reference fixtures. Coefficient comparisons retain the original float32 budgets.
 
 Known limits: the input-processing prototype supports float32 CUDA arrays,
 finite positions, confidence disabled, scale > 1, and explicit library alignment

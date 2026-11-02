@@ -65,6 +65,19 @@ def build():
                     });
                 }
 '''
+    sample_marker = "\t\t\t\tdelete sampleNormalAndAuxData;"
+    assert text.count(sample_marker) == 2
+    text = text.replace(sample_marker, (ROOT/"reference/preprocess_export.inc").read_text()+sample_marker, 1)
+    # Additional exports operate on the exact reference data before solving.
+    solve_marker = "\t\t\t\t// Solve the linear system"
+    assert text.count(solve_marker) == 2
+    text = text.replace(solve_marker, (ROOT/"reference/operator_export.inc").read_text()+solve_marker, 1)
+    weighted = instrumented / "FEMTree.WeightedSamples.inl"
+    weighted_text = weighted.read_text()
+    splat_marker = "\tSplat( temp , (Real)dx );"
+    assert weighted_text.count(splat_marker) == 2
+    weighted_text = weighted_text.replace(splat_marker, (ROOT/"reference/splat_export.inc").read_text()+splat_marker, 1)
+    weighted.write_text("#include <fstream>\n#include <iomanip>\n"+weighted_text)
     header.write_text("#include <fstream>\n#include <iomanip>\n" + text.replace(marker, hook + marker, 1))
     commands = []
     for name, cpp, inc, extra in [
@@ -76,7 +89,7 @@ def build():
         cpp_path = inc / cpp if name == "PoissonReconCLI" else ROOT / "reference" / cpp
         command = ["g++", *FLAGS, *extra, "-I"+str(inc), "-I"+str(source), str(cpp_path), "-lz", "-lpng", "-ljpeg", "-o", str(BUILD / name)]
         print("Building", name, flush=True)
-        digest = hashlib.sha256((str(command)+cpp_path.read_text()+header.read_text()).encode()).hexdigest()
+        digest = hashlib.sha256((str(command)+cpp_path.read_text()+header.read_text()+weighted.read_text()).encode()).hexdigest()
         stamp = BUILD / (name + ".sha256")
         if not (BUILD/name).exists() or not stamp.exists() or stamp.read_text() != digest:
             subprocess.run(command, check=True)
