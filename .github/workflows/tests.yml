@@ -1,0 +1,23 @@
+name: tests
+on: [push, pull_request]
+jobs:
+  cpu:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install -e '.[test]'
+      - run: pytest -q
+  reference:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: sudo apt-get update && sudo apt-get install -y libjpeg-dev libturbojpeg0-dev libpng-dev zlib1g-dev
+      - run: pip install -e '.[test]'
+      - run: python tools/build_reference.py
+      - run: pytest -q tests/test_uniform.py

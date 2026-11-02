@@ -15,8 +15,9 @@ python -m tools.check_field .build/fixtures/sphere
 ```
 
 `make_fixture.py` asserts bitwise equality of the two drivers' values, gradients,
-isovalue and transform. This tests instrumentation neutrality; equality with a
-separate CLI invocation is an additional check, not implied by that assertion.
+isovalue and transform. This tests instrumentation neutrality; the separate `python -m tools.check_cli .build/fixtures/sphere` check also compares
+the actual CLI grid with the unchanged library driver. Library `alignDir=0` and
+CLI default `alignDir=2` differ, so the CLI comparison explicitly passes `0`.
 
 Files in each fixture directory:
 
