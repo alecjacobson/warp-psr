@@ -10,6 +10,7 @@ from .normal_field import assemble_normal_load, cache_normal_quadrature
 from .constraints import point_constraints
 from .spaces import make_level_space
 from .relaxation import row_schedule, relax_scheduled
+from .integration import integration_grid
 
 wp.set_module_options({"fuse_fp":False})
 
@@ -110,7 +111,6 @@ def solve_levels(tree,geometry,normals,density,*,base_depth,solve_depth,point_we
     device=normals.records.keys.device
     finest=len(tree.basis)-1
     keys=[level.keys for level in tree.basis]
-    spaces=[make_level_space(geometry,k,d,finest) if len(k) else None for d,k in enumerate(keys)]
     transfers=[prolongation(keys[d-1],keys[d],d) for d in range(1,solve_depth+1)]
     corrections=[wp.zeros(len(k),dtype=float,device=device) for k in keys]
     diagnostics=[]
@@ -121,12 +121,23 @@ def solve_levels(tree,geometry,normals,density,*,base_depth,solve_depth,point_we
     for d in range(base_depth,solve_depth+1):
         if not len(keys[d]):
             break
-        space=spaces[d]
+        # Normal loads need the finest partition's quadratic breakpoints. The
+        # stiffness and screening operators only need this level's basis knots.
+        normal_space=make_level_space(geometry,keys[d],d,finest)
+        load=assemble_normal_load(normal_space,normals,finest,cache=normal_quadrature)
+        if d==finest:
+            operator_geometry=geometry
+            operator_finest=finest
+            space=normal_space
+        else:
+            operator_geometry=integration_grid(tree,None,d)
+            operator_finest=d
+            space=make_level_space(operator_geometry,keys[d],d,d)
+        del normal_space
         # Double accumulation avoids a coarse row losing accuracy when its
         # integral spans many fine integration cells. Final reference matrices
         # and solve arithmetic are float32.
         A=assemble_stiffness(space,device,accumulation_dtype=wp.float64)
-        load=assemble_normal_load(space,normals,finest,cache=normal_quadrature)
         points=point_constraints(density,normals,tree,d,point_weight,exact)
         if screened:
             quadrature=point_quadrature(space,points.positions,points.weights)
@@ -143,9 +154,10 @@ def solve_levels(tree,geometry,normals,density,*,base_depth,solve_depth,point_we
             solver_sync+=sync
             cumulative=wp.clone(corrections[d])
         else:
-            cross=assemble_stiffness(space,device,trial_space=spaces[d-1],accumulation_dtype=wp.float64)
+            coarse_space=make_level_space(operator_geometry,keys[d-1],d-1,operator_finest)
+            cross=assemble_stiffness(space,device,trial_space=coarse_space,accumulation_dtype=wp.float64)
             if screened:
-                screen=assemble_screening(space,points.positions,points.weights,trial_space=spaces[d-1],accumulation_dtype=wp.float64,quadrature=quadrature)
+                screen=assemble_screening(space,points.positions,points.weights,trial_space=coarse_space,accumulation_dtype=wp.float64,quadrature=quadrature)
                 sparse.bsr_axpy(screen,cross)
             cross=sparse.bsr_copy(cross,scalar_type=wp.float32)
             sparse.bsr_mv(cross,cumulative,b,alpha=-1.0,beta=1.0)
@@ -159,5 +171,5 @@ def solve_levels(tree,geometry,normals,density,*,base_depth,solve_depth,point_we
             next_cumulative=wp.clone(corrections[d])
             sparse.bsr_mv(transfers[d-1],cumulative,next_cumulative,beta=1.0)
             cumulative=next_cumulative
-        diagnostics.append({"depth":d,"matrix":A,"rhs":b,"coefficients":corrections[d]})
+        diagnostics.append({"depth":d,"matrix":A,"rhs":b,"coefficients":corrections[d],"operator_integration_cells":operator_geometry.cell_count()})
     return corrections,diagnostics,solver_sync
