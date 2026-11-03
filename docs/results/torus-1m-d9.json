@@ -1,0 +1,120 @@
+{
+  "test": "Independent GPU reconstruction from oriented points",
+  "reconstruction_compatibility": true,
+  "source_revision": "76a36dee0093f883c918cc15a1551f87159b2786",
+  "source_dirty": false,
+  "production_source_sha256": {
+    "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+    "src/warp_psr/constraints.py": "15aaa2788fdbfa6618d686a65bc2bb2a07c0ef42ca5d08029fd351a8ff04dda5",
+    "src/warp_psr/density.py": "07f9bb43be6007434b40600884013ddae5d86f02974a839898477011ebffdd7a",
+    "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+    "src/warp_psr/forms.py": "ac398f3fdb71d9f8ec6a1bf7b431f0936e6eccbeef5c09a8c9727f486e8f6652",
+    "src/warp_psr/integration.py": "ab9fde52ae29424d185ef1ac51d04edddb09d1638a87f3b8e193f3f7589d4395",
+    "src/warp_psr/keyed.py": "25949ab0efa630b1997a598303c9dd2a56b5f8ec09c8b485711e31a4d1af7ead",
+    "src/warp_psr/normal_field.py": "71e4bc7ba6fa0d895e2bf5f56c74e9aa20d2ff7cf19915f5f9320861e184b31b",
+    "src/warp_psr/normals.py": "ffc6e75224e31ac3bb29f1aab4252f40a9c002084ceec860405e83eb7683b071",
+    "src/warp_psr/reconstruction.py": "8736c9b08c12ea65a99280ec4cd6a564964c21a2949406231c7793e3172ea7fb",
+    "src/warp_psr/relaxation.py": "3d1ffbdd813d84648389dbf3ac19c7148ddb8fbab2d6314f2f4cd18f70b6912d",
+    "src/warp_psr/samples.py": "9404925d076dd339daba98edd956ee00d2fbc1a96872f5e64aff170c604b7d48",
+    "src/warp_psr/solver.py": "234001fd023e1b899408d3569d2297b9ad5b0d9f41cacb169b39061212a4c5b3",
+    "src/warp_psr/spaces.py": "5bed1769dc7c8770e75d481c5e6e125c8a74a075fc3afb94f74244c25574e7af",
+    "src/warp_psr/transforms.py": "c3f25caa4e141acb787e5be50b7c9b75e9de5a382158ec0999c50902e5985e94",
+    "src/warp_psr/tree.py": "351a9671087a2086f06a14b37e210eebd53d09bd92d2f8823265631290417637"
+  },
+  "device": "cuda:0",
+  "queries": 1005120,
+  "coefficients": 3770690,
+  "max_abs_value_error": 1.2516975402832031e-06,
+  "rms_value_error": 1.7576804710337976e-07,
+  "max_abs_cube_gradient_error": 0.0029970624180464256,
+  "max_scaled_gradient_budget_ratio": 0.0802855261025915,
+  "max_unscaled_gradient_budget_ratio": 23.75067541320411,
+  "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+  "gradient_errors_by_depth": {
+    "4": 1.2293425603448344e-06,
+    "5": 2.2659242072120556e-06,
+    "6": 1.5232046059687754e-05,
+    "7": 2.7631686860374316e-05,
+    "8": 4.670321560451551e-05,
+    "9": 0.0029970624180464256
+  },
+  "iso_value": 0.5044213533401489,
+  "reference_iso_value": 0.5044214725494385,
+  "metadata": {
+    "precision": "float32",
+    "device": "cuda:0",
+    "basis_counts": [
+      8,
+      27,
+      125,
+      729,
+      4913,
+      17088,
+      80560,
+      321056,
+      1048712,
+      2297472
+    ],
+    "integration_cells": 5035948,
+    "timings_seconds": {
+      "samples": 0.012001119554042816,
+      "density": 0.015976767987012863,
+      "normal_field": 0.22745151817798615,
+      "tree": 0.19170433282852173,
+      "integration_grid": 0.30858420208096504,
+      "assembly_and_solve": 3.6536051854491234
+    },
+    "operator_integration_cells": {
+      "4": 4096,
+      "5": 20210,
+      "6": 101242,
+      "7": 446125,
+      "8": 1632863,
+      "9": 5035948
+    },
+    "measured_host_sync_seconds": 0.3392818570137024,
+    "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+    "exact_interpolation_behavior": "level-clustered approximate constraints",
+    "cube_to_model": [
+      [
+        0.0,
+        0.0,
+        2.111994504928589,
+        -1.0559988021850586
+      ],
+      [
+        2.111994504928589,
+        0.0,
+        0.0,
+        -1.0559977293014526
+      ],
+      [
+        0.0,
+        2.111994504928589,
+        0.0,
+        -1.0559972524642944
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "parameters": {
+      "depth": 9,
+      "full_depth": 4,
+      "base_depth": 4,
+      "solve_depth": 9,
+      "kernel_depth": 7,
+      "samples_per_node": 1.5,
+      "scale": 1.1,
+      "point_weight": 2.0,
+      "exact_interpolation": false,
+      "iters": 8,
+      "base_v_cycles": 1,
+      "cg_accuracy": 0.001
+    },
+    "profile": "pinned cascadic degree-1 Neumann"
+  }
+}
