@@ -1,6 +1,7 @@
 """Render actual official/Warp surfaces with identical extraction, camera and lighting."""
 import argparse
 import json
+import subprocess
 from pathlib import Path
 import matplotlib
 matplotlib.use('Agg')
@@ -9,6 +10,7 @@ import numpy as np
 import pyvista as pv
 from skimage.measure import marching_cubes
 from tools.datasets import checksum
+from tools.make_fixture import ROOT
 
 
 BACKGROUND = '#f3f5f6'
@@ -56,10 +58,17 @@ def render(args):
     b = np.load(directory/metadata['warp_file'])
     meshes = [surface(a, metadata['official_iso_value']), surface(b, metadata['warp_iso_value'])]
     # A shared reference-centered camera also makes tiny positional differences visible.
-    common_center = np.asarray(meshes[0].center)
+    view = np.asarray(args.camera)/np.linalg.norm(args.camera)
+    right = np.cross(view, args.up); right /= np.linalg.norm(right)
+    vertical = np.cross(right, view)
+    frame = np.column_stack([right, vertical, view])
+    projected = meshes[0].points@frame
+    low, high = projected.min(axis=0), projected.max(axis=0)
+    common_center = frame@((low+high)/2)
+    scale = args.scale or float(max((high[1]-low[1])/2, (high[0]-low[0])/2/(1000/1100))*1.12)
     for mesh in meshes:
         mesh.points -= common_center
-    pictures = [photograph(mesh, args.camera, args.up, args.scale) for mesh in meshes]
+    pictures = [photograph(mesh, args.camera, args.up, scale) for mesh in meshes]
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'text.color': INK, 'axes.labelcolor': INK})
     fig = plt.figure(figsize=(15, 9), facecolor=BACKGROUND)
     fig.text(.045, .94, args.title, fontsize=25, weight='bold')
@@ -88,7 +97,9 @@ def render(args):
     output.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(output, dpi=160, facecolor=fig.get_facecolor())
     plt.close(fig)
-    rendering = {'grid': metadata, 'camera': args.camera, 'up': args.up, 'parallel_scale': args.scale,
+    rendering = {'grid': metadata, 'camera': args.camera, 'up': args.up, 'parallel_scale': scale, 'model_grid_center': common_center.tolist(),
+                 'render_source_revision': subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+                 'render_source_sha256': checksum(Path(__file__)),
                  'pyvista': pv.__version__, 'vtk': pv.vtk_version_info,
                  'extractor': 'skimage.measure.marching_cubes; no smoothing, decimation or trimming',
                  'meshes': [{'vertices': mesh.n_points, 'triangles': mesh.n_cells} for mesh in meshes]}
@@ -101,7 +112,7 @@ if __name__ == '__main__':
     parser.add_argument('--resolution', type=int, default=256)
     parser.add_argument('--camera', type=float, nargs=3, default=[2, -.5, -2])
     parser.add_argument('--up', type=float, nargs=3, default=[0, -1, 0])
-    parser.add_argument('--scale', type=float, default=.53)
+    parser.add_argument('--scale', type=float, help='Override automatic shared framing')
     parser.add_argument('--title', default='The eagle, reconstructed independently')
     parser.add_argument('--credit', default='Eagle scan: EPFL Geometric Computing Laboratory, “Scanning 3D Statues from Photos”; distributed by PoissonRecon.')
     parser.add_argument('--output', default='docs/results/eagle-reconstruction.png')
