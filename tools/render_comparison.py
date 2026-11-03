@@ -46,11 +46,13 @@ def render(directory, output):
     error=np.abs(b-a)
     im=ax.imshow(error[:,n//2,:].T,origin="lower",cmap="magma",vmin=0,vmax=max(error.max(),1e-12),extent=[0,1,0,1])
     ax.set_title("Volume field difference")
-    ax.set_xlabel("Normalized cube x");ax.set_ylabel("Normalized cube z")
+    ax.set_xlabel("Normalized model x");ax.set_ylabel("Normalized model z")
     fig.colorbar(im,ax=ax,fraction=.045,pad=.03,label="Absolute field error")
-    fig.suptitle("Screened Poisson reconstruction • torus",fontsize=18,y=.98)
+    parameters=manifest['parameters']
+    fig.suptitle(f"Screened Poisson reconstruction • {parameters['shape']}",fontsize=18,y=.98)
     fig.text(.5,.07,f"{report['queries']:,} queries  ·  {report['coefficients']:,} coefficients  ·  max |Δf| = {report['max_abs_value_error']:.2e}",ha="center",fontsize=11)
-    fig.text(.5,.025,"Independent solves from the same 8,192 oriented points · degree 1 · depth 6 · identical isovalues",ha="center",fontsize=10,color="#596579")
+    iso_caption="identical isovalues" if report['iso_value']==iso else f"|Δisovalue| = {abs(report['iso_value']-iso):.2e}"
+    fig.text(.5,.025,f"Independent solves from the same {parameters['count']:,} oriented points · degree 1 · depth {parameters['depth']} · {iso_caption}",ha="center",fontsize=10,color="#596579")
     fig.subplots_adjust(left=.025,right=.95,bottom=.2,top=.85,wspace=.25)
     output=Path(output);output.parent.mkdir(parents=True,exist_ok=True)
     fig.savefig(output,dpi=180,facecolor=fig.get_facecolor())

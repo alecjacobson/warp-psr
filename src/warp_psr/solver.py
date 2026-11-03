@@ -14,7 +14,7 @@ from .forms import (
     assemble_point_load,
     point_quadrature,
 )
-from .normal_field import assemble_normal_load, cache_normal_quadrature
+from .normal_loads import assemble_reference_normal_loads
 from .constraints import point_constraints
 from .spaces import make_level_space
 from .relaxation import row_schedule, relax_scheduled, relaxation_command
@@ -208,35 +208,37 @@ def solve_levels(
     finest = len(tree.basis) - 1
     keys = [level.keys for level in tree.basis]
     transfers = [
-        prolongation(keys[d - 1], keys[d], d, dtype) for d in range(1, solve_depth + 1)
+        prolongation(keys[d - 1], keys[d], d, dtype) for d in range(1, finest + 1)
     ]
     corrections = [wp.zeros(len(k), dtype=dtype, device=device) for k in keys]
     diagnostics = []
     solver_sync = 0.0
     cumulative = None
-    normal_quadrature = cache_normal_quadrature(geometry, normals, finest)
+    operator_geometries = {finest: geometry}
+    # The reference assembles normal constraints through reconstruction depth,
+    # including fine contributions when the requested solve stops earlier.
+    normal_loads = assemble_reference_normal_loads(
+        tree,
+        geometry,
+        normals,
+        finest,
+        base_depth,
+        transfers,
+        operator_geometries=operator_geometries,
+    )
     screened = point_weight > 0 and not exact
     for d in range(base_depth, solve_depth + 1):
         if not len(keys[d]):
             break
-        # Normal loads need the finest partition's quadratic breakpoints. The
-        # stiffness and screening operators only need this level's basis knots.
-        normal_space = make_level_space(geometry, keys[d], d, finest)
-        load = assemble_normal_load(
-            normal_space, normals, finest, cache=normal_quadrature
-        )
-        if d == finest:
-            operator_geometry = geometry
-            operator_finest = finest
-            space = normal_space
-        else:
-            operator_geometry = integration_grid(tree, None, d, dtype=dtype)
-            operator_finest = d
-            space = make_level_space(operator_geometry, keys[d], d, d)
-        del normal_space
+        load = normal_loads[d]
+        if d not in operator_geometries:
+            operator_geometries[d] = integration_grid(tree, None, d, dtype=dtype)
+        operator_geometry = operator_geometries[d]
+        operator_finest = d
+        space = make_level_space(operator_geometry, keys[d], d, d)
         # Double accumulation avoids a coarse row losing accuracy when its
         # integral spans many fine integration cells. Final reference matrices
-        # and solve arithmetic are float32.
+        # and solve arithmetic use the input precision.
         A = assemble_stiffness(space, device, accumulation_dtype=wp.float64)
         points = point_constraints(density, normals, tree, d, point_weight, exact)
         if screened:

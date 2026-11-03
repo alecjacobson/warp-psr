@@ -48,8 +48,10 @@ def main():
         if (directory/"reconstruction_report.json").exists():
             results[-1]["reconstruction"]=json.loads((directory/"reconstruction_report.json").read_text())
     run("-m","tools.check_profiles")
+    run("-m","tools.check_geometry_profiles")
     run("-m","pytest","-q")
     shutil.copyfile(ROOT/".build/profile-validation.json",ROOT/"docs/results/profiles.json")
+    shutil.copyfile(ROOT/".build/geometry-validation.json",ROOT/"docs/results/geometry-profiles.json")
     run("-m","tools.render_comparison",str(ROOT/".build/fixtures/torus"))
     source_paths=sorted([*ROOT.glob("src/**/*.py"),*ROOT.glob("reference/*.cpp"),*ROOT.glob("reference/*.inc"),*ROOT.glob("reference/*.py"),*ROOT.glob("tools/*.py"),*ROOT.glob("tests/*.py")])
     report={"scope":"Independent float32 compatibility and end-to-end float64 GPU diagnostic reconstruction",
@@ -57,7 +59,7 @@ def main():
             "source_sha256":{str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in source_paths},
             "fixtures":results,
             "open_gates":["built-in B-spline FEM issue #8 (application basis supports float64)", "base-depth-zero profile",
-                          "complete ghost flags and parent/child metadata", "repeatability and complete query families", "distribution/density performance scaling"]}
+                          "complete ghost flags and parent/child metadata", "repeatability and threshold-sensitive input families", "distribution/density performance scaling"]}
     (ROOT/"docs/results/validation.json").write_text(json.dumps(report,indent=2)+"\n")
 
 if __name__=="__main__":

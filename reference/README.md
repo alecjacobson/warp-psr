@@ -22,7 +22,8 @@ CLI default `alignDir=2` differ, so the CLI comparison explicitly passes `0`.
 Files in each fixture directory:
 
 - `input.pts`: quantized positions and normals in preserved order.
-- `queries.txt`: grid interiors, random volume points and input samples.
+- `queries.txt`: visualization grid, random volume points, input samples, and
+  named cell-interior, refinement-interface, boundary, and far-from-sample probes.
 - `oracle.txt`: `iso`, `transform` and `q` (value + model-space gradient).
 - `oracle_instrumented.txt`: the same plus `node` rows (depth, x, y, z,
   flags, inherited ghost status, incidental reference index, coefficient).
@@ -35,15 +36,16 @@ Files in each fixture directory:
   reference indices that map back to canonical tree coordinates.
 - `stages.txt`: resolved settings, density scale, aggregated sample position sums
   and weights, canonical density and normal coefficients, and unscreened FEM load.
-- `manifest.json`: revision, source/build settings, checksums, seeds and hardware.
+- `manifest.json`: revision, source/build settings, checksums, seeds, hardware,
+  query-family ranges, and measured depth/interface coverage (format version 2).
 
 Mathematical keys are `(depth,x,y,z)`. Negative/support coordinates are preserved
 in exports. Array order and the incidental node index are not compatibility keys.
 The `transform` is cube-to-model in the reference's column-first indexing.
 
 Current omissions are tracked in issue #1: complete acceptance/aggregation IDs,
-ghost/parent/child metadata, solver traces, parallel repeatability, and broader
-query families. Float32 independent reconstruction passes the small and large
+ghost/parent/child metadata, solver traces, parallel repeatability, and
+threshold-sensitive input families. Float32 independent reconstruction passes the small and large
 field gates; see the [main README](../README.md) and committed reports. The
 float64 reference driver and Warp reconstruction both process float64 input
 throughout. Five end-to-end double fixtures meet the design's diagnostic budgets,
@@ -81,6 +83,23 @@ the leaf, and overlapping fine corrections at leafDepth+1. This reproduces the
 neighbor/polynomial intersection, and the 1e-6 inward nudge at the cube boundary.
 Direct standalone LevelField summation remains available as a mathematical field
 utility; the Reconstruction API supplies the reference cumulative representation.
+The offline coefficient adapter now uses that same convention and the reference
+cofactor inverse; plane inputs provide exact-knot regression coverage (#34).
+
+The pinned normal-load assembly also uses degree-1 test-space prolongation for
+degree-2 normal coefficients. This matters when normals occupy several levels,
+as in the clustered fixture (#35). Production reproduces its same-level,
+fine-restriction, and cumulative-coarse contributions with Warp FEM. Per-level
+quadrature is compared against the full integration partition in both precisions;
+the clustered operator exports separately check every normal load against C++.
+
+`make_fixture.py` first runs a read-only pilot to select queries from the canonical
+reference support partition. It then runs both independent reference drivers on
+the complete query set and requires bitwise agreement. The initial visualization
+grid is preserved. `python -m tools.check_geometry_profiles` covers planes,
+nearby sheets, nonuniform clusters, disconnected components, and translated/scaled
+inputs in float32 and float64. Reconstruction reports check raw and centered
+values and report maximum/RMS errors by query family and integration depth.
 
 `python -m tools.check_profiles` varies each exposed parameter independently and
 checks a stronger iteration schedule. `python -m tools.validate` includes these

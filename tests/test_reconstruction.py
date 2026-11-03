@@ -5,11 +5,12 @@ import pytest
 import warp as wp
 from tools.check_reconstruction import check
 from tools.check_profiles import PROFILE_CASES
+from tools.check_geometry_profiles import GEOMETRY_CASES
 
 
 @pytest.mark.cuda
 @pytest.mark.reference
-@pytest.mark.parametrize('name',['sphere','sphere-psr','sphere-exact','sparse','torus','sphere-double','sphere-psr-double','sphere-exact-double','sparse-double','torus-double']+['profile-'+case for case in PROFILE_CASES])
+@pytest.mark.parametrize('name',['sphere','sphere-psr','sphere-exact','sparse','torus','sphere-double','sphere-psr-double','sphere-exact-double','sparse-double','torus-double']+['profile-'+case for case in PROFILE_CASES]+[f'geometry-{case}-{precision}' for precision in ('float','double') for case in GEOMETRY_CASES])
 def test_independent_reconstruction(name):
     wp.init()
     if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
