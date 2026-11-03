@@ -60,7 +60,8 @@ def render(args):
     plt.rcParams.update({'font.family': 'DejaVu Sans', 'text.color': INK, 'axes.labelcolor': INK})
     fig = plt.figure(figsize=(15, 9), facecolor=BACKGROUND)
     fig.text(.045, .94, args.title, fontsize=25, weight='bold')
-    fig.text(.045, .9, f"{manifest['parameters']['count']:,} oriented points  /  screened Poisson  /  depth {manifest['parameters']['depth']}", fontsize=12, color='#516673')
+    method = 'screened Poisson' if manifest['parameters']['weight'] else 'Poisson'
+    fig.text(.045, .9, f"{manifest['parameters']['count']:,} oriented points  /  {method}  /  depth {manifest['parameters']['depth']}", fontsize=12, color='#516673')
     for i, (picture, title, subtitle) in enumerate(zip(pictures, ['Official PoissonRecon', 'Pure Warp'],
                                                        ['Pinned C++ reference', 'Independent GPU reconstruction'])):
         ax = fig.add_axes([.015+i*.365, .125, .38, .73])
@@ -95,10 +96,10 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('directory')
     parser.add_argument('--resolution', type=int, default=256)
-    parser.add_argument('--camera', type=float, nargs=3, default=[1.5, .5, 2.5])
-    parser.add_argument('--up', type=float, nargs=3, default=[0, 1, 0])
+    parser.add_argument('--camera', type=float, nargs=3, default=[2, -.5, -2])
+    parser.add_argument('--up', type=float, nargs=3, default=[0, -1, 0])
     parser.add_argument('--scale', type=float, default=.53)
     parser.add_argument('--title', default='The eagle, reconstructed independently')
-    parser.add_argument('--credit', default='Eagle scan: EPFL “Scanning 3D Statues from Photos”, distributed by PoissonRecon.')
+    parser.add_argument('--credit', default='Eagle scan: EPFL Geometric Computing Laboratory, “Scanning 3D Statues from Photos”; distributed by PoissonRecon.')
     parser.add_argument('--output', default='docs/results/eagle-reconstruction.png')
     render(parser.parse_args())
