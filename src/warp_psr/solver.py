@@ -214,31 +214,31 @@ def solve_levels(
     diagnostics = []
     solver_sync = 0.0
     cumulative = None
+    operator_geometries = {finest: geometry}
     # The reference assembles normal constraints through reconstruction depth,
     # including fine contributions when the requested solve stops earlier.
     normal_loads = assemble_reference_normal_loads(
-        tree, geometry, normals, finest, base_depth, transfers
+        tree,
+        geometry,
+        normals,
+        finest,
+        base_depth,
+        transfers,
+        operator_geometries=operator_geometries,
     )
     screened = point_weight > 0 and not exact
     for d in range(base_depth, solve_depth + 1):
         if not len(keys[d]):
             break
-        # Normal loads need the finest partition's quadratic breakpoints. The
-        # stiffness and screening operators only need this level's basis knots.
-        normal_space = make_level_space(geometry, keys[d], d, finest)
         load = normal_loads[d]
-        if d == finest:
-            operator_geometry = geometry
-            operator_finest = finest
-            space = normal_space
-        else:
-            operator_geometry = integration_grid(tree, None, d, dtype=dtype)
-            operator_finest = d
-            space = make_level_space(operator_geometry, keys[d], d, d)
-        del normal_space
+        if d not in operator_geometries:
+            operator_geometries[d] = integration_grid(tree, None, d, dtype=dtype)
+        operator_geometry = operator_geometries[d]
+        operator_finest = d
+        space = make_level_space(operator_geometry, keys[d], d, d)
         # Double accumulation avoids a coarse row losing accuracy when its
         # integral spans many fine integration cells. Final reference matrices
-        # and solve arithmetic are float32.
+        # and solve arithmetic use the input precision.
         A = assemble_stiffness(space, device, accumulation_dtype=wp.float64)
         points = point_constraints(density, normals, tree, d, point_weight, exact)
         if screened:

@@ -59,7 +59,7 @@ def main():
             "source_sha256":{str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in source_paths},
             "fixtures":results,
             "open_gates":["built-in B-spline FEM issue #8 (application basis supports float64)", "base-depth-zero profile",
-                          "complete ghost flags and parent/child metadata", "repeatability and complete query families", "distribution/density performance scaling"]}
+                          "complete ghost flags and parent/child metadata", "repeatability and threshold-sensitive input families", "distribution/density performance scaling"]}
     (ROOT/"docs/results/validation.json").write_text(json.dumps(report,indent=2)+"\n")
 
 if __name__=="__main__":

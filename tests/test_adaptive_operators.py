@@ -108,3 +108,28 @@ def test_coarse_partition_preserves_stiffness_and_cross_level_actions():
                     expected=reference@x
                     scale=np.max(np.abs(expected))
                     np.testing.assert_allclose((actual@x)/scale,expected/scale,atol=1e-6,rtol=1e-5)
+
+
+@pytest.mark.reference
+@pytest.mark.cuda
+@pytest.mark.parametrize('precision',['float','double'])
+def test_normal_load_partitions_preserve_hierarchical_constraints(precision):
+    from warp_psr.normal_loads import assemble_reference_normal_loads
+    wp.init()
+    if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
+    directory=Path('.build/fixtures')/f'geometry-cluster-{precision}'
+    if not (directory/'input.pts').exists():pytest.skip('Generate clustered fixtures')
+    double=precision=='double'
+    scalar,vector=(wp.float64,wp.vec3d) if double else (wp.float32,wp.vec3)
+    data=np.loadtxt(directory/'input.pts').astype(np.float64 if double else np.float32)
+    with wp.ScopedDevice('cuda'):
+        result=reconstruct(wp.array(data[:,:3],dtype=vector),wp.array(data[:,3:],dtype=vector),depth=5,full_depth=2)
+        tree=result.diagnostics['tree'];normals=result.diagnostics['normals']
+        geometry=integration_grid(tree,normals,5,dtype=scalar)
+        transfers=[prolongation(tree.basis[d-1].keys,tree.basis[d].keys,d,scalar) for d in range(1,6)]
+        full=assemble_reference_normal_loads(tree,geometry,normals,5,2,transfers,level_partitions=False)
+        for level in result.diagnostics['levels']:
+            reference=full[level['depth']].numpy()
+            scale=np.max(np.abs(reference)) or 1.
+            atol,rtol=(1e-10,1e-9) if double else (1e-6,1e-5)
+            np.testing.assert_allclose(level['normal_load'].numpy()/scale,reference/scale,atol=atol,rtol=rtol)

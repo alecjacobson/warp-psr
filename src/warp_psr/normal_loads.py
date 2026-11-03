@@ -16,6 +16,7 @@ from .field import basis_key, find_key
 from .keyed import coordinates
 from .normal_field import cache_normal_quadrature, assemble_normal_load
 from .spaces import make_level_space
+from .integration import integration_grid
 
 wp.set_module_options({"fuse_fp": False})
 
@@ -60,7 +61,14 @@ def prolongation_kernel(dtype):
 
 
 def assemble_reference_normal_loads(
-    tree, geometry, normals, max_depth, base_depth, transfers
+    tree,
+    geometry,
+    normals,
+    max_depth,
+    base_depth,
+    transfers,
+    operator_geometries=None,
+    level_partitions=True,
 ):
     device = normals.records.keys.device
     dtype = (
@@ -71,8 +79,11 @@ def assemble_reference_normal_loads(
     vec4 = normals.records.values.dtype
     finest = len(tree.basis) - 1
 
-    def space(d):
-        return make_level_space(geometry, tree.basis[d].keys, d, finest)
+    if operator_geometries is None:
+        operator_geometries = {finest: geometry}
+
+    def space(grid, d, resolution):
+        return make_level_space(grid, tree.basis[d].keys, d, resolution)
 
     same = [None] * (max_depth + 1)
     from_child = [None] * (max_depth + 1)
@@ -82,13 +93,19 @@ def assemble_reference_normal_loads(
     for d in range(max_depth + 1):
         # The reference begins normal splatting at base_depth.
         if d >= base_depth:
-            cache = cache_normal_quadrature(geometry, normals, d, first_depth=d)
-            same[d] = assemble_normal_load(space(d), normals, d, cache=cache)
+            grid, resolution = geometry, finest
+            if level_partitions and d < finest:
+                grid, resolution = integration_grid(tree, normals, d, dtype=dtype), d
+            cache = cache_normal_quadrature(grid, normals, d, first_depth=d)
+            same[d] = assemble_normal_load(
+                space(grid, d, resolution), normals, d, cache=cache
+            )
             if d > base_depth:
                 from_child[d - 1] = assemble_normal_load(
-                    space(d - 1), normals, d, cache=cache
+                    space(grid, d - 1, resolution), normals, d, cache=cache
                 )
             del cache
+            del grid
         if d < max_depth:
             keys = tree.basis[d].keys
             cumulative = wp.empty(len(keys), dtype=vec4, device=device)
@@ -111,11 +128,19 @@ def assemble_reference_normal_loads(
                     records=SimpleNamespace(keys=keys, values=cumulative),
                     average=normals.average,
                 )
-                cache = cache_normal_quadrature(geometry, field, d, first_depth=d)
+                grid, resolution = geometry, finest
+                if level_partitions:
+                    if d + 1 not in operator_geometries:
+                        operator_geometries[d + 1] = integration_grid(
+                            tree, None, d + 1, dtype=dtype
+                        )
+                    grid, resolution = operator_geometries[d + 1], d + 1
+                cache = cache_normal_quadrature(grid, field, d, first_depth=d)
                 from_parent[d + 1] = assemble_normal_load(
-                    space(d + 1), field, d, cache=cache
+                    space(grid, d + 1, resolution), field, d, cache=cache
                 )
                 del cache
+                del grid
             previous_keys, previous = keys, cumulative
     finer = wp.zeros_like(same[max_depth])
     loads = [None] * (max_depth + 1)
