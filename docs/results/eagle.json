@@ -1,7 +1,7 @@
 {
   "test": "Independent GPU reconstruction from oriented points",
   "reconstruction_compatibility": true,
-  "source_revision": "e7647a7d20ebd68c966e187107d0e7bba8d43a2d",
+  "source_revision": "c29cb260e818160766a1c7a4024dd3744629c0c9",
   "source_dirty": false,
   "production_source_sha256": {
     "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -24,6 +24,53 @@
     "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
     "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
   },
+  "fixture_provenance": {
+    "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+    "queries_sha256": "6a80383c04e027b953a3cedee32932b72cb5cd3c0aa74a2f8d1635c69c4ed2f1",
+    "precision": "float",
+    "parameters": {
+      "name": "eagle-full-d9-spsr",
+      "dataset": "eagle",
+      "input": null,
+      "max_points": null,
+      "shape": "eagle",
+      "input_scale": 1.0,
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "count": 796825,
+      "seed": 2026,
+      "depth": 9,
+      "full_depth": 4,
+      "base_depth": 4,
+      "solve_depth": 9,
+      "kernel_depth": 7,
+      "scale": 1.1,
+      "samples_per_node": 1.5,
+      "cg_accuracy": 0.001,
+      "base_v_cycles": 1,
+      "weight": 2.0,
+      "exact": false,
+      "iters": 8,
+      "precision": "float",
+      "grid": 24,
+      "operators": false,
+      "align_dir": 0,
+      "degree": 1,
+      "boundary": "Neumann",
+      "confidence": false
+    },
+    "reference_file_sha256": {
+      "oracle.txt": "25db4f2be413293f39000df5a3fea857a578d087cc46c569f682835f0ba07d70",
+      "oracle_instrumented.txt": "e68162b0f74321eff23c4ba34fc21165fac9f64c717cd5480a5d4b0c40f35018",
+      "preprocess.txt": "27b7c42ef3c83f3d31c40f3093e8838e1dc2ecbfd3d3c274c4cc935eaae430ea",
+      "stages.txt": "e6eb77198cdb8c2800a39e211159d3e756b15b80aff6133775247b281a82f418",
+      "splats.txt": "9fa33f84bf5267df699dd8661e9acd5725fcba621d608160bcad7ce75419b1c8"
+    }
+  },
+  "queries_sha256": "6a80383c04e027b953a3cedee32932b72cb5cd3c0aa74a2f8d1635c69c4ed2f1",
   "fixture": "eagle-full-d9-spsr",
   "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
   "input_source": {
@@ -231,7 +278,7 @@
       "max_abs_centered_value_error": 3.0547380447387695e-06,
       "rms_centered_value_error": 2.5997508387928815e-07,
       "max_abs_cube_gradient_error": 0.004198289143403144,
-      "rms_cube_gradient_error": 0.00044508182425418374,
+      "rms_cube_gradient_error": 0.0004450818242541837,
       "max_scaled_gradient_budget_ratio": 0.2687023282096586
     },
     "cell_interiors": {
@@ -304,12 +351,12 @@
     ],
     "integration_cells": 4420522,
     "timings_seconds": {
-      "samples": 0.010058056563138962,
-      "density": 0.021138202399015427,
-      "normal_field": 0.20958727598190308,
-      "tree": 0.1772928610444069,
-      "integration_grid": 0.15803706645965576,
-      "assembly_and_solve": 2.4848964251577854
+      "samples": 0.011529937386512756,
+      "density": 0.023684509098529816,
+      "normal_field": 0.18932995200157166,
+      "tree": 0.1632217951118946,
+      "integration_grid": 0.1678267903625965,
+      "assembly_and_solve": 11.947858680039644
     },
     "operator_integration_cells": {
       "4": 4096,
@@ -319,7 +366,7 @@
       "8": 1396802,
       "9": 4420522
     },
-    "measured_host_sync_seconds": 0.45826009288430214,
+    "measured_host_sync_seconds": 0.4722711592912674,
     "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
     "exact_interpolation_behavior": "level-clustered approximate constraints",
     "cube_to_model": [

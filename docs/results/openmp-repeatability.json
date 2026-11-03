@@ -1,0 +1,675 @@
+{
+  "scope": "OpenMP compatibility is separate from the unchanged serial/GPU acceptance budgets; repeatability requires multiple runs",
+  "repeats": 3,
+  "repeatability_measured": true,
+  "execution_environment": {
+    "captured_utc": "2026-11-03T05:24:35.138710+00:00",
+    "logical_cpus": 128,
+    "affinity_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "visible_cgroup_quotas": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      },
+      {
+        "group": "kubepods.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      }
+    ],
+    "minimum_visible_cpu_quota": 4.0,
+    "cgroup_cpu_counters": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "counters": {
+          "usage_usec": 2326741682,
+          "user_usec": 2092088072,
+          "system_usec": 234653610,
+          "nr_periods": 17407,
+          "nr_throttled": 2274,
+          "throttled_usec": 3926252295
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "counters": {
+          "usage_usec": 2326811637,
+          "user_usec": 2092101453,
+          "system_usec": 234710183,
+          "nr_periods": 17419,
+          "nr_throttled": 2402,
+          "throttled_usec": 3865023281
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "counters": {
+          "usage_usec": 19060278696444,
+          "user_usec": 14700158703610,
+          "system_usec": 4360119992834,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": "kubepods.slice",
+        "counters": {
+          "usage_usec": 52234109861976,
+          "user_usec": 35933197599032,
+          "system_usec": 16300912262943,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": ".",
+        "counters": {
+          "usage_usec": 66769065384000,
+          "user_usec": 43432676328000,
+          "system_usec": 23336389056000,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      }
+    ],
+    "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+  },
+  "requested_threads": 4,
+  "build": {
+    "pins": {
+      "fixture_format": 1,
+      "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+      "warp_version": "1.19.0",
+      "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+    },
+    "commands": [
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/oracle"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-DEXPORT_TREE",
+        "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-fopenmp",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/oracle_openmp"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-fopenmp",
+        "-DEXPORT_TREE",
+        "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented_openmp"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/basis.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/basis"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-DFAST_COMPILE",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src/PoissonRecon.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/PoissonReconCLI"
+      ]
+    ],
+    "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+  },
+  "source_revision": "c29cb260e818160766a1c7a4024dd3744629c0c9",
+  "source_dirty": false,
+  "all_passed": true,
+  "fixtures": [
+    {
+      "input_sha256": "98529457fa79d0dff512fdc52f50ff807843fb4d7271d57f2218b2e7a610d309",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "seeded uniform subset, retaining original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selection_seed": 2026,
+        "selection_indices_sha256": "6f2aefb35d6075ec0b696a4b55054292a68d3d58ec9f8f465e61bcb752b93089",
+        "selected_count": 10000
+      },
+      "seed": 2026,
+      "fixture": "eagle-10k-d7-spsr-float",
+      "shape": "eagle",
+      "parameters": {
+        "name": "eagle-10k-d7-spsr-float",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": 10000,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 10000,
+        "seed": 2026,
+        "depth": 7,
+        "full_depth": 3,
+        "base_depth": 3,
+        "solve_depth": 7,
+        "kernel_depth": 5,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0054245851747389065,
+              "centered_value": 0.022373972447347887,
+              "scaled_gradient": 0.02966141078204819,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 2.980232238769531e-07,
+            "rms_value_error": 4.73955521867944e-08,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "max_abs_cube_gradient_error": 4.931578496325528e-05,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        },
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.004821853488656806,
+              "centered_value": 0.01784818052078135,
+              "scaled_gradient": 0.023346124012831728,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 4.2851093464314395e-08,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "max_abs_cube_gradient_error": 4.931578496325528e-05,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.005423574791389246,
+              "centered_value": 0.017226008562704332,
+              "scaled_gradient": 0.01658838426517204,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 3.722752359356871e-08,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "max_abs_cube_gradient_error": 4.483253178477753e-05,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        },
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.004469700498572399,
+              "centered_value": 0.021347660744683257,
+              "scaled_gradient": 0.026991883811663852,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 2.980232238769531e-07,
+            "rms_value_error": 4.704415779748376e-08,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "max_abs_cube_gradient_error": 5.3799038141733035e-05,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.004422523430661811,
+              "centered_value": 0.017629578577852453,
+              "scaled_gradient": 0.015850342088068774,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 2.980232238769531e-07,
+            "rms_value_error": 3.356467280742375e-08,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "max_abs_cube_gradient_error": 3.5866025427822024e-05,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "e2af22e125e51922a843a362f47ac0092ff855135c8ad9e59b434ef7770441ae",
+      "input_source": {
+        "source_file": "torso.points.ply",
+        "source_sha256": "ad7955bb71fe4a042e125b407beed7eeabb79a2062157b28ea955cb621e66524",
+        "original_count": 3488432,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "seeded uniform subset, retaining original file order",
+        "dataset": "torso",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/torso.zip",
+        "description": "PoissonRecon torso scan; the separate envelope constraint is outside the supported profile",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selection_seed": 2026,
+        "selection_indices_sha256": "dc57580ae2fca1aab1d1a88dd7576852fb54a644116184538057329ef3d3bc6e",
+        "selected_count": 10000
+      },
+      "seed": 2026,
+      "fixture": "torso-10k-d7-psr-double",
+      "shape": "torso",
+      "parameters": {
+        "name": "torso-10k-d7-psr-double",
+        "dataset": "torso",
+        "input": null,
+        "max_points": 10000,
+        "shape": "torso",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 10000,
+        "seed": 2026,
+        "depth": 7,
+        "full_depth": 3,
+        "base_depth": 3,
+        "solve_depth": 7,
+        "kernel_depth": 5,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 0.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "double",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 2.6354524282608987e-08,
+              "centered_value": 2.5917609736951055e-08,
+              "scaled_gradient": 1.0875843582207888e-08,
+              "isovalue": 1.2534842560500488e-09
+            },
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 2.368067015883179e-16,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "max_abs_cube_gradient_error": 4.263256414560601e-14,
+            "isovalue_error": 3.3306690738754696e-16
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        },
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 2.4993765663760097e-08,
+              "centered_value": 2.5917609736951055e-08,
+              "scaled_gradient": 1.3198270250121734e-08,
+              "isovalue": 1.0445702133750406e-09
+            },
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 2.0411682424176409e-16,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "max_abs_cube_gradient_error": 4.263256414560601e-14,
+            "isovalue_error": 2.7755575615628914e-16
+          },
+          "against_first_openmp": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 6.147798190290884e-09,
+              "centered_value": 1.4881768222972626e-08,
+              "scaled_gradient": 1.0679871736418503e-08,
+              "isovalue": 2.0891404267500787e-10
+            },
+            "max_abs_value_error": 2.220446049250313e-16,
+            "rms_value_error": 4.714048299946879e-17,
+            "max_abs_centered_value_error": 2.7755575615628914e-16,
+            "max_abs_cube_gradient_error": 4.263256414560601e-14,
+            "isovalue_error": 5.551115123125783e-17
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        },
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 1.1119249331195315e-08,
+              "centered_value": 2.5917609736951055e-08,
+              "scaled_gradient": 1.0994098868350421e-08,
+              "isovalue": 6.267421280250244e-10
+            },
+            "max_abs_value_error": 3.3306690738754696e-16,
+            "rms_value_error": 6.362349451710482e-17,
+            "max_abs_centered_value_error": 3.885780586188048e-16,
+            "max_abs_cube_gradient_error": 5.684341886080802e-14,
+            "isovalue_error": 1.6653345369377348e-16
+          },
+          "against_first_openmp": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 2.3147954532010897e-08,
+              "centered_value": 1.8035636192055804e-08,
+              "scaled_gradient": 1.0637611436620974e-08,
+              "isovalue": 6.267421280250236e-10
+            },
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 1.8545834415164943e-16,
+            "max_abs_centered_value_error": 3.885780586188048e-16,
+            "max_abs_cube_gradient_error": 4.263256414560601e-14,
+            "isovalue_error": 1.6653345369377348e-16
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    }
+  ]
+}
