@@ -1,0 +1,368 @@
+{
+  "test": "Independent GPU reconstruction from oriented points",
+  "reconstruction_compatibility": true,
+  "source_revision": "e7647a7d20ebd68c966e187107d0e7bba8d43a2d",
+  "source_dirty": false,
+  "production_source_sha256": {
+    "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+    "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+    "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+    "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+    "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+    "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
+    "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+    "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+    "src/warp_psr/normal_loads.py": "d0ab72125c97288f3d5636ce05d2bf135bf08e1fe61e363000bd45ccf3ef2705",
+    "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
+    "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+    "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+    "src/warp_psr/reconstruction.py": "cf884b40409ac48b9218a0e114e3b0184edbb9fbdc4b81dc69fb8bbc27a74ad6",
+    "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+    "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+    "src/warp_psr/solver.py": "1132b567428dc70e11dc183f2e892cbd0b00167a866ff9e52efa7e63c1fc908c",
+    "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+    "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+    "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+  },
+  "fixture": "eagle-full-d9-spsr",
+  "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+  "input_source": {
+    "source_file": "eagle.points.ply",
+    "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+    "original_count": 796825,
+    "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+    "ignored_properties": [
+      "red",
+      "green",
+      "blue",
+      "alpha"
+    ],
+    "selection": "all rows in original file order",
+    "dataset": "eagle",
+    "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+    "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+    "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+    "selected_count": 796825
+  },
+  "tree": {
+    "exact_active_and_support_keys": true,
+    "levels": [
+      {
+        "depth": 0,
+        "support_count": 64,
+        "active_count": 8,
+        "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+        "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+      },
+      {
+        "depth": 1,
+        "support_count": 288,
+        "active_count": 27,
+        "support_sha256": "0fd0438841059030f8db175bf45d2cea3368c28e96fc241a246c2db54c1af127",
+        "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+      },
+      {
+        "depth": 2,
+        "support_count": 680,
+        "active_count": 125,
+        "support_sha256": "52f87e815ed39a8e721f96e298f921c2bf0eff8a8e1abc19547f4e57c64d57bc",
+        "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+      },
+      {
+        "depth": 3,
+        "support_count": 1952,
+        "active_count": 729,
+        "support_sha256": "f77b6e051ef46abd74c410402cac19086edafbc8663a0fa05aab4c9bc91593b9",
+        "active_sha256": "b819076b8da1accbde2eca8b65269e4ba5320de9b3770b8a1841c5234d8c330d"
+      },
+      {
+        "depth": 4,
+        "support_count": 8328,
+        "active_count": 4913,
+        "support_sha256": "7d7633a776673c0d7ee8acdc06281d9d1964c77cc92920d0c8b8f86eddb2c7ea",
+        "active_sha256": "04da8763b4cc221f355d8b931980f50fa4350cc948c242cc871acc8b754d74f3"
+      },
+      {
+        "depth": 5,
+        "support_count": 20056,
+        "active_count": 18440,
+        "support_sha256": "3bbc8b442398ac4448a4c481bc27cde9d22b067909b2eae4c9bb560917549005",
+        "active_sha256": "13ac1baefffc50fa2e20a12e7a0af2b831db07eddc28ddd6202f7835d5c911f2"
+      },
+      {
+        "depth": 6,
+        "support_count": 69152,
+        "active_count": 68552,
+        "support_sha256": "7d51acaa0d47e95de6210292e0fbccdcfefb04edcfd6f91cb480b221d1566191",
+        "active_sha256": "7208d47d92d670dcec847c526636d94f6b01d8adc7e2b36c94c0d3223999c418"
+      },
+      {
+        "depth": 7,
+        "support_count": 264192,
+        "active_count": 264192,
+        "support_sha256": "8502457d22e450bb6fe78540104b0b672096009102fec7ad1763e95f31037282",
+        "active_sha256": "18590cd141519f48a50228a51ad2815c0dc63d264cbafe30d0777a559aff11c2"
+      },
+      {
+        "depth": 8,
+        "support_count": 914792,
+        "active_count": 914792,
+        "support_sha256": "e81a80741be911e217b5721650f685e98aa4356ac7c73908242c2e17688bc9db",
+        "active_sha256": "1db54611a82b4361e0500b53f411ae68fdb07559f9a86a7081529aedee5ca1bf"
+      },
+      {
+        "depth": 9,
+        "support_count": 2052088,
+        "active_count": 2052088,
+        "support_sha256": "e7fdc5b5a3386be3c6671105862b573ea86cc4400621fd66447cbfdc2b92524c",
+        "active_sha256": "806287d93fbb32e8c8cd1b23dbf5504d0ca99b1ac88d868b9222b0462da17ba8"
+      }
+    ]
+  },
+  "device": "cuda:0",
+  "queries": 812815,
+  "coefficients": 3323866,
+  "field_tolerances": {
+    "absolute": 1e-05,
+    "relative": 0.0001
+  },
+  "max_abs_value_error": 3.11434268951416e-06,
+  "max_abs_centered_value_error": 3.0547380447387695e-06,
+  "rms_value_error": 2.6756577830837186e-07,
+  "max_abs_cube_gradient_error": 0.004198289143403144,
+  "max_scaled_gradient_budget_ratio": 0.2935188243658386,
+  "max_unscaled_gradient_budget_ratio": 43.79000772948533,
+  "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+  "gradient_errors_by_depth": {
+    "4": 1.9085702935017768e-06,
+    "5": 5.08952078259739e-06,
+    "6": 9.118724735746042e-06,
+    "7": 2.557130754388126e-05,
+    "8": 0.0006243145493556312,
+    "9": 0.004198289143403144
+  },
+  "errors_by_depth": {
+    "4": {
+      "queries": 5719,
+      "max_abs_value_error": 5.513429641723633e-07,
+      "rms_value_error": 3.003809131209051e-07,
+      "max_abs_centered_value_error": 6.258487701416016e-07,
+      "rms_centered_value_error": 3.5758419582128354e-07,
+      "max_abs_cube_gradient_error": 1.9085702935017768e-06,
+      "rms_cube_gradient_error": 3.2745179910634626e-07,
+      "max_scaled_gradient_budget_ratio": 0.010407884712645863
+    },
+    "5": {
+      "queries": 5497,
+      "max_abs_value_error": 5.364418029785156e-07,
+      "rms_value_error": 2.2102297658087336e-07,
+      "max_abs_centered_value_error": 5.960464477539062e-07,
+      "rms_centered_value_error": 2.7727755673844897e-07,
+      "max_abs_cube_gradient_error": 5.08952078259739e-06,
+      "rms_cube_gradient_error": 6.308595408602156e-07,
+      "max_scaled_gradient_budget_ratio": 0.010302347179953248
+    },
+    "6": {
+      "queries": 2332,
+      "max_abs_value_error": 5.364418029785156e-07,
+      "rms_value_error": 1.4104227068484207e-07,
+      "max_abs_centered_value_error": 4.76837158203125e-07,
+      "rms_centered_value_error": 1.6980872207106896e-07,
+      "max_abs_cube_gradient_error": 9.118724735746042e-06,
+      "rms_cube_gradient_error": 1.55799938449798e-06,
+      "max_scaled_gradient_budget_ratio": 0.013666064465538063
+    },
+    "7": {
+      "queries": 1233,
+      "max_abs_value_error": 6.556510925292969e-07,
+      "rms_value_error": 1.9990544611035904e-07,
+      "max_abs_centered_value_error": 5.960464477539062e-07,
+      "rms_centered_value_error": 1.808560176491215e-07,
+      "max_abs_cube_gradient_error": 2.557130754388126e-05,
+      "rms_cube_gradient_error": 3.0409509528668706e-06,
+      "max_scaled_gradient_budget_ratio": 0.0195865373469516
+    },
+    "8": {
+      "queries": 783,
+      "max_abs_value_error": 8.344650268554688e-07,
+      "rms_value_error": 2.5283729118884075e-07,
+      "max_abs_centered_value_error": 7.748603820800781e-07,
+      "rms_centered_value_error": 2.1450456567351087e-07,
+      "max_abs_cube_gradient_error": 0.0006243145493556312,
+      "rms_cube_gradient_error": 3.979875673852542e-05,
+      "max_scaled_gradient_budget_ratio": 0.046703624350622634
+    },
+    "9": {
+      "queries": 797251,
+      "max_abs_value_error": 3.11434268951416e-06,
+      "rms_value_error": 2.679966633165606e-07,
+      "max_abs_centered_value_error": 3.0547380447387695e-06,
+      "rms_centered_value_error": 2.6003346507390686e-07,
+      "max_abs_cube_gradient_error": 0.004198289143403144,
+      "rms_cube_gradient_error": 0.00044497750688913987,
+      "max_scaled_gradient_budget_ratio": 0.2935188243658386
+    }
+  },
+  "errors_by_query_family": {
+    "visualization_grid": {
+      "queries": 13824,
+      "max_abs_value_error": 3.0249357223510742e-06,
+      "rms_value_error": 2.501112525389665e-07,
+      "max_abs_centered_value_error": 2.9653310775756836e-06,
+      "rms_centered_value_error": 2.932137397054925e-07,
+      "max_abs_cube_gradient_error": 0.001754753665426989,
+      "rms_cube_gradient_error": 2.661775721528842e-05,
+      "max_scaled_gradient_budget_ratio": 0.2935188243658386
+    },
+    "random_volume": {
+      "queries": 1024,
+      "max_abs_value_error": 6.556510925292969e-07,
+      "rms_value_error": 2.418735846333339e-07,
+      "max_abs_centered_value_error": 5.960464477539062e-07,
+      "rms_centered_value_error": 2.820475859516035e-07,
+      "max_abs_cube_gradient_error": 0.0007419390296661277,
+      "rms_cube_gradient_error": 1.957586622294314e-05,
+      "max_scaled_gradient_budget_ratio": 0.03149666062436298
+    },
+    "input_samples": {
+      "queries": 796825,
+      "max_abs_value_error": 3.11434268951416e-06,
+      "rms_value_error": 2.6793057518911393e-07,
+      "max_abs_centered_value_error": 3.0547380447387695e-06,
+      "rms_centered_value_error": 2.5997508387928815e-07,
+      "max_abs_cube_gradient_error": 0.004198289143403144,
+      "rms_cube_gradient_error": 0.00044508182425418374,
+      "max_scaled_gradient_budget_ratio": 0.2687023282096586
+    },
+    "cell_interiors": {
+      "queries": 384,
+      "max_abs_value_error": 9.5367431640625e-07,
+      "rms_value_error": 2.486427066678336e-07,
+      "max_abs_centered_value_error": 1.0132789611816406e-06,
+      "rms_centered_value_error": 2.5957287667393434e-07,
+      "max_abs_cube_gradient_error": 0.0007600351035534914,
+      "rms_cube_gradient_error": 6.077381860826252e-05,
+      "max_scaled_gradient_budget_ratio": 0.07932156207656184
+    },
+    "interface_minus": {
+      "queries": 219,
+      "max_abs_value_error": 5.960464477539062e-07,
+      "rms_value_error": 2.0040127326084645e-07,
+      "max_abs_centered_value_error": 5.364418029785156e-07,
+      "rms_centered_value_error": 2.2053026644168145e-07,
+      "max_abs_cube_gradient_error": 9.274237870737778e-05,
+      "rms_cube_gradient_error": 7.329301079108284e-06,
+      "max_scaled_gradient_budget_ratio": 0.016498807397733017
+    },
+    "interface_plus": {
+      "queries": 219,
+      "max_abs_value_error": 5.364418029785156e-07,
+      "rms_value_error": 2.0356017682070286e-07,
+      "max_abs_centered_value_error": 5.364418029785156e-07,
+      "rms_centered_value_error": 2.2180245724217546e-07,
+      "max_abs_cube_gradient_error": 5.9943244774540716e-05,
+      "rms_cube_gradient_error": 6.453050809380367e-06,
+      "max_scaled_gradient_budget_ratio": 0.013015825393209338
+    },
+    "cube_boundary": {
+      "queries": 192,
+      "max_abs_value_error": 5.21540641784668e-07,
+      "rms_value_error": 2.6866087081862574e-07,
+      "max_abs_centered_value_error": 5.811452865600586e-07,
+      "rms_centered_value_error": 3.2256717354812606e-07,
+      "max_abs_cube_gradient_error": 6.503276555935855e-06,
+      "rms_cube_gradient_error": 8.08832038239475e-07,
+      "max_scaled_gradient_budget_ratio": 0.010407884712645863
+    },
+    "far_from_samples": {
+      "queries": 128,
+      "max_abs_value_error": 5.21540641784668e-07,
+      "rms_value_error": 2.64357024253816e-07,
+      "max_abs_centered_value_error": 5.811452865600586e-07,
+      "rms_centered_value_error": 3.216839942407867e-07,
+      "max_abs_cube_gradient_error": 8.305815166198549e-07,
+      "rms_cube_gradient_error": 2.627774986864731e-07,
+      "max_scaled_gradient_budget_ratio": 0.004923938249577185
+    }
+  },
+  "iso_value": 0.5020846128463745,
+  "reference_iso_value": 0.5020846724510193,
+  "metadata": {
+    "precision": "float32",
+    "device": "cuda:0",
+    "basis_counts": [
+      8,
+      27,
+      125,
+      729,
+      4913,
+      18440,
+      68552,
+      264192,
+      914792,
+      2052088
+    ],
+    "integration_cells": 4420522,
+    "timings_seconds": {
+      "samples": 0.010058056563138962,
+      "density": 0.021138202399015427,
+      "normal_field": 0.20958727598190308,
+      "tree": 0.1772928610444069,
+      "integration_grid": 0.15803706645965576,
+      "assembly_and_solve": 2.4848964251577854
+    },
+    "operator_integration_cells": {
+      "4": 4096,
+      "5": 23122,
+      "6": 95460,
+      "7": 376601,
+      "8": 1396802,
+      "9": 4420522
+    },
+    "measured_host_sync_seconds": 0.45826009288430214,
+    "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+    "exact_interpolation_behavior": "level-clustered approximate constraints",
+    "cube_to_model": [
+      [
+        0.0,
+        0.0,
+        9.487554550170898,
+        -3.3637354373931885
+      ],
+      [
+        9.487554550170898,
+        0.0,
+        0.0,
+        -1.9807322025299072
+      ],
+      [
+        0.0,
+        9.487554550170898,
+        0.0,
+        -3.3755571842193604
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "parameters": {
+      "depth": 9,
+      "full_depth": 4,
+      "base_depth": 4,
+      "solve_depth": 9,
+      "kernel_depth": 7,
+      "samples_per_node": 1.5,
+      "scale": 1.1,
+      "point_weight": 2.0,
+      "exact_interpolation": false,
+      "iters": 8,
+      "base_v_cycles": 1,
+      "cg_accuracy": 0.001
+    },
+    "profile": "pinned cascadic degree-1 Neumann",
+    "constant_mode": "reference solve without an added mean term"
+  }
+}
