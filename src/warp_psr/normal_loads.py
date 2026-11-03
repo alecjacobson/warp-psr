@@ -90,13 +90,17 @@ def assemble_reference_normal_loads(
     from_parent = [None] * (max_depth + 1)
     previous_keys = wp.empty(0, dtype=wp.int64, device=device)
     previous = wp.empty(0, dtype=vec4, device=device)
+    has_cumulative = False
     for d in range(max_depth + 1):
+        records = normals.levels[d] if normals.levels is not None else normals.records
+        own = SimpleNamespace(records=records, average=normals.average)
+        has_cumulative = has_cumulative or bool(len(records.keys))
         # The reference begins normal splatting at base_depth.
-        if d >= base_depth:
+        if d >= base_depth and len(records.keys):
             grid, resolution = geometry, finest
             if level_partitions and d < finest:
                 grid, resolution = integration_grid(tree, normals, d, dtype=dtype), d
-            cache = cache_normal_quadrature(grid, normals, d, first_depth=d)
+            cache = cache_normal_quadrature(grid, own, d, first_depth=d)
             same[d] = assemble_normal_load(
                 space(grid, d, resolution), normals, d, cache=cache
             )
@@ -106,6 +110,12 @@ def assemble_reference_normal_loads(
                 )
             del cache
             del grid
+        elif d >= base_depth:
+            same[d] = wp.zeros(len(tree.basis[d].keys), dtype=wp.float64, device=device)
+            if d > base_depth:
+                from_child[d - 1] = wp.zeros(
+                    len(tree.basis[d - 1].keys), dtype=wp.float64, device=device
+                )
         if d < max_depth:
             keys = tree.basis[d].keys
             cumulative = wp.empty(len(keys), dtype=vec4, device=device)
@@ -116,14 +126,14 @@ def assemble_reference_normal_loads(
                     keys,
                     previous_keys,
                     previous,
-                    normals.records.keys,
-                    normals.records.values,
+                    records.keys,
+                    records.values,
                     d,
                     cumulative,
                 ],
                 device=device,
             )
-            if d >= base_depth:
+            if d >= base_depth and has_cumulative:
                 field = SimpleNamespace(
                     records=SimpleNamespace(keys=keys, values=cumulative),
                     average=normals.average,
