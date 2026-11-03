@@ -18,7 +18,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -136,9 +136,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.1164141520857811,
-          "oracle": 0.10364827886223793,
-          "oracle_instrumented": 0.11309763789176941
+          "query_coverage_pilot": 0.11779172718524933,
+          "oracle": 0.10163472965359688,
+          "oracle_instrumented": 0.1136639155447483
         },
         "grid": {
           "resolution": 12,
@@ -204,7 +204,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -212,11 +212,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -362,12 +362,12 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.013123605400323868,
-            "density": 0.015222173184156418,
-            "normal_field": 0.005600631237030029,
-            "tree": 0.008216891437768936,
-            "integration_grid": 0.02023884654045105,
-            "assembly_and_solve": 0.6581274829804897
+            "samples": 0.015272583812475204,
+            "density": 0.0165025033056736,
+            "normal_field": 0.006038278341293335,
+            "tree": 0.00856516882777214,
+            "integration_grid": 0.020953532308340073,
+            "assembly_and_solve": 0.6410196237266064
           },
           "operator_integration_cells": {
             "1": 8,
@@ -375,7 +375,7 @@
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.0036012567579746246,
+          "measured_host_sync_seconds": 0.0039038173854351044,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -438,7 +438,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -556,9 +556,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.11206045746803284,
-          "oracle": 0.09543604776263237,
-          "oracle_instrumented": 0.10664795711636543
+          "query_coverage_pilot": 0.10534591600298882,
+          "oracle": 0.09471751004457474,
+          "oracle_instrumented": 0.10621080920100212
         },
         "grid": {
           "resolution": 12,
@@ -624,7 +624,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -632,11 +632,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -782,18 +782,18 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.012366123497486115,
-            "density": 0.01538112759590149,
-            "normal_field": 0.005599029362201691,
-            "tree": 0.008440181612968445,
-            "integration_grid": 0.020265068858861923,
-            "assembly_and_solve": 0.44559692963957787
+            "samples": 0.012834224849939346,
+            "density": 0.015332479029893875,
+            "normal_field": 0.005773432552814484,
+            "tree": 0.008608236908912659,
+            "integration_grid": 0.020175375044345856,
+            "assembly_and_solve": 0.4091586507856846
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512
           },
-          "measured_host_sync_seconds": 0.0035146623849868774,
+          "measured_host_sync_seconds": 0.00367693230509758,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -862,7 +862,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -980,9 +980,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.10269380733370781,
-          "oracle": 0.09606688097119331,
-          "oracle_instrumented": 0.10221594199538231
+          "query_coverage_pilot": 0.10351511836051941,
+          "oracle": 0.09495525807142258,
+          "oracle_instrumented": 0.10097271576523781
         },
         "grid": {
           "resolution": 12,
@@ -1049,7 +1049,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -1057,11 +1057,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -1219,19 +1219,19 @@
           ],
           "integration_cells": 3788,
           "timings_seconds": {
-            "samples": 0.021703191101551056,
-            "density": 0.016608301550149918,
-            "normal_field": 0.005740553140640259,
-            "tree": 0.009829610586166382,
-            "integration_grid": 0.021760407835245132,
-            "assembly_and_solve": 0.5906219519674778
+            "samples": 0.011949136853218079,
+            "density": 0.016356173902750015,
+            "normal_field": 0.005818679928779602,
+            "tree": 0.00965038686990738,
+            "integration_grid": 0.02113046497106552,
+            "assembly_and_solve": 0.5829372368752956
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 1919
           },
-          "measured_host_sync_seconds": 0.0038912594318389893,
+          "measured_host_sync_seconds": 0.004092562943696976,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -1294,7 +1294,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -1412,9 +1412,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.11309992522001266,
-          "oracle": 0.10371573641896248,
-          "oracle_instrumented": 0.11161608621478081
+          "query_coverage_pilot": 0.11169704794883728,
+          "oracle": 0.09870018064975739,
+          "oracle_instrumented": 0.10961058363318443
         },
         "grid": {
           "resolution": 12,
@@ -1480,7 +1480,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -1488,11 +1488,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -1638,19 +1638,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.01210397481918335,
-            "density": 0.015395872294902802,
-            "normal_field": 0.005655594170093536,
-            "tree": 0.008519075810909271,
-            "integration_grid": 0.02057969570159912,
-            "assembly_and_solve": 0.5506822764873505
+            "samples": 0.014856692403554916,
+            "density": 0.016165360808372498,
+            "normal_field": 0.005877699702978134,
+            "tree": 0.008645281195640564,
+            "integration_grid": 0.020283754914999008,
+            "assembly_and_solve": 0.5095563009381294
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.0035804174840450287,
+          "measured_host_sync_seconds": 0.0022882819175720215,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -1713,7 +1713,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -1831,9 +1831,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.10850076749920845,
-          "oracle": 0.09928066655993462,
-          "oracle_instrumented": 0.10986017435789108
+          "query_coverage_pilot": 0.10867847502231598,
+          "oracle": 0.09717235714197159,
+          "oracle_instrumented": 0.10846737027168274
         },
         "grid": {
           "resolution": 12,
@@ -1899,7 +1899,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -1907,11 +1907,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -2057,19 +2057,19 @@
           ],
           "integration_cells": 3977,
           "timings_seconds": {
-            "samples": 0.01362677663564682,
-            "density": 0.015383753925561905,
-            "normal_field": 0.005682129412889481,
-            "tree": 0.008599113672971725,
-            "integration_grid": 0.02040339633822441,
-            "assembly_and_solve": 0.5428742952644825
+            "samples": 0.015209559351205826,
+            "density": 0.014644227921962738,
+            "normal_field": 0.005806416273117065,
+            "tree": 0.00864286720752716,
+            "integration_grid": 0.020284000784158707,
+            "assembly_and_solve": 0.49922337383031845
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 3977
           },
-          "measured_host_sync_seconds": 0.003635615110397339,
+          "measured_host_sync_seconds": 0.00472857803106308,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -2132,7 +2132,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -2250,9 +2250,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.10962148010730743,
-          "oracle": 0.09909388795495033,
-          "oracle_instrumented": 0.10842632502317429
+          "query_coverage_pilot": 0.10983165726065636,
+          "oracle": 0.09991256520152092,
+          "oracle_instrumented": 0.11513820290565491
         },
         "grid": {
           "resolution": 12,
@@ -2318,7 +2318,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -2326,11 +2326,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -2476,19 +2476,19 @@
           ],
           "integration_cells": 3900,
           "timings_seconds": {
-            "samples": 0.011947300285100937,
-            "density": 0.015274543315172195,
-            "normal_field": 0.005681648850440979,
-            "tree": 0.008528590202331543,
-            "integration_grid": 0.0205545574426651,
-            "assembly_and_solve": 0.5490076765418053
+            "samples": 0.014128010720014572,
+            "density": 0.015480879694223404,
+            "normal_field": 0.005838450044393539,
+            "tree": 0.0085502490401268,
+            "integration_grid": 0.02023446187376976,
+            "assembly_and_solve": 0.5518609806895256
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 3900
           },
-          "measured_host_sync_seconds": 0.003599725663661957,
+          "measured_host_sync_seconds": 0.003929223865270615,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -2551,7 +2551,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -2669,9 +2669,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.1181534193456173,
-          "oracle": 0.10229376703500748,
-          "oracle_instrumented": 0.11224158108234406
+          "query_coverage_pilot": 0.11598347499966621,
+          "oracle": 0.10362077504396439,
+          "oracle_instrumented": 0.11236979439854622
         },
         "grid": {
           "resolution": 12,
@@ -2737,7 +2737,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -2745,11 +2745,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -2895,19 +2895,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.01420547440648079,
-            "density": 0.015469305217266083,
-            "normal_field": 0.0056609585881233215,
-            "tree": 0.008388247340917587,
-            "integration_grid": 0.020522382110357285,
-            "assembly_and_solve": 0.5504549294710159
+            "samples": 0.01650625467300415,
+            "density": 0.014904450625181198,
+            "normal_field": 0.005937062203884125,
+            "tree": 0.008763350546360016,
+            "integration_grid": 0.021594643592834473,
+            "assembly_and_solve": 0.5625112429261208
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.003706537187099457,
+          "measured_host_sync_seconds": 0.003959041088819504,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -2970,7 +2970,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -3088,9 +3088,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.115495964884758,
-          "oracle": 0.09962735325098038,
-          "oracle_instrumented": 0.11225225403904915
+          "query_coverage_pilot": 0.11601290479302406,
+          "oracle": 0.10054361820220947,
+          "oracle_instrumented": 0.11400295421481133
         },
         "grid": {
           "resolution": 12,
@@ -3156,7 +3156,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -3164,11 +3164,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -3314,19 +3314,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.013352777808904648,
-            "density": 0.01526375487446785,
-            "normal_field": 0.005654461681842804,
-            "tree": 0.00859222561120987,
-            "integration_grid": 0.020345516502857208,
-            "assembly_and_solve": 0.5452740900218487
+            "samples": 0.012187883257865906,
+            "density": 0.016034308820962906,
+            "normal_field": 0.005829695612192154,
+            "tree": 0.008611749857664108,
+            "integration_grid": 0.020262200385332108,
+            "assembly_and_solve": 0.5112990774214268
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.0020530447363853455,
+          "measured_host_sync_seconds": 0.0039334408938884735,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -3389,7 +3389,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -3507,9 +3507,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.11826298385858536,
-          "oracle": 0.1005040891468525,
-          "oracle_instrumented": 0.11154550686478615
+          "query_coverage_pilot": 0.11209976673126221,
+          "oracle": 0.10088929161429405,
+          "oracle_instrumented": 0.11271791905164719
         },
         "grid": {
           "resolution": 12,
@@ -3575,7 +3575,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -3583,11 +3583,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -3733,19 +3733,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.013305611908435822,
-            "density": 0.01504262164235115,
-            "normal_field": 0.0055737607181072235,
-            "tree": 0.00850314274430275,
-            "integration_grid": 0.020223520696163177,
-            "assembly_and_solve": 0.5338696166872978
+            "samples": 0.013571575284004211,
+            "density": 0.015360351651906967,
+            "normal_field": 0.005757387727499008,
+            "tree": 0.00866515189409256,
+            "integration_grid": 0.02029547095298767,
+            "assembly_and_solve": 0.5016469918191433
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.0036379098892211914,
+          "measured_host_sync_seconds": 0.0038575120270252228,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -3808,7 +3808,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -3926,9 +3926,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.11284222453832626,
-          "oracle": 0.10039179027080536,
-          "oracle_instrumented": 0.11171844229102135
+          "query_coverage_pilot": 0.11071303114295006,
+          "oracle": 0.10151631385087967,
+          "oracle_instrumented": 0.11541805043816566
         },
         "grid": {
           "resolution": 12,
@@ -3994,7 +3994,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -4002,11 +4002,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -4152,19 +4152,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.013986598700284958,
-            "density": 0.015356656163930893,
-            "normal_field": 0.005620211362838745,
-            "tree": 0.008391398936510086,
-            "integration_grid": 0.02040129527449608,
-            "assembly_and_solve": 0.5337172038853168
+            "samples": 0.013336867094039917,
+            "density": 0.015666410326957703,
+            "normal_field": 0.005936123430728912,
+            "tree": 0.009483616799116135,
+            "integration_grid": 0.02193404734134674,
+            "assembly_and_solve": 0.5111515745520592
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.00366891548037529,
+          "measured_host_sync_seconds": 0.0038197897374629974,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -4231,7 +4231,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -4349,9 +4349,9 @@
         "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.11551093310117722,
-          "oracle": 0.10445217415690422,
-          "oracle_instrumented": 0.11615852639079094
+          "query_coverage_pilot": 0.11538247764110565,
+          "oracle": 0.10340151563286781,
+          "oracle_instrumented": 0.1170608252286911
         },
         "grid": {
           "resolution": 12,
@@ -4417,7 +4417,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -4425,11 +4425,11 @@
           "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
           "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
           "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
-          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
           "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
           "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
-          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+          "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
           "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
           "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
           "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
@@ -4575,19 +4575,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.012744974344968796,
-            "density": 0.015331655740737915,
-            "normal_field": 0.005659855902194977,
-            "tree": 0.00851079449057579,
-            "integration_grid": 0.020312044769525528,
-            "assembly_and_solve": 0.559495247900486
+            "samples": 0.017317157238721848,
+            "density": 0.01606602594256401,
+            "normal_field": 0.006031692028045654,
+            "tree": 0.008668676018714905,
+            "integration_grid": 0.021286483854055405,
+            "assembly_and_solve": 0.5456037893891335
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.00370137020945549,
+          "measured_host_sync_seconds": 0.002320900559425354,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [

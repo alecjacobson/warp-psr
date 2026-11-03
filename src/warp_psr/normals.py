@@ -3,6 +3,7 @@
 from dataclasses import dataclass
 from functools import lru_cache
 from types import SimpleNamespace
+import time
 import warp as wp
 import warp.utils
 from .samples import point_div
@@ -11,6 +12,21 @@ from .keyed import reduce_records, Records
 from .density import quadratic
 
 wp.set_module_options({"fuse_fp": False})
+
+
+@wp.kernel
+def _depth_offsets(keys: wp.array(dtype=wp.int64), offsets: wp.array(dtype=int)):
+    d = wp.tid()
+    target = wp.int64(d) << wp.int64(48)
+    lo = int(0)
+    hi = keys.shape[0]
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if keys[mid] < target:
+            lo = mid + 1
+        else:
+            hi = mid
+    offsets[d] = lo
 
 
 @lru_cache(None)
@@ -121,6 +137,7 @@ def precision_kernels(dtype):
 class NormalField:
     records: Records
     average: wp.array
+    levels: list = None
 
 
 def build_normal_field(samples, density, minimum, maximum):
@@ -175,4 +192,21 @@ def build_normal_field(samples, density, minimum, maximum):
         ],
         device=device,
     )
-    return NormalField(records, average)
+    offsets = wp.empty(maximum + 2, dtype=int, device=device)
+    wp.launch(
+        _depth_offsets, maximum + 2, inputs=[records.keys, offsets], device=device
+    )
+    start = time.perf_counter()
+    boundaries = offsets.numpy().tolist()
+    records.sync_seconds += time.perf_counter() - start
+    empty = Records(
+        wp.empty(0, dtype=wp.int64, device=device),
+        wp.empty(0, dtype=vec4, device=device),
+    )
+    # Warp 1.19 rejects a slice whose start equals the array length, even when
+    # that slice is empty. Empty high levels need explicit zero-length arrays.
+    levels = [
+        Records(records.keys[a:b], records.values[a:b]) if a < b else empty
+        for a, b in zip(boundaries, boundaries[1:])
+    ]
+    return NormalField(records, average, levels)
