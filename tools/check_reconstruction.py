@@ -21,7 +21,9 @@ def check(directory,device='cuda:0'):
     queries=np.loadtxt(directory/'queries.txt').astype(np.float32)
     with wp.ScopedDevice(device):
         result=reconstruct(wp.array(samples[:,:3],dtype=wp.vec3),wp.array(samples[:,3:],dtype=wp.vec3),
-            depth=p['depth'],full_depth=p['full_depth'],point_weight=p['weight'],exact_interpolation=p['exact'],iters=p['iters'])
+            depth=p['depth'],full_depth=p['full_depth'],base_depth=p['base_depth'],solve_depth=p['solve_depth'],kernel_depth=p['kernel_depth'],
+            scale=p['scale'],samples_per_node=p['samples_per_node'],point_weight=p['weight'],exact_interpolation=p['exact'],
+            iters=p['iters'],base_v_cycles=p['base_v_cycles'],cg_accuracy=p['cg_accuracy'])
         v,g,valid=result.evaluate(wp.array(queries,dtype=wp.vec3))
         assert valid.numpy().all()
         actual=np.column_stack([v.numpy(),g.numpy()])

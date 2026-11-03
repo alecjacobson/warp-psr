@@ -3,6 +3,7 @@
 #include <iomanip>
 #include <iostream>
 #include <memory>
+#include <chrono>
 #include "Reconstructors.h"
 using namespace PoissonRecon;
 constexpr unsigned Sig = FEMDegreeAndBType<1, BOUNDARY_NEUMANN>::Signature;
@@ -34,8 +35,19 @@ template<class Real> int run(int argc, char** argv) {
     p.pointWeight=Real(std::stod(argv[6])); p.exactInterpolation=std::stoi(argv[7]);
     p.iters=std::stoi(argv[8]); p.scale=Real(1.1); p.samplesPerNode=Real(1.5);
     p.cgSolverAccuracy=Real(1e-3); p.baseVCycles=1;
+    if(argc==17) {
+        p.baseDepth=std::stoi(argv[10]); p.solveDepth=std::stoi(argv[11]); p.kernelDepth=std::stoi(argv[12]);
+        p.scale=Real(std::stod(argv[13])); p.samplesPerNode=Real(std::stod(argv[14]));
+        p.cgSolverAccuracy=Real(std::stod(argv[15])); p.baseVCycles=std::stoi(argv[16]);
+    }
     using Solver=Reconstructor::Poisson::Solver<Real,3,IsotropicUIntPack<3,Sig>>;
+    auto start=std::chrono::steady_clock::now();
     std::unique_ptr<Reconstructor::Implicit<Real,3,IsotropicUIntPack<3,Sig>>> result(Solver::Solve(samples,p));
+    auto stop=std::chrono::steady_clock::now();
+    if(const char* file=std::getenv("WARP_PSR_TIMING_FILE")) {
+        std::ofstream timing(file);
+        timing<<std::setprecision(17)<<std::chrono::duration<double>(stop-start).count()<<'\n';
+    }
     std::ofstream out(argv[3]); out<<std::setprecision(17);
     out<<"iso "<<result->isoValue<<'\n';
     out<<"transform";
@@ -60,7 +72,7 @@ template<class Real> int run(int argc, char** argv) {
     return 0;
 }
 int main(int argc,char** argv) {
-    if(argc!=10) { std::cerr<<"input queries output depth full-depth point-weight exact iterations float|double\n"; return 2; }
+    if(argc!=10 && argc!=17) { std::cerr<<"input queries output depth full-depth point-weight exact iterations float|double [base-depth solve-depth kernel-depth scale samples-per-node cg-accuracy base-v-cycles]\n"; return 2; }
     ThreadPool::ParallelizationType=ThreadPool::NONE;
     Reconstructor::ProfilerMS=0;
     try { return std::string(argv[9])=="double" ? run<double>(argc,argv) : run<float>(argc,argv); }

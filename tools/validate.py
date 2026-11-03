@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 import subprocess
 import sys
+import shutil
 import warp as wp
 from tools.make_fixture import ROOT
 
@@ -43,7 +44,9 @@ def main():
             results[-1]["official_cli"]=json.loads((directory/"cli_report.json").read_text())
         if (directory/"reconstruction_report.json").exists():
             results[-1]["reconstruction"]=json.loads((directory/"reconstruction_report.json").read_text())
+    run("-m","tools.check_profiles")
     run("-m","pytest","-q")
+    shutil.copyfile(ROOT/".build/profile-validation.json",ROOT/"docs/results/profiles.json")
     run("-m","tools.render_comparison",str(ROOT/".build/fixtures/torus"))
     source_paths=sorted([*ROOT.glob("src/**/*.py"),*ROOT.glob("reference/*.cpp"),*ROOT.glob("reference/*.inc"),*ROOT.glob("reference/*.py"),*ROOT.glob("tools/*.py"),*ROOT.glob("tests/*.py")])
     report={"scope":"Independent float32 GPU reconstruction; float64 evaluation is tested separately",
@@ -51,7 +54,7 @@ def main():
             "source_sha256":{str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in source_paths},
             "fixtures":results,
             "open_gates":["full float64 preprocessing and solving; built-in FEM issue #8", "base-depth-zero profile",
-                          "complete ghost flags and parent/child metadata", "repeatability and complete query families", "larger performance experiments"]}
+                          "complete ghost flags and parent/child metadata", "repeatability and complete query families", "distribution/density performance scaling"]}
     (ROOT/"docs/results/validation.json").write_text(json.dumps(report,indent=2)+"\n")
 
 if __name__=="__main__":
