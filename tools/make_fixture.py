@@ -6,11 +6,15 @@ import os
 from pathlib import Path
 import platform
 import subprocess
+import sys
 import time
 import numpy as np
 import warp as wp
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0,str(ROOT))
+from reference.queries import coverage_queries
 
 
 def read_output(path):
@@ -21,10 +25,28 @@ def read_output(path):
 
 def points_for(shape, count, seed):
     rng = np.random.default_rng(seed)
-    if shape == "sphere":
+    if shape in ("plane", "sheets"):
+        p = rng.uniform(-1,1,(count,3))
+        p[:,2] = 0
+        n = np.zeros_like(p)
+        n[:,2] = 1
+        if shape == "sheets":
+            sign = np.where(np.arange(count)%2, 1., -1.)
+            p[:,2] = 0.035*sign
+            n[:,2] = sign
+        return p,n
+    if shape in ("sphere", "cluster", "disconnected"):
         n = rng.normal(size=(count, 3))
+        if shape == "cluster":
+            n[:9*count//10] = rng.normal(scale=0.12,size=(9*count//10,3)) + [0,0,1]
         n /= np.linalg.norm(n, axis=1)[:,None]
+        if shape == "disconnected":
+            p = 0.25*n
+            p[:,0] += np.where(np.arange(count)%2, 0.65, -0.65)
+            return p,n
         return n, n.copy()
+    if shape != "torus":
+        raise ValueError(f"Unknown fixture shape: {shape}")
     u, v = rng.uniform(0, 2*np.pi, size=(2,count))
     # A mildly nonuniform torus intentionally exercises adaptive density.
     p = np.array([(0.7+0.26*np.cos(v))*np.cos(u),
@@ -46,6 +68,7 @@ def generate(args):
     out = ROOT / ".build/fixtures" / args.name
     out.mkdir(parents=True, exist_ok=True)
     p,n = points_for(args.shape, args.count, args.seed)
+    p = p*args.input_scale + np.asarray(args.translation)
     dtype = np.float32 if args.precision == "float" else np.float64
     p,n = p.astype(dtype), n.astype(dtype)
     np.savetxt(out/"input.pts", np.column_stack([p,n]), fmt="%.17g")
@@ -61,10 +84,28 @@ def generate(args):
     np.savetxt(out/"queries.txt", q, fmt="%.17g")
     command_args = [str(out/"input.pts"), str(out/"queries.txt"), "OUTPUT", *oracle_parameters(vars(args))]
     timings = {}
+    environment={**os.environ, "WARP_PSR_ORACLE_DIR": str(out)}
+    # The pilot exports support cells used only to choose offline diagnostic
+    # queries. Both final drivers independently solve again on the full query set.
+    command_args[2] = str(out/'pilot.txt')
+    start = time.perf_counter()
+    subprocess.run([str(ROOT/'.build/oracle_instrumented'),*command_args],env=environment,check=True)
+    timings['query_coverage_pilot'] = time.perf_counter()-start
+    pilot = read_output(out/'pilot.txt')
+    cube_to_model = pilot['transform'].reshape(4,4).T
+    model_to_cube = np.linalg.inv(cube_to_model)
+    cube_samples = p @ model_to_cube[:3,:3].T + model_to_cube[:3,3]
+    families,coverage = coverage_queries(pilot['node'],read_output(out/'stages.txt')['normal'],cube_samples,args.depth,args.precision,args.seed+2)
+    ranges = {'visualization_grid':[0,args.grid**3], 'random_volume':[args.grid**3,args.grid**3+1024],
+              'input_samples':[args.grid**3+1024,len(q)]}
+    for name,cube in families.items():
+        extra = (cube @ cube_to_model[:3,:3].T + cube_to_model[:3,3]).astype(dtype)
+        ranges[name] = [len(q),len(q)+len(extra)]
+        q = np.concatenate([q,extra])
+    np.savetxt(out/'queries.txt',q,fmt='%.17g')
     for exe in ["oracle", "oracle_instrumented"]:
         command_args[2] = str(out/(exe+".txt"))
         start = time.perf_counter()
-        environment={**os.environ, "WARP_PSR_ORACLE_DIR": str(out)}
         if args.operators:
             environment["WARP_PSR_OPERATORS"]=str(out)
         subprocess.run([str(ROOT/".build"/exe), *command_args],env=environment, check=True)
@@ -78,7 +119,7 @@ def generate(args):
     def checksum(path):
         return hashlib.sha256(path.read_bytes()).hexdigest()
     manifest = {
-        "fixture_format": 1, "name": args.name, "pins": json.loads((ROOT/"reference/pins.json").read_text()),
+        "fixture_format": 2, "name": args.name, "pins": json.loads((ROOT/"reference/pins.json").read_text()),
         "application_revision": revision, "application_dirty": bool(subprocess.check_output(["git","status","--porcelain"],cwd=ROOT)),
         "build": json.loads((ROOT/".build/build.json").read_text()),
         "input_sha256": checksum(out/"input.pts"), "queries_sha256": checksum(out/"queries.txt"),
@@ -86,6 +127,7 @@ def generate(args):
         "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0, "timings_seconds": timings,
         "grid": {"resolution": args.grid, "cube_min": .001, "cube_max": .999, "order": "ij, z fastest"},
+        "query_families":ranges, "query_coverage":coverage,
         "environment": {"python": platform.python_version(), "numpy": np.__version__, "warp": wp.__version__,
                         "devices": [str(d) for d in wp.get_devices()],
                         "gpu": subprocess.check_output(["nvidia-smi","--query-gpu=name,driver_version,memory.total","--format=csv,noheader"],text=True).strip()},
@@ -98,7 +140,9 @@ def generate(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--name", default="sphere")
-    parser.add_argument("--shape", choices=["sphere","torus"], default="sphere")
+    parser.add_argument("--shape", choices=["sphere","torus","plane","sheets","cluster","disconnected"], default="sphere")
+    parser.add_argument("--input-scale",type=float,default=1.0)
+    parser.add_argument("--translation",type=float,nargs=3,default=[0.,0.,0.])
     parser.add_argument("--count", type=int, default=512)
     parser.add_argument("--seed", type=int, default=2026)
     parser.add_argument("--depth", type=int, default=4)

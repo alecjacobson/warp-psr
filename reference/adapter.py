@@ -1,8 +1,22 @@
 """Offline CPU oracle-tree import. Deliberately outside the production package."""
 import numpy as np
 import warp as wp
-from warp_psr.field import LevelField
+from functools import lru_cache
+from warp_psr.field import LevelField, cumulative_coefficients
+from warp_psr.transforms import precision_kernels
 from tools.make_fixture import read_output
+
+wp.set_module_options({'fuse_fp':False})
+
+
+@lru_cache(None)
+def inverse_kernel(dtype):
+    mat=wp.types.matrix(shape=(4,4),dtype=dtype)
+    inverse=precision_kernels(dtype).reference_inverse
+    @wp.kernel
+    def invert(source: wp.array(dtype=mat),result: wp.array(dtype=mat)):
+        result[0]=inverse(source[0])
+    return invert
 
 
 def load_field(path, dtype=wp.float32, device="cuda:0"):
@@ -21,8 +35,15 @@ def load_field(path, dtype=wp.float32, device="cuda:0"):
     coeff = np.array([c for k,c in selected], dtype=np.float64 if dtype == wp.float64 else np.float32)
     transform = data["transform"].reshape(4,4)
     # PoissonRecon's XForm indexing is column first.
-    inverse = np.linalg.inv(transform.T)
+    mat=wp.types.matrix(shape=(4,4),dtype=dtype)
+    source=wp.array(transform.T[None],dtype=mat,device=device)
+    result=wp.empty_like(source)
+    wp.launch(inverse_kernel(dtype),1,inputs=[source,result],device=device)
+    inverse=result.numpy()[0]
     linear = tuple(inverse[:3,:3].reshape(-1))
     translation = tuple(inverse[:3,3])
-    return LevelField(wp.array(keys, dtype=wp.int64, device=device), wp.array(coeff, dtype=dtype, device=device),
-                      linear, translation, int(max(nodes[:,0])), float(data["iso"][0,0]))
+    keys=wp.array(keys,dtype=wp.int64,device=device)
+    coeff=wp.array(coeff,dtype=dtype,device=device)
+    depth=int(max(nodes[:,0]))
+    return LevelField(keys,coeff,linear,translation,depth,float(data['iso'][0,0]),
+                      cumulative_coefficients(keys,coeff,depth))

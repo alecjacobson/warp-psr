@@ -35,12 +35,28 @@ def check(directory,device='cuda:0'):
     cubegrad=actual[:,1:]@inverse
     refgrad=expected['q'][:,1:]@inverse
     np.testing.assert_allclose(actual[:,0],expected['q'][:,0],atol=atol,rtol=rtol)
+    centered_actual=actual[:,0]-result.iso_value
+    centered_expected=expected['q'][:,0]-expected['iso'][0,0]
+    np.testing.assert_allclose(centered_actual,centered_expected,atol=atol,rtol=rtol)
     tree=read_output(directory/'oracle_instrumented.txt')['node']
     normal=read_output(directory/'stages.txt')['normal']
     cube=queries@np.array(result.field.linear).reshape(3,3).T+result.field.translation
     widths=query_cell_widths(tree,normal,cube,p['depth'])
     np.testing.assert_allclose(cubegrad*widths[:,None],refgrad*widths[:,None],atol=atol,rtol=rtol)
     np.testing.assert_allclose(result.iso_value,expected['iso'][0,0],atol=atol,rtol=rtol)
+    def errors(selection):
+        delta=error[selection,0]
+        centered_delta=(centered_actual-centered_expected)[selection]
+        gradient_delta=(cubegrad-refgrad)[selection]
+        h=widths[selection,None]
+        return {'queries':len(delta),
+                'max_abs_value_error':float(np.max(np.abs(delta))),
+                'rms_value_error':float(np.sqrt(np.mean(delta**2))),
+                'max_abs_centered_value_error':float(np.max(np.abs(centered_delta))),
+                'rms_centered_value_error':float(np.sqrt(np.mean(centered_delta**2))),
+                'max_abs_cube_gradient_error':float(np.max(np.abs(gradient_delta))),
+                'rms_cube_gradient_error':float(np.sqrt(np.mean(gradient_delta**2))),
+                'max_scaled_gradient_budget_ratio':float(np.max(np.abs(gradient_delta)*h/(atol+rtol*np.abs(refgrad[selection])*h)))}
     report={"test":"Independent GPU reconstruction from oriented points","reconstruction_compatibility":True,
         "source_revision":subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         "source_dirty":bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT)),
@@ -48,12 +64,15 @@ def check(directory,device='cuda:0'):
         "device":device,"queries":len(queries),"coefficients":len(result.field.keys),
         "field_tolerances":{"absolute":atol,"relative":rtol},
         "max_abs_value_error":float(np.max(np.abs(error[:,0]))),
+        "max_abs_centered_value_error":float(np.max(np.abs(centered_actual-centered_expected))),
         "rms_value_error":float(np.sqrt(np.mean(error[:,0]**2))),
         "max_abs_cube_gradient_error":float(np.max(np.abs(cubegrad-refgrad))),
         "max_scaled_gradient_budget_ratio":float(np.max(np.abs(cubegrad-refgrad)*widths[:,None]/(atol+rtol*np.abs(refgrad)*widths[:,None]))),
         "max_unscaled_gradient_budget_ratio":float(np.max(np.abs(cubegrad-refgrad)/(atol+rtol*np.abs(refgrad)))),
         "gradient_gate":"Design budget, scaled by canonical reference integration-cell width",
         "gradient_errors_by_depth":{str(d):float(np.max(np.abs(cubegrad[widths==2.**(-d)]-refgrad[widths==2.**(-d)]))) for d in range(p['depth']+1) if np.any(widths==2.**(-d))},
+        "errors_by_depth":{str(d):errors(widths==2.**(-d)) for d in range(p['depth']+1) if np.any(widths==2.**(-d))},
+        "errors_by_query_family":{name:errors(slice(*bounds)) for name,bounds in manifest.get('query_families',{}).items()},
         "iso_value":result.iso_value,"reference_iso_value":float(expected['iso'][0,0]),
         "metadata":result.metadata}
     np.save(directory/'warp_reconstruction.npy',actual)

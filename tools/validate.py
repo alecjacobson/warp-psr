@@ -48,8 +48,10 @@ def main():
         if (directory/"reconstruction_report.json").exists():
             results[-1]["reconstruction"]=json.loads((directory/"reconstruction_report.json").read_text())
     run("-m","tools.check_profiles")
+    run("-m","tools.check_geometry_profiles")
     run("-m","pytest","-q")
     shutil.copyfile(ROOT/".build/profile-validation.json",ROOT/"docs/results/profiles.json")
+    shutil.copyfile(ROOT/".build/geometry-validation.json",ROOT/"docs/results/geometry-profiles.json")
     run("-m","tools.render_comparison",str(ROOT/".build/fixtures/torus"))
     source_paths=sorted([*ROOT.glob("src/**/*.py"),*ROOT.glob("reference/*.cpp"),*ROOT.glob("reference/*.inc"),*ROOT.glob("reference/*.py"),*ROOT.glob("tools/*.py"),*ROOT.glob("tests/*.py")])
     report={"scope":"Independent float32 compatibility and end-to-end float64 GPU diagnostic reconstruction",
