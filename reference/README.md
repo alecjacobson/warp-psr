@@ -109,6 +109,12 @@ All depth, density, normalization, screening, and solver arguments are passed
 explicitly to both the oracle and CLI checks. Legacy oracle defaults are tested
 for bitwise equality with their explicit counterparts.
 
+Density-driven splat depths preserve the pinned `log(Real)` overload's result
+precision before later divisions and additions. The float32 path evaluates the
+logarithm internally in double and rounds its result to float32 at that point.
+This avoids CUDA `logf` approximation differences on the diagnostic sphere,
+whose raw depths and weights now match the reference bitwise (#44).
+
 `python -m tools.benchmark_reference --count 100000 --depth 8 --full-depth 4`
 measures the unchanged serial library solve using a timer around `Solver::Solve`.
 Input parsing, query evaluation, export, and process startup are outside the
