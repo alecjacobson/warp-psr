@@ -28,6 +28,12 @@ def precision_kernels(dtype):
     vec3 = wp.types.vector(length=3, dtype=dtype)
     vec4 = wp.types.vector(length=4, dtype=dtype)
 
+    @wp.func
+    def real_log(value: dtype):
+        # The reference log(Real) returns Real, before subsequent arithmetic.
+        # Evaluate internally in double to avoid CUDA logf's larger ulp error.
+        return dtype(wp.log(wp.float64(value)))
+
     @wp.kernel
     def _scale(out: wp.array(dtype=dtype)):
         # Reference averages 1000 values in the profile's scalar precision.
@@ -157,7 +163,7 @@ def precision_kernels(dtype):
         if density >= target:
             raw = dtype(
                 wp.float64(d)
-                + wp.log(wp.float64(density / target))
+                + wp.float64(real_log(density / target))
                 / (wp.log(wp.float64(2.0)) * wp.float64(2.0))
             )
         else:
@@ -167,9 +173,9 @@ def precision_kernels(dtype):
                 d -= 1
                 density = densities[i, d]
             raw = dtype(
-                wp.float64(d)
-                + wp.log(wp.float64(density / target))
-                / wp.log(wp.float64(density / fine))
+                dtype(d)
+                + real_log(density / target)
+                / real_log(density / fine)
             )
         h = dtype(1.0) / dtype(1 << d)
         weight = h * h / density

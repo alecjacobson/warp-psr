@@ -167,7 +167,7 @@ All larger reconstructions pass the same accuracy budgets. Maximum field error
 is [1.02e-6 for 100,000 points](docs/results/torus-100k.json) and
 [9.54e-7 for one million](docs/results/torus-1m.json), including every sample
 position in the query set. At depth 9, the [million-point report](docs/results/torus-1m-d9.json)
-records a maximum field error of 1.26e-6 and scaled gradient errors within 7.93%
+records a maximum field error of 1.32e-6 and scaled gradient errors within 7.81%
 of the budget. Gradient comparisons include exact knot planes.
 The pinned reference intersects left-cell neighbors with right-cell polynomial
 pieces at knots, which can differ from either ordinary one-sided derivative.

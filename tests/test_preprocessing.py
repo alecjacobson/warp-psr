@@ -54,6 +54,11 @@ def test_gpu_density_normal_tree(name,depth,full):
     np.testing.assert_allclose(normal.average.numpy()[0,:2],stage['density_scale'][0],atol=atol,rtol=rtol)
     splats=read_output(path/'splats.txt')['splat']
     np.testing.assert_allclose(density.depths_and_weights.numpy()[order],splats[:,3:5],atol=atol,rtol=rtol)
+    if name=='sphere':
+        # This fixture has bitwise-equal density coefficients and weights.
+        # A double log without the reference's intermediate float rounding
+        # changed 86 depths by one ulp; native CUDA logf changed eight.
+        np.testing.assert_array_equal(density.depths_and_weights.numpy()[order],splats[:,3:5])
     nodes=read_output(path/'oracle_instrumented.txt')['node']
     for d,level in enumerate(tree.levels):
         expected=nodes[(nodes[:,0]==d)&(nodes[:,5]==0)]
