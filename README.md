@@ -52,9 +52,9 @@ NumPy, SciPy, and the C++ reference are used only by tests and visualization.
 ![Official PoissonRecon and independent Warp reconstruction](docs/results/torus-reconstruction.png)
 
 Both implementations reconstruct the same **8,192 oriented points**, at depth 6.
-Across **271,360 volume and sample queries**, maximum field error is **8.35e-7**;
+Across **271,360 volume and sample queries**, maximum field error is **5.97e-7**;
 the isovalue is identical. The largest cell-width-scaled gradient error uses
-**4.8% of the design tolerance**. Raw cube-gradient error is **6.45e-5**, reported
+**4.7% of the design tolerance**. Raw cube-gradient error is **6.45e-5**, reported
 separately rather than hidden by the scaling. Both panels use the same
 visualization-only marching-cubes extractor.
 
@@ -106,19 +106,31 @@ basis extension.
 
 ## Performance
 
-On an NVIDIA L40, the 100,000-point depth-8 torus has 911,002 basis coefficients
-and 1,223,993 integration cells. The first optimization reduces tree construction
-from **496 ms to 34 ms**, and median warm reconstruction from **3.15 s to 2.64 s**.
-The [before/after measurements](docs/results/tree-performance.json) include
-Python orchestration and exclude input upload and queries. These are comparisons
-with this implementation's earlier version, not a speedup claim over C++.
+On an NVIDIA L40, caching normal quadrature, restricting point assembly to
+occupied cells, and indexing relaxation rows reduce the 100,000-point warm
+median from **2.68 s to 1.50 s** and peak device-pool usage from **19.46 GiB to
+11.34 GiB**. This follows the earlier tree optimization from 496 ms to 34 ms.
+
+| Torus samples | Depth / full depth | Basis coefficients | Integration cells | Warm median | Peak device pool |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| 100,000 | 8 / 4 | 911,002 | 1,223,993 | 1.50 s | 11.34 GiB |
+| 1,000,000 | 8 / 4 | 963,898 | 1,265,874 | 1.69 s | 11.88 GiB |
+
+The [FEM measurements](docs/results/fem-performance.json) and
+[earlier tree measurements](docs/results/tree-performance.json) include Python
+orchestration and exclude input upload and queries. Warm medians use three runs
+after the first invocation; the disk kernel cache may already be populated.
+Memory is the CUDA pool's process high-water mark. These compare this
+implementation's revisions; C++ timing comparisons remain to be measured.
 
 ```sh
 python -m tools.benchmark --count 100000 --depth 8 --full-depth 4
 ```
 
-The larger reconstruction passes the same accuracy budgets. Its maximum field
-error is 1.08e-6; gradient comparisons include samples exactly on knot planes.
+Both larger reconstructions pass the same accuracy budgets. Maximum field error
+is [1.08e-6 for 100,000 points](docs/results/torus-100k.json) and
+[8.35e-7 for one million](docs/results/torus-1m.json), including every sample
+position in the query set. Gradient comparisons include exact knot planes.
 The pinned reference intersects left-cell neighbors with right-cell polynomial
 pieces at knots, which can differ from either ordinary one-sided derivative.
 Reconstruction evaluation preserves this behavior and the reference's inward
