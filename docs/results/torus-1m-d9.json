@@ -1,7 +1,7 @@
 {
   "test": "Independent GPU reconstruction from oriented points",
   "reconstruction_compatibility": true,
-  "source_revision": "d6e653b67053c5735c109f45d8a7bbd36524a749",
+  "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
   "source_dirty": false,
   "production_source_sha256": {
     "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -11,13 +11,14 @@
     "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
     "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
     "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
-    "src/warp_psr/normal_field.py": "cef64908b4175c042d171b241bbd631f9f773b306dff863bd1f26f9afdec03f2",
+    "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+    "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
     "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
     "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
     "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
     "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
     "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
-    "src/warp_psr/solver.py": "226debc3d26d99629556422039ff957f294fedb1c04d41510565bc2368212f7e",
+    "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
     "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
     "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
     "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
@@ -30,19 +31,83 @@
     "relative": 0.0001
   },
   "max_abs_value_error": 1.2516975402832031e-06,
-  "rms_value_error": 1.7576804710337976e-07,
-  "max_abs_cube_gradient_error": 0.0029970624180464256,
-  "max_scaled_gradient_budget_ratio": 0.0802855261025915,
-  "max_unscaled_gradient_budget_ratio": 23.75067541320411,
+  "max_abs_centered_value_error": 1.3113021850585938e-06,
+  "rms_value_error": 1.7571805035986722e-07,
+  "max_abs_cube_gradient_error": 0.002964835940474586,
+  "max_scaled_gradient_budget_ratio": 0.0792536501759892,
+  "max_unscaled_gradient_budget_ratio": 24.58111920834593,
   "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
   "gradient_errors_by_depth": {
-    "4": 1.2293425603448344e-06,
-    "5": 2.2659242072120556e-06,
-    "6": 1.5232046059687754e-05,
-    "7": 2.7631686860374316e-05,
-    "8": 4.670321560451551e-05,
-    "9": 0.0029970624180464256
+    "4": 1.3114626433753662e-06,
+    "5": 2.360337715862082e-06,
+    "6": 1.2525525478812582e-05,
+    "7": 3.2855901004769095e-05,
+    "8": 4.6073792213552345e-05,
+    "9": 0.002964835940474586
   },
+  "errors_by_depth": {
+    "4": {
+      "queries": 2227,
+      "max_abs_value_error": 4.470348358154297e-07,
+      "rms_value_error": 2.8337973027368065e-07,
+      "max_abs_centered_value_error": 5.662441253662109e-07,
+      "rms_centered_value_error": 4.002665467764744e-07,
+      "max_abs_cube_gradient_error": 1.3114626433753662e-06,
+      "rms_cube_gradient_error": 3.0988532769202604e-07,
+      "max_scaled_gradient_budget_ratio": 0.008166214525158016
+    },
+    "5": {
+      "queries": 1219,
+      "max_abs_value_error": 3.427267074584961e-07,
+      "rms_value_error": 1.8545793471649907e-07,
+      "max_abs_centered_value_error": 4.6193599700927734e-07,
+      "rms_centered_value_error": 3.0057030590306766e-07,
+      "max_abs_cube_gradient_error": 2.360337715862082e-06,
+      "rms_cube_gradient_error": 6.576275259792614e-07,
+      "max_scaled_gradient_budget_ratio": 0.007202997486492635
+    },
+    "6": {
+      "queries": 836,
+      "max_abs_value_error": 7.152557373046875e-07,
+      "rms_value_error": 1.8721209819042162e-07,
+      "max_abs_centered_value_error": 5.960464477539062e-07,
+      "rms_centered_value_error": 2.2798413146636208e-07,
+      "max_abs_cube_gradient_error": 1.2525525478812582e-05,
+      "rms_cube_gradient_error": 1.6806975069476343e-06,
+      "max_scaled_gradient_budget_ratio": 0.017064958539858895
+    },
+    "7": {
+      "queries": 439,
+      "max_abs_value_error": 8.344650268554688e-07,
+      "rms_value_error": 2.851511733179936e-07,
+      "max_abs_centered_value_error": 7.152557373046875e-07,
+      "rms_centered_value_error": 2.3612085093578465e-07,
+      "max_abs_cube_gradient_error": 3.2855901004769095e-05,
+      "rms_cube_gradient_error": 4.410021518881736e-06,
+      "max_scaled_gradient_budget_ratio": 0.024465028265202957
+    },
+    "8": {
+      "queries": 321,
+      "max_abs_value_error": 8.344650268554688e-07,
+      "rms_value_error": 3.552893171509324e-07,
+      "max_abs_centered_value_error": 7.152557373046875e-07,
+      "rms_centered_value_error": 2.781622427203826e-07,
+      "max_abs_cube_gradient_error": 4.6073792213552345e-05,
+      "rms_cube_gradient_error": 1.0215048238919591e-05,
+      "max_scaled_gradient_budget_ratio": 0.017576266587789338
+    },
+    "9": {
+      "queries": 1000078,
+      "max_abs_value_error": 1.2516975402832031e-06,
+      "rms_value_error": 1.7523198121494446e-07,
+      "max_abs_centered_value_error": 1.3113021850585938e-06,
+      "rms_centered_value_error": 1.584257445337294e-07,
+      "max_abs_cube_gradient_error": 0.002964835940474586,
+      "rms_cube_gradient_error": 0.0004726138554498038,
+      "max_scaled_gradient_budget_ratio": 0.0792536501759892
+    }
+  },
+  "errors_by_query_family": {},
   "iso_value": 0.5044213533401489,
   "reference_iso_value": 0.5044214725494385,
   "metadata": {
@@ -62,12 +127,12 @@
     ],
     "integration_cells": 5035948,
     "timings_seconds": {
-      "samples": 0.016163714230060577,
-      "density": 0.02174442633986473,
-      "normal_field": 0.22894985228776932,
-      "tree": 0.14476516842842102,
-      "integration_grid": 0.3010795786976814,
-      "assembly_and_solve": 12.245568383485079
+      "samples": 0.01156451553106308,
+      "density": 0.02116864174604416,
+      "normal_field": 0.2498210296034813,
+      "tree": 0.1548495776951313,
+      "integration_grid": 0.3021113872528076,
+      "assembly_and_solve": 3.661607574671507
     },
     "operator_integration_cells": {
       "4": 4096,
@@ -77,7 +142,7 @@
       "8": 1632863,
       "9": 5035948
     },
-    "measured_host_sync_seconds": 0.35141322761774063,
+    "measured_host_sync_seconds": 0.3514958843588829,
     "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
     "exact_interpolation_behavior": "level-clustered approximate constraints",
     "cube_to_model": [

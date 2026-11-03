@@ -1,0 +1,4272 @@
+{
+  "scope": "Float32/float64 independent reconstruction over varied geometry and named query families",
+  "all_passed": true,
+  "profiles": [
+    {
+      "fixture": "geometry-plane-float",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-plane-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "30f9b65da35a406de8338f39b98bda83759ad81e6d2b2e989cfda717d3ee5850",
+        "queries_sha256": "b2b0f5c6d6202448bf3cccace1c81aae5903febc518bcd85e36239ad78ea7c60",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "float",
+        "parameters": {
+          "name": "geometry-plane-float",
+          "shape": "plane",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "float",
+          "grid": 12,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.12765686586499214,
+          "oracle": 0.11002043262124062,
+          "oracle_instrumented": 0.13061891868710518
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3968
+          ],
+          "interface_minus": [
+            3968,
+            4076
+          ],
+          "interface_plus": [
+            4076,
+            4184
+          ],
+          "cube_boundary": [
+            4184,
+            4376
+          ],
+          "far_from_samples": [
+            4376,
+            4504
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 108,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.4711501367613007
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4504,
+        "coefficients": 7184,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 5.960464477539062e-07,
+        "max_abs_centered_value_error": 5.364418029785156e-07,
+        "rms_value_error": 1.349247653750512e-07,
+        "max_abs_cube_gradient_error": 8.786213233549084e-06,
+        "max_scaled_gradient_budget_ratio": 0.02731256551972918,
+        "max_unscaled_gradient_budget_ratio": 0.819725262484044,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 1.4914773424738736e-06,
+          "4": 4.713804934386445e-06,
+          "5": 8.786213233549084e-06
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 1433,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.0635335554523505e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 9.038118373565117e-08,
+            "max_abs_cube_gradient_error": 1.4914773424738736e-06,
+            "rms_cube_gradient_error": 2.47701123502739e-07,
+            "max_scaled_gradient_budget_ratio": 0.01820412123823967
+          },
+          "4": {
+            "queries": 1428,
+            "max_abs_value_error": 5.960464477539062e-07,
+            "rms_value_error": 1.7316779393044287e-07,
+            "max_abs_centered_value_error": 5.364418029785156e-07,
+            "rms_centered_value_error": 1.3776446929421673e-07,
+            "max_abs_cube_gradient_error": 4.713804934386445e-06,
+            "rms_cube_gradient_error": 6.525520529824888e-07,
+            "max_scaled_gradient_budget_ratio": 0.025565596503750666
+          },
+          "5": {
+            "queries": 1643,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.1822294996904446e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 9.346422909941318e-08,
+            "max_abs_cube_gradient_error": 8.786213233549084e-06,
+            "rms_cube_gradient_error": 1.822353196602589e-06,
+            "max_scaled_gradient_budget_ratio": 0.02731256551972918
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 5.960464477539062e-07,
+            "rms_value_error": 1.4811105616039658e-07,
+            "max_abs_centered_value_error": 5.364418029785156e-07,
+            "rms_centered_value_error": 1.1970669299391327e-07,
+            "max_abs_cube_gradient_error": 5.499439090339564e-06,
+            "rms_cube_gradient_error": 7.044891109135976e-07,
+            "max_scaled_gradient_budget_ratio": 0.02071440415563016
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.536237097947194e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 1.2373820153781087e-07,
+            "max_abs_cube_gradient_error": 8.380097661131458e-06,
+            "rms_cube_gradient_error": 8.911905857388201e-07,
+            "max_scaled_gradient_budget_ratio": 0.025565596503750666
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 1.7881393432617188e-07,
+            "rms_value_error": 6.527235905801964e-08,
+            "max_abs_centered_value_error": 1.4901161193847656e-07,
+            "rms_centered_value_error": 4.821337426284248e-08,
+            "max_abs_cube_gradient_error": 8.786213233549084e-06,
+            "rms_cube_gradient_error": 2.0037567617387694e-06,
+            "max_scaled_gradient_budget_ratio": 0.02731256551972918
+          },
+          "cell_interiors": {
+            "queries": 192,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.6357403597040488e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 1.3341724107971912e-07,
+            "max_abs_cube_gradient_error": 6.285073245848594e-06,
+            "rms_cube_gradient_error": 9.56984952650643e-07,
+            "max_scaled_gradient_budget_ratio": 0.018748273700330935
+          },
+          "interface_minus": {
+            "queries": 108,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.5583175096747305e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 1.2947207591781967e-07,
+            "max_abs_cube_gradient_error": 3.4044146746126103e-06,
+            "rms_cube_gradient_error": 5.79991364989499e-07,
+            "max_scaled_gradient_budget_ratio": 0.013600100935226064
+          },
+          "interface_plus": {
+            "queries": 108,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.520209843153109e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 1.2162736469280416e-07,
+            "max_abs_cube_gradient_error": 4.713804934386445e-06,
+            "rms_cube_gradient_error": 7.568763797304329e-07,
+            "max_scaled_gradient_budget_ratio": 0.011666199694978275
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.3392522908760463e-07,
+            "max_abs_centered_value_error": 3.2782554626464844e-07,
+            "rms_centered_value_error": 1.0812692677401078e-07,
+            "max_abs_cube_gradient_error": 4.713804934830534e-06,
+            "rms_cube_gradient_error": 6.753632789985358e-07,
+            "max_scaled_gradient_budget_ratio": 0.0188173884823415
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.2048485269046444e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 9.958294829365073e-08,
+            "max_abs_cube_gradient_error": 1.076155119536168e-06,
+            "rms_cube_gradient_error": 2.568689068343575e-07,
+            "max_scaled_gradient_budget_ratio": 0.013306970672797538
+          }
+        },
+        "iso_value": 0.4982810318470001,
+        "reference_iso_value": 0.4982810616493225,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            648,
+            2312,
+            4064
+          ],
+          "integration_cells": 8128,
+          "timings_seconds": {
+            "samples": 0.014371268451213837,
+            "density": 0.016548454761505127,
+            "normal_field": 0.005827870219945908,
+            "tree": 0.009960975497961044,
+            "integration_grid": 0.02134278416633606,
+            "assembly_and_solve": 0.6963050290942192
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 2752,
+            "5": 8128
+          },
+          "measured_host_sync_seconds": 0.004021085798740387,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1967923641204834,
+              -1.0980819463729858
+            ],
+            [
+              2.1967923641204834,
+              0.0,
+              0.0,
+              -1.0970253944396973
+            ],
+            [
+              0.0,
+              2.1967923641204834,
+              0.0,
+              -1.0983961820602417
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-sheets-float",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-sheets-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "3921bf51d3552a3f9fe83998751cc317b5707efc4e81fc4e2a7ad725d7dc7b2c",
+        "queries_sha256": "8d2b6f460a87fe293ec654d8ebc6a91a09c4520f6492123fdb1c3cef60051bf0",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "float",
+        "parameters": {
+          "name": "geometry-sheets-float",
+          "shape": "sheets",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "float",
+          "grid": 12,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.13594026118516922,
+          "oracle": 0.11452347040176392,
+          "oracle_instrumented": 0.1361464262008667
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3968
+          ],
+          "interface_minus": [
+            3968,
+            4071
+          ],
+          "interface_plus": [
+            4071,
+            4174
+          ],
+          "cube_boundary": [
+            4174,
+            4366
+          ],
+          "far_from_samples": [
+            4366,
+            4494
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 103,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.4561568270925658
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4494,
+        "coefficients": 7184,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 2.086162567138672e-07,
+        "max_abs_centered_value_error": 2.086162567138672e-07,
+        "rms_value_error": 5.0462826525841e-08,
+        "max_abs_cube_gradient_error": 1.0475122076414323e-05,
+        "max_scaled_gradient_budget_ratio": 0.012827821033832038,
+        "max_unscaled_gradient_budget_ratio": 0.2761996992875023,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 5.155724146915786e-07,
+          "4": 1.309390259440768e-06,
+          "5": 1.0475122076414323e-05
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 1437,
+            "max_abs_value_error": 1.4901161193847656e-07,
+            "rms_value_error": 6.627264834119162e-08,
+            "max_abs_centered_value_error": 1.4901161193847656e-07,
+            "rms_centered_value_error": 6.659826870430377e-08,
+            "max_abs_cube_gradient_error": 5.155724146915786e-07,
+            "rms_cube_gradient_error": 1.2085709865493542e-07,
+            "max_scaled_gradient_budget_ratio": 0.005626399818231461
+          },
+          "4": {
+            "queries": 1346,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 3.2261001584471935e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 3.332990983668447e-08,
+            "max_abs_cube_gradient_error": 1.309390259440768e-06,
+            "rms_cube_gradient_error": 2.2811963790931778e-07,
+            "max_scaled_gradient_budget_ratio": 0.0057650645914927336
+          },
+          "5": {
+            "queries": 1711,
+            "max_abs_value_error": 2.086162567138672e-07,
+            "rms_value_error": 4.6701119086020415e-08,
+            "max_abs_centered_value_error": 2.086162567138672e-07,
+            "rms_centered_value_error": 4.681075442129758e-08,
+            "max_abs_cube_gradient_error": 1.0475122076414323e-05,
+            "rms_cube_gradient_error": 1.6651329418268006e-06,
+            "max_scaled_gradient_budget_ratio": 0.012827821033832038
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 1.341104507446289e-07,
+            "rms_value_error": 5.048141276972702e-08,
+            "max_abs_centered_value_error": 1.4901161193847656e-07,
+            "rms_centered_value_error": 5.120298246547377e-08,
+            "max_abs_cube_gradient_error": 3.142536622924297e-06,
+            "rms_cube_gradient_error": 3.8208384221047303e-07,
+            "max_scaled_gradient_budget_ratio": 0.007556583536569308
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 1.7881393432617188e-07,
+            "rms_value_error": 4.85294133394688e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 4.899411811516671e-08,
+            "max_abs_cube_gradient_error": 4.844743960230602e-06,
+            "rms_cube_gradient_error": 5.473355363830275e-07,
+            "max_scaled_gradient_budget_ratio": 0.012827821033832038
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 2.086162567138672e-07,
+            "rms_value_error": 5.040339800616655e-08,
+            "max_abs_centered_value_error": 2.086162567138672e-07,
+            "rms_centered_value_error": 5.040339800616655e-08,
+            "max_abs_cube_gradient_error": 1.0475122076414323e-05,
+            "rms_cube_gradient_error": 2.01888403734093e-06,
+            "max_scaled_gradient_budget_ratio": 0.012010137713837164
+          },
+          "cell_interiors": {
+            "queries": 192,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 4.6974123317444666e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 4.637949018921231e-08,
+            "max_abs_cube_gradient_error": 3.666292727189102e-06,
+            "rms_cube_gradient_error": 5.953548421244991e-07,
+            "max_scaled_gradient_budget_ratio": 0.007635435033544657
+          },
+          "interface_minus": {
+            "queries": 103,
+            "max_abs_value_error": 8.940696716308594e-08,
+            "rms_value_error": 4.2121266202915844e-08,
+            "max_abs_centered_value_error": 8.940696716308594e-08,
+            "rms_centered_value_error": 4.375301478360821e-08,
+            "max_abs_cube_gradient_error": 7.774504665880588e-07,
+            "rms_cube_gradient_error": 2.4003523351079437e-07,
+            "max_scaled_gradient_budget_ratio": 0.004733454293372561
+          },
+          "interface_plus": {
+            "queries": 103,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 4.345638075466526e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 4.362966236791078e-08,
+            "max_abs_cube_gradient_error": 9.493079381472924e-07,
+            "rms_cube_gradient_error": 2.1093217841691976e-07,
+            "max_scaled_gradient_budget_ratio": 0.004124294551437321
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 1.4901161193847656e-07,
+            "rms_value_error": 5.707723440991552e-08,
+            "max_abs_centered_value_error": 1.4901161193847656e-07,
+            "rms_centered_value_error": 5.639438245627082e-08,
+            "max_abs_cube_gradient_error": 3.142536622924297e-06,
+            "rms_cube_gradient_error": 3.3823383186760897e-07,
+            "max_scaled_gradient_budget_ratio": 0.006947643858779765
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 1.341104507446289e-07,
+            "rms_value_error": 6.851395278330714e-08,
+            "max_abs_centered_value_error": 1.341104507446289e-07,
+            "rms_centered_value_error": 6.910639427262973e-08,
+            "max_abs_cube_gradient_error": 4.173681452113165e-07,
+            "rms_cube_gradient_error": 1.1805348884205187e-07,
+            "max_scaled_gradient_budget_ratio": 0.0046939175083971895
+          }
+        },
+        "iso_value": 0.4896010458469391,
+        "reference_iso_value": 0.4896010458469391,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            648,
+            2312,
+            4064
+          ],
+          "integration_cells": 9920,
+          "timings_seconds": {
+            "samples": 0.012852977961301804,
+            "density": 0.016771748661994934,
+            "normal_field": 0.0058445073664188385,
+            "tree": 0.009637795388698578,
+            "integration_grid": 0.02052062377333641,
+            "assembly_and_solve": 0.6866451986134052
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 2752,
+            "5": 9920
+          },
+          "measured_host_sync_seconds": 0.003968585282564163,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1967923641204834,
+              -1.0980819463729858
+            ],
+            [
+              2.1967923641204834,
+              0.0,
+              0.0,
+              -1.0970253944396973
+            ],
+            [
+              0.0,
+              2.1967923641204834,
+              0.0,
+              -1.0983961820602417
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-cluster-float",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-cluster-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "f640784f31ba98aeabdc1f7aca4086fe24a80ab8ff54c13ecbbe27a9b1273b45",
+        "queries_sha256": "a080f1d7130a292af574776c7092fef7d8d44d7c5f16f3bb93c6425c3908d7bf",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "float",
+        "parameters": {
+          "name": "geometry-cluster-float",
+          "shape": "cluster",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "float",
+          "grid": 12,
+          "operators": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.10936582460999489,
+          "oracle": 0.09994608908891678,
+          "oracle_instrumented": 0.1458573117852211
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3968
+          ],
+          "interface_minus": [
+            3968,
+            4054
+          ],
+          "interface_plus": [
+            4054,
+            4140
+          ],
+          "cube_boundary": [
+            4140,
+            4332
+          ],
+          "far_from_samples": [
+            4332,
+            4460
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 86,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.2763322216441282
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4460,
+        "coefficients": 2829,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 5.960464477539062e-07,
+        "max_abs_centered_value_error": 6.556510925292969e-07,
+        "rms_value_error": 1.4653349412224636e-07,
+        "max_abs_cube_gradient_error": 4.609296033919463e-05,
+        "max_scaled_gradient_budget_ratio": 0.08537858763717594,
+        "max_unscaled_gradient_budget_ratio": 0.8827403168407535,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 1.5713509209369647e-06,
+          "4": 2.2588169482640197e-06,
+          "5": 4.609296033919463e-05
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 2094,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 9.002408819533267e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 5.530803604439456e-08,
+            "max_abs_cube_gradient_error": 1.5713509209369647e-06,
+            "rms_cube_gradient_error": 2.7786158538573897e-07,
+            "max_scaled_gradient_budget_ratio": 0.01240154327893375
+          },
+          "4": {
+            "queries": 1156,
+            "max_abs_value_error": 4.172325134277344e-07,
+            "rms_value_error": 1.9750932460891373e-07,
+            "max_abs_centered_value_error": 3.5762786865234375e-07,
+            "rms_centered_value_error": 1.4399002349021512e-07,
+            "max_abs_cube_gradient_error": 2.2588169482640197e-06,
+            "rms_cube_gradient_error": 4.818558656549531e-07,
+            "max_scaled_gradient_budget_ratio": 0.01200525595312467
+          },
+          "5": {
+            "queries": 1210,
+            "max_abs_value_error": 5.960464477539062e-07,
+            "rms_value_error": 1.6688553510621876e-07,
+            "max_abs_centered_value_error": 6.556510925292969e-07,
+            "rms_centered_value_error": 1.625662445262789e-07,
+            "max_abs_cube_gradient_error": 4.609296033919463e-05,
+            "rms_cube_gradient_error": 1.1258929972158886e-05,
+            "max_scaled_gradient_budget_ratio": 0.08537858763717594
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 4.172325134277344e-07,
+            "rms_value_error": 1.423731121120199e-07,
+            "max_abs_centered_value_error": 3.5762786865234375e-07,
+            "rms_centered_value_error": 1.0092755731264708e-07,
+            "max_abs_cube_gradient_error": 1.4665941924008052e-05,
+            "rms_cube_gradient_error": 6.030795965944171e-07,
+            "max_scaled_gradient_budget_ratio": 0.01240154327893375
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 4.172325134277344e-07,
+            "rms_value_error": 1.4742935432149665e-07,
+            "max_abs_centered_value_error": 3.5762786865234375e-07,
+            "rms_centered_value_error": 1.0543104810807712e-07,
+            "max_abs_cube_gradient_error": 2.933188385156882e-05,
+            "rms_cube_gradient_error": 8.883392987754727e-07,
+            "max_scaled_gradient_budget_ratio": 0.026202002315533088
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 5.960464477539062e-07,
+            "rms_value_error": 1.4041367335916543e-07,
+            "max_abs_centered_value_error": 6.556510925292969e-07,
+            "rms_centered_value_error": 1.5186841664694354e-07,
+            "max_abs_cube_gradient_error": 4.609296033919463e-05,
+            "rms_cube_gradient_error": 1.2168878023357853e-05,
+            "max_scaled_gradient_budget_ratio": 0.08537858763717594
+          },
+          "cell_interiors": {
+            "queries": 192,
+            "max_abs_value_error": 4.172325134277344e-07,
+            "rms_value_error": 1.8454812711518854e-07,
+            "max_abs_centered_value_error": 3.5762786865234375e-07,
+            "rms_centered_value_error": 1.3830860460595614e-07,
+            "max_abs_cube_gradient_error": 1.2570807363943004e-05,
+            "rms_cube_gradient_error": 1.053502736147723e-06,
+            "max_scaled_gradient_budget_ratio": 0.02245483526308966
+          },
+          "interface_minus": {
+            "queries": 86,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.8374195929250286e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 1.3269760191260857e-07,
+            "max_abs_cube_gradient_error": 1.6368238755504194e-06,
+            "rms_cube_gradient_error": 4.5728436285239326e-07,
+            "max_scaled_gradient_budget_ratio": 0.008086776639038895
+          },
+          "interface_plus": {
+            "queries": 86,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.9492420727628448e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 1.4440061478701153e-07,
+            "max_abs_cube_gradient_error": 1.767769785554485e-06,
+            "rms_cube_gradient_error": 4.170400002467855e-07,
+            "max_scaled_gradient_budget_ratio": 0.005828798282677911
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 5.364418029785156e-07,
+            "rms_value_error": 1.3100300432003212e-07,
+            "max_abs_centered_value_error": 4.76837158203125e-07,
+            "rms_centered_value_error": 9.375006800470651e-08,
+            "max_abs_cube_gradient_error": 2.618918200880671e-05,
+            "rms_cube_gradient_error": 1.579291219366415e-06,
+            "max_scaled_gradient_budget_ratio": 0.018500765643480913
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.3367282557277306e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 9.18826687636393e-08,
+            "max_abs_cube_gradient_error": 1.9805568893804804e-06,
+            "rms_cube_gradient_error": 3.6319180164023036e-07,
+            "max_scaled_gradient_budget_ratio": 0.011652756059083572
+          }
+        },
+        "iso_value": 0.5004547238349915,
+        "reference_iso_value": 0.5004547834396362,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            677,
+            1096,
+            896
+          ],
+          "integration_cells": 3788,
+          "timings_seconds": {
+            "samples": 0.013227343559265137,
+            "density": 0.016112420707941055,
+            "normal_field": 0.005512423813343048,
+            "tree": 0.009371314197778702,
+            "integration_grid": 0.02171870693564415,
+            "assembly_and_solve": 0.6885177828371525
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 1919,
+            "5": 3788
+          },
+          "measured_host_sync_seconds": 0.0040672458708286285,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1969077587127686,
+              -1.1018532514572144
+            ],
+            [
+              2.1969077587127686,
+              0.0,
+              0.0,
+              -1.1009851694107056
+            ],
+            [
+              0.0,
+              2.1969077587127686,
+              0.0,
+              -1.097081184387207
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-disconnected-float",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-disconnected-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "1fc02d361434d17b6170de7eb8a3aa0c0778ea0d5c63a1a65bd5275405120800",
+        "queries_sha256": "6a7a14970cd01d8bc3a9d5c9fdc2e0b0580ddc3d7ed0311bf834276b944d2448",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "float",
+        "parameters": {
+          "name": "geometry-disconnected-float",
+          "shape": "disconnected",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "float",
+          "grid": 12,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.11982505768537521,
+          "oracle": 0.10455764830112457,
+          "oracle_instrumented": 0.11887045577168465
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3968
+          ],
+          "interface_minus": [
+            3968,
+            4085
+          ],
+          "interface_plus": [
+            4085,
+            4202
+          ],
+          "cube_boundary": [
+            4202,
+            4394
+          ],
+          "far_from_samples": [
+            4394,
+            4522
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 117,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.48416086438057077
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4522,
+        "coefficients": 5720,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 3.5762786865234375e-07,
+        "max_abs_centered_value_error": 2.980232238769531e-07,
+        "rms_value_error": 1.0636255635468336e-07,
+        "max_abs_cube_gradient_error": 7.529796228311625e-06,
+        "max_scaled_gradient_budget_ratio": 0.009913333043038498,
+        "max_unscaled_gradient_budget_ratio": 0.1790099682580057,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 5.253025566242034e-07,
+          "4": 9.265178951556319e-07,
+          "5": 7.529796228311625e-06
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 1263,
+            "max_abs_value_error": 1.4901161193847656e-07,
+            "rms_value_error": 1.0665980408976487e-07,
+            "max_abs_centered_value_error": 1.043081283569336e-07,
+            "rms_centered_value_error": 5.00103437413409e-08,
+            "max_abs_cube_gradient_error": 5.253025566242034e-07,
+            "rms_cube_gradient_error": 7.950293107347383e-08,
+            "max_scaled_gradient_budget_ratio": 0.0065203591521832815
+          },
+          "4": {
+            "queries": 1757,
+            "max_abs_value_error": 1.9371509552001953e-07,
+            "rms_value_error": 1.1873340226359574e-07,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 6.138452815011404e-08,
+            "max_abs_cube_gradient_error": 9.265178951556319e-07,
+            "rms_cube_gradient_error": 1.574913818125427e-07,
+            "max_scaled_gradient_budget_ratio": 0.005109130052908008
+          },
+          "5": {
+            "queries": 1502,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 8.945593809478596e-08,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 5.36804481434608e-08,
+            "max_abs_cube_gradient_error": 7.529796228311625e-06,
+            "rms_cube_gradient_error": 1.5543871106149348e-06,
+            "max_scaled_gradient_budget_ratio": 0.009913333043038498
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 1.1303387111474053e-07,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 5.690107968989211e-08,
+            "max_abs_cube_gradient_error": 5.647347169457362e-06,
+            "rms_cube_gradient_error": 3.1313901867304433e-07,
+            "max_scaled_gradient_budget_ratio": 0.00806604459611589
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.1686242939910975e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 6.031212563653756e-08,
+            "max_abs_cube_gradient_error": 4.470816510115938e-06,
+            "rms_cube_gradient_error": 3.1744262553662995e-07,
+            "max_scaled_gradient_budget_ratio": 0.009625034931055211
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 7.673668509391888e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 5.019647247423182e-08,
+            "max_abs_cube_gradient_error": 7.529796228311625e-06,
+            "rms_cube_gradient_error": 1.8088505998211516e-06,
+            "max_scaled_gradient_budget_ratio": 0.009913333043038498
+          },
+          "cell_interiors": {
+            "queries": 192,
+            "max_abs_value_error": 1.6391277313232422e-07,
+            "rms_value_error": 1.1105281370536174e-07,
+            "max_abs_centered_value_error": 1.043081283569336e-07,
+            "rms_centered_value_error": 5.579650883540752e-08,
+            "max_abs_cube_gradient_error": 4.706122641806587e-06,
+            "rms_cube_gradient_error": 4.747031454054954e-07,
+            "max_scaled_gradient_budget_ratio": 0.00433135713730562
+          },
+          "interface_minus": {
+            "queries": 117,
+            "max_abs_value_error": 1.4901161193847656e-07,
+            "rms_value_error": 1.1350058466776301e-07,
+            "max_abs_centered_value_error": 1.043081283569336e-07,
+            "rms_centered_value_error": 5.6817136046490894e-08,
+            "max_abs_cube_gradient_error": 6.176785967704213e-07,
+            "rms_cube_gradient_error": 1.670662985442016e-07,
+            "max_scaled_gradient_budget_ratio": 0.002426098249451771
+          },
+          "interface_plus": {
+            "queries": 117,
+            "max_abs_value_error": 1.4901161193847656e-07,
+            "rms_value_error": 1.1190931722246807e-07,
+            "max_abs_centered_value_error": 1.043081283569336e-07,
+            "rms_centered_value_error": 5.67168409355527e-08,
+            "max_abs_cube_gradient_error": 7.059183962931925e-07,
+            "rms_cube_gradient_error": 1.4934805849571629e-07,
+            "max_scaled_gradient_budget_ratio": 0.0034442327357781855
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 1.4901161193847656e-07,
+            "rms_value_error": 1.0783251578013256e-07,
+            "max_abs_centered_value_error": 1.043081283569336e-07,
+            "rms_centered_value_error": 5.14536407353254e-08,
+            "max_abs_cube_gradient_error": 2.3530613209032936e-06,
+            "rms_cube_gradient_error": 1.9468850002385993e-07,
+            "max_scaled_gradient_budget_ratio": 0.004181529285086263
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 1.4901161193847656e-07,
+            "rms_value_error": 1.0796113668857033e-07,
+            "max_abs_centered_value_error": 1.043081283569336e-07,
+            "rms_centered_value_error": 5.2104148010534663e-08,
+            "max_abs_cube_gradient_error": 4.2465403527662884e-07,
+            "rms_cube_gradient_error": 9.096735664735605e-08,
+            "max_scaled_gradient_budget_ratio": 0.005287493906800655
+          }
+        },
+        "iso_value": 0.5114800333976746,
+        "reference_iso_value": 0.5114800930023193,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            720,
+            2176,
+            2664
+          ],
+          "integration_cells": 7218,
+          "timings_seconds": {
+            "samples": 0.011839140206575394,
+            "density": 0.015937916934490204,
+            "normal_field": 0.005609765648841858,
+            "tree": 0.009480558335781097,
+            "integration_grid": 0.021189581602811813,
+            "assembly_and_solve": 0.7014219984412193
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 3032,
+            "5": 7218
+          },
+          "measured_host_sync_seconds": 0.00396236777305603,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              1.973891019821167,
+              -0.9841707944869995
+            ],
+            [
+              1.973891019821167,
+              0.0,
+              0.0,
+              -0.9876577854156494
+            ],
+            [
+              0.0,
+              1.973891019821167,
+              0.0,
+              -0.9867244958877563
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-transformed-float",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-transformed-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "05a960aaac473659d5288c341efa5bc9dc40e2829d95e6a3a5f57cdeaa833b04",
+        "queries_sha256": "c0c7ffa9742ce63f143480058e9d929fc2a3ae660abbde7e1f359c725c2fa8d3",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "float",
+        "parameters": {
+          "name": "geometry-transformed-float",
+          "shape": "sphere",
+          "input_scale": 3.7,
+          "translation": [
+            2.0,
+            -3.0,
+            1.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "float",
+          "grid": 12,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.1994299776852131,
+          "oracle": 0.15796982496976852,
+          "oracle_instrumented": 0.19893401116132736
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3904
+          ],
+          "interface_minus": [
+            3904,
+            3983
+          ],
+          "interface_plus": [
+            3983,
+            4062
+          ],
+          "cube_boundary": [
+            4062,
+            4254
+          ],
+          "far_from_samples": [
+            4254,
+            4382
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 79,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.25723952857729243
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4382,
+        "coefficients": 15601,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 4.76837158203125e-07,
+        "max_abs_centered_value_error": 4.172325134277344e-07,
+        "rms_value_error": 1.2138699909718226e-07,
+        "max_abs_cube_gradient_error": 1.1634844057084592e-05,
+        "max_scaled_gradient_budget_ratio": 0.01685438936444451,
+        "max_unscaled_gradient_budget_ratio": 0.40087151692020245,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "4": 3.3934961827242205e-06,
+          "5": 1.1634844057084592e-05
+        },
+        "errors_by_depth": {
+          "4": {
+            "queries": 1667,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.4512434120276792e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 1.0977457864676353e-07,
+            "max_abs_cube_gradient_error": 3.3934961827242205e-06,
+            "rms_cube_gradient_error": 4.876300847565574e-07,
+            "max_scaled_gradient_budget_ratio": 0.0159249726672024
+          },
+          "5": {
+            "queries": 2715,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.0416571673604628e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 7.524549552020371e-08,
+            "max_abs_cube_gradient_error": 1.1634844057084592e-05,
+            "rms_cube_gradient_error": 1.7267021056318923e-06,
+            "max_scaled_gradient_budget_ratio": 0.01685438936444451
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 4.172325134277344e-07,
+            "rms_value_error": 1.2501486561214774e-07,
+            "max_abs_centered_value_error": 3.5762786865234375e-07,
+            "rms_centered_value_error": 9.105208267208425e-08,
+            "max_abs_cube_gradient_error": 7.756562704130943e-06,
+            "rms_cube_gradient_error": 8.606835367535971e-07,
+            "max_scaled_gradient_budget_ratio": 0.016749842445374374
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.418429928005872e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 1.0487961819673893e-07,
+            "max_abs_cube_gradient_error": 6.786992365448441e-06,
+            "rms_cube_gradient_error": 9.787072178846324e-07,
+            "max_scaled_gradient_budget_ratio": 0.01685438936444451
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 7.294699625453303e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 5.713039663830773e-08,
+            "max_abs_cube_gradient_error": 1.1634844057084592e-05,
+            "rms_cube_gradient_error": 2.4138907571450774e-06,
+            "max_scaled_gradient_budget_ratio": 0.01640262708573439
+          },
+          "cell_interiors": {
+            "queries": 128,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.4323513360846414e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 1.0821503948190495e-07,
+            "max_abs_cube_gradient_error": 3.878281351177293e-06,
+            "rms_cube_gradient_error": 7.783290461221445e-07,
+            "max_scaled_gradient_budget_ratio": 0.015266418869097667
+          },
+          "interface_minus": {
+            "queries": 79,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.5710868466096599e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 1.1571346455680759e-07,
+            "max_abs_cube_gradient_error": 3.2722998906109524e-06,
+            "rms_cube_gradient_error": 7.339078711118888e-07,
+            "max_scaled_gradient_budget_ratio": 0.011097972654671167
+          },
+          "interface_plus": {
+            "queries": 79,
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 1.5371483745658667e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 1.1431670368655075e-07,
+            "max_abs_cube_gradient_error": 2.666318429378478e-06,
+            "rms_cube_gradient_error": 7.068170255504278e-07,
+            "max_scaled_gradient_budget_ratio": 0.015266418869097667
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 1.4156103134155273e-07,
+            "rms_value_error": 5.624848153233016e-08,
+            "max_abs_centered_value_error": 1.3783574104309082e-07,
+            "rms_centered_value_error": 3.174774818208443e-08,
+            "max_abs_cube_gradient_error": 4.726655397524482e-06,
+            "rms_cube_gradient_error": 5.989298808378724e-07,
+            "max_scaled_gradient_budget_ratio": 0.012923491966329055
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 1.8666600611669065e-07,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "rms_centered_value_error": 1.4645806294182121e-07,
+            "max_abs_cube_gradient_error": 2.211832333412489e-06,
+            "rms_cube_gradient_error": 5.235982618387855e-07,
+            "max_scaled_gradient_budget_ratio": 0.013450013861799696
+          }
+        },
+        "iso_value": 0.5019428133964539,
+        "reference_iso_value": 0.5019428730010986,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            729,
+            4728,
+            9984
+          ],
+          "integration_cells": 20945,
+          "timings_seconds": {
+            "samples": 0.025409411638975143,
+            "density": 0.017353709787130356,
+            "normal_field": 0.005867063999176025,
+            "tree": 0.009840022772550583,
+            "integration_grid": 0.022539786994457245,
+            "assembly_and_solve": 0.7067815251648426
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 4096,
+            "5": 20945
+          },
+          "measured_host_sync_seconds": 0.004075758159160614,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              8.133345603942871,
+              -2.063676357269287
+            ],
+            [
+              8.133345603942871,
+              0.0,
+              0.0,
+              -7.077215194702148
+            ],
+            [
+              0.0,
+              8.133345603942871,
+              0.0,
+              -3.063401460647583
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-plane-double",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-plane-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "edbe616881930b67ae0bbc57604411702fadacc4a676a2905ad582bc25c037db",
+        "queries_sha256": "c6d24a1f3310285cf50cc9b272ab5091ef9b44620d4a8d885a42d7724c4cb101",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "double",
+        "parameters": {
+          "name": "geometry-plane-double",
+          "shape": "plane",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "double",
+          "grid": 12,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.1440589465200901,
+          "oracle": 0.12337112426757812,
+          "oracle_instrumented": 0.14274416118860245
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3968
+          ],
+          "interface_minus": [
+            3968,
+            4076
+          ],
+          "interface_plus": [
+            4076,
+            4184
+          ],
+          "cube_boundary": [
+            4184,
+            4376
+          ],
+          "far_from_samples": [
+            4376,
+            4504
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 108,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.47115013622525087
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4504,
+        "coefficients": 7184,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 2.886579864025407e-15,
+        "max_abs_centered_value_error": 2.7755575615628914e-15,
+        "rms_value_error": 2.748353233924093e-16,
+        "max_abs_cube_gradient_error": 3.620628102884993e-14,
+        "max_scaled_gradient_budget_ratio": 1.1145085200992755e-07,
+        "max_unscaled_gradient_budget_ratio": 2.4359672121152855e-06,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 3.613429000459689e-15,
+          "4": 6.994405055138486e-15,
+          "5": 3.620628102884993e-14
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 1433,
+            "max_abs_value_error": 6.661338147750939e-16,
+            "rms_value_error": 1.8987864312057653e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 6.956872031938034e-16,
+            "max_abs_cube_gradient_error": 3.613429000459689e-15,
+            "rms_cube_gradient_error": 6.603067161182818e-16,
+            "max_scaled_gradient_budget_ratio": 4.081398874219211e-08
+          },
+          "4": {
+            "queries": 1428,
+            "max_abs_value_error": 8.881784197001252e-16,
+            "rms_value_error": 2.0427131674733435e-16,
+            "max_abs_centered_value_error": 1.4432899320127035e-15,
+            "rms_centered_value_error": 6.165258496688557e-16,
+            "max_abs_cube_gradient_error": 6.994405055138486e-15,
+            "rms_cube_gradient_error": 1.2135596976690383e-15,
+            "max_scaled_gradient_budget_ratio": 3.548821232015052e-08
+          },
+          "5": {
+            "queries": 1643,
+            "max_abs_value_error": 2.886579864025407e-15,
+            "rms_value_error": 3.732994462878573e-16,
+            "max_abs_centered_value_error": 2.7755575615628914e-15,
+            "rms_centered_value_error": 6.40837709379617e-16,
+            "max_abs_cube_gradient_error": 3.620628102884993e-14,
+            "rms_cube_gradient_error": 5.3159894878163296e-15,
+            "max_scaled_gradient_budget_ratio": 1.1145085200992755e-07
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 1.7763568394002505e-15,
+            "rms_value_error": 2.390759184505951e-16,
+            "max_abs_centered_value_error": 2.3314683517128287e-15,
+            "rms_centered_value_error": 6.637214470051731e-16,
+            "max_abs_cube_gradient_error": 2.930988785010413e-14,
+            "rms_cube_gradient_error": 2.0918053228758335e-15,
+            "max_scaled_gradient_budget_ratio": 5.915885883470265e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 2.886579864025407e-15,
+            "rms_value_error": 3.3372728637982984e-16,
+            "max_abs_centered_value_error": 2.7755575615628914e-15,
+            "rms_centered_value_error": 6.939614860897908e-16,
+            "max_abs_cube_gradient_error": 3.197442310920451e-14,
+            "rms_cube_gradient_error": 2.453307238153874e-15,
+            "max_scaled_gradient_budget_ratio": 3.548821232015052e-08
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 1.0547118733938987e-15,
+            "rms_value_error": 2.803283079927452e-16,
+            "max_abs_centered_value_error": 1.5543122344752192e-15,
+            "rms_centered_value_error": 5.820869728806861e-16,
+            "max_abs_cube_gradient_error": 3.620628102884993e-14,
+            "rms_cube_gradient_error": 5.717625331251901e-15,
+            "max_scaled_gradient_budget_ratio": 1.1145085200992755e-07
+          },
+          "cell_interiors": {
+            "queries": 192,
+            "max_abs_value_error": 1.4432899320127035e-15,
+            "rms_value_error": 3.427185990542991e-16,
+            "max_abs_centered_value_error": 1.6653345369377348e-15,
+            "rms_centered_value_error": 6.556061434570465e-16,
+            "max_abs_cube_gradient_error": 1.9539925233402755e-14,
+            "rms_cube_gradient_error": 2.146343171313424e-15,
+            "max_scaled_gradient_budget_ratio": 2.2088695000689447e-08
+          },
+          "interface_minus": {
+            "queries": 108,
+            "max_abs_value_error": 4.440892098500626e-16,
+            "rms_value_error": 1.8279710076128616e-16,
+            "max_abs_centered_value_error": 9.992007221626409e-16,
+            "rms_centered_value_error": 6.056022836831731e-16,
+            "max_abs_cube_gradient_error": 1.509903313490213e-14,
+            "rms_cube_gradient_error": 2.088684355249348e-15,
+            "max_scaled_gradient_budget_ratio": 1.9922897872290285e-08
+          },
+          "interface_plus": {
+            "queries": 108,
+            "max_abs_value_error": 6.661338147750939e-16,
+            "rms_value_error": 1.8719956562766832e-16,
+            "max_abs_centered_value_error": 9.992007221626409e-16,
+            "rms_centered_value_error": 6.289903091625075e-16,
+            "max_abs_cube_gradient_error": 8.881784197001252e-15,
+            "rms_cube_gradient_error": 1.4381684260946164e-15,
+            "max_scaled_gradient_budget_ratio": 1.5457430930075027e-08
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 8.881784197001252e-16,
+            "rms_value_error": 2.4009160780356243e-16,
+            "max_abs_centered_value_error": 1.4432899320127035e-15,
+            "rms_centered_value_error": 6.49642554394381e-16,
+            "max_abs_cube_gradient_error": 7.105427357601002e-15,
+            "rms_cube_gradient_error": 1.2914779543705872e-15,
+            "max_scaled_gradient_budget_ratio": 3.557133775041207e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 4.440892098500626e-16,
+            "rms_value_error": 2.148730062961873e-16,
+            "max_abs_centered_value_error": 9.992007221626409e-16,
+            "rms_centered_value_error": 7.062689683090247e-16,
+            "max_abs_cube_gradient_error": 2.4771851236948805e-15,
+            "rms_cube_gradient_error": 6.80121569911232e-16,
+            "max_scaled_gradient_budget_ratio": 2.9289259863984692e-08
+          }
+        },
+        "iso_value": 0.4982810297305358,
+        "reference_iso_value": 0.49828102973053523,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            648,
+            2312,
+            4064
+          ],
+          "integration_cells": 8128,
+          "timings_seconds": {
+            "samples": 0.014017708599567413,
+            "density": 0.01604534685611725,
+            "normal_field": 0.006468478590250015,
+            "tree": 0.009481318295001984,
+            "integration_grid": 0.021094828844070435,
+            "assembly_and_solve": 0.6686831377446651
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 2752,
+            "5": 8128
+          },
+          "measured_host_sync_seconds": 0.0038720890879631042,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1967924463170556,
+              -1.098081905592016
+            ],
+            [
+              2.1967924463170556,
+              0.0,
+              0.0,
+              -1.0970253900247207
+            ],
+            [
+              0.0,
+              2.1967924463170556,
+              0.0,
+              -1.0983962231585278
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-sheets-double",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-sheets-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "05dc22f204d9cae068b6fd6180bc0b62172e9adee882dfa0fc958bbf6baaf3b6",
+        "queries_sha256": "97a03705bf3e50cbc2e4fec3a6b073a08730fe50d00dd2e6aa65cd6a58df3279",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "double",
+        "parameters": {
+          "name": "geometry-sheets-double",
+          "shape": "sheets",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "double",
+          "grid": 12,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.14715898036956787,
+          "oracle": 0.12440840154886246,
+          "oracle_instrumented": 0.14934248849749565
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3968
+          ],
+          "interface_minus": [
+            3968,
+            4071
+          ],
+          "interface_plus": [
+            4071,
+            4174
+          ],
+          "cube_boundary": [
+            4174,
+            4366
+          ],
+          "far_from_samples": [
+            4366,
+            4494
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 103,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.4561568280971079
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4494,
+        "coefficients": 7184,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 1.2212453270876722e-15,
+        "max_abs_centered_value_error": 1.1102230246251565e-15,
+        "rms_value_error": 3.6079136341460257e-16,
+        "max_abs_cube_gradient_error": 6.394884621840902e-14,
+        "max_scaled_gradient_budget_ratio": 3.57864047381109e-08,
+        "max_unscaled_gradient_budget_ratio": 6.216757825043944e-07,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 1.8318679906315083e-15,
+          "4": 2.7200464103316335e-15,
+          "5": 6.394884621840902e-14
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 1437,
+            "max_abs_value_error": 8.326672684688674e-16,
+            "rms_value_error": 4.920180429835751e-16,
+            "max_abs_centered_value_error": 9.43689570931383e-16,
+            "rms_centered_value_error": 5.890036102128522e-16,
+            "max_abs_cube_gradient_error": 1.8318679906315083e-15,
+            "rms_cube_gradient_error": 4.1636309304930575e-16,
+            "max_scaled_gradient_budget_ratio": 1.4838957029788502e-08
+          },
+          "4": {
+            "queries": 1346,
+            "max_abs_value_error": 6.38378239159465e-16,
+            "rms_value_error": 2.7442956735561117e-16,
+            "max_abs_centered_value_error": 7.771561172376096e-16,
+            "rms_centered_value_error": 3.576031757159072e-16,
+            "max_abs_cube_gradient_error": 2.7200464103316335e-15,
+            "rms_cube_gradient_error": 6.138392170404236e-16,
+            "max_scaled_gradient_budget_ratio": 1.174507998439913e-08
+          },
+          "5": {
+            "queries": 1711,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 2.8166754746769807e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 3.2713157659758934e-16,
+            "max_abs_cube_gradient_error": 6.394884621840902e-14,
+            "rms_cube_gradient_error": 7.275112000052585e-15,
+            "max_scaled_gradient_budget_ratio": 3.57864047381109e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 8.326672684688674e-16,
+            "rms_value_error": 3.847536314154786e-16,
+            "max_abs_centered_value_error": 9.43689570931383e-16,
+            "rms_centered_value_error": 4.686417771744663e-16,
+            "max_abs_cube_gradient_error": 1.2878587085651816e-14,
+            "rms_cube_gradient_error": 1.153862190929513e-15,
+            "max_scaled_gradient_budget_ratio": 1.7216578007494434e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 3.6900202540337506e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 4.49162754695488e-16,
+            "max_abs_cube_gradient_error": 2.842170943040401e-14,
+            "rms_cube_gradient_error": 1.958344970431819e-15,
+            "max_scaled_gradient_budget_ratio": 1.4011523191181237e-08
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 9.992007221626409e-16,
+            "rms_value_error": 2.785082198251892e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 3.185851661160754e-16,
+            "max_abs_cube_gradient_error": 6.394884621840902e-14,
+            "rms_cube_gradient_error": 9.043017074781469e-15,
+            "max_scaled_gradient_budget_ratio": 3.57864047381109e-08
+          },
+          "cell_interiors": {
+            "queries": 192,
+            "max_abs_value_error": 7.216449660063518e-16,
+            "rms_value_error": 3.6099480220101807e-16,
+            "max_abs_centered_value_error": 8.881784197001252e-16,
+            "rms_centered_value_error": 4.3706770226008343e-16,
+            "max_abs_cube_gradient_error": 1.9539925233402755e-14,
+            "rms_cube_gradient_error": 2.3329947205689872e-15,
+            "max_scaled_gradient_budget_ratio": 1.351335290503259e-08
+          },
+          "interface_minus": {
+            "queries": 103,
+            "max_abs_value_error": 5.828670879282072e-16,
+            "rms_value_error": 3.491286257181441e-16,
+            "max_abs_centered_value_error": 7.216449660063518e-16,
+            "rms_centered_value_error": 4.39135301069259e-16,
+            "max_abs_cube_gradient_error": 2.831068712794149e-15,
+            "rms_cube_gradient_error": 5.711777732944902e-16,
+            "max_scaled_gradient_budget_ratio": 6.618950810547518e-09
+          },
+          "interface_plus": {
+            "queries": 103,
+            "max_abs_value_error": 5.828670879282072e-16,
+            "rms_value_error": 3.4558659489450423e-16,
+            "max_abs_centered_value_error": 7.216449660063518e-16,
+            "rms_centered_value_error": 4.4022399765652253e-16,
+            "max_abs_cube_gradient_error": 3.774758283725532e-15,
+            "rms_cube_gradient_error": 5.864461508058217e-16,
+            "max_scaled_gradient_budget_ratio": 1.351335290503259e-08
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 8.049116928532385e-16,
+            "rms_value_error": 3.916532846311157e-16,
+            "max_abs_centered_value_error": 9.43689570931383e-16,
+            "rms_centered_value_error": 4.766166561718909e-16,
+            "max_abs_cube_gradient_error": 6.8833827526759706e-15,
+            "rms_cube_gradient_error": 1.0677706219328582e-15,
+            "max_scaled_gradient_budget_ratio": 1.7485917144296085e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 7.771561172376096e-16,
+            "rms_value_error": 4.920747323914176e-16,
+            "max_abs_centered_value_error": 8.881784197001252e-16,
+            "rms_centered_value_error": 5.837028732362506e-16,
+            "max_abs_cube_gradient_error": 1.2628786905111156e-15,
+            "rms_cube_gradient_error": 3.4525517472486646e-16,
+            "max_scaled_gradient_budget_ratio": 1.1678651722976926e-08
+          }
+        },
+        "iso_value": 0.4896010316085402,
+        "reference_iso_value": 0.48960103160854007,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            648,
+            2312,
+            4064
+          ],
+          "integration_cells": 9920,
+          "timings_seconds": {
+            "samples": 0.021507255733013153,
+            "density": 0.01623242348432541,
+            "normal_field": 0.006644900888204575,
+            "tree": 0.009542703628540039,
+            "integration_grid": 0.02140602469444275,
+            "assembly_and_solve": 0.6639292314648628
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 2752,
+            "5": 9920
+          },
+          "measured_host_sync_seconds": 0.003926753997802734,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1967924463170556,
+              -1.098081905592016
+            ],
+            [
+              2.1967924463170556,
+              0.0,
+              0.0,
+              -1.0970253900247207
+            ],
+            [
+              0.0,
+              2.1967924463170556,
+              0.0,
+              -1.0983962231585278
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-cluster-double",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-cluster-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "6247f60f372743438ad2bbb1493222b11285e4a3e119dc8a2d8eb6dbd2e67157",
+        "queries_sha256": "6b0cb54a778c7c5bfe964343ff0baa732054046301511f6445e36905c301533f",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "double",
+        "parameters": {
+          "name": "geometry-cluster-double",
+          "shape": "cluster",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "double",
+          "grid": 12,
+          "operators": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.11593758314847946,
+          "oracle": 0.10726345703005791,
+          "oracle_instrumented": 0.1610865406692028
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3968
+          ],
+          "interface_minus": [
+            3968,
+            4054
+          ],
+          "interface_plus": [
+            4054,
+            4140
+          ],
+          "cube_boundary": [
+            4140,
+            4332
+          ],
+          "far_from_samples": [
+            4332,
+            4460
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 86,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.27633219470940895
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4460,
+        "coefficients": 2829,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 1.9984014443252818e-15,
+        "max_abs_centered_value_error": 1.9984014443252818e-15,
+        "rms_value_error": 6.699222526190992e-16,
+        "max_abs_cube_gradient_error": 2.3447910280083306e-13,
+        "max_scaled_gradient_budget_ratio": 5.7709373033949835e-08,
+        "max_unscaled_gradient_budget_ratio": 7.133859724912101e-07,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 4.010680676458378e-15,
+          "4": 6.106226635438361e-15,
+          "5": 2.3447910280083306e-13
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 2094,
+            "max_abs_value_error": 1.27675647831893e-15,
+            "rms_value_error": 8.253658643414404e-16,
+            "max_abs_centered_value_error": 1.27675647831893e-15,
+            "rms_centered_value_error": 8.257335261038424e-16,
+            "max_abs_cube_gradient_error": 4.010680676458378e-15,
+            "rms_cube_gradient_error": 7.103838266328507e-16,
+            "max_scaled_gradient_budget_ratio": 2.291241974827469e-08
+          },
+          "4": {
+            "queries": 1156,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 5.65716281358448e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 5.65716281358448e-16,
+            "max_abs_cube_gradient_error": 6.106226635438361e-15,
+            "rms_cube_gradient_error": 1.1496600475181178e-15,
+            "max_scaled_gradient_budget_ratio": 2.285632740034973e-08
+          },
+          "5": {
+            "queries": 1210,
+            "max_abs_value_error": 1.9984014443252818e-15,
+            "rms_value_error": 4.117849597484335e-16,
+            "max_abs_centered_value_error": 1.9984014443252818e-15,
+            "rms_centered_value_error": 4.116662503593862e-16,
+            "max_abs_cube_gradient_error": 2.3447910280083306e-13,
+            "rms_cube_gradient_error": 4.0121212308007225e-14,
+            "max_scaled_gradient_budget_ratio": 5.7709373033949835e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 1.3322676295501878e-15,
+            "rms_value_error": 7.289603009250294e-16,
+            "max_abs_centered_value_error": 1.3322676295501878e-15,
+            "rms_centered_value_error": 7.288212366584379e-16,
+            "max_abs_cube_gradient_error": 2.4868995751603507e-14,
+            "rms_cube_gradient_error": 1.231795587917053e-15,
+            "max_scaled_gradient_budget_ratio": 2.291241974827469e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 7.406673732748395e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 7.408223888203216e-16,
+            "max_abs_cube_gradient_error": 1.5631940186722204e-13,
+            "rms_cube_gradient_error": 3.658120791592106e-15,
+            "max_scaled_gradient_budget_ratio": 2.1355964541180346e-08
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 1.9984014443252818e-15,
+            "rms_value_error": 4.667050984439553e-16,
+            "max_abs_centered_value_error": 1.9984014443252818e-15,
+            "rms_centered_value_error": 4.667050984439553e-16,
+            "max_abs_cube_gradient_error": 2.3447910280083306e-13,
+            "rms_cube_gradient_error": 4.3383501864803385e-14,
+            "max_scaled_gradient_budget_ratio": 5.7709373033949835e-08
+          },
+          "cell_interiors": {
+            "queries": 192,
+            "max_abs_value_error": 1.1102230246251565e-15,
+            "rms_value_error": 6.03993593852758e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 6.03896418590081e-16,
+            "max_abs_cube_gradient_error": 1.0658141036401503e-13,
+            "rms_cube_gradient_error": 5.330545754289106e-15,
+            "max_scaled_gradient_budget_ratio": 2.99330526340054e-08
+          },
+          "interface_minus": {
+            "queries": 86,
+            "max_abs_value_error": 1.1102230246251565e-15,
+            "rms_value_error": 5.806960812059678e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 5.806960812059678e-16,
+            "max_abs_cube_gradient_error": 3.3306690738754696e-15,
+            "rms_cube_gradient_error": 1.0448336083040124e-15,
+            "max_scaled_gradient_budget_ratio": 1.1569239580613238e-08
+          },
+          "interface_plus": {
+            "queries": 86,
+            "max_abs_value_error": 9.992007221626409e-16,
+            "rms_value_error": 5.849994140142959e-16,
+            "max_abs_centered_value_error": 9.992007221626409e-16,
+            "rms_centered_value_error": 5.849994140142959e-16,
+            "max_abs_cube_gradient_error": 4.107825191113079e-15,
+            "rms_cube_gradient_error": 1.0164781656630954e-15,
+            "max_scaled_gradient_budget_ratio": 1.6107518743265773e-08
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 1.0824674490095276e-15,
+            "rms_value_error": 7.001556060687848e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 7.027493052216394e-16,
+            "max_abs_cube_gradient_error": 3.907985046680551e-14,
+            "rms_cube_gradient_error": 2.291961870850985e-15,
+            "max_scaled_gradient_budget_ratio": 2.122491268531739e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 7.705908039897628e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 7.735855362981678e-16,
+            "max_abs_cube_gradient_error": 3.885780586188048e-15,
+            "rms_cube_gradient_error": 7.101295464264854e-16,
+            "max_scaled_gradient_budget_ratio": 1.3668276838613311e-08
+          }
+        },
+        "iso_value": 0.500454759361371,
+        "reference_iso_value": 0.500454759361371,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            677,
+            1096,
+            896
+          ],
+          "integration_cells": 3788,
+          "timings_seconds": {
+            "samples": 0.019880663603544235,
+            "density": 0.01601940020918846,
+            "normal_field": 0.005665402859449387,
+            "tree": 0.009493865072727203,
+            "integration_grid": 0.021225299686193466,
+            "assembly_and_solve": 0.6662053689360619
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 1919,
+            "5": 3788
+          },
+          "measured_host_sync_seconds": 0.0038438737392425537,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1969077840263442,
+              -1.1018533012331981
+            ],
+            [
+              2.1969077840263442,
+              0.0,
+              0.0,
+              -1.1009851418337993
+            ],
+            [
+              0.0,
+              2.1969077840263442,
+              0.0,
+              -1.0970812466205664
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-disconnected-double",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-disconnected-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "62cc315d119a0e4c5a737717dd93f3a87512799b6c25a9b80332b05db6530752",
+        "queries_sha256": "3cf011985d3596551a41d9afa5460d244ef713c9b776fa5beca91773cfed6351",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "double",
+        "parameters": {
+          "name": "geometry-disconnected-double",
+          "shape": "disconnected",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "double",
+          "grid": 12,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.12878474220633507,
+          "oracle": 0.11386678367853165,
+          "oracle_instrumented": 0.12916000559926033
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3968
+          ],
+          "interface_minus": [
+            3968,
+            4085
+          ],
+          "interface_plus": [
+            4085,
+            4202
+          ],
+          "cube_boundary": [
+            4202,
+            4394
+          ],
+          "far_from_samples": [
+            4394,
+            4522
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 117,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.4841608884716136
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4522,
+        "coefficients": 5720,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 1.4432899320127035e-15,
+        "max_abs_centered_value_error": 1.4432899320127035e-15,
+        "rms_value_error": 3.408779865360128e-16,
+        "max_abs_cube_gradient_error": 4.440892098500626e-14,
+        "max_scaled_gradient_budget_ratio": 2.8591208239856286e-08,
+        "max_unscaled_gradient_budget_ratio": 4.2860112193792467e-07,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 1.214306433183765e-15,
+          "4": 1.7208456881689926e-15,
+          "5": 4.440892098500626e-14
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 1263,
+            "max_abs_value_error": 6.106226635438361e-16,
+            "rms_value_error": 3.924671691475101e-16,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "rms_centered_value_error": 1.7647043516222518e-16,
+            "max_abs_cube_gradient_error": 1.214306433183765e-15,
+            "rms_cube_gradient_error": 1.9858126359858316e-16,
+            "max_scaled_gradient_budget_ratio": 1.4003740282053457e-08
+          },
+          "4": {
+            "queries": 1757,
+            "max_abs_value_error": 5.273559366969494e-16,
+            "rms_value_error": 3.427346469798076e-16,
+            "max_abs_centered_value_error": 2.7755575615628914e-16,
+            "rms_centered_value_error": 1.3554121339331894e-16,
+            "max_abs_cube_gradient_error": 1.7208456881689926e-15,
+            "rms_cube_gradient_error": 4.2389627925319186e-16,
+            "max_scaled_gradient_budget_ratio": 8.776568888965965e-09
+          },
+          "5": {
+            "queries": 1502,
+            "max_abs_value_error": 1.4432899320127035e-15,
+            "rms_value_error": 2.879242696178057e-16,
+            "max_abs_centered_value_error": 1.4432899320127035e-15,
+            "rms_centered_value_error": 3.158068016435218e-16,
+            "max_abs_cube_gradient_error": 4.440892098500626e-14,
+            "rms_cube_gradient_error": 6.61310040460771e-15,
+            "max_scaled_gradient_budget_ratio": 2.8591208239856286e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 1.1102230246251565e-15,
+            "rms_value_error": 3.51295344913336e-16,
+            "max_abs_centered_value_error": 8.881784197001252e-16,
+            "rms_centered_value_error": 1.5658844600287964e-16,
+            "max_abs_cube_gradient_error": 1.2434497875801753e-14,
+            "rms_cube_gradient_error": 8.273608587579733e-16,
+            "max_scaled_gradient_budget_ratio": 1.4003740282053457e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 1.3322676295501878e-15,
+            "rms_value_error": 3.4980522538393913e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 1.6581815106213764e-16,
+            "max_abs_cube_gradient_error": 1.7763568394002505e-14,
+            "rms_cube_gradient_error": 1.0907315809511394e-15,
+            "max_scaled_gradient_budget_ratio": 2.0046657980434073e-08
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 1.4432899320127035e-15,
+            "rms_value_error": 3.0525711684975185e-16,
+            "max_abs_centered_value_error": 1.4432899320127035e-15,
+            "rms_centered_value_error": 3.584670804169108e-16,
+            "max_abs_cube_gradient_error": 4.440892098500626e-14,
+            "rms_cube_gradient_error": 7.851695290688157e-15,
+            "max_scaled_gradient_budget_ratio": 2.8591208239856286e-08
+          },
+          "cell_interiors": {
+            "queries": 192,
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 3.1355176814509846e-16,
+            "max_abs_centered_value_error": 7.771561172376096e-16,
+            "rms_centered_value_error": 1.657606724766902e-16,
+            "max_abs_cube_gradient_error": 2.1316282072803006e-14,
+            "rms_cube_gradient_error": 1.4599550547423778e-15,
+            "max_scaled_gradient_budget_ratio": 9.402463039325102e-09
+          },
+          "interface_minus": {
+            "queries": 117,
+            "max_abs_value_error": 4.718447854656915e-16,
+            "rms_value_error": 3.2925939445266583e-16,
+            "max_abs_centered_value_error": 2.7755575615628914e-16,
+            "rms_centered_value_error": 1.3894383784472087e-16,
+            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
+            "rms_cube_gradient_error": 5.457942060184993e-16,
+            "max_scaled_gradient_budget_ratio": 6.9453118608828436e-09
+          },
+          "interface_plus": {
+            "queries": 117,
+            "max_abs_value_error": 4.718447854656915e-16,
+            "rms_value_error": 3.3256241764052983e-16,
+            "max_abs_centered_value_error": 2.7755575615628914e-16,
+            "rms_centered_value_error": 1.3607080866089704e-16,
+            "max_abs_cube_gradient_error": 2.9976021664879227e-15,
+            "rms_cube_gradient_error": 4.549183487231173e-16,
+            "max_scaled_gradient_budget_ratio": 6.81113881900625e-09
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 4.996003610813204e-16,
+            "rms_value_error": 3.6498653390138564e-16,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "rms_centered_value_error": 1.601467049075837e-16,
+            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
+            "rms_cube_gradient_error": 5.000316486253042e-16,
+            "max_scaled_gradient_budget_ratio": 1.009775464748103e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 5.273559366969494e-16,
+            "rms_value_error": 4.088872396713313e-16,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "rms_centered_value_error": 1.9116621222053806e-16,
+            "max_abs_cube_gradient_error": 1.1171619185290638e-15,
+            "rms_cube_gradient_error": 2.254851719881864e-16,
+            "max_scaled_gradient_budget_ratio": 1.341995511607422e-08
+          }
+        },
+        "iso_value": 0.5114800542430402,
+        "reference_iso_value": 0.5114800542430404,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            720,
+            2176,
+            2664
+          ],
+          "integration_cells": 7218,
+          "timings_seconds": {
+            "samples": 0.013998918235301971,
+            "density": 0.016163691878318787,
+            "normal_field": 0.005906321108341217,
+            "tree": 0.009472571313381195,
+            "integration_grid": 0.021433435380458832,
+            "assembly_and_solve": 0.676386896520853
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 3032,
+            "5": 7218
+          },
+          "measured_host_sync_seconds": 0.0038353949785232544,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              1.973891187088427,
+              -0.9841707634754552
+            ],
+            [
+              1.973891187088427,
+              0.0,
+              0.0,
+              -0.9876578794881704
+            ],
+            [
+              0.0,
+              1.973891187088427,
+              0.0,
+              -0.986724570281753
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    },
+    {
+      "fixture": "geometry-transformed-double",
+      "passed": true,
+      "manifest": {
+        "fixture_format": 2,
+        "name": "geometry-transformed-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "0be6c0e18844374db87c87e65b4f6344820e82023d713ef723c432a2be4a12be",
+        "queries_sha256": "a6dc008fe4779e14da7e6934bef9e517ace72ef1be52873e84b85671badc5455",
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "precision": "double",
+        "parameters": {
+          "name": "geometry-transformed-double",
+          "shape": "sphere",
+          "input_scale": 3.7,
+          "translation": [
+            2.0,
+            -3.0,
+            1.0
+          ],
+          "count": 1024,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "double",
+          "grid": 12,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.21357577294111252,
+          "oracle": 0.16778119653463364,
+          "oracle_instrumented": 0.2089020200073719
+        },
+        "grid": {
+          "resolution": 12,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            1728
+          ],
+          "random_volume": [
+            1728,
+            2752
+          ],
+          "input_samples": [
+            2752,
+            3776
+          ],
+          "cell_interiors": [
+            3776,
+            3904
+          ],
+          "interface_minus": [
+            3904,
+            3983
+          ],
+          "interface_plus": [
+            3983,
+            4062
+          ],
+          "cube_boundary": [
+            4062,
+            4254
+          ],
+          "far_from_samples": [
+            4254,
+            4382
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "4": 64,
+            "5": 64
+          },
+          "refinement_interface_pairs": 79,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.25723952048544835
+        },
+        "environment": {
+          "python": "3.11.15",
+          "numpy": "2.4.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "96d3ae85eec9acb5fec4248fbb0bbaac2ccb20b8",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+          "src/warp_psr/integration.py": "0e6c6fc971554c8dfad92f3c0c2aa4d1b69b8b6c5abba7a845beb7ad50d201f3",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "1c8ef7b5deba0a4c5863e5f895cccced5ee9625bbaaf4ab90de71013d4b551be",
+          "src/warp_psr/normals.py": "510a5cc908f2409c340fb2a868b2171fe43aafad163e81ffb7af41002b798fd9",
+          "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+          "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+          "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+          "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+          "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+          "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b"
+        },
+        "device": "cuda:0",
+        "queries": 4382,
+        "coefficients": 15601,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 1.9984014443252818e-15,
+        "max_abs_centered_value_error": 2.220446049250313e-15,
+        "rms_value_error": 2.6972569886291147e-16,
+        "max_abs_cube_gradient_error": 5.684341886080802e-14,
+        "max_scaled_gradient_budget_ratio": 3.524599424358281e-08,
+        "max_unscaled_gradient_budget_ratio": 5.884119032479991e-07,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "4": 7.105427357601002e-15,
+          "5": 5.684341886080802e-14
+        },
+        "errors_by_depth": {
+          "4": {
+            "queries": 1667,
+            "max_abs_value_error": 1.1102230246251565e-15,
+            "rms_value_error": 2.0084257899637376e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 2.121679361234055e-16,
+            "max_abs_cube_gradient_error": 7.105427357601002e-15,
+            "rms_cube_gradient_error": 9.325181515455615e-16,
+            "max_scaled_gradient_budget_ratio": 3.003879222883901e-08
+          },
+          "5": {
+            "queries": 2715,
+            "max_abs_value_error": 1.9984014443252818e-15,
+            "rms_value_error": 3.0439145659245723e-16,
+            "max_abs_centered_value_error": 2.220446049250313e-15,
+            "rms_centered_value_error": 3.3901807718197633e-16,
+            "max_abs_cube_gradient_error": 5.684341886080802e-14,
+            "rms_cube_gradient_error": 6.0924949460627104e-15,
+            "max_scaled_gradient_budget_ratio": 3.524599424358281e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 1728,
+            "max_abs_value_error": 1.9984014443252818e-15,
+            "rms_value_error": 2.837475327334879e-16,
+            "max_abs_centered_value_error": 2.220446049250313e-15,
+            "rms_centered_value_error": 3.0731690692528224e-16,
+            "max_abs_cube_gradient_error": 3.197442310920451e-14,
+            "rms_cube_gradient_error": 2.6637912705639034e-15,
+            "max_scaled_gradient_budget_ratio": 3.524599424358281e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 1.7763568394002505e-15,
+            "rms_value_error": 2.6747449773632977e-16,
+            "max_abs_centered_value_error": 1.9984014443252818e-15,
+            "rms_centered_value_error": 2.85997983543999e-16,
+            "max_abs_cube_gradient_error": 3.197442310920451e-14,
+            "rms_cube_gradient_error": 2.844625644085078e-15,
+            "max_scaled_gradient_budget_ratio": 2.2973596960080758e-08
+          },
+          "input_samples": {
+            "queries": 1024,
+            "max_abs_value_error": 1.3877787807814457e-15,
+            "rms_value_error": 2.7609365321524357e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 3.261049445364093e-16,
+            "max_abs_cube_gradient_error": 5.684341886080802e-14,
+            "rms_cube_gradient_error": 8.839167829822276e-15,
+            "max_scaled_gradient_budget_ratio": 2.388922503425249e-08
+          },
+          "cell_interiors": {
+            "queries": 128,
+            "max_abs_value_error": 7.771561172376096e-16,
+            "rms_value_error": 2.1793057003353854e-16,
+            "max_abs_centered_value_error": 8.881784197001252e-16,
+            "rms_centered_value_error": 2.435541875787129e-16,
+            "max_abs_cube_gradient_error": 1.5987211554602254e-14,
+            "rms_cube_gradient_error": 2.3393928088578527e-15,
+            "max_scaled_gradient_budget_ratio": 1.9938699955537243e-08
+          },
+          "interface_minus": {
+            "queries": 79,
+            "max_abs_value_error": 9.992007221626409e-16,
+            "rms_value_error": 2.807737875257987e-16,
+            "max_abs_centered_value_error": 9.992007221626409e-16,
+            "rms_centered_value_error": 2.916718533725763e-16,
+            "max_abs_cube_gradient_error": 1.1324274851176597e-14,
+            "rms_cube_gradient_error": 1.862591833779531e-15,
+            "max_scaled_gradient_budget_ratio": 2.5674256377795363e-08
+          },
+          "interface_plus": {
+            "queries": 79,
+            "max_abs_value_error": 8.881784197001252e-16,
+            "rms_value_error": 2.2748675825833496e-16,
+            "max_abs_centered_value_error": 7.771561172376096e-16,
+            "rms_centered_value_error": 2.569775401050298e-16,
+            "max_abs_cube_gradient_error": 7.105427357601002e-15,
+            "rms_cube_gradient_error": 1.4147074074670062e-15,
+            "max_scaled_gradient_budget_ratio": 1.9938699955537243e-08
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 4.649058915617843e-16,
+            "rms_value_error": 1.4562113343344188e-16,
+            "max_abs_centered_value_error": 4.440892098500626e-16,
+            "rms_centered_value_error": 1.3329179921125024e-16,
+            "max_abs_cube_gradient_error": 1.0658141036401503e-14,
+            "rms_cube_gradient_error": 1.4630169782729299e-15,
+            "max_scaled_gradient_budget_ratio": 8.586841513150827e-09
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 9.992007221626409e-16,
+            "rms_value_error": 2.4826856704834144e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 2.5447867175859907e-16,
+            "max_abs_cube_gradient_error": 5.046310591616532e-15,
+            "rms_cube_gradient_error": 1.0039797006955074e-15,
+            "max_scaled_gradient_budget_ratio": 3.003879222883901e-08
+          }
+        },
+        "iso_value": 0.5019428308849557,
+        "reference_iso_value": 0.5019428308849555,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            729,
+            4728,
+            9984
+          ],
+          "integration_cells": 20945,
+          "timings_seconds": {
+            "samples": 0.0157051719725132,
+            "density": 0.015952039510011673,
+            "normal_field": 0.006363842636346817,
+            "tree": 0.009745791554450989,
+            "integration_grid": 0.022454015910625458,
+            "assembly_and_solve": 0.6980340480804443
+          },
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512,
+            "4": 4096,
+            "5": 20945
+          },
+          "measured_host_sync_seconds": 0.003761228173971176,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              8.133345983229729,
+              -2.0636766040158814
+            ],
+            [
+              8.133345983229729,
+              0.0,
+              0.0,
+              -7.077214823585425
+            ],
+            [
+              0.0,
+              8.133345983229729,
+              0.0,
+              -3.0634018473304443
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        }
+      }
+    }
+  ]
+}
