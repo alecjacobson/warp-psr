@@ -5,7 +5,7 @@ Poisson Surface Reconstruction (PSR) and Screened Poisson Surface Reconstruction
 fields, assembles through `warp.fem`, solves the reference's multilevel system,
 and evaluates implicit values and gradients.
 
-The float32 degree-1 implementation now matches the pinned official output on
+The float32 and float64 degree-1 implementations match the pinned official output on
 sphere, sparse, and torus fixtures, including PSR and both interpolation modes.
 [Explicit parameter checks](docs/results/profiles.json) also vary base/solve/kernel
 depths, density, scale, screening, and solver controls.
@@ -46,6 +46,8 @@ print(result.iso_value)  # The reconstructed surface is value == iso_value.
 
 Use `point_weight=0.0` for PSR. `gradients` are in input coordinates; out-of-domain
 queries produce NaN and a false validity mask. Mesh extraction is external.
+Use `dtype=wp.vec3d` for both input arrays to run the entire pipeline in float64,
+including normalization, density, assembly, solving, and evaluation.
 Production reconstruction uses Warp arrays, kernels, FEM, and sparse algebra;
 NumPy, SciPy, and the C++ reference are used only by tests and visualization.
 
@@ -83,7 +85,7 @@ reconstruction gates and regenerates the report. Build products stay in ignored
 
 ## Supported profile and known limits
 
-The current API accepts float32 CUDA inputs, degree 1, Neumann boundaries,
+The current API accepts matching float32 or float64 CUDA inputs, degree 1, Neumann boundaries,
 confidence disabled, finite positions, and scale > 1. Base depth must be at least
 1, and `depth - full_depth <= 7` reflects Warp’s eight-level geometry limit.
 Depth, full/base/solve/kernel depths, density target, screening weight,
@@ -99,12 +101,18 @@ all point constraints because space flags are initialized too late
 `exact_interpolation=True` reproduces that pinned behavior. It does not provide
 corrected exact screening.
 
-Remaining work includes full float64 preprocessing/solving, complete ghost/flag
-and query-family coverage, base-depth-zero support, and larger performance
-experiments. Float64 field evaluation is available;
-[the built-in float64 FEM gradient issue](https://github.com/alecjacobson/warp-psr/issues/8)
-is tracked separately. No Warp fork is needed for the current application-local
-basis extension.
+The end-to-end float64 diagnostic fixtures cover sphere PSR/SPSR/exact, a sparse
+tree, and the torus. Maximum field error is **5.78e-15** across those fixtures.
+Preprocessing and operator checks use `atol=1e-10, rtol=1e-9`; field, isovalue,
+and cell-width-scaled gradient checks use `atol=1e-8, rtol=1e-6`.
+The [validation report](docs/results/validation.json) records both precisions.
+
+Remaining work includes complete ghost/flag and query-family coverage,
+base-depth-zero support, and larger performance experiments. Two Warp float64
+issues have tested upstream proposals: [built-in B-spline gradients](https://github.com/NVIDIA/warp/pull/2219)
+and [sparse-grid particle lookup](https://github.com/NVIDIA/warp/pull/2221).
+The application uses public basis and explicit-coordinate quadrature interfaces
+and needs no Warp fork.
 
 ## Performance
 
@@ -119,7 +127,7 @@ from **2.68 s to 0.75 s** and peak device-pool usage from **19.46 GiB to
 | 1,000,000 | 8 / 4 | 963,898 | 1,265,874 | 0.84 s | 3.09 s | 7.78 GiB |
 | 1,000,000 | 9 / 4 | 3,770,690 | 5,035,948 | 3.13 s | 12.30 s | 31.22 GiB |
 
-The [current launch-reuse measurements](docs/results/launch-performance.json),
+The [launch-reuse measurements](docs/results/launch-performance.json),
 [per-level measurements](docs/results/level-performance.json),
 [quadrature measurements](docs/results/fem-performance.json), and
 [earlier tree measurements](docs/results/tree-performance.json) include Python
@@ -130,6 +138,10 @@ Memory is the CUDA pool's process high-water mark. The
 unchanged library solve on one Xeon Platinum 8362 thread, matching the accuracy
 fixtures; input parsing, query evaluation, and export are excluded. Parallel
 reference throughput remains unmeasured.
+
+After adding float64 support, the [float32 regression benchmark](docs/results/precision-performance.json)
+measures **0.78 s** for 100,000 points with the same **7.30 GiB** peak pool usage.
+The million-point depth-9 accuracy check also retains its previous errors.
 
 ```sh
 python -m tools.benchmark --count 100000 --depth 8 --full-depth 4

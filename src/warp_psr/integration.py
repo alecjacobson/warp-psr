@@ -52,7 +52,7 @@ def _reorder(xyz: wp.array(dtype=wp.vec3i), levels: wp.array(dtype=wp.uint8), vo
     out[index]=levels[i]
 
 
-def integration_grid(tree,normals,depth):
+def integration_grid(tree,normals,depth,dtype=wp.float32):
     """Resolve basis knots through depth, and optionally the normal-field knots."""
     device=tree.basis[0].keys.device
     normal_count=len(normals.records.keys) if normals is not None else 0
@@ -103,4 +103,4 @@ def integration_grid(tree,normals,depth):
     reordered=wp.empty(count,dtype=wp.uint8,device=device)
     wp.launch(_reorder,count,inputs=[xyz,levels,volume.id,reordered],device=device)
     coarsest=min(d for d,keys in enumerate(leaves) if len(keys))
-    return fem.AdaptiveNanogrid(volume,cell_level=reordered,level_count=depth-coarsest+1,temporary_store=None)
+    return fem.AdaptiveNanogrid(volume,cell_level=reordered,level_count=depth-coarsest+1,temporary_store=None,scalar_type=dtype)

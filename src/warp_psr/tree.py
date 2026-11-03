@@ -4,6 +4,7 @@ Signed coordinates belong to per-level arrays. Padding is never packed into an
 unsigned Morton code. The level keys below are for logical nodes, not field keys.
 """
 from dataclasses import dataclass
+from typing import Any
 import warp as wp
 from .field import basis_key
 from .keyed import coordinates, unique_keys, Records
@@ -25,13 +26,13 @@ def parent(c: wp.vec3i):
     return wp.vec3i(int(wp.floor(float(c[0])/2.0)),int(wp.floor(float(c[1])/2.0)),int(wp.floor(float(c[2])/2.0)))
 
 @wp.kernel
-def _seeds(normal_keys: wp.array(dtype=wp.int64), normals: wp.array(dtype=wp.vec4), d: int,
+def _seeds(normal_keys: wp.array(dtype=wp.int64), normals: wp.array(dtype=Any), d: int,
            keys: wp.array(dtype=wp.int64)):
     i,k=wp.tid()
     idx=i*8+k
     keys[idx]=wp.int64(0x7fffffffffffffff)
     nd=int(normal_keys[i]>>wp.int64(48))
-    if nd>=d and wp.length_sq(normals[i])>0.0:
+    if nd>=d and wp.float64(wp.length_sq(normals[i]))>wp.float64(0.0):
         c=coordinates(normal_keys[i])
         c=wp.vec3i(c[0]>>(nd-d),c[1]>>(nd-d),c[2]>>(nd-d))
         c=parent(c)*2+wp.vec3i(k&1,(k>>1)&1,(k>>2)&1)
