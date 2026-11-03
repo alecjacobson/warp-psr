@@ -15,6 +15,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0,str(ROOT))
 from reference.queries import coverage_queries
+from tools.datasets import DATASETS, download, load_input
 
 
 def read_output(path):
@@ -67,7 +68,14 @@ def generate(args):
     if args.kernel_depth is None:args.kernel_depth=max(args.depth-2,0)
     out = ROOT / ".build/fixtures" / args.name
     out.mkdir(parents=True, exist_ok=True)
-    p,n = points_for(args.shape, args.count, args.seed)
+    source_metadata=None
+    if args.dataset or args.input:
+        source=download(args.dataset) if args.dataset else Path(args.input)
+        p,n,source_metadata=load_input(source,max_points=args.max_points,seed=args.seed,dataset=args.dataset)
+        args.count=len(p)
+        args.shape=args.dataset or 'external'
+    else:
+        p,n = points_for(args.shape, args.count, args.seed)
     p = p*args.input_scale + np.asarray(args.translation)
     dtype = np.float32 if args.precision == "float" else np.float64
     p,n = p.astype(dtype), n.astype(dtype)
@@ -124,6 +132,7 @@ def generate(args):
         "build": json.loads((ROOT/".build/build.json").read_text()),
         "input_sha256": checksum(out/"input.pts"), "queries_sha256": checksum(out/"queries.txt"),
         "input_order": "file order; seeded numpy Generator", "seed": args.seed,
+        "input_source":source_metadata,
         "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",
         "reference_thread_settings": {key:int(baseline[key][0,0]) for key in ("parallel_async","threads","schedule","chunk_size")},
         "instrumentation_max_abs_error": 0.0, "timings_seconds": timings,
@@ -141,6 +150,10 @@ def generate(args):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--name", default="sphere")
+    inputs=parser.add_mutually_exclusive_group()
+    inputs.add_argument("--dataset",choices=DATASETS)
+    inputs.add_argument("--input",help="Oriented PLY or six-column ASCII file")
+    parser.add_argument("--max-points",type=int,help="Deterministic subset size for file inputs; default uses every point")
     parser.add_argument("--shape", choices=["sphere","torus","plane","sheets","cluster","disconnected"], default="sphere")
     parser.add_argument("--input-scale",type=float,default=1.0)
     parser.add_argument("--translation",type=float,nargs=3,default=[0.,0.,0.])

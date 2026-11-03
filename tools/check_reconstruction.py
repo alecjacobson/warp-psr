@@ -9,6 +9,7 @@ import warp as wp
 from warp_psr import reconstruct
 from tools.make_fixture import read_output, ROOT
 from reference.cells import query_cell_widths
+from tools.check_tree import check_tree
 
 
 def check(directory,device='cuda:0'):
@@ -39,6 +40,7 @@ def check(directory,device='cuda:0'):
     centered_expected=expected['q'][:,0]-expected['iso'][0,0]
     np.testing.assert_allclose(centered_actual,centered_expected,atol=atol,rtol=rtol)
     tree=read_output(directory/'oracle_instrumented.txt')['node']
+    tree_report=check_tree(result.diagnostics['tree'],tree)
     normal=read_output(directory/'stages.txt')['normal']
     cube=queries@np.array(result.field.linear).reshape(3,3).T+result.field.translation
     widths=query_cell_widths(tree,normal,cube,p['depth'])
@@ -61,6 +63,8 @@ def check(directory,device='cuda:0'):
         "source_revision":subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         "source_dirty":bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT)),
         "production_source_sha256":{str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(ROOT.glob('src/**/*.py'))},
+        "fixture":manifest["name"],"input_sha256":manifest["input_sha256"],
+        "input_source":manifest.get("input_source"),"tree":tree_report,
         "device":device,"queries":len(queries),"coefficients":len(result.field.keys),
         "field_tolerances":{"absolute":atol,"relative":rtol},
         "max_abs_value_error":float(np.max(np.abs(error[:,0]))),

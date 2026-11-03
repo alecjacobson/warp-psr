@@ -9,27 +9,30 @@ import time
 import numpy as np
 import warp as wp
 from warp_psr import reconstruct
-from tools.make_fixture import points_for, ROOT
+from tools.make_fixture import ROOT
+from tools.benchmark_input import benchmark_input, reconstruction_parameters
 
 
 def benchmark(args):
     wp.init()
-    p,n=points_for('torus',args.count,2026)
+    p,n,parameters,provenance=benchmark_input(args)
+    vector=wp.vec3d if parameters['precision']=='double' else wp.vec3
     records=[]
     with wp.ScopedDevice('cuda'):
-        p=wp.array(p.astype('f'),dtype=wp.vec3)
-        n=wp.array(n.astype('f'),dtype=wp.vec3)
+        p=wp.array(p,dtype=vector)
+        n=wp.array(n,dtype=vector)
         for i in range(args.repeats+1):
             gc.collect();wp.synchronize()
             start=time.perf_counter()
-            result=reconstruct(p,n,depth=args.depth,full_depth=args.full_depth)
+            result=reconstruct(p,n,**reconstruction_parameters(parameters))
             wp.synchronize()
             record={'iteration':i,'seconds':time.perf_counter()-start,'metadata':result.metadata,
-                    'peak_device_pool_bytes':wp.get_mempool_used_mem_high('cuda')}
+                    'peak_device_pool_bytes':wp.get_mempool_used_mem_high('cuda'),
+                    'support_counts':[len(level.keys) for level in result.diagnostics['tree'].levels]}
             records.append(record)
             print(f"Iteration {i}: {record['seconds']:.4f} s; peak pool {record['peak_device_pool_bytes']/2**30:.2f} GiB",flush=True)
             del result
-    report={'count':args.count,'depth':args.depth,'full_depth':args.full_depth,'seed':2026,
+    report={**provenance,'count':len(p),'depth':parameters['depth'],'full_depth':parameters['full_depth'],'parameters':parameters,
             'source_revision':subprocess.check_output(['git','rev-parse','HEAD'],text=True,cwd=ROOT).strip(),
             'source_dirty':bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT)),
             'gpu':subprocess.check_output(['nvidia-smi','--query-gpu=name,driver_version','--format=csv,noheader'],text=True).strip(),
@@ -42,6 +45,7 @@ def benchmark(args):
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--fixture',type=Path,help='Use the exact input and all parameters of a validated fixture')
     parser.add_argument('--count',type=int,default=8192)
     parser.add_argument('--depth',type=int,default=6)
     parser.add_argument('--full-depth',type=int,default=3)
