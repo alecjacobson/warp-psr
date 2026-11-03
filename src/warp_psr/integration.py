@@ -53,7 +53,9 @@ def _reorder(xyz: wp.array(dtype=wp.vec3i), levels: wp.array(dtype=wp.uint8), vo
 
 
 def integration_grid(tree,normals,depth):
-    device=normals.records.keys.device
+    """Resolve basis knots through depth, and optionally the normal-field knots."""
+    device=tree.basis[0].keys.device
+    normal_count=len(normals.records.keys) if normals is not None else 0
     required=[None]*(depth+1)
     refined=[None]*(depth+1)
     empty=wp.empty(0,dtype=wp.int64,device=device)
@@ -64,11 +66,12 @@ def integration_grid(tree,normals,depth):
             wp.launch(_parent,len(fine),inputs=[fine,d,0,keys],device=device)
         refined[d]=unique_keys(keys,len(fine))
         basis=tree.basis[d].keys
-        count=8*len(basis)+27*len(normals.records.keys)+len(refined[d].keys)
+        count=8*len(basis)+27*normal_count+len(refined[d].keys)
         keys=wp.empty(2*count,dtype=wp.int64,device=device)
         if len(basis):
             wp.launch(_basis_support,(len(basis),8),inputs=[basis,d,keys],device=device)
-        wp.launch(_normal_support,(len(normals.records.keys),27),inputs=[normals.records.keys,d,8*len(basis),keys],device=device)
+        if normal_count:
+            wp.launch(_normal_support,(normal_count,27),inputs=[normals.records.keys,d,8*len(basis),keys],device=device)
         wp.copy(keys,refined[d].keys,dest_offset=count-len(refined[d].keys),count=len(refined[d].keys))
         required[d]=unique_keys(keys,count)
     leaves=[]
