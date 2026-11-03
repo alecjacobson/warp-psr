@@ -47,7 +47,7 @@ def main(args):
         if args.benchmark:
             for module, suffix, extra in [('tools.benchmark', 'gpu', []),
                                           ('tools.benchmark_reference', 'serial', ['--parallelism', 'none']),
-                                          ('tools.benchmark_reference', 'async', ['--parallelism', 'async'])]:
+                                          ('tools.benchmark_reference', 'openmp', ['--parallelism', 'openmp'])]:
                 commands.append([sys.executable, '-m', module, '--fixture', str(directory),
                                  '--output', str(directory/f'benchmark-{suffix}.json'), *extra])
         with (directory/'dataset-validation.log').open('w') as log:
@@ -65,7 +65,7 @@ def main(args):
             entry['reconstruction'] = json.loads((directory/'reconstruction_report.json').read_text())
             if args.benchmark:
                 entry['benchmarks'] = {suffix: json.loads((directory/f'benchmark-{suffix}.json').read_text())
-                                       for suffix in ('gpu', 'serial', 'async')}
+                                       for suffix in ('gpu', 'serial', 'openmp')}
                 hashes = {item['input_sha256'] for item in entry['benchmarks'].values()}
                 assert hashes == {entry['manifest']['input_sha256']}
         reports.append(entry)
@@ -81,6 +81,6 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--suite', choices=['smoke', 'scaling', 'all'], default='smoke')
     parser.add_argument('--case', action='append', help='Run only named cases (repeatable)')
-    parser.add_argument('--benchmark', action='store_true', help='Fresh-process GPU, serial C++, default-async C++ timing for each passing case')
+    parser.add_argument('--benchmark', action='store_true', help='Fresh-process GPU, serial C++, quota-aware OpenMP C++ timing for each passing case')
     parser.add_argument('--output', type=Path, default=ROOT/'.build/dataset-validation.json')
     raise SystemExit(main(parser.parse_args()))

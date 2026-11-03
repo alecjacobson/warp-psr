@@ -11,12 +11,14 @@ import warp as wp
 from warp_psr import reconstruct
 from tools.make_fixture import ROOT
 from tools.benchmark_input import benchmark_input, reconstruction_parameters
+from tools.cpu_environment import cpu_environment
 
 
 def benchmark(args):
     wp.init()
     p,n,parameters,provenance=benchmark_input(args)
     vector=wp.vec3d if parameters['precision']=='double' else wp.vec3
+    execution_environment=cpu_environment()
     records=[]
     with wp.ScopedDevice('cuda'):
         p=wp.array(p,dtype=vector)
@@ -35,6 +37,7 @@ def benchmark(args):
     report={**provenance,'count':len(p),'depth':parameters['depth'],'full_depth':parameters['full_depth'],'parameters':parameters,
             'source_revision':subprocess.check_output(['git','rev-parse','HEAD'],text=True,cwd=ROOT).strip(),
             'source_dirty':bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT)),
+            'execution_environment':execution_environment,'execution_environment_after':cpu_environment(),
             'gpu':subprocess.check_output(['nvidia-smi','--query-gpu=name,driver_version','--format=csv,noheader'],text=True).strip(),
             'warp':wp.__version__,'timing_scope':'GPU reconstruction, including Python orchestration; excludes input upload and queries',
             'first_run_note':'First invocation in process; existing disk kernel cache may be reused. Not a clean-cache compilation measurement.',

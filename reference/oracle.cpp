@@ -53,6 +53,19 @@ template<class Real> int run(int argc, char** argv) {
     out<<"threads "<<ThreadPool::NumThreads()<<'\n';
     out<<"schedule "<<int(ThreadPool::Schedule)<<'\n';
     out<<"chunk_size "<<ThreadPool::ChunkSize<<'\n';
+#ifdef _OPENMP
+    unsigned openmpThreads=0;
+    if(ThreadPool::ParallelizationType==ThreadPool::OPEN_MP) {
+#pragma omp parallel num_threads(ThreadPool::NumThreads())
+        {
+#pragma omp single
+            openmpThreads=omp_get_num_threads();
+        }
+    }
+    out<<"openmp_effective_threads "<<openmpThreads<<'\n';
+#else
+    out<<"openmp_effective_threads 0\n";
+#endif
     out<<"iso "<<result->isoValue<<'\n';
     out<<"transform";
     for(int i=0;i<4;i++) for(int j=0;j<4;j++) out<<' '<<result->unitCubeToModel(i,j);
@@ -105,7 +118,10 @@ int main(int argc,char** argv) {
         if(const char* setting=std::getenv("WARP_PSR_REFERENCE_PARALLELISM")) {
             std::string name(setting);
             if(name=="async") ThreadPool::ParallelizationType=ThreadPool::ASYNC;
-            else if(name!="none") throw std::runtime_error("Reference parallelism must be none or async");
+#ifdef _OPENMP
+            else if(name=="openmp") ThreadPool::ParallelizationType=ThreadPool::OPEN_MP;
+#endif
+            else if(name!="none") throw std::runtime_error("Reference parallelism must be none, async, or openmp (requires an OpenMP build)");
         }
         return std::string(argv[9])=="double" ? run<double>(argc,argv) : run<float>(argc,argv);
     }

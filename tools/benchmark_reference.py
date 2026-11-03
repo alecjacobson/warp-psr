@@ -9,6 +9,7 @@ import subprocess
 import numpy as np
 from tools.make_fixture import ROOT, oracle_parameters, read_output
 from tools.benchmark_input import benchmark_input
+from tools.cpu_environment import cpu_environment, available_threads
 
 
 def benchmark(args):
@@ -18,10 +19,15 @@ def benchmark(args):
     directory.mkdir(parents=True,exist_ok=True)
     np.savetxt(directory/'input.pts',np.column_stack([p,n]),fmt='%.17g')
     (directory/'queries.txt').write_text('')
-    command=[str(ROOT/'.build/oracle'),str(directory/'input.pts'),str(directory/'queries.txt'),str(directory/'output.txt'),
+    execution_environment=cpu_environment()
+    executable='oracle_openmp' if args.parallelism=='openmp' else 'oracle'
+    threads=args.threads or available_threads(execution_environment)
+    command=[str(ROOT/'.build'/executable),str(directory/'input.pts'),str(directory/'queries.txt'),str(directory/'output.txt'),
              *oracle_parameters(parameters)]
     environment={**os.environ,'WARP_PSR_TIMING_FILE':str(directory/'solve-seconds.txt'),
                  'WARP_PSR_REFERENCE_PARALLELISM':args.parallelism}
+    if args.parallelism=='openmp':
+        environment.update(OMP_THREAD_LIMIT=str(threads),OMP_NUM_THREADS=str(threads),OMP_DYNAMIC='FALSE')
     runs=[]
     for i in range(args.repeats+1):
         subprocess.run(command,env=environment,check=True,capture_output=True)
@@ -31,7 +37,10 @@ def benchmark(args):
     cpu=next((line.split(':',1)[1].strip() for line in Path('/proc/cpuinfo').read_text().splitlines() if line.startswith('model name')),platform.processor())
     settings=read_output(directory/'output.txt')
     report={**provenance,'count':len(p),'parameters':parameters,'cpu':cpu,
-            'parallelism':'ThreadPool::ASYNC (default CLI backend without OpenMP)' if args.parallelism=='async' else 'ThreadPool::NONE (serial), matching the correctness fixtures',
+            'parallelism':{'async':'ThreadPool::ASYNC (default CLI backend without OpenMP)', 'none':'ThreadPool::NONE (serial), matching the correctness fixtures', 'openmp':'ThreadPool::OPEN_MP, compiled with -fopenmp; explicit OpenMP runtime thread limit'}[args.parallelism],
+            'execution_environment':execution_environment,'execution_environment_after':cpu_environment(),
+            'openmp_thread_limit':threads if args.parallelism=='openmp' else None,
+            'openmp_effective_threads':int(settings.get('openmp_effective_threads',np.array([[0]]))[0,0]),
             'configured_threads':int(settings['threads'][0,0]),'schedule':int(settings['schedule'][0,0]),'chunk_size':int(settings['chunk_size'][0,0]),
             'timing_scope':'Unchanged official Solver::Solve; includes normalization, tree, assembly, solve, and isovalue; excludes input parsing, queries, export, and process startup',
             'comparison_limit':'Explicit library backend; input parsing, mesh extraction and CLI startup are excluded',
@@ -50,8 +59,10 @@ if __name__=='__main__':
     parser.add_argument('--depth',type=int,default=8)
     parser.add_argument('--full-depth',type=int,default=4)
     parser.add_argument('--repeats',type=int,default=3)
-    parser.add_argument('--parallelism',choices=['none','async'],default='none')
+    parser.add_argument('--parallelism',choices=['none','async','openmp'],default='none')
+    parser.add_argument('--threads',type=int,help='OpenMP thread limit; defaults to visible CPU quota/affinity')
     parser.add_argument('--output',type=Path,default=ROOT/'.build/benchmark-reference.json')
     args=parser.parse_args()
     if args.count<1 or args.repeats<1:parser.error('count and repeats must be positive')
+    if args.threads is not None and args.threads<1:parser.error('threads must be positive')
     benchmark(args)
