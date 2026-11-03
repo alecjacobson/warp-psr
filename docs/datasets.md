@@ -4,6 +4,13 @@ The dataset catalog comes from the [pinned PoissonRecon examples](https://github
 Raw files are downloaded into ignored `.build/datasets/`, verified against
 SHA-256 checksums in `tools/datasets.py`, and never bundled into this repository.
 
+All [16 smoke cases](results/public-smoke.json) and
+[15 scaling cases](results/public-scaling-accuracy.json) pass the fixed field,
+gradient, isovalue, and exact active/support-key gates. The
+[performance guide](performance.md) reports matched GPU, serial C++, and
+four-thread OpenMP measurements for all 15 scaling cases. The
+[gallery](gallery.md) compares independently reconstructed surfaces for each input.
+
 | Dataset | Original points | Distribution and input |
 | --- | ---: | --- |
 | Horse | 100,000 | Curvature-weighted samples of a virtual horse; ASCII positions and normals |
@@ -80,7 +87,20 @@ baseline explicitly limits the runtime to four threads. See [#50](https://github
 To separate accuracy runs from uncontended timing, run the scaling suite first
 without `--benchmark`, then repeat with `--benchmark-only`. This checks the saved
 production source hashes, exact-key acceptance, input checksum, and case settings
-before timing. Do not run other GPU jobs or CPU-heavy work concurrently with benchmarks.
+before timing. The acceptance record also binds the query checksum and every
+reference export checksum to the complete fixture manifest, including precision.
+Stale or modified inputs, settings, exports, queries, and production code require
+a fresh compatibility check. Do not run other GPU jobs or CPU-heavy work
+concurrently with benchmarks.
+
+The [OpenMP report](results/openmp-scaling.json) checks every scaling case against
+the serial field budgets and canonical topology. The
+[repeatability report](results/openmp-repeatability.json) repeats the float32
+eagle and float64 torso smoke cases three times each. To reproduce the latter:
+
+```sh
+python -m tools.check_openmp --threads 4 --repeats 3 --output .build/openmp-repeatability.json
+```
 
 ## Visual comparison
 

@@ -1,0 +1,1751 @@
+{
+  "scope": "OpenMP compatibility is separate from the unchanged serial/GPU acceptance budgets; repeatability requires multiple runs",
+  "repeats": 1,
+  "repeatability_measured": false,
+  "execution_environment": {
+    "captured_utc": "2026-11-03T05:19:08.784067+00:00",
+    "logical_cpus": 128,
+    "affinity_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "visible_cgroup_quotas": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      },
+      {
+        "group": "kubepods.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      }
+    ],
+    "minimum_visible_cpu_quota": 4.0,
+    "cgroup_cpu_counters": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "counters": {
+          "usage_usec": 1104669140,
+          "user_usec": 999488571,
+          "system_usec": 105180569,
+          "nr_periods": 14143,
+          "nr_throttled": 430,
+          "throttled_usec": 1278647634
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "counters": {
+          "usage_usec": 1104739094,
+          "user_usec": 999501716,
+          "system_usec": 105237377,
+          "nr_periods": 14155,
+          "nr_throttled": 430,
+          "throttled_usec": 1248946502
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "counters": {
+          "usage_usec": 19058977660173,
+          "user_usec": 14698991598697,
+          "system_usec": 4359986061476,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": "kubepods.slice",
+        "counters": {
+          "usage_usec": 52232574558131,
+          "user_usec": 35931878189062,
+          "system_usec": 16300696369069,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": ".",
+        "counters": {
+          "usage_usec": 66767391488000,
+          "user_usec": 43431292632000,
+          "system_usec": 23336098856000,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      }
+    ],
+    "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+  },
+  "requested_threads": 4,
+  "build": {
+    "pins": {
+      "fixture_format": 1,
+      "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+      "warp_version": "1.19.0",
+      "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+    },
+    "commands": [
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/oracle"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-DEXPORT_TREE",
+        "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-fopenmp",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/oracle_openmp"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-fopenmp",
+        "-DEXPORT_TREE",
+        "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented_openmp"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/reference/basis.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/basis"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-DFAST_COMPILE",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+        "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+        "/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src/PoissonRecon.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/home/horde/projects/warp-psr-public-render/.build/PoissonReconCLI"
+      ]
+    ],
+    "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+  },
+  "source_revision": "c29cb260e818160766a1c7a4024dd3744629c0c9",
+  "source_dirty": false,
+  "all_passed": true,
+  "fixtures": [
+    {
+      "input_sha256": "2d0405025896714809cb987c88bee7c6a8b7c2fdcdabd4edd328f7dae1c0b404",
+      "input_source": {
+        "source_file": "horse.npts",
+        "source_sha256": "e6fd6bfccccb1aad72c83144acd7543f672f1a59641071ef008ae6055df053ec",
+        "original_count": 100000,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "all rows in original file order",
+        "dataset": "horse",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/horse.npts",
+        "description": "Curvature-weighted, nonuniform samples of a virtual horse; supplied by the PoissonRecon project",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 100000
+      },
+      "seed": 2026,
+      "fixture": "horse-full-d8-psr",
+      "shape": "horse",
+      "parameters": {
+        "name": "horse-full-d8-psr",
+        "dataset": "horse",
+        "input": null,
+        "max_points": null,
+        "shape": "horse",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 100000,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 0.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.06588022945256504,
+              "centered_value": 0.02437480520468174,
+              "scaled_gradient": 0.013817510192725422,
+              "isovalue": 0.013013806047518273
+            },
+            "max_abs_value_error": 8.940696716308594e-07,
+            "rms_value_error": 5.974256449377858e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "max_abs_cube_gradient_error": 9.840220445767045e-05,
+            "isovalue_error": 5.960464477539062e-07
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "2d0405025896714809cb987c88bee7c6a8b7c2fdcdabd4edd328f7dae1c0b404",
+      "input_source": {
+        "source_file": "horse.npts",
+        "source_sha256": "e6fd6bfccccb1aad72c83144acd7543f672f1a59641071ef008ae6055df053ec",
+        "original_count": 100000,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "all rows in original file order",
+        "dataset": "horse",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/horse.npts",
+        "description": "Curvature-weighted, nonuniform samples of a virtual horse; supplied by the PoissonRecon project",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 100000
+      },
+      "seed": 2026,
+      "fixture": "horse-full-d8-spsr",
+      "shape": "horse",
+      "parameters": {
+        "name": "horse-full-d8-spsr",
+        "dataset": "horse",
+        "input": null,
+        "max_points": null,
+        "shape": "horse",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 100000,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.019106844659421578,
+              "centered_value": 0.10040617826894428,
+              "scaled_gradient": 0.2693187705490733,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 1.1920928955078125e-06,
+            "rms_value_error": 1.0146728295935551e-07,
+            "max_abs_centered_value_error": 1.1920928955078125e-06,
+            "max_abs_cube_gradient_error": 0.0011070248001487926,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "643ab4ff5292451c130dae04ad99167ab59c8a922489243887560e87121bed75",
+      "input_source": {
+        "source_file": "bunny.points.ply",
+        "source_sha256": "859f3a8fda84bd2707abc5ede664b11cde20fef9d5f9ffde36cc52088a486e15",
+        "original_count": 362271,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "all rows in original file order",
+        "dataset": "bunny",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/bunny.points.ply",
+        "description": "Merged Stanford Bunny range scans; normals estimated from scan connectivity by the PoissonRecon project",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 362271
+      },
+      "seed": 2026,
+      "fixture": "bunny-full-d8-psr",
+      "shape": "bunny",
+      "parameters": {
+        "name": "bunny-full-d8-psr",
+        "dataset": "bunny",
+        "input": null,
+        "max_points": null,
+        "shape": "bunny",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 362271,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 0.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.04678702504528239,
+              "centered_value": 0.030754226147902883,
+              "scaled_gradient": 0.016945835271942572,
+              "isovalue": 0.007018883013272736
+            },
+            "max_abs_value_error": 6.258487701416016e-07,
+            "rms_value_error": 3.166192475016682e-07,
+            "max_abs_centered_value_error": 3.5762786865234375e-07,
+            "max_abs_cube_gradient_error": 6.304389535216615e-05,
+            "isovalue_error": 2.980232238769531e-07
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "643ab4ff5292451c130dae04ad99167ab59c8a922489243887560e87121bed75",
+      "input_source": {
+        "source_file": "bunny.points.ply",
+        "source_sha256": "859f3a8fda84bd2707abc5ede664b11cde20fef9d5f9ffde36cc52088a486e15",
+        "original_count": 362271,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "all rows in original file order",
+        "dataset": "bunny",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/bunny.points.ply",
+        "description": "Merged Stanford Bunny range scans; normals estimated from scan connectivity by the PoissonRecon project",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 362271
+      },
+      "seed": 2026,
+      "fixture": "bunny-full-d8-spsr",
+      "shape": "bunny",
+      "parameters": {
+        "name": "bunny-full-d8-spsr",
+        "dataset": "bunny",
+        "input": null,
+        "max_points": null,
+        "shape": "bunny",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 362271,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.005818193327626073,
+              "centered_value": 0.02374544503000712,
+              "scaled_gradient": 0.019910364926831264,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 5.0705000955472146e-08,
+            "max_abs_centered_value_error": 3.5762786865234375e-07,
+            "max_abs_cube_gradient_error": 7.355121124419384e-05,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d8-psr",
+      "shape": "eagle",
+      "parameters": {
+        "name": "eagle-full-d8-psr",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 0.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.1522288580867014,
+              "centered_value": 0.026371059204141355,
+              "scaled_gradient": 0.048472228820264675,
+              "isovalue": 0.03371738085745716
+            },
+            "max_abs_value_error": 1.7881393432617188e-06,
+            "rms_value_error": 1.4333835046085127e-06,
+            "max_abs_centered_value_error": 3.5762786865234375e-07,
+            "max_abs_cube_gradient_error": 0.00020810485330002848,
+            "isovalue_error": 1.430511474609375e-06
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d8-spsr",
+      "shape": "eagle",
+      "parameters": {
+        "name": "eagle-full-d8-spsr",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.013261530672050995,
+              "centered_value": 0.0355667134922209,
+              "scaled_gradient": 0.033382230911902185,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 7.153654521891656e-08,
+            "max_abs_centered_value_error": 4.76837158203125e-07,
+            "max_abs_cube_gradient_error": 0.00011310046375001548,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "ebb49031536e6ff617caee47cd9aa854e5d7abdf6311c373a1d5fb73b8632533",
+      "input_source": {
+        "source_file": "torso.points.ply",
+        "source_sha256": "ad7955bb71fe4a042e125b407beed7eeabb79a2062157b28ea955cb621e66524",
+        "original_count": 3488432,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "all rows in original file order",
+        "dataset": "torso",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/torso.zip",
+        "description": "PoissonRecon torso scan; the separate envelope constraint is outside the supported profile",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 3488432
+      },
+      "seed": 2026,
+      "fixture": "torso-full-d8-psr",
+      "shape": "torso",
+      "parameters": {
+        "name": "torso-full-d8-psr",
+        "dataset": "torso",
+        "input": null,
+        "max_points": null,
+        "shape": "torso",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 3488432,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 0.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.01222427989291105,
+              "centered_value": 0.023816653211249962,
+              "scaled_gradient": 0.019324122414710158,
+              "isovalue": 0.0006248691602087169
+            },
+            "max_abs_value_error": 3.5762786865234375e-07,
+            "rms_value_error": 6.298242975780586e-08,
+            "max_abs_centered_value_error": 3.2782554626464844e-07,
+            "max_abs_cube_gradient_error": 6.738571391906589e-05,
+            "isovalue_error": 2.9802322387695312e-08
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "ebb49031536e6ff617caee47cd9aa854e5d7abdf6311c373a1d5fb73b8632533",
+      "input_source": {
+        "source_file": "torso.points.ply",
+        "source_sha256": "ad7955bb71fe4a042e125b407beed7eeabb79a2062157b28ea955cb621e66524",
+        "original_count": 3488432,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "all rows in original file order",
+        "dataset": "torso",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/torso.zip",
+        "description": "PoissonRecon torso scan; the separate envelope constraint is outside the supported profile",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 3488432
+      },
+      "seed": 2026,
+      "fixture": "torso-full-d8-spsr",
+      "shape": "torso",
+      "parameters": {
+        "name": "torso-full-d8-spsr",
+        "dataset": "torso",
+        "input": null,
+        "max_points": null,
+        "shape": "torso",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 3488432,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.016722491675689056,
+              "centered_value": 0.07068163483794114,
+              "scaled_gradient": 0.051332773322466566,
+              "isovalue": 0.0019347522974361262
+            },
+            "max_abs_value_error": 1.0728836059570312e-06,
+            "rms_value_error": 2.2377360630589793e-07,
+            "max_abs_centered_value_error": 9.5367431640625e-07,
+            "max_abs_cube_gradient_error": 0.00017688749903754797,
+            "isovalue_error": 1.1920928955078125e-07
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "e2af22e125e51922a843a362f47ac0092ff855135c8ad9e59b434ef7770441ae",
+      "input_source": {
+        "source_file": "torso.points.ply",
+        "source_sha256": "ad7955bb71fe4a042e125b407beed7eeabb79a2062157b28ea955cb621e66524",
+        "original_count": 3488432,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "seeded uniform subset, retaining original file order",
+        "dataset": "torso",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/torso.zip",
+        "description": "PoissonRecon torso scan; the separate envelope constraint is outside the supported profile",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selection_seed": 2026,
+        "selection_indices_sha256": "dc57580ae2fca1aab1d1a88dd7576852fb54a644116184538057329ef3d3bc6e",
+        "selected_count": 10000
+      },
+      "seed": 2026,
+      "fixture": "torso-10000-d8",
+      "shape": "torso",
+      "parameters": {
+        "name": "torso-10000-d8",
+        "dataset": "torso",
+        "input": null,
+        "max_points": 10000,
+        "shape": "torso",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 10000,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0041442364702656085,
+              "centered_value": 0.02263402824704091,
+              "scaled_gradient": 0.028467993518991517,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 2.980232238769531e-07,
+            "rms_value_error": 4.158831535667332e-08,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "max_abs_cube_gradient_error": 8.708739517260256e-05,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "f9a9ec56dbb927b9da530694db0cd92f9484d0d9557efb73ef7c8624ff66c756",
+      "input_source": {
+        "source_file": "torso.points.ply",
+        "source_sha256": "ad7955bb71fe4a042e125b407beed7eeabb79a2062157b28ea955cb621e66524",
+        "original_count": 3488432,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "seeded uniform subset, retaining original file order",
+        "dataset": "torso",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/torso.zip",
+        "description": "PoissonRecon torso scan; the separate envelope constraint is outside the supported profile",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selection_seed": 2026,
+        "selection_indices_sha256": "1987ed039b2a5ad4b793a75b898b86758e2a28988e88c365bf78b3d803b85591",
+        "selected_count": 100000
+      },
+      "seed": 2026,
+      "fixture": "torso-100000-d8",
+      "shape": "torso",
+      "parameters": {
+        "name": "torso-100000-d8",
+        "dataset": "torso",
+        "input": null,
+        "max_points": 100000,
+        "shape": "torso",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 100000,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.00550205825711332,
+              "centered_value": 0.02730562409570599,
+              "scaled_gradient": 0.02222436407613305,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 4.172325134277344e-07,
+            "rms_value_error": 6.545787764627324e-08,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "max_abs_cube_gradient_error": 9.253723419533344e-05,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "79c8050b9ef25e62961f62dfa6025386e6f5222a6252e3c409935d958f53aebc",
+      "input_source": {
+        "source_file": "torso.points.ply",
+        "source_sha256": "ad7955bb71fe4a042e125b407beed7eeabb79a2062157b28ea955cb621e66524",
+        "original_count": 3488432,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "seeded uniform subset, retaining original file order",
+        "dataset": "torso",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/torso.zip",
+        "description": "PoissonRecon torso scan; the separate envelope constraint is outside the supported profile",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selection_seed": 2026,
+        "selection_indices_sha256": "5130f7b4261d33e912adffce8bc6ec06b88bcc775bf8285ec6c616d80fe661be",
+        "selected_count": 1000000
+      },
+      "seed": 2026,
+      "fixture": "torso-1000000-d8",
+      "shape": "torso",
+      "parameters": {
+        "name": "torso-1000000-d8",
+        "dataset": "torso",
+        "input": null,
+        "max_points": 1000000,
+        "shape": "torso",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 1000000,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.013932889728701558,
+              "centered_value": 0.06474420965556296,
+              "scaled_gradient": 0.041895745669651596,
+              "isovalue": 0.0019366473087148275
+            },
+            "max_abs_value_error": 9.5367431640625e-07,
+            "rms_value_error": 1.9968996297196682e-07,
+            "max_abs_centered_value_error": 8.344650268554688e-07,
+            "max_abs_cube_gradient_error": 0.00016413479215771076,
+            "isovalue_error": 1.1920928955078125e-07
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d8-density3",
+      "shape": "eagle",
+      "parameters": {
+        "name": "eagle-full-d8-density3",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 3.0,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.010266991048826522,
+              "centered_value": 0.03232778477195388,
+              "scaled_gradient": 0.028476803708169983,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 4.76837158203125e-07,
+            "rms_value_error": 6.661149206940695e-08,
+            "max_abs_centered_value_error": 4.76837158203125e-07,
+            "max_abs_cube_gradient_error": 0.00011083845447501517,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d8-density10",
+      "shape": "eagle",
+      "parameters": {
+        "name": "eagle-full-d8-density10",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 10.0,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.007938476095794742,
+              "centered_value": 0.029440727454467557,
+              "scaled_gradient": 0.032354289016669084,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 4.172325134277344e-07,
+            "rms_value_error": 5.854160052588524e-08,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "max_abs_cube_gradient_error": 8.394175043946461e-05,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d9-spsr",
+      "shape": "eagle",
+      "parameters": {
+        "name": "eagle-full-d9-spsr",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.09706002086586676,
+              "centered_value": 0.08623655895432997,
+              "scaled_gradient": 0.07685258764589283,
+              "isovalue": 0.0009899711369955125
+            },
+            "max_abs_value_error": 1.3485550880432129e-06,
+            "rms_value_error": 1.8567365301382576e-07,
+            "max_abs_centered_value_error": 1.4081597328186035e-06,
+            "max_abs_cube_gradient_error": 0.0005474062445500749,
+            "isovalue_error": 5.960464477539063e-08
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    },
+    {
+      "input_sha256": "79c8050b9ef25e62961f62dfa6025386e6f5222a6252e3c409935d958f53aebc",
+      "input_source": {
+        "source_file": "torso.points.ply",
+        "source_sha256": "ad7955bb71fe4a042e125b407beed7eeabb79a2062157b28ea955cb621e66524",
+        "original_count": 3488432,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [],
+        "selection": "seeded uniform subset, retaining original file order",
+        "dataset": "torso",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/torso.zip",
+        "description": "PoissonRecon torso scan; the separate envelope constraint is outside the supported profile",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selection_seed": 2026,
+        "selection_indices_sha256": "5130f7b4261d33e912adffce8bc6ec06b88bcc775bf8285ec6c616d80fe661be",
+        "selected_count": 1000000
+      },
+      "seed": 2026,
+      "fixture": "torso-1m-d9-spsr",
+      "shape": "torso",
+      "parameters": {
+        "name": "torso-1m-d9-spsr",
+        "dataset": "torso",
+        "input": null,
+        "max_points": 1000000,
+        "shape": "torso",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 1000000,
+        "seed": 2026,
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "runs": [
+        {
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0062319692437004985,
+              "centered_value": 0.02979578682806925,
+              "scaled_gradient": 0.02656224447726033,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 4.172325134277344e-07,
+            "rms_value_error": 6.4162894138016e-08,
+            "max_abs_centered_value_error": 4.172325134277344e-07,
+            "max_abs_cube_gradient_error": 0.00017149981488273625,
+            "isovalue_error": 0.0
+          },
+          "against_first_openmp": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          },
+          "exact_active_keys": true,
+          "exact_support_keys": true,
+          "transform_matches": true,
+          "effective_threads": 4
+        }
+      ],
+      "passed": true
+    }
+  ]
+}

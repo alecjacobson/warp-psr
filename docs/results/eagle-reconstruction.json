@@ -43,13 +43,13 @@
     "official_iso_value": 0.5020846724510193,
     "warp_iso_value": 0.5020846128463745,
     "max_abs_value_error": 2.948567271232605e-06,
-    "rms_value_error": 2.4220432760193826e-07,
+    "rms_value_error": 2.422043276019382e-07,
     "tolerances": {
       "atol": 1e-05,
       "rtol": 0.0001
     },
     "field_compatibility": true,
-    "source_revision": "bf5862de67154f56465c468f92a3a84e5010f7c5",
+    "source_revision": "c29cb260e818160766a1c7a4024dd3744629c0c9",
     "source_dirty": false,
     "build": {
       "pins": {
@@ -66,14 +66,14 @@
           "-DNDEBUG",
           "-pthread",
           "-Wno-invalid-offsetof",
-          "-I/opt/warp-psr/public-render/.build/PoissonRecon/Src",
-          "-I/opt/warp-psr/public-render/.build/PoissonRecon",
-          "/opt/warp-psr/public-render/reference/oracle.cpp",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
           "-lz",
           "-lpng",
           "-ljpeg",
           "-o",
-          "/opt/warp-psr/public-render/.build/oracle"
+          "/home/horde/projects/warp-psr-public-render/.build/oracle"
         ],
         [
           "g++",
@@ -83,14 +83,14 @@
           "-pthread",
           "-Wno-invalid-offsetof",
           "-DEXPORT_TREE",
-          "-I/opt/warp-psr/public-render/.build/instrumented",
-          "-I/opt/warp-psr/public-render/.build/PoissonRecon",
-          "/opt/warp-psr/public-render/reference/oracle.cpp",
+          "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
           "-lz",
           "-lpng",
           "-ljpeg",
           "-o",
-          "/opt/warp-psr/public-render/.build/oracle_instrumented"
+          "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented"
         ],
         [
           "g++",
@@ -99,14 +99,49 @@
           "-DNDEBUG",
           "-pthread",
           "-Wno-invalid-offsetof",
-          "-I/opt/warp-psr/public-render/.build/PoissonRecon/Src",
-          "-I/opt/warp-psr/public-render/.build/PoissonRecon",
-          "/opt/warp-psr/public-render/reference/basis.cpp",
+          "-fopenmp",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
           "-lz",
           "-lpng",
           "-ljpeg",
           "-o",
-          "/opt/warp-psr/public-render/.build/basis"
+          "/home/horde/projects/warp-psr-public-render/.build/oracle_openmp"
+        ],
+        [
+          "g++",
+          "-std=c++17",
+          "-O2",
+          "-DNDEBUG",
+          "-pthread",
+          "-Wno-invalid-offsetof",
+          "-fopenmp",
+          "-DEXPORT_TREE",
+          "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+          "-lz",
+          "-lpng",
+          "-ljpeg",
+          "-o",
+          "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented_openmp"
+        ],
+        [
+          "g++",
+          "-std=c++17",
+          "-O2",
+          "-DNDEBUG",
+          "-pthread",
+          "-Wno-invalid-offsetof",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/basis.cpp",
+          "-lz",
+          "-lpng",
+          "-ljpeg",
+          "-o",
+          "/home/horde/projects/warp-psr-public-render/.build/basis"
         ],
         [
           "g++",
@@ -116,30 +151,37 @@
           "-pthread",
           "-Wno-invalid-offsetof",
           "-DFAST_COMPILE",
-          "-I/opt/warp-psr/public-render/.build/PoissonRecon/Src",
-          "-I/opt/warp-psr/public-render/.build/PoissonRecon",
-          "/opt/warp-psr/public-render/.build/PoissonRecon/Src/PoissonRecon.cpp",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src/PoissonRecon.cpp",
           "-lz",
           "-lpng",
           "-ljpeg",
           "-o",
-          "/opt/warp-psr/public-render/.build/PoissonReconCLI"
+          "/home/horde/projects/warp-psr-public-render/.build/PoissonReconCLI"
         ]
       ],
       "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
     }
   },
   "camera": [
-    2,
+    2.0,
     -0.5,
-    -2
+    -2.0
   ],
   "up": [
-    0,
-    -1,
-    0
+    0.0,
+    -1.0,
+    0.0
   ],
-  "parallel_scale": 0.53,
+  "parallel_scale": 0.5473959739144825,
+  "model_grid_center": [
+    -0.016046844484231604,
+    0.06035006802001335,
+    -0.05894292227308408
+  ],
+  "render_source_revision": "c29cb260e818160766a1c7a4024dd3744629c0c9",
+  "render_source_sha256": "d77b8314d3a94eb99c1ce8d8a991e20413c254695882fab4f857b47e9705b87b",
   "pyvista": "0.46.4",
   "vtk": [
     9,
