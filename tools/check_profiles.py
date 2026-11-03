@@ -8,6 +8,7 @@ from tools.make_fixture import ROOT
 PROFILE_CASES={
     'base':['--base-depth','1'],
     'solve':['--solve-depth','3'],
+    'cluster-solve':['--shape','cluster','--count','1024','--depth','5','--solve-depth','4'],
     'kernel':['--kernel-depth','1'],
     'scale':['--scale','1.25'],
     'density':['--samples-per-node','3.0'],

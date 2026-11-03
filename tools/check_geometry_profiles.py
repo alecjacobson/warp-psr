@@ -8,7 +8,7 @@ from tools.make_fixture import ROOT
 GEOMETRY_CASES = {
     'plane':['--shape','plane'],
     'sheets':['--shape','sheets'],
-    'cluster':['--shape','cluster'],
+    'cluster':['--shape','cluster','--operators'],
     'disconnected':['--shape','disconnected'],
     'transformed':['--shape','sphere','--input-scale','3.7','--translation','2','-3','1'],
 }

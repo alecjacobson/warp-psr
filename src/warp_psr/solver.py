@@ -14,7 +14,7 @@ from .forms import (
     assemble_point_load,
     point_quadrature,
 )
-from .normal_field import assemble_normal_load, cache_normal_quadrature
+from .normal_loads import assemble_reference_normal_loads
 from .constraints import point_constraints
 from .spaces import make_level_space
 from .relaxation import row_schedule, relax_scheduled, relaxation_command
@@ -208,13 +208,17 @@ def solve_levels(
     finest = len(tree.basis) - 1
     keys = [level.keys for level in tree.basis]
     transfers = [
-        prolongation(keys[d - 1], keys[d], d, dtype) for d in range(1, solve_depth + 1)
+        prolongation(keys[d - 1], keys[d], d, dtype) for d in range(1, finest + 1)
     ]
     corrections = [wp.zeros(len(k), dtype=dtype, device=device) for k in keys]
     diagnostics = []
     solver_sync = 0.0
     cumulative = None
-    normal_quadrature = cache_normal_quadrature(geometry, normals, finest)
+    # The reference assembles normal constraints through reconstruction depth,
+    # including fine contributions when the requested solve stops earlier.
+    normal_loads = assemble_reference_normal_loads(
+        tree, geometry, normals, finest, base_depth, transfers
+    )
     screened = point_weight > 0 and not exact
     for d in range(base_depth, solve_depth + 1):
         if not len(keys[d]):
@@ -222,9 +226,7 @@ def solve_levels(
         # Normal loads need the finest partition's quadratic breakpoints. The
         # stiffness and screening operators only need this level's basis knots.
         normal_space = make_level_space(geometry, keys[d], d, finest)
-        load = assemble_normal_load(
-            normal_space, normals, finest, cache=normal_quadrature
-        )
+        load = normal_loads[d]
         if d == finest:
             operator_geometry = geometry
             operator_finest = finest

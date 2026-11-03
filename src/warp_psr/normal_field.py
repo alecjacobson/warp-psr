@@ -20,9 +20,10 @@ def precision_kernels(dtype):
         keys: wp.array(dtype=wp.int64),
         values: wp.array(dtype=vec4),
         depth: int,
+        first_depth: int,
     ):
         value = vec3(dtype(0.0))
-        for d in range(depth + 1):
+        for d in range(first_depth, depth + 1):
             n = 1 << d
             q = p * dtype(n)
             c = wp.vec3i(
@@ -67,7 +68,7 @@ def normal_load(s: fem.Sample, v: fem.Field, normal: fem.Field):
     return wp.dot(fem.grad(v, s), normal(s))
 
 
-def cache_normal_quadrature(geometry, normals, depth):
+def cache_normal_quadrature(geometry, normals, depth, first_depth=0):
     domain = fem.Cells(geometry)
     quadrature = fem.RegularQuadrature(domain, order=3)
     normal = fem.ImplicitField(
@@ -77,6 +78,7 @@ def cache_normal_quadrature(geometry, normals, depth):
             "keys": normals.records.keys,
             "values": normals.records.values,
             "depth": depth,
+            "first_depth": first_depth,
         },
         degree=2,
     )
@@ -94,7 +96,7 @@ def cache_normal_quadrature(geometry, normals, depth):
     )
 
 
-def assemble_normal_load(space, normals, depth, cache=None):
+def assemble_normal_load(space, normals, depth, cache=None, first_depth=0):
     domain = fem.Cells(space.geometry)
     if cache is None:
         quadrature = fem.RegularQuadrature(domain, order=3)
@@ -105,6 +107,7 @@ def assemble_normal_load(space, normals, depth, cache=None):
                 "keys": normals.records.keys,
                 "values": normals.records.values,
                 "depth": depth,
+                "first_depth": first_depth,
             },
             degree=2,
         )

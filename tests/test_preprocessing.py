@@ -18,7 +18,7 @@ def test_effective_floating_point_options():
 
 @pytest.mark.cuda
 @pytest.mark.reference
-@pytest.mark.parametrize("name,depth,full",[("sphere",4,2),("torus",6,3),("sparse",5,1),("sphere-psr-double",4,2),("torus-double",6,3),("sparse-double",5,1)])
+@pytest.mark.parametrize("name,depth,full",[("sphere",4,2),("torus",6,3),("sparse",5,1),("sphere-psr-double",4,2),("torus-double",6,3),("sparse-double",5,1),("geometry-cluster-float",5,2),("geometry-cluster-double",5,2)])
 def test_gpu_density_normal_tree(name,depth,full):
     wp.init()
     if not wp.is_cuda_available():

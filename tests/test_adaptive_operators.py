@@ -1,5 +1,6 @@
 """Reference matrices, loads, constraints and transfers on an adaptive GPU tree."""
 from pathlib import Path
+import json
 import numpy as np
 from scipy.sparse import csr_matrix
 import pytest
@@ -19,19 +20,21 @@ def csr(a):
 
 @pytest.mark.reference
 @pytest.mark.cuda
-@pytest.mark.parametrize('name,weight,exact',[(name+suffix,weight,exact) for suffix in ('','-double') for name,weight,exact in [('sphere',2.,False),('sphere-psr',0.,False),('sphere-exact',2.,True)]])
+@pytest.mark.parametrize('name,weight,exact',[(name+suffix,weight,exact) for suffix in ('','-double') for name,weight,exact in [('sphere',2.,False),('sphere-psr',0.,False),('sphere-exact',2.,True)]]+[(f'geometry-cluster-{precision}',2.,False) for precision in ('float','double')])
 def test_level_operators_and_transfers(name,weight,exact):
     wp.init()
     if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
     directory=Path('.build/fixtures')/name
     if not (directory/'operators.txt').exists():pytest.skip('Generate operator exports')
+    parameters=json.loads((directory/'manifest.json').read_text())['parameters']
+    depth,full_depth=parameters['depth'],parameters['full_depth']
     double=name.endswith('double')
     atol,rtol=(1e-10,1e-9) if double else (1e-6,1e-5)
     vector=wp.vec3d if double else wp.vec3
     scalar=wp.float64 if double else wp.float32
     data=np.loadtxt(directory/'input.pts').astype(np.float64 if double else np.float32)
     with wp.ScopedDevice('cuda'):
-        result=reconstruct(wp.array(data[:,:3],dtype=vector),wp.array(data[:,3:],dtype=vector),depth=4,full_depth=2,point_weight=weight,exact_interpolation=exact)
+        result=reconstruct(wp.array(data[:,:3],dtype=vector),wp.array(data[:,3:],dtype=vector),depth=depth,full_depth=full_depth,point_weight=weight,exact_interpolation=exact)
         tree=result.diagnostics['tree']
         nodes=read_output(directory/'oracle_instrumented.txt')['node']
         lookup={int(row[6]):tuple(map(int,row[:4])) for row in nodes}
@@ -57,7 +60,7 @@ def test_level_operators_and_transfers(name,weight,exact):
                 if i is not None:expected_load[i]=row[4]
             scale=np.max(np.abs(expected_load)) or 1.
             np.testing.assert_allclose(level['normal_load'].numpy()/scale,expected_load/scale,atol=atol,rtol=rtol)
-        for d in range(1,5):
+        for d in range(1,depth+1):
             actual=csr(prolongation(tree.basis[d-1].keys,tree.basis[d].keys,d,scalar)).T
             rr=[];cc=[];vv=[]
             for row in ops:
