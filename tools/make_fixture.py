@@ -57,8 +57,10 @@ def generate(args):
     for exe in ["oracle", "oracle_instrumented"]:
         command_args[2] = str(out/(exe+".txt"))
         start = time.perf_counter()
-        subprocess.run([str(ROOT/".build"/exe), *command_args],
-                       env={**os.environ, "WARP_PSR_ORACLE_DIR": str(out)}, check=True)
+        environment={**os.environ, "WARP_PSR_ORACLE_DIR": str(out)}
+        if args.operators:
+            environment["WARP_PSR_OPERATORS"]=str(out)
+        subprocess.run([str(ROOT/".build"/exe), *command_args],env=environment, check=True)
         timings[exe] = time.perf_counter()-start
     baseline = read_output(out/"oracle.txt")
     instrumented = read_output(out/"oracle_instrumented.txt")
@@ -99,4 +101,5 @@ if __name__ == "__main__":
     parser.add_argument("--iters", type=int, default=8)
     parser.add_argument("--precision", choices=["float","double"], default="float")
     parser.add_argument("--grid", type=int, default=24)
+    parser.add_argument("--operators", action="store_true", help="Export small explicit matrices and interpolation records")
     generate(parser.parse_args())

@@ -1,103 +1,104 @@
 # warp-psr
 
-A compatibility-first implementation of Poisson Surface Reconstruction (PSR) and
-Screened Poisson Surface Reconstruction (SPSR) in NVIDIA Warp, following the
-[design](Warp%20Poisson%20Reconstruction%20Design%20for%20Matching%20Implicit%20Fields.md).
-The target is the same adaptive implicit field as pinned PoissonRecon, not only a
-visually similar mesh.
+Poisson Surface Reconstruction (PSR) and Screened Poisson Surface Reconstruction
+(SPSR) in NVIDIA Warp. The GPU builds its own adaptive tree, density and normal
+fields, assembles through `warp.fem`, solves the reference's multilevel system,
+and evaluates implicit values and gradients.
 
-**Status: under development. A complete GPU reconstruction API is not available.**
-Implemented building blocks include GPU sample normalization/aggregation, density
-estimation, normal splatting, active tree/support completion, Warp FEM forms, and
-sparse per-level field evaluation. The reconstruction solver, full hierarchy flag
-validation, and broader precision/profile coverage remain in progress.
-Progress and known problems are tracked in [issues](https://github.com/alecjacobson/warp-psr/issues).
-Performance optimization follows the field-compatibility gates.
+The float32 degree-1 implementation now matches the pinned official output on
+sphere, sparse, and torus fixtures, including PSR and both interpolation modes.
+Broader profiles and performance work are tracked in
+[issues](https://github.com/alecjacobson/warp-psr/issues), following the
+[design](Warp%20Poisson%20Reconstruction%20Design%20for%20Matching%20Implicit%20Fields.md).
 
 ## Getting started
 
-Python 3.10+ and a C++17 compiler are required for the development tools.
+Requires Python 3.10+ and an NVIDIA GPU supported by Warp 1.19.
 
 ```sh
 git clone https://github.com/alecjacobson/warp-psr.git
 cd warp-psr
 python -m venv .venv
 source .venv/bin/activate
-pip install -e '.[test,visualization]'
-sudo apt-get install g++ libjpeg-dev libturbojpeg0-dev libpng-dev zlib1g-dev
-python tools/build_reference.py
-python tools/make_fixture.py --name sphere
-python tools/check_environment.py
-pytest -q
-python -m tools.check_cli .build/fixtures/sphere
-python -m tools.check_field .build/fixtures/sphere
+pip install -e .
 ```
 
-On Linux x86-64 with a CUDA 12 driver, install NVIDIA's CUDA 12 wheel before GPU
-validation. The default Warp 1.19 wheel requires a CUDA 13 driver.
+For Linux x86-64 with a CUDA 12 driver, install NVIDIA's CUDA 12 wheel:
 
 ```sh
 pip install 'https://github.com/NVIDIA/warp/releases/download/v1.19.0/warp_lang-1.19.0%2Bcu12-py3-none-manylinux_2_28_x86_64.whl'
 ```
 
-Reference sources and generated fixtures live under ignored `.build/` and never
-enter the production package. Allow several GB of disk space for dependencies and
-build products. See [reference tooling](reference/README.md) for export details.
+```python
+import warp as wp
+from warp_psr import reconstruct
 
-## Compatibility target
+wp.init()
+# points and normals: sequences of 3D positions and oriented normal vectors.
+p = wp.array(points, dtype=wp.vec3, device="cuda")
+n = wp.array(normals, dtype=wp.vec3, device="cuda")
+result = reconstruct(p, n, depth=6, full_depth=3, point_weight=2.0)
+values, gradients, valid = result.evaluate(p)
+print(result.iso_value)  # The reconstructed surface is value == iso_value.
+```
 
-Initial scope: degree 1, Neumann boundaries, oriented points, zero or positive
-screening weight, exact and approximate point interpolation. The pinned sources are
-[PoissonRecon 262b0f5](https://github.com/mkazhdan/PoissonRecon/tree/262b0f539d404057d1f36e1adc07fc9388678899)
-and [Warp 1.19.0](https://github.com/NVIDIA/warp/tree/06ce5ea6d5e29590706c7d3d48135ffdcc730912).
-No Warp fork is currently required by the implemented float32 experiments.
+Use `point_weight=0.0` for PSR. `gradients` are in input coordinates; out-of-domain
+queries produce NaN and a false validity mask. Mesh extraction is external.
+Production reconstruction uses Warp arrays, kernels, FEM, and sparse algebra;
+NumPy, SciPy, and the C++ reference are used only by tests and visualization.
 
-| Stage | Tracking |
-|---|---|
-| Reference baseline and instrumentation | [#1](https://github.com/alecjacobson/warp-psr/issues/1) |
-| Uniform FEM equivalence | [#2](https://github.com/alecjacobson/warp-psr/issues/2) |
-| Adaptive spaces and level coupling | [#3](https://github.com/alecjacobson/warp-psr/issues/3) |
-| GPU hierarchy, density, normal field | [#4](https://github.com/alecjacobson/warp-psr/issues/4) |
-| Complete PSR/SPSR solves | [#5](https://github.com/alecjacobson/warp-psr/issues/5) |
-| Flagship reconstruction and optimization | [#6](https://github.com/alecjacobson/warp-psr/issues/6) |
+## Flagship: independent torus reconstruction
 
-## Current visual result: adaptive field evaluation
+![Official PoissonRecon and independent Warp reconstruction](docs/results/torus-reconstruction.png)
 
-![Official reference and Warp evaluation of an adaptive torus field](docs/results/torus-evaluation.png)
+Both implementations reconstruct the same **8,192 oriented points**, at depth 6.
+Across **271,360 volume and sample queries**, maximum field error is **8.35e-7**;
+the isovalue is identical. The largest cell-width-scaled gradient error uses
+**4.8% of the design tolerance**. Raw cube-gradient error is **6.45e-5**, reported
+separately rather than hidden by the scaling. Both panels use the same
+visualization-only marching-cubes extractor.
 
-This is **evaluation of reference-generated coefficients on the GPU**, not a
-complete Warp reconstruction. Both meshes use the same visualization-only
-marching-cubes extractor. For 8,192 torus samples at depth 6, the GPU evaluator
-matches 271,360 volume/sample queries with maximum field error **5.96e-7** and
-maximum model-gradient error **7.63e-6**. Instrumentation does not change the
-reference field. The independent GPU solve remains open in #5.
+The [validation report](docs/results/validation.json) records fixtures, source
+hashes, parameters, and errors. The reference is
+[PoissonRecon 262b0f5](https://github.com/mkazhdan/PoissonRecon/tree/262b0f539d404057d1f36e1adc07fc9388678899),
+and the Warp pin is
+[1.19.0](https://github.com/NVIDIA/warp/tree/06ce5ea6d5e29590706c7d3d48135ffdcc730912).
 
-Reproduce the figure:
+## Reproduce the comparison
 
 ```sh
+pip install -e '.[test,visualization]'
+sudo apt-get install g++ libjpeg-dev libturbojpeg0-dev libpng-dev zlib1g-dev
+python tools/build_reference.py
 python tools/make_fixture.py --name torus --shape torus --count 8192 --depth 6 --full-depth 3 --grid 64
-python -m tools.check_field .build/fixtures/torus
+python -m tools.check_reconstruction .build/fixtures/torus
 python -m tools.render_comparison .build/fixtures/torus
 ```
 
-Run all current gates and regenerate the figure/report with
-`python -m tools.validate` (requires CUDA).
+`python -m tools.validate` runs the reference, operator, preprocessing, and
+reconstruction gates and regenerates the report. Build products stay in ignored
+`.build/`. See [reference tooling](reference/README.md) for instrumentation.
 
-The [validation report](docs/results/validation.json) records the exact scope and
-measured errors. All production modules use Warp; NumPy, SciPy, C++ oracle code
-and mesh visualization are confined to development tools/tests. The uniform-grid
-helper is bounded and explicitly for verification, not a dense reconstruction
-fallback. No end-to-end performance or reconstruction-accuracy claim is made.
+## Supported profile and known limits
 
-The GPU preprocessing tests now compare density coefficients, normal coefficients,
-splat decisions, and all active node/basis keys against sphere, torus, and sparse
-reference fixtures. Coefficient comparisons retain the original float32 budgets.
+The current API accepts float32 CUDA inputs, degree 1, Neumann boundaries,
+confidence disabled, finite positions, and scale > 1. Base depth must be at least
+1. Depth, full/base/solve/kernel depths, density target, screening weight,
+interpolation mode, and iteration settings are explicit arguments. Unsupported
+profiles fail before reconstruction. The alignment matches the reference library's
+`alignDir=0`; CLI comparisons explicitly request that setting.
 
-Known limits: the input-processing prototype supports float32 CUDA arrays,
-finite positions, confidence disabled, scale > 1, and explicit library alignment
-`alignDir=0`. Nonfinite/zero normals are rejected from aggregation. Out-of-domain
-field queries return NaN with a validity mask. Exact knot queries use the right
-cell, except at the upper boundary. Float64 field evaluation works, but
-[float64 FEM gradient assembly](https://github.com/alecjacobson/warp-psr/issues/8)
-is currently blocked by a Warp type mismatch. The C++ CLI defaults to
-`alignDir=2`; our comparisons explicitly request `0`.
+The pinned reference has two consequential quirks preserved for compatibility:
+its normal splat's parent contribution goes to the same fine level
+([#12](https://github.com/alecjacobson/warp-psr/issues/12)), and `--exact` discards
+all point constraints because space flags are initialized too late
+([#16](https://github.com/alecjacobson/warp-psr/issues/16)). Thus
+`exact_interpolation=True` reproduces that pinned behavior. It does not provide
+corrected exact screening.
+
+Remaining work includes full float64 preprocessing/solving, complete ghost/flag
+and query-family coverage, base-depth-zero support, and larger performance
+experiments. Float64 field evaluation is available;
+[the built-in float64 FEM gradient issue](https://github.com/alecjacobson/warp-psr/issues/8)
+is tracked separately. No Warp fork is needed for the current application-local
+basis extension.
