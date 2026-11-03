@@ -10,7 +10,7 @@ requires-python = ">=3.10"
 dependencies = ["warp-lang==1.19.0"]
 
 [project.optional-dependencies]
-test = ["pytest>=8", "numpy>=1.26", "scipy>=1.11"]
+test = ["pytest>=8", "numpy>=1.26", "scipy>=1.11", "plyfile>=1"]
 visualization = ["matplotlib>=3.8", "scikit-image>=0.23", "plyfile>=1"]
 rendering = ["pyvista==0.46.4", "matplotlib>=3.8", "scikit-image>=0.23", "plyfile>=1"]
 

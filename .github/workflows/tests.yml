@@ -20,4 +20,4 @@ jobs:
       - run: sudo apt-get update && sudo apt-get install -y libjpeg-dev libturbojpeg0-dev libpng-dev zlib1g-dev
       - run: pip install -e '.[test]'
       - run: python tools/build_reference.py
-      - run: pytest -q tests/test_uniform.py
+      - run: pytest -q tests/test_uniform.py tests/test_grid_export.py
