@@ -9,7 +9,7 @@ from .normals import build_normal_field
 from .tree import build_tree
 from .integration import integration_grid
 from .solver import solve_levels
-from .field import LevelField
+from .field import LevelField, cumulative_coefficients
 from .transforms import evaluation_transform
 
 @wp.kernel
@@ -57,6 +57,8 @@ def reconstruct(positions,normals,*,depth=6,full_depth=3,base_depth=None,solve_d
         raise ValueError('Depth parameters must be integers')
     if not 1<=base_depth<=full_depth<=solve_depth<=depth<=15 or not 0<=kernel_depth<=depth:
         raise ValueError('Require 1 <= base_depth <= full_depth <= solve_depth <= depth <= 15 and 0 <= kernel_depth <= depth')
+    if depth-full_depth>7:
+        raise ValueError('Warp 1.19 AdaptiveNanogrid supports at most 8 integration levels; require depth - full_depth <= 7')
     if not isinstance(iters,int) or iters<1 or not isinstance(base_v_cycles,int) or base_v_cycles<1:
         raise ValueError('iters and base_v_cycles must be positive integers')
     if not math.isfinite(point_weight) or point_weight<0 or not math.isfinite(cg_accuracy) or cg_accuracy<=0:
@@ -90,7 +92,8 @@ def reconstruct(positions,normals,*,depth=6,full_depth=3,base_depth=None,solve_d
             wp.copy(coefficients,correction[d],dest_offset=offset)
             offset+=len(level.keys)
         identity=(1.,0.,0.,0.,1.,0.,0.,0.,1.)
-        cube_field=LevelField(keys,coefficients,identity,(0.,0.,0.),depth,0.)
+        cumulative=cumulative_coefficients(keys,coefficients,depth)
+        cube_field=LevelField(keys,coefficients,identity,(0.,0.,0.),depth,0.,cumulative)
         centroids=wp.empty(len(samples.keys),dtype=wp.vec3,device=device)
         wp.launch(_centroids,len(centroids),inputs=[samples.position_sums,samples.weights,centroids],device=device)
         value,_,_=cube_field.evaluate(centroids)
@@ -103,7 +106,7 @@ def reconstruct(positions,normals,*,depth=6,full_depth=3,base_depth=None,solve_d
         isovalue=float(iso.numpy()[0])
         status_sync=time.perf_counter()-start
         matrix=transform[1]
-        field=LevelField(keys,coefficients,tuple(matrix[r][c] for r in range(3) for c in range(3)),tuple(matrix[r][3] for r in range(3)),depth,isovalue)
+        field=LevelField(keys,coefficients,tuple(matrix[r][c] for r in range(3) for c in range(3)),tuple(matrix[r][3] for r in range(3)),depth,isovalue,cumulative)
     metadata={"precision":"float32","device":str(device),"basis_counts":[len(l.keys) for l in tree.basis],
               "integration_cells":geometry.cell_count(),"timings_seconds":timings,
               "measured_host_sync_seconds":samples.host_sync_seconds+density.sync_seconds+tree.host_sync_seconds+normal.records.sync_seconds+status_sync,

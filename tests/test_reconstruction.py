@@ -29,3 +29,9 @@ def test_pinned_exact_constraint_bug():
         exact=read_output(directory/'oracle.txt');unscreened=read_output(psr)
         np.testing.assert_array_equal(exact['q'],unscreened['q'])
         np.testing.assert_array_equal(exact['iso'],unscreened['iso'])
+
+
+def test_geometry_span_rejected_before_allocation():
+    from warp_psr import reconstruct
+    with pytest.raises(ValueError,match='at most 8 integration levels'):
+        reconstruct(None,None,depth=12,full_depth=3)

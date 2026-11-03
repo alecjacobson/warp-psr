@@ -2,7 +2,7 @@
 import warp as wp
 import warp.fem as fem
 from .field import basis_key, find_key
-from .keyed import coordinates, reduce_records
+from .keyed import coordinates, unique_keys
 
 @wp.kernel
 def _basis_support(keys: wp.array(dtype=wp.int64), d: int, out: wp.array(dtype=wp.int64)):
@@ -60,19 +60,17 @@ def integration_grid(tree,normals,depth):
     for d in range(depth,-1,-1):
         fine=required[d+1].keys if d<depth else empty
         keys=wp.empty(2*len(fine),dtype=wp.int64,device=device)
-        vals=wp.zeros(len(fine),dtype=wp.vec4,device=device)
         if len(fine):
             wp.launch(_parent,len(fine),inputs=[fine,d,0,keys],device=device)
-        refined[d]=reduce_records(keys,vals)
+        refined[d]=unique_keys(keys,len(fine))
         basis=tree.basis[d].keys
         count=8*len(basis)+27*len(normals.records.keys)+len(refined[d].keys)
         keys=wp.empty(2*count,dtype=wp.int64,device=device)
-        vals=wp.zeros(count,dtype=wp.vec4,device=device)
         if len(basis):
             wp.launch(_basis_support,(len(basis),8),inputs=[basis,d,keys],device=device)
         wp.launch(_normal_support,(len(normals.records.keys),27),inputs=[normals.records.keys,d,8*len(basis),keys],device=device)
         wp.copy(keys,refined[d].keys,dest_offset=count-len(refined[d].keys),count=len(refined[d].keys))
-        required[d]=reduce_records(keys,vals)
+        required[d]=unique_keys(keys,count)
     leaves=[]
     # The degree-1 complete root basis always resolves the entire reconstruction cube.
     for d in range(depth+1):
@@ -86,10 +84,9 @@ def integration_grid(tree,normals,depth):
             parents=refined[d-1].keys
             n=8*len(parents)
             keys=wp.empty(2*n,dtype=wp.int64,device=device)
-            vals=wp.zeros(n,dtype=wp.vec4,device=device)
             if n:
                 wp.launch(_children,(len(parents),8),inputs=[parents,refined[d].keys,d,keys],device=device)
-            leaves.append(reduce_records(keys,vals).keys)
+            leaves.append(unique_keys(keys,n).keys)
     count=sum(len(l) for l in leaves)
     xyz=wp.empty(count,dtype=wp.vec3i,device=device)
     levels=wp.empty(count,dtype=wp.uint8,device=device)
@@ -102,4 +99,5 @@ def integration_grid(tree,normals,depth):
     volume=wp.Volume.allocate_by_voxels(xyz,voxel_size=h,translation=(h/2,h/2,h/2),device=device)
     reordered=wp.empty(count,dtype=wp.uint8,device=device)
     wp.launch(_reorder,count,inputs=[xyz,levels,volume.id,reordered],device=device)
-    return fem.AdaptiveNanogrid(volume,cell_level=reordered,level_count=depth+1,temporary_store=None)
+    coarsest=min(d for d,keys in enumerate(leaves) if len(keys))
+    return fem.AdaptiveNanogrid(volume,cell_level=reordered,level_count=depth-coarsest+1,temporary_store=None)

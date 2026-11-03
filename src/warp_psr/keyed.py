@@ -98,3 +98,32 @@ def reduce_records(keys,values):
     out_values=wp.empty(size,dtype=wp.vec4,device=device)
     wp.launch(_reduce,n,inputs=[keys,ids,values,marks,prefix,out_keys,out_values],device=device)
     return Records(out_keys,out_values,sync)
+
+
+@wp.kernel
+def _compact_unique(keys: wp.array(dtype=wp.int64), marks: wp.array(dtype=int),
+                    prefix: wp.array(dtype=int), out: wp.array(dtype=wp.int64)):
+    i=wp.tid()
+    if marks[i]!=0:
+        out[prefix[i]-1]=keys[i]
+
+
+def unique_keys(keys,count):
+    """Set union without allocating/reducing a dummy vec4 for every candidate."""
+    device=keys.device
+    if not count:
+        return Records(wp.empty(0,dtype=wp.int64,device=device),wp.empty(0,dtype=wp.vec4,device=device))
+    scratch=wp.zeros(2*count,dtype=int,device=device)
+    wp.utils.radix_sort_pairs(keys,scratch,count)
+    marks=wp.zeros(count,dtype=int,device=device)
+    prefix=wp.empty_like(marks)
+    scalar=wp.empty(1,dtype=int,device=device)
+    wp.launch(_mark,count,inputs=[keys,marks],device=device)
+    wp.utils.array_scan(marks,prefix,inclusive=True)
+    wp.launch(_count,1,inputs=[prefix,scalar],device=device)
+    start=time.perf_counter()
+    size=int(scalar.numpy()[0])
+    sync=time.perf_counter()-start
+    out=wp.empty(size,dtype=wp.int64,device=device)
+    wp.launch(_compact_unique,count,inputs=[keys,marks,prefix,out],device=device)
+    return Records(out,wp.zeros(size,dtype=wp.vec4,device=device),sync)

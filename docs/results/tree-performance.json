@@ -1,0 +1,612 @@
+{
+  "scope": "Tree candidate compaction; 100000 torus samples, depth8/full4, NVIDIA L40",
+  "baseline_revision": "5683d16 plus geometry level-count fix",
+  "baseline_runs": [
+    {
+      "iteration": 0,
+      "count": 100000,
+      "depth": 8,
+      "full": 4,
+      "seconds": 22.344923928380013,
+      "metadata": {
+        "precision": "float32",
+        "device": "cuda:0",
+        "basis_counts": [
+          8,
+          27,
+          125,
+          729,
+          4913,
+          16864,
+          76728,
+          261856,
+          549752
+        ],
+        "integration_cells": 1223993,
+        "timings_seconds": {
+          "samples": 0.01165693998336792,
+          "density": 0.01236819475889206,
+          "normal_field": 0.04279746487736702,
+          "tree": 0.49533743783831596,
+          "integration_grid": 0.14157110452651978,
+          "assembly_and_solve": 21.629736255854368
+        },
+        "measured_host_sync_seconds": 0.3874175511300564,
+        "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+        "exact_interpolation_behavior": "level-clustered approximate constraints",
+        "cube_to_model": [
+          [
+            0.0,
+            0.0,
+            2.1119322776794434,
+            -1.0559754371643066
+          ],
+          [
+            2.1119322776794434,
+            0.0,
+            0.0,
+            -1.0559706687927246
+          ],
+          [
+            0.0,
+            2.1119322776794434,
+            0.0,
+            -1.0559661388397217
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "parameters": {
+          "depth": 8,
+          "full_depth": 4,
+          "base_depth": 4,
+          "solve_depth": 8,
+          "kernel_depth": 6,
+          "samples_per_node": 1.5,
+          "scale": 1.1,
+          "point_weight": 2.0,
+          "exact_interpolation": false,
+          "iters": 8,
+          "base_v_cycles": 1,
+          "cg_accuracy": 0.001
+        },
+        "profile": "pinned cascadic degree-1 Neumann"
+      }
+    },
+    {
+      "iteration": 1,
+      "count": 100000,
+      "depth": 8,
+      "full": 4,
+      "seconds": 3.1641009338200092,
+      "metadata": {
+        "precision": "float32",
+        "device": "cuda:0",
+        "basis_counts": [
+          8,
+          27,
+          125,
+          729,
+          4913,
+          16864,
+          76728,
+          261856,
+          549752
+        ],
+        "integration_cells": 1223993,
+        "timings_seconds": {
+          "samples": 0.0011443570256233215,
+          "density": 0.007396165281534195,
+          "normal_field": 0.03499361127614975,
+          "tree": 0.4961697794497013,
+          "integration_grid": 0.11196999996900558,
+          "assembly_and_solve": 2.5081085562705994
+        },
+        "measured_host_sync_seconds": 0.38522954285144806,
+        "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+        "exact_interpolation_behavior": "level-clustered approximate constraints",
+        "cube_to_model": [
+          [
+            0.0,
+            0.0,
+            2.1119322776794434,
+            -1.0559754371643066
+          ],
+          [
+            2.1119322776794434,
+            0.0,
+            0.0,
+            -1.0559706687927246
+          ],
+          [
+            0.0,
+            2.1119322776794434,
+            0.0,
+            -1.0559661388397217
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "parameters": {
+          "depth": 8,
+          "full_depth": 4,
+          "base_depth": 4,
+          "solve_depth": 8,
+          "kernel_depth": 6,
+          "samples_per_node": 1.5,
+          "scale": 1.1,
+          "point_weight": 2.0,
+          "exact_interpolation": false,
+          "iters": 8,
+          "base_v_cycles": 1,
+          "cg_accuracy": 0.001
+        },
+        "profile": "pinned cascadic degree-1 Neumann"
+      }
+    },
+    {
+      "iteration": 2,
+      "count": 100000,
+      "depth": 8,
+      "full": 4,
+      "seconds": 3.0248743779957294,
+      "metadata": {
+        "precision": "float32",
+        "device": "cuda:0",
+        "basis_counts": [
+          8,
+          27,
+          125,
+          729,
+          4913,
+          16864,
+          76728,
+          261856,
+          549752
+        ],
+        "integration_cells": 1223993,
+        "timings_seconds": {
+          "samples": 0.0010884851217269897,
+          "density": 0.007236078381538391,
+          "normal_field": 0.03317718207836151,
+          "tree": 0.47098520398139954,
+          "integration_grid": 0.07636092975735664,
+          "assembly_and_solve": 2.4315874204039574
+        },
+        "measured_host_sync_seconds": 0.3853975385427475,
+        "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+        "exact_interpolation_behavior": "level-clustered approximate constraints",
+        "cube_to_model": [
+          [
+            0.0,
+            0.0,
+            2.1119322776794434,
+            -1.0559754371643066
+          ],
+          [
+            2.1119322776794434,
+            0.0,
+            0.0,
+            -1.0559706687927246
+          ],
+          [
+            0.0,
+            2.1119322776794434,
+            0.0,
+            -1.0559661388397217
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "parameters": {
+          "depth": 8,
+          "full_depth": 4,
+          "base_depth": 4,
+          "solve_depth": 8,
+          "kernel_depth": 6,
+          "samples_per_node": 1.5,
+          "scale": 1.1,
+          "point_weight": 2.0,
+          "exact_interpolation": false,
+          "iters": 8,
+          "base_v_cycles": 1,
+          "cg_accuracy": 0.001
+        },
+        "profile": "pinned cascadic degree-1 Neumann"
+      }
+    },
+    {
+      "iteration": 3,
+      "count": 100000,
+      "depth": 8,
+      "full": 4,
+      "seconds": 3.1549262925982475,
+      "metadata": {
+        "precision": "float32",
+        "device": "cuda:0",
+        "basis_counts": [
+          8,
+          27,
+          125,
+          729,
+          4913,
+          16864,
+          76728,
+          261856,
+          549752
+        ],
+        "integration_cells": 1223993,
+        "timings_seconds": {
+          "samples": 0.001182105392217636,
+          "density": 0.007313575595617294,
+          "normal_field": 0.0331922248005867,
+          "tree": 0.5350455269217491,
+          "integration_grid": 0.07646257802844048,
+          "assembly_and_solve": 2.4974666126072407
+        },
+        "measured_host_sync_seconds": 0.3889424093067646,
+        "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+        "exact_interpolation_behavior": "level-clustered approximate constraints",
+        "cube_to_model": [
+          [
+            0.0,
+            0.0,
+            2.1119322776794434,
+            -1.0559754371643066
+          ],
+          [
+            2.1119322776794434,
+            0.0,
+            0.0,
+            -1.0559706687927246
+          ],
+          [
+            0.0,
+            2.1119322776794434,
+            0.0,
+            -1.0559661388397217
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "parameters": {
+          "depth": 8,
+          "full_depth": 4,
+          "base_depth": 4,
+          "solve_depth": 8,
+          "kernel_depth": 6,
+          "samples_per_node": 1.5,
+          "scale": 1.1,
+          "point_weight": 2.0,
+          "exact_interpolation": false,
+          "iters": 8,
+          "base_v_cycles": 1,
+          "cg_accuracy": 0.001
+        },
+        "profile": "pinned cascadic degree-1 Neumann"
+      }
+    }
+  ],
+  "optimized_runs": [
+    {
+      "iteration": 0,
+      "count": 100000,
+      "depth": 8,
+      "full": 4,
+      "seconds": 3.3290121369063854,
+      "metadata": {
+        "precision": "float32",
+        "device": "cuda:0",
+        "basis_counts": [
+          8,
+          27,
+          125,
+          729,
+          4913,
+          16864,
+          76728,
+          261856,
+          549752
+        ],
+        "integration_cells": 1223993,
+        "timings_seconds": {
+          "samples": 0.010166585445404053,
+          "density": 0.013791672885417938,
+          "normal_field": 0.03678782284259796,
+          "tree": 0.03609514981508255,
+          "integration_grid": 0.08391115069389343,
+          "assembly_and_solve": 3.139181215316057
+        },
+        "measured_host_sync_seconds": 0.013200514018535614,
+        "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+        "exact_interpolation_behavior": "level-clustered approximate constraints",
+        "cube_to_model": [
+          [
+            0.0,
+            0.0,
+            2.1119322776794434,
+            -1.0559754371643066
+          ],
+          [
+            2.1119322776794434,
+            0.0,
+            0.0,
+            -1.0559706687927246
+          ],
+          [
+            0.0,
+            2.1119322776794434,
+            0.0,
+            -1.0559661388397217
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "parameters": {
+          "depth": 8,
+          "full_depth": 4,
+          "base_depth": 4,
+          "solve_depth": 8,
+          "kernel_depth": 6,
+          "samples_per_node": 1.5,
+          "scale": 1.1,
+          "point_weight": 2.0,
+          "exact_interpolation": false,
+          "iters": 8,
+          "base_v_cycles": 1,
+          "cg_accuracy": 0.001
+        },
+        "profile": "pinned cascadic degree-1 Neumann"
+      }
+    },
+    {
+      "iteration": 1,
+      "count": 100000,
+      "depth": 8,
+      "full": 4,
+      "seconds": 2.5963459871709347,
+      "metadata": {
+        "precision": "float32",
+        "device": "cuda:0",
+        "basis_counts": [
+          8,
+          27,
+          125,
+          729,
+          4913,
+          16864,
+          76728,
+          261856,
+          549752
+        ],
+        "integration_cells": 1223993,
+        "timings_seconds": {
+          "samples": 0.0011237673461437225,
+          "density": 0.007028400897979736,
+          "normal_field": 0.033895522356033325,
+          "tree": 0.0368671678006649,
+          "integration_grid": 0.07247402891516685,
+          "assembly_and_solve": 2.4406922832131386
+        },
+        "measured_host_sync_seconds": 0.017538227140903473,
+        "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+        "exact_interpolation_behavior": "level-clustered approximate constraints",
+        "cube_to_model": [
+          [
+            0.0,
+            0.0,
+            2.1119322776794434,
+            -1.0559754371643066
+          ],
+          [
+            2.1119322776794434,
+            0.0,
+            0.0,
+            -1.0559706687927246
+          ],
+          [
+            0.0,
+            2.1119322776794434,
+            0.0,
+            -1.0559661388397217
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "parameters": {
+          "depth": 8,
+          "full_depth": 4,
+          "base_depth": 4,
+          "solve_depth": 8,
+          "kernel_depth": 6,
+          "samples_per_node": 1.5,
+          "scale": 1.1,
+          "point_weight": 2.0,
+          "exact_interpolation": false,
+          "iters": 8,
+          "base_v_cycles": 1,
+          "cg_accuracy": 0.001
+        },
+        "profile": "pinned cascadic degree-1 Neumann"
+      }
+    },
+    {
+      "iteration": 2,
+      "count": 100000,
+      "depth": 8,
+      "full": 4,
+      "seconds": 2.636457309126854,
+      "metadata": {
+        "precision": "float32",
+        "device": "cuda:0",
+        "basis_counts": [
+          8,
+          27,
+          125,
+          729,
+          4913,
+          16864,
+          76728,
+          261856,
+          549752
+        ],
+        "integration_cells": 1223993,
+        "timings_seconds": {
+          "samples": 0.001021839678287506,
+          "density": 0.006827622652053833,
+          "normal_field": 0.033867064863443375,
+          "tree": 0.03437674418091774,
+          "integration_grid": 0.06727948784828186,
+          "assembly_and_solve": 2.488741174340248
+        },
+        "measured_host_sync_seconds": 0.016000185161828995,
+        "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+        "exact_interpolation_behavior": "level-clustered approximate constraints",
+        "cube_to_model": [
+          [
+            0.0,
+            0.0,
+            2.1119322776794434,
+            -1.0559754371643066
+          ],
+          [
+            2.1119322776794434,
+            0.0,
+            0.0,
+            -1.0559706687927246
+          ],
+          [
+            0.0,
+            2.1119322776794434,
+            0.0,
+            -1.0559661388397217
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "parameters": {
+          "depth": 8,
+          "full_depth": 4,
+          "base_depth": 4,
+          "solve_depth": 8,
+          "kernel_depth": 6,
+          "samples_per_node": 1.5,
+          "scale": 1.1,
+          "point_weight": 2.0,
+          "exact_interpolation": false,
+          "iters": 8,
+          "base_v_cycles": 1,
+          "cg_accuracy": 0.001
+        },
+        "profile": "pinned cascadic degree-1 Neumann"
+      }
+    },
+    {
+      "iteration": 3,
+      "count": 100000,
+      "depth": 8,
+      "full": 4,
+      "seconds": 2.6519543416798115,
+      "metadata": {
+        "precision": "float32",
+        "device": "cuda:0",
+        "basis_counts": [
+          8,
+          27,
+          125,
+          729,
+          4913,
+          16864,
+          76728,
+          261856,
+          549752
+        ],
+        "integration_cells": 1223993,
+        "timings_seconds": {
+          "samples": 0.0010086596012115479,
+          "density": 0.006858296692371368,
+          "normal_field": 0.033855073153972626,
+          "tree": 0.03438725695014,
+          "integration_grid": 0.06967268139123917,
+          "assembly_and_solve": 2.50178175419569
+        },
+        "measured_host_sync_seconds": 0.0160510390996933,
+        "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+        "exact_interpolation_behavior": "level-clustered approximate constraints",
+        "cube_to_model": [
+          [
+            0.0,
+            0.0,
+            2.1119322776794434,
+            -1.0559754371643066
+          ],
+          [
+            2.1119322776794434,
+            0.0,
+            0.0,
+            -1.0559706687927246
+          ],
+          [
+            0.0,
+            2.1119322776794434,
+            0.0,
+            -1.0559661388397217
+          ],
+          [
+            0.0,
+            0.0,
+            0.0,
+            1.0
+          ]
+        ],
+        "parameters": {
+          "depth": 8,
+          "full_depth": 4,
+          "base_depth": 4,
+          "solve_depth": 8,
+          "kernel_depth": 6,
+          "samples_per_node": 1.5,
+          "scale": 1.1,
+          "point_weight": 2.0,
+          "exact_interpolation": false,
+          "iters": 8,
+          "base_v_cycles": 1,
+          "cg_accuracy": 0.001
+        },
+        "profile": "pinned cascadic degree-1 Neumann"
+      }
+    }
+  ],
+  "baseline_warm_median_seconds": 3.1549262925982475,
+  "optimized_warm_median_seconds": 2.636457309126854,
+  "baseline_tree_median_seconds": 0.4961697794497013,
+  "optimized_tree_median_seconds": 0.03438725695014
+}
