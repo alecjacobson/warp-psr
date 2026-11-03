@@ -127,16 +127,16 @@ and needs no Warp fork.
 
 On an NVIDIA L40, quadrature reuse, occupied-cell point assembly, indexed
 relaxation with reusable launch commands, and per-level integration reduce the 100,000-point warm median
-from **2.68 s to 0.86 s** and peak device-pool usage from **19.46 GiB to
-6.88 GiB**. These measurements include the corrected hierarchical normal loads. This follows the earlier tree optimization from 496 ms to 34 ms.
+from **2.68 s to 0.69 s** and peak device-pool usage from **19.46 GiB to
+6.81 GiB**. These measurements include the corrected hierarchical normal loads. This follows the earlier tree optimization from 496 ms to 34 ms.
 
 | Torus samples | Depth / full depth | Basis coefficients | Integration cells | Warp warm median | Official serial median | Peak device pool |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 100,000 | 8 / 4 | 911,002 | 1,223,993 | 0.86 s | 2.52 s | 6.88 GiB |
-| 1,000,000 | 8 / 4 | 963,898 | 1,265,874 | 0.95 s | 3.09 s | 7.55 GiB |
-| 1,000,000 | 9 / 4 | 3,770,690 | 5,035,948 | 3.62 s | 12.30 s | 28.68 GiB |
+| 100,000 | 8 / 4 | 911,002 | 1,223,993 | 0.69 s | 2.52 s | 6.81 GiB |
+| 1,000,000 | 8 / 4 | 963,898 | 1,265,874 | 0.80 s | 3.09 s | 7.27 GiB |
+| 1,000,000 | 9 / 4 | 3,770,690 | 5,035,948 | 2.79 s | 12.30 s | 28.32 GiB |
 
-The [current normal-load measurements](docs/results/normal-performance.json)
+The [current measurements](docs/results/normal-level-performance.json)
 and [earlier launch measurements](docs/results/launch-performance.json) include Python
 orchestration and exclude input upload and queries. Warm medians use three runs
 after the first invocation; the disk kernel cache may already be populated.
@@ -146,9 +146,9 @@ unchanged library solve on one Xeon Platinum 8362 thread, matching the accuracy
 fixtures; input parsing, query evaluation, and export are excluded. Parallel
 reference throughput remains unmeasured.
 
-Using per-level normal partitions reduces the 100,000-point peak pool from
-8.17 GiB to 6.88 GiB. Its measured warm time rises from 0.80 s to 0.86 s;
-the report preserves this memory/time tradeoff and both source revisions.
+Grouping normal coefficients by depth removes repeated scans and empty
+quadrature work. The [preceding normal-load measurements](docs/results/normal-performance.json)
+record the earlier memory/time tradeoff and both source revisions.
 
 ```sh
 python -m tools.benchmark --count 100000 --depth 8 --full-depth 4
