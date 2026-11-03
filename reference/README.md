@@ -65,3 +65,12 @@ in the pinned `unitCubeToModel.inverse()` API.
 The pinned exact path's empty interpolation spans are verified against explicit
 operator exports and the actual CLI. See issue #16 for the SPACE_FLAG ordering
 bug. This repository does not silently substitute corrected exact screening.
+
+At exact knots, strict tree ownership alone does not determine the pinned
+reference gradient. Its leaf and neighbor queries choose the left cell while its
+polynomial evaluator uses floor (right pieces). Reconstruction fields now use the
+same three contributions: cumulative coefficients at leafDepth-1, corrections at
+the leaf, and overlapping fine corrections at leafDepth+1. This reproduces the
+neighbor/polynomial intersection, and the 1e-6 inward nudge at the cube boundary.
+Direct standalone LevelField summation remains available as a mathematical field
+utility; the Reconstruction API supplies the reference cumulative representation.

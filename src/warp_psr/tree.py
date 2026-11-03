@@ -6,7 +6,7 @@ unsigned Morton code. The level keys below are for logical nodes, not field keys
 from dataclasses import dataclass
 import warp as wp
 from .field import basis_key
-from .keyed import coordinates, reduce_records, Records
+from .keyed import coordinates, unique_keys, Records
 
 wp.set_module_options({"fuse_fp": False})
 
@@ -26,11 +26,10 @@ def parent(c: wp.vec3i):
 
 @wp.kernel
 def _seeds(normal_keys: wp.array(dtype=wp.int64), normals: wp.array(dtype=wp.vec4), d: int,
-           keys: wp.array(dtype=wp.int64), values: wp.array(dtype=wp.vec4)):
+           keys: wp.array(dtype=wp.int64)):
     i,k=wp.tid()
     idx=i*8+k
     keys[idx]=wp.int64(0x7fffffffffffffff)
-    values[idx]=wp.vec4(0.0)
     nd=int(normal_keys[i]>>wp.int64(48))
     if nd>=d and wp.length_sq(normals[i])>0.0:
         c=coordinates(normal_keys[i])
@@ -52,10 +51,14 @@ def _parent_keys(fine: wp.array(dtype=wp.int64), out: wp.array(dtype=wp.int64)):
 @wp.kernel
 def _support(fine: wp.array(dtype=wp.int64), radius: int, offset: int, depth: int, keys: wp.array(dtype=wp.int64)):
     i,j,k=wp.tid()
-    width=radius*2+1
-    c=tree_coordinates(fine[i])
-    c+=wp.vec3i(j//(width*width)-radius,(j//width)%width-radius,j%width-radius)
-    c=parent(c)*2+wp.vec3i(k&1,(k>>1)&1,(k>>2)&1)
+    # Completing broods over a radius-two node window produces exactly the
+    # 3^3 adjacent broods around parent(center), regardless of center parity.
+    # Emit each of their eight children once (216 candidates instead of 1000).
+    brood_radius=radius//2
+    width=brood_radius*2+1
+    c=parent(tree_coordinates(fine[i]))
+    c+=wp.vec3i(j//(width*width)-brood_radius,(j//width)%width-brood_radius,j%width-brood_radius)
+    c=c*2+wp.vec3i(k&1,(k>>1)&1,(k>>2)&1)
     idx=offset+(i*width*width*width+j)*8+k
     keys[idx]=wp.int64(0x7fffffffffffffff)
     n=1<<depth
@@ -95,42 +98,38 @@ def build_tree(normals,depth,full_depth,base_depth=None):
         fine=levels[d+1].keys if d<depth else wp.empty(0,dtype=wp.int64,device=device)
         # Deduplicate fine parents before expanding the support stencil.
         pk=wp.empty(2*len(fine),dtype=wp.int64,device=device)
-        pv=wp.zeros(len(fine),dtype=wp.vec4,device=device)
         if len(fine):
             wp.launch(_parent_keys,len(fine),inputs=[fine,pk],device=device)
-        parents=reduce_records(pk,pv)
+        parents=unique_keys(pk,len(fine))
         sync+=parents.sync_seconds
 
         if d>base_depth:
             requests=parents
         elif requests is not None:
             rk=wp.empty(2*len(requests.keys),dtype=wp.int64,device=device)
-            rv=wp.zeros(len(requests.keys),dtype=wp.vec4,device=device)
             wp.launch(_parent_keys,len(requests.keys),inputs=[requests.keys,rk],device=device)
-            requests=reduce_records(rk,rv)
+            requests=unique_keys(rk,len(requests.keys))
             sync+=requests.sync_seconds
         else:
             requests=parents
         coarse_count=(4 if d==0 else (1<<d)+4) if d<=full_depth else 0
         nc=coarse_count**3
-        ns=len(requests.keys)*125*8
+        ns=len(requests.keys)*27*8
         np=8*len(parents.keys)
         total=count*8+nc+ns+np
         keys=wp.empty(2*total,dtype=wp.int64,device=device)
-        vals=wp.zeros(total,dtype=wp.vec4,device=device)
-        wp.launch(_seeds,(count,8),inputs=[normals.records.keys,normals.records.values,d,keys,vals],device=device)
+        wp.launch(_seeds,(count,8),inputs=[normals.records.keys,normals.records.values,d,keys],device=device)
         if nc:
             wp.launch(_coarse,nc,inputs=[d,coarse_count,-2,count*8,keys],device=device)
         if ns:
-            wp.launch(_support,(len(requests.keys),125,8),inputs=[requests.keys,2,count*8+nc,d,keys],device=device)
+            wp.launch(_support,(len(requests.keys),27,8),inputs=[requests.keys,2,count*8+nc,d,keys],device=device)
         if np:
             wp.launch(_support,(len(parents.keys),1,8),inputs=[parents.keys,0,count*8+nc+ns,d,keys],device=device)
-        levels[d]=reduce_records(keys,vals)
+        levels[d]=unique_keys(keys,total)
         sync+=levels[d].sync_seconds
         n=len(levels[d].keys)
         fk=wp.empty(2*n,dtype=wp.int64,device=device)
-        fv=wp.zeros(n,dtype=wp.vec4,device=device)
         wp.launch(_field_keys,n,inputs=[levels[d].keys,d,fk],device=device)
-        basis[d]=reduce_records(fk,fv)
+        basis[d]=unique_keys(fk,n)
         sync+=basis[d].sync_seconds
     return LogicalTree(levels,basis,sync)

@@ -1,0 +1,109 @@
+{
+  "test": "Independent GPU reconstruction from oriented points",
+  "reconstruction_compatibility": true,
+  "source_revision": "b85478b77dc8a2009a13845ee2d8a22bec37b239",
+  "source_dirty": false,
+  "production_source_sha256": {
+    "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+    "src/warp_psr/constraints.py": "15aaa2788fdbfa6618d686a65bc2bb2a07c0ef42ca5d08029fd351a8ff04dda5",
+    "src/warp_psr/density.py": "07f9bb43be6007434b40600884013ddae5d86f02974a839898477011ebffdd7a",
+    "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+    "src/warp_psr/forms.py": "38e9c03da841e78c23ffc62e519e459a9f1f9702b08c4dcf597e9d9ef81b9153",
+    "src/warp_psr/integration.py": "022eb0f8ce881dcdc9289a07da36de79a24b15b7f95daeff879125502271cd53",
+    "src/warp_psr/keyed.py": "25949ab0efa630b1997a598303c9dd2a56b5f8ec09c8b485711e31a4d1af7ead",
+    "src/warp_psr/normal_field.py": "720f9d1fc28eab7aedfdf6c02eeec4c6a3a22d99e3169181967930ac58a040e7",
+    "src/warp_psr/normals.py": "ffc6e75224e31ac3bb29f1aab4252f40a9c002084ceec860405e83eb7683b071",
+    "src/warp_psr/reconstruction.py": "0b3bd95868cf7191ccfbaff029a459e8b500f3b94ee34336187034cb3994a64a",
+    "src/warp_psr/samples.py": "9404925d076dd339daba98edd956ee00d2fbc1a96872f5e64aff170c604b7d48",
+    "src/warp_psr/solver.py": "328c6d55cc09394bc7bcdd409a1529e53baae8a18d192f4d525b84b9dad4ab6e",
+    "src/warp_psr/spaces.py": "5bed1769dc7c8770e75d481c5e6e125c8a74a075fc3afb94f74244c25574e7af",
+    "src/warp_psr/transforms.py": "c3f25caa4e141acb787e5be50b7c9b75e9de5a382158ec0999c50902e5985e94",
+    "src/warp_psr/tree.py": "351a9671087a2086f06a14b37e210eebd53d09bd92d2f8823265631290417637"
+  },
+  "device": "cuda:0",
+  "queries": 105120,
+  "coefficients": 911002,
+  "max_abs_value_error": 1.0728836059570312e-06,
+  "rms_value_error": 1.4164983594662611e-07,
+  "max_abs_cube_gradient_error": 0.001176231784626225,
+  "max_scaled_gradient_budget_ratio": 0.05769754712572867,
+  "max_unscaled_gradient_budget_ratio": 6.751026587286902,
+  "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+  "gradient_errors_by_depth": {
+    "4": 1.3138826254338598e-06,
+    "5": 3.268971442323132e-06,
+    "6": 1.431896034898017e-05,
+    "7": 2.8637920698182384e-05,
+    "8": 0.001176231784626225
+  },
+  "iso_value": 0.507847249507904,
+  "reference_iso_value": 0.5078473091125488,
+  "metadata": {
+    "precision": "float32",
+    "device": "cuda:0",
+    "basis_counts": [
+      8,
+      27,
+      125,
+      729,
+      4913,
+      16864,
+      76728,
+      261856,
+      549752
+    ],
+    "integration_cells": 1223993,
+    "timings_seconds": {
+      "samples": 0.009492184966802597,
+      "density": 0.01225082203745842,
+      "normal_field": 0.042329590767621994,
+      "tree": 0.05051484331488609,
+      "integration_grid": 0.08514867722988129,
+      "assembly_and_solve": 3.046014230698347
+    },
+    "measured_host_sync_seconds": 0.012539349496364594,
+    "sync_measurement_scope": "sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+    "exact_interpolation_behavior": "level-clustered approximate constraints",
+    "cube_to_model": [
+      [
+        0.0,
+        0.0,
+        2.1119322776794434,
+        -1.0559754371643066
+      ],
+      [
+        2.1119322776794434,
+        0.0,
+        0.0,
+        -1.0559706687927246
+      ],
+      [
+        0.0,
+        2.1119322776794434,
+        0.0,
+        -1.0559661388397217
+      ],
+      [
+        0.0,
+        0.0,
+        0.0,
+        1.0
+      ]
+    ],
+    "parameters": {
+      "depth": 8,
+      "full_depth": 4,
+      "base_depth": 4,
+      "solve_depth": 8,
+      "kernel_depth": 6,
+      "samples_per_node": 1.5,
+      "scale": 1.1,
+      "point_weight": 2.0,
+      "exact_interpolation": false,
+      "iters": 8,
+      "base_v_cycles": 1,
+      "cg_accuracy": 0.001
+    },
+    "profile": "pinned cascadic degree-1 Neumann"
+  }
+}

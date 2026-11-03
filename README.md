@@ -83,7 +83,8 @@ reconstruction gates and regenerates the report. Build products stay in ignored
 
 The current API accepts float32 CUDA inputs, degree 1, Neumann boundaries,
 confidence disabled, finite positions, and scale > 1. Base depth must be at least
-1. Depth, full/base/solve/kernel depths, density target, screening weight,
+1, and `depth - full_depth <= 7` reflects Warp’s eight-level geometry limit.
+Depth, full/base/solve/kernel depths, density target, screening weight,
 interpolation mode, and iteration settings are explicit arguments. Unsupported
 profiles fail before reconstruction. The alignment matches the reference library's
 `alignDir=0`; CLI comparisons explicitly request that setting.
@@ -102,3 +103,23 @@ experiments. Float64 field evaluation is available;
 [the built-in float64 FEM gradient issue](https://github.com/alecjacobson/warp-psr/issues/8)
 is tracked separately. No Warp fork is needed for the current application-local
 basis extension.
+
+## Performance
+
+On an NVIDIA L40, the 100,000-point depth-8 torus has 911,002 basis coefficients
+and 1,223,993 integration cells. The first optimization reduces tree construction
+from **496 ms to 34 ms**, and median warm reconstruction from **3.15 s to 2.64 s**.
+The [before/after measurements](docs/results/tree-performance.json) include
+Python orchestration and exclude input upload and queries. These are comparisons
+with this implementation's earlier version, not a speedup claim over C++.
+
+```sh
+python -m tools.benchmark --count 100000 --depth 8 --full-depth 4
+```
+
+The larger reconstruction passes the same accuracy budgets. Its maximum field
+error is 1.08e-6; gradient comparisons include samples exactly on knot planes.
+The pinned reference intersects left-cell neighbors with right-cell polynomial
+pieces at knots, which can differ from either ordinary one-sided derivative.
+Reconstruction evaluation preserves this behavior and the reference's inward
+boundary nudges; see [#20](https://github.com/alecjacobson/warp-psr/issues/20).

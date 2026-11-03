@@ -1,11 +1,13 @@
 """Validate independent GPU reconstruction against pinned reference fields."""
 import argparse
 import json
+import hashlib
+import subprocess
 from pathlib import Path
 import numpy as np
 import warp as wp
 from warp_psr import reconstruct
-from tools.make_fixture import read_output
+from tools.make_fixture import read_output, ROOT
 from reference.cells import query_cell_widths
 
 
@@ -36,6 +38,9 @@ def check(directory,device='cuda:0'):
     np.testing.assert_allclose(cubegrad*widths[:,None],refgrad*widths[:,None],atol=1e-5,rtol=1e-4)
     np.testing.assert_allclose(result.iso_value,expected['iso'][0,0],atol=1e-5,rtol=1e-4)
     report={"test":"Independent GPU reconstruction from oriented points","reconstruction_compatibility":True,
+        "source_revision":subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
+        "source_dirty":bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT)),
+        "production_source_sha256":{str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(ROOT.glob('src/**/*.py'))},
         "device":device,"queries":len(queries),"coefficients":len(result.field.keys),
         "max_abs_value_error":float(np.max(np.abs(error[:,0]))),
         "rms_value_error":float(np.sqrt(np.mean(error[:,0]**2))),
