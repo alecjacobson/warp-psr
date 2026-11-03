@@ -55,8 +55,11 @@ with synthetic regression tests. Raw gradient errors are reported separately.
 runs after the first invocation. GPU timing includes Python orchestration and
 excludes upload and queries; the official timer brackets the unchanged library
 solve and excludes parsing, evaluation, export, and startup. Both serial and
-default-async official backends are measured and their actual thread settings
-recorded. These are solve comparisons, not end-to-end command-line mesh timings.
+OpenMP official backends are measured and their actual thread settings recorded.
+The OpenMP build uses the unchanged pinned sources with `-fopenmp`; its runtime
+thread limit defaults to the visible CPU quota and affinity. `tools.check_openmp`
+measures field and topology variability separately from serial acceptance.
+Default-async timing remains available explicitly. These are solve comparisons, not end-to-end command-line mesh timings.
 The GPU memory figure is the process CUDA-pool high-water mark. Cached compilation
 may be reused on the first invocation; it is not a clean-cache compilation test.
 
@@ -65,8 +68,19 @@ To benchmark an existing fixture with exactly the validated data and settings:
 ```sh
 python -m tools.benchmark --fixture .build/fixtures/eagle-full-d9-spsr
 python -m tools.benchmark_reference --fixture .build/fixtures/eagle-full-d9-spsr --parallelism none
-python -m tools.benchmark_reference --fixture .build/fixtures/eagle-full-d9-spsr --parallelism async
+python -m tools.benchmark_reference --fixture .build/fixtures/eagle-full-d9-spsr --parallelism openmp --threads 4
 ```
+
+The measurement VM exposes 128 logical CPUs but has a **four-core cgroup quota**.
+The no-OpenMP reference defaults to 128 async workers here; those oversubscribed
+results are not representative of unrestricted multicore throughput. New reports
+record affinity, visible ancestor quotas, and throttling counters. The OpenMP
+baseline explicitly limits the runtime to four threads. See [#50](https://github.com/alecjacobson/warp-psr/issues/50).
+
+To separate accuracy runs from uncontended timing, run the scaling suite first
+without `--benchmark`, then repeat with `--benchmark-only`. This checks the saved
+production source hashes, exact-key acceptance, input checksum, and case settings
+before timing. Do not run other GPU jobs or CPU-heavy work concurrently with benchmarks.
 
 ## Visual comparison
 

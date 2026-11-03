@@ -1,5 +1,6 @@
 """Reproduce public-cloud accuracy and matched timing experiments in fresh processes."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import subprocess
@@ -42,15 +43,32 @@ def main(args):
     for name, dataset, options in entries:
         directory = ROOT/'.build/fixtures'/name
         directory.mkdir(parents=True, exist_ok=True)
+        if args.benchmark_only:
+            manifest=json.loads((directory/'manifest.json').read_text())
+            validation=json.loads((directory/'reconstruction_report.json').read_text())
+            actual_hashes={str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(ROOT.glob('src/**/*.py'))}
+            if (not validation['reconstruction_compatibility'] or not validation['tree']['exact_active_and_support_keys']
+                    or validation['production_source_sha256'] != actual_hashes
+                    or validation['input_sha256'] != manifest['input_sha256']):
+                raise ValueError(f'{name}: regenerate accuracy results for the current production source/input')
+            expected={'dataset':dataset,'grid':24,'seed':2026,'precision':'float','weight':2.,'samples_per_node':1.5}
+            for option,value in zip(options[::2],options[1::2]):
+                key=option[2:].replace('-','_')
+                expected[key]=type(manifest['parameters'][key])(value)
+            if any(manifest['parameters'][key] != value for key,value in expected.items()):
+                raise ValueError(f'{name}: fixture parameters differ from the selected case')
         commands = [[sys.executable, 'tools/make_fixture.py', '--name', name, '--dataset', dataset, '--grid', '24', *options],
                     [sys.executable, '-m', 'tools.check_reconstruction', str(directory)]]
+        if args.benchmark_only:
+            commands=[]
         if args.benchmark:
             for module, suffix, extra in [('tools.benchmark', 'gpu', []),
                                           ('tools.benchmark_reference', 'serial', ['--parallelism', 'none']),
                                           ('tools.benchmark_reference', 'openmp', ['--parallelism', 'openmp'])]:
                 commands.append([sys.executable, '-m', module, '--fixture', str(directory),
                                  '--output', str(directory/f'benchmark-{suffix}.json'), *extra])
-        with (directory/'dataset-validation.log').open('w') as log:
+        log_path=directory/('dataset-benchmark.log' if args.benchmark_only else 'dataset-validation.log')
+        with log_path.open('w') as log:
             for command in commands:
                 print(' '.join(command), file=log, flush=True)
                 status = subprocess.run(command, cwd=ROOT, stdout=log, stderr=subprocess.STDOUT).returncode
@@ -59,7 +77,7 @@ def main(args):
         entry = {'fixture': name, 'passed': status == 0}
         if status:
             entry.update(failed_command=command, exit_code=status,
-                         log_tail=(directory/'dataset-validation.log').read_text()[-5000:])
+                         log_tail=log_path.read_text()[-5000:])
         else:
             entry['manifest'] = json.loads((directory/'manifest.json').read_text())
             entry['reconstruction'] = json.loads((directory/'reconstruction_report.json').read_text())
@@ -73,7 +91,7 @@ def main(args):
                   'suite': args.suite, 'all_passed': all(r['passed'] for r in reports), 'profiles': reports}
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2)+'\n')
-        print(name, 'PASS' if not status else f'FAIL (see {directory}/dataset-validation.log)', flush=True)
+        print(name, 'PASS' if not status else f'FAIL (see {log_path})', flush=True)
     return 0 if report['all_passed'] else 1
 
 
@@ -82,5 +100,8 @@ if __name__ == '__main__':
     parser.add_argument('--suite', choices=['smoke', 'scaling', 'all'], default='smoke')
     parser.add_argument('--case', action='append', help='Run only named cases (repeatable)')
     parser.add_argument('--benchmark', action='store_true', help='Fresh-process GPU, serial C++, quota-aware OpenMP C++ timing for each passing case')
+    parser.add_argument('--benchmark-only',action='store_true',help='Time existing passing fixtures after verifying production source hashes and case settings')
     parser.add_argument('--output', type=Path, default=ROOT/'.build/dataset-validation.json')
-    raise SystemExit(main(parser.parse_args()))
+    args=parser.parse_args()
+    if args.benchmark_only:args.benchmark=True
+    raise SystemExit(main(args))
