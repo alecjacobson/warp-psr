@@ -1,0 +1,695 @@
+{
+  "test": "Complete and partial normal cancellation against the pinned serial oracle",
+  "reference_revision": "262b0f539d404057d1f36e1adc07fc9388678899",
+  "source_revision": "bceb35a6a842ebc04351569db3d1769cd68c7d69",
+  "source_dirty": false,
+  "warp_version": "1.19.0",
+  "device": "NVIDIA L40",
+  "all_passed": true,
+  "profiles": [
+    {
+      "case": "float-psr-complete",
+      "passed": true,
+      "queries": 6,
+      "input_sha256": "eeb735344ce19137edc2e116c08ef6afc41437a3711aa36a18071d23f26ff34e",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 0,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 0.0,
+      "max_abs_gradient_error": 0.0,
+      "iso_value": 0.0,
+      "reference_iso_value": 0.0,
+      "normal_average": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "float-psr-partial",
+      "passed": true,
+      "queries": 7,
+      "input_sha256": "f7a744d69d30cc2a9748e08d2563d2c51528fd0a29717da7d55028de93f970f5",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 0,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 2.9802322387695312e-08,
+      "max_abs_gradient_error": 2.9802322387695312e-08,
+      "iso_value": -0.0030572828836739063,
+      "reference_iso_value": -0.0030572651885449886,
+      "normal_average": [
+        [
+          0.05512886121869087,
+          0.6176150441169739,
+          1.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "float-spsr-complete",
+      "passed": true,
+      "queries": 6,
+      "input_sha256": "eeb735344ce19137edc2e116c08ef6afc41437a3711aa36a18071d23f26ff34e",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 0.0,
+      "max_abs_gradient_error": 0.0,
+      "iso_value": 0.0,
+      "reference_iso_value": 0.0,
+      "normal_average": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "float-spsr-partial",
+      "passed": true,
+      "queries": 7,
+      "input_sha256": "f7a744d69d30cc2a9748e08d2563d2c51528fd0a29717da7d55028de93f970f5",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 5.960464477539063e-08,
+      "max_abs_gradient_error": 2.169981598854065e-07,
+      "iso_value": 0.49948418140411377,
+      "reference_iso_value": 0.49948421120643616,
+      "normal_average": [
+        [
+          0.05512886121869087,
+          0.6176150441169739,
+          1.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "float-exact-complete",
+      "passed": true,
+      "queries": 6,
+      "input_sha256": "eeb735344ce19137edc2e116c08ef6afc41437a3711aa36a18071d23f26ff34e",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2,
+        "exact_interpolation": true,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 0.0,
+      "max_abs_gradient_error": 0.0,
+      "iso_value": 0.0,
+      "reference_iso_value": 0.0,
+      "normal_average": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "float-exact-partial",
+      "passed": true,
+      "queries": 7,
+      "input_sha256": "f7a744d69d30cc2a9748e08d2563d2c51528fd0a29717da7d55028de93f970f5",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2,
+        "exact_interpolation": true,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 2.9802322387695312e-08,
+      "max_abs_gradient_error": 2.9802322387695312e-08,
+      "iso_value": -0.0030572828836739063,
+      "reference_iso_value": -0.0030572651885449886,
+      "normal_average": [
+        [
+          0.05512886121869087,
+          0.6176150441169739,
+          1.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "double-psr-complete",
+      "passed": true,
+      "queries": 6,
+      "input_sha256": "eeb735344ce19137edc2e116c08ef6afc41437a3711aa36a18071d23f26ff34e",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 0,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 0.0,
+      "max_abs_gradient_error": 0.0,
+      "iso_value": 0.0,
+      "reference_iso_value": 0.0,
+      "normal_average": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "double-psr-partial",
+      "passed": true,
+      "queries": 7,
+      "input_sha256": "50d628886ebe0ebe75f34b8d240b7baec9127ba83794faadf1766fac337fa299",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 0,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 4.0169690490587933e-17,
+      "max_abs_gradient_error": 3.651790044598902e-17,
+      "iso_value": -0.0030572776065675043,
+      "reference_iso_value": -0.0030572776065675225,
+      "normal_average": [
+        [
+          0.05512712408080575,
+          0.6176165215801754,
+          1.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "double-spsr-complete",
+      "passed": true,
+      "queries": 6,
+      "input_sha256": "eeb735344ce19137edc2e116c08ef6afc41437a3711aa36a18071d23f26ff34e",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 0.0,
+      "max_abs_gradient_error": 0.0,
+      "iso_value": 0.0,
+      "reference_iso_value": 0.0,
+      "normal_average": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "double-spsr-partial",
+      "passed": true,
+      "queries": 7,
+      "input_sha256": "50d628886ebe0ebe75f34b8d240b7baec9127ba83794faadf1766fac337fa299",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 1.1102230246251565e-16,
+      "max_abs_gradient_error": 2.636779683484747e-16,
+      "iso_value": 0.499484226925812,
+      "reference_iso_value": 0.49948422692581207,
+      "normal_average": [
+        [
+          0.05512712408080575,
+          0.6176165215801754,
+          1.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "double-exact-complete",
+      "passed": true,
+      "queries": 6,
+      "input_sha256": "eeb735344ce19137edc2e116c08ef6afc41437a3711aa36a18071d23f26ff34e",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2,
+        "exact_interpolation": true,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 0.0,
+      "max_abs_gradient_error": 0.0,
+      "iso_value": 0.0,
+      "reference_iso_value": 0.0,
+      "normal_average": [
+        [
+          0.0,
+          0.0,
+          0.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    },
+    {
+      "case": "double-exact-partial",
+      "passed": true,
+      "queries": 7,
+      "input_sha256": "50d628886ebe0ebe75f34b8d240b7baec9127ba83794faadf1766fac337fa299",
+      "parameters": {
+        "depth": 2,
+        "full_depth": 1,
+        "base_depth": 1,
+        "solve_depth": 2,
+        "kernel_depth": 0,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2,
+        "exact_interpolation": true,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "max_abs_field_error": 4.0169690490587933e-17,
+      "max_abs_gradient_error": 3.651790044598902e-17,
+      "iso_value": -0.0030572776065675043,
+      "reference_iso_value": -0.0030572776065675225,
+      "normal_average": [
+        [
+          0.05512712408080575,
+          0.6176165215801754,
+          1.0
+        ]
+      ],
+      "tree": {
+        "exact_active_and_support_keys": true,
+        "levels": [
+          {
+            "depth": 0,
+            "support_count": 64,
+            "active_count": 8,
+            "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+            "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+          },
+          {
+            "depth": 1,
+            "support_count": 216,
+            "active_count": 27,
+            "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+            "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+          },
+          {
+            "depth": 2,
+            "support_count": 0,
+            "active_count": 0,
+            "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ]
+      }
+    }
+  ]
+}
