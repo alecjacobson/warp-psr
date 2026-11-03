@@ -6,6 +6,7 @@ import os
 from pathlib import Path
 import subprocess
 import sys
+import traceback
 
 import numpy as np
 import warp as wp
@@ -187,7 +188,7 @@ def main(args):
             name = f'threshold-{case}-{precision}'
             directory = ROOT/'.build/fixtures'/name
             directory.mkdir(parents=True, exist_ok=True)
-            entry = {'fixture': name, 'passed': False}
+            entry = {'fixture': name, 'passed': False, 'stage': 'fixture_generation'}
             with (directory/'threshold.log').open('w') as log, contextlib.redirect_stdout(log):
                 try:
                     subprocess.run([sys.executable, 'tools/make_fixture.py', '--name', name,
@@ -197,11 +198,18 @@ def main(args):
                     entry['stage'] = 'preprocessing'
                     entry['preprocessing'] = [check_preprocessing(directory) for _ in range(args.repeats)]
                     entry['stage'] = 'reconstruction'
-                    entry['reconstruction'] = check_reconstruction(directory)
+                    entry['repeated_reconstruction_acceptance'] = []
+                    for _ in range(args.repeats):
+                        reconstruction = check_reconstruction(directory)
+                        entry['repeated_reconstruction_acceptance'].append({key: reconstruction[key] for key in
+                            ('max_abs_value_error', 'max_abs_centered_value_error',
+                             'max_scaled_gradient_budget_ratio', 'iso_value', 'coefficients')})
+                    entry['reconstruction'] = reconstruction
                     entry['manifest'] = json.loads((directory/'manifest.json').read_text())
                     entry['passed'] = True
                 except (AssertionError, ValueError, subprocess.CalledProcessError) as error:
                     entry['failure'] = str(error)
+                    traceback.print_exc(file=log)
             reports.append(entry)
             report = {'scope': 'Quantized ownership and adjacent oracle-derived density thresholds in both precisions',
                       'repeats': args.repeats, 'all_passed': all(item['passed'] for item in reports),
