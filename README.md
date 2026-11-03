@@ -7,6 +7,8 @@ and evaluates implicit values and gradients.
 
 The float32 degree-1 implementation now matches the pinned official output on
 sphere, sparse, and torus fixtures, including PSR and both interpolation modes.
+[Explicit parameter checks](docs/results/profiles.json) also vary base/solve/kernel
+depths, density, scale, screening, and solver controls.
 Broader profiles and performance work are tracked in
 [issues](https://github.com/alecjacobson/warp-psr/issues), following the
 [design](Warp%20Poisson%20Reconstruction%20Design%20for%20Matching%20Implicit%20Fields.md).
@@ -111,27 +113,34 @@ relaxation, and per-level integration reduce the 100,000-point warm median
 from **2.68 s to 1.05 s** and peak device-pool usage from **19.46 GiB to
 7.30 GiB**. This follows the earlier tree optimization from 496 ms to 34 ms.
 
-| Torus samples | Depth / full depth | Basis coefficients | Integration cells | Warm median | Peak device pool |
-| ---: | ---: | ---: | ---: | ---: | ---: |
-| 100,000 | 8 / 4 | 911,002 | 1,223,993 | 1.05 s | 7.30 GiB |
-| 1,000,000 | 8 / 4 | 963,898 | 1,265,874 | 1.15 s | 7.78 GiB |
+| Torus samples | Depth / full depth | Basis coefficients | Integration cells | Warp warm median | Official serial median | Peak device pool |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| 100,000 | 8 / 4 | 911,002 | 1,223,993 | 1.05 s | 2.52 s | 7.30 GiB |
+| 1,000,000 | 8 / 4 | 963,898 | 1,265,874 | 1.15 s | 3.09 s | 7.78 GiB |
+| 1,000,000 | 9 / 4 | 3,770,690 | 5,035,948 | 3.68 s | 12.30 s | 31.22 GiB |
 
 The [current per-level measurements](docs/results/level-performance.json),
 [quadrature measurements](docs/results/fem-performance.json), and
 [earlier tree measurements](docs/results/tree-performance.json) include Python
 orchestration and exclude input upload and queries. Warm medians use three runs
 after the first invocation; the disk kernel cache may already be populated.
-Memory is the CUDA pool's process high-water mark. These compare this
-implementation's revisions; C++ timing comparisons remain to be measured.
+Memory is the CUDA pool's process high-water mark. The
+[official timings](docs/results/reference-performance.json) measure only the
+unchanged library solve on one Xeon Platinum 8362 thread, matching the accuracy
+fixtures; input parsing, query evaluation, and export are excluded. Parallel
+reference throughput remains unmeasured.
 
 ```sh
 python -m tools.benchmark --count 100000 --depth 8 --full-depth 4
+python -m tools.benchmark_reference --count 100000 --depth 8 --full-depth 4
 ```
 
-Both larger reconstructions pass the same accuracy budgets. Maximum field error
+All larger reconstructions pass the same accuracy budgets. Maximum field error
 is [1.02e-6 for 100,000 points](docs/results/torus-100k.json) and
 [9.54e-7 for one million](docs/results/torus-1m.json), including every sample
-position in the query set. Gradient comparisons include exact knot planes.
+position in the query set. At depth 9, the [million-point report](docs/results/torus-1m-d9.json)
+records a maximum field error of 1.26e-6 and scaled gradient errors within 8.03%
+of the budget. Gradient comparisons include exact knot planes.
 The pinned reference intersects left-cell neighbors with right-cell polynomial
 pieces at knots, which can differ from either ordinary one-sided derivative.
 Reconstruction evaluation preserves this behavior and the reference's inward

@@ -33,14 +33,23 @@ def points_for(shape, count, seed):
     return p,n
 
 
+def oracle_parameters(p):
+    """All effective settings, shared by the fixture and official CLI checks."""
+    return [str(p[key]) for key in ('depth','full_depth','weight')]+[str(int(p['exact'])),str(p['iters']),p['precision']]+[
+        str(p[key]) for key in ('base_depth','solve_depth','kernel_depth','scale','samples_per_node','cg_accuracy','base_v_cycles')]
+
+
 def generate(args):
+    if args.base_depth is None:args.base_depth=args.full_depth
+    if args.solve_depth is None:args.solve_depth=args.depth
+    if args.kernel_depth is None:args.kernel_depth=max(args.depth-2,0)
     out = ROOT / ".build/fixtures" / args.name
     out.mkdir(parents=True, exist_ok=True)
     p,n = points_for(args.shape, args.count, args.seed)
     dtype = np.float32 if args.precision == "float" else np.float64
     p,n = p.astype(dtype), n.astype(dtype)
     np.savetxt(out/"input.pts", np.column_stack([p,n]), fmt="%.17g")
-    width = np.max(np.max(p,axis=0)-np.min(p,axis=0))*dtype(1.1)
+    width = np.max(np.max(p,axis=0)-np.min(p,axis=0))*dtype(args.scale)
     center = (np.max(p,axis=0)+np.min(p,axis=0))*dtype(.5)
     rng = np.random.default_rng(args.seed+1)
     # Regular grid for optional mesh extraction; interior/random/sample queries for fields.
@@ -50,9 +59,7 @@ def generate(args):
     q = q*width+center-width/2
     q = np.concatenate([q,p]).astype(dtype)
     np.savetxt(out/"queries.txt", q, fmt="%.17g")
-    command_args = [str(out/"input.pts"), str(out/"queries.txt"), "OUTPUT", str(args.depth),
-                    str(args.full_depth), str(args.weight), str(int(args.exact)),
-                    str(args.iters), args.precision]
+    command_args = [str(out/"input.pts"), str(out/"queries.txt"), "OUTPUT", *oracle_parameters(vars(args))]
     timings = {}
     for exe in ["oracle", "oracle_instrumented"]:
         command_args[2] = str(out/(exe+".txt"))
@@ -76,7 +83,7 @@ def generate(args):
         "build": json.loads((ROOT/".build/build.json").read_text()),
         "input_sha256": checksum(out/"input.pts"), "queries_sha256": checksum(out/"queries.txt"),
         "input_order": "file order; seeded numpy Generator", "seed": args.seed,
-        "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False, "solve_depth": args.depth, "base_depth": args.full_depth, "kernel_depth": max(args.depth-2,0), "scale":1.1, "samples_per_node":1.5, "cg_accuracy":1e-3, "base_v_cycles":1}, "reference_parallelism": "ThreadPool::NONE (serial)",
+        "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",
         "instrumentation_max_abs_error": 0.0, "timings_seconds": timings,
         "grid": {"resolution": args.grid, "cube_min": .001, "cube_max": .999, "order": "ij, z fastest"},
         "environment": {"python": platform.python_version(), "numpy": np.__version__, "warp": wp.__version__,
@@ -96,6 +103,13 @@ if __name__ == "__main__":
     parser.add_argument("--seed", type=int, default=2026)
     parser.add_argument("--depth", type=int, default=4)
     parser.add_argument("--full-depth", type=int, default=2)
+    parser.add_argument("--base-depth", type=int)
+    parser.add_argument("--solve-depth", type=int)
+    parser.add_argument("--kernel-depth", type=int)
+    parser.add_argument("--scale", type=float, default=1.1)
+    parser.add_argument("--samples-per-node", type=float, default=1.5)
+    parser.add_argument("--cg-accuracy", type=float, default=1e-3)
+    parser.add_argument("--base-v-cycles", type=int, default=1)
     parser.add_argument("--weight", type=float, default=2.)
     parser.add_argument("--exact", action="store_true")
     parser.add_argument("--iters", type=int, default=8)

@@ -1,0 +1,718 @@
+{
+  "scope": "Official serial reconstruction and additional depth-9 Warp measurement",
+  "reference": [
+    {
+      "count": 100000,
+      "shape": "torus",
+      "seed": 2026,
+      "parameters": {
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "precision": "float"
+      },
+      "cpu": "Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz",
+      "parallelism": "ThreadPool::NONE (serial), matching the correctness fixtures",
+      "timing_scope": "Unchanged official Solver::Solve; includes normalization, tree, assembly, solve, and isovalue; excludes input parsing, queries, export, and process startup",
+      "comparison_limit": "A serial reference configuration; this does not measure the normal parallel CLI throughput",
+      "input_sha256": "8273f12f2f9d94ce7519f995647226ea34514773bd11923d1b58c4fcf2172afd",
+      "source_revision": "76a36dee0093f883c918cc15a1551f87159b2786",
+      "source_dirty": false,
+      "build": {
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "commands": [
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/oracle"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DEXPORT_TREE",
+            "-I/home/horde/projects/warp-psr/.build/instrumented",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/basis.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/basis"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DFAST_COMPILE",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+          ]
+        ],
+        "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      },
+      "warm_median_seconds": 2.518654735,
+      "runs": [
+        {
+          "iteration": 0,
+          "seconds": 2.541605448
+        },
+        {
+          "iteration": 1,
+          "seconds": 2.489762353
+        },
+        {
+          "iteration": 2,
+          "seconds": 2.518654735
+        },
+        {
+          "iteration": 3,
+          "seconds": 2.544188281
+        }
+      ]
+    },
+    {
+      "count": 1000000,
+      "shape": "torus",
+      "seed": 2026,
+      "parameters": {
+        "depth": 8,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 8,
+        "kernel_depth": 6,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "precision": "float"
+      },
+      "cpu": "Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz",
+      "parallelism": "ThreadPool::NONE (serial), matching the correctness fixtures",
+      "timing_scope": "Unchanged official Solver::Solve; includes normalization, tree, assembly, solve, and isovalue; excludes input parsing, queries, export, and process startup",
+      "comparison_limit": "A serial reference configuration; this does not measure the normal parallel CLI throughput",
+      "input_sha256": "c8b70178d15ac5d7d955f5c59dcb7fff8d652f035ddc4a5bca82c151e443bf4a",
+      "source_revision": "76a36dee0093f883c918cc15a1551f87159b2786",
+      "source_dirty": false,
+      "build": {
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "commands": [
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/oracle"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DEXPORT_TREE",
+            "-I/home/horde/projects/warp-psr/.build/instrumented",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/basis.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/basis"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DFAST_COMPILE",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+          ]
+        ],
+        "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      },
+      "warm_median_seconds": 3.087835031,
+      "runs": [
+        {
+          "iteration": 0,
+          "seconds": 3.055303083
+        },
+        {
+          "iteration": 1,
+          "seconds": 3.108613955
+        },
+        {
+          "iteration": 2,
+          "seconds": 3.087835031
+        },
+        {
+          "iteration": 3,
+          "seconds": 3.052172337
+        }
+      ]
+    },
+    {
+      "count": 1000000,
+      "shape": "torus",
+      "seed": 2026,
+      "parameters": {
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "precision": "float"
+      },
+      "cpu": "Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz",
+      "parallelism": "ThreadPool::NONE (serial), matching the correctness fixtures",
+      "timing_scope": "Unchanged official Solver::Solve; includes normalization, tree, assembly, solve, and isovalue; excludes input parsing, queries, export, and process startup",
+      "comparison_limit": "A serial reference configuration; this does not measure the normal parallel CLI throughput",
+      "input_sha256": "c8b70178d15ac5d7d955f5c59dcb7fff8d652f035ddc4a5bca82c151e443bf4a",
+      "source_revision": "76a36dee0093f883c918cc15a1551f87159b2786",
+      "source_dirty": false,
+      "build": {
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "commands": [
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/oracle"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DEXPORT_TREE",
+            "-I/home/horde/projects/warp-psr/.build/instrumented",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/reference/basis.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/basis"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DFAST_COMPILE",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+          ]
+        ],
+        "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      },
+      "warm_median_seconds": 12.303905048,
+      "runs": [
+        {
+          "iteration": 0,
+          "seconds": 12.266048243
+        },
+        {
+          "iteration": 1,
+          "seconds": 11.951581768
+        },
+        {
+          "iteration": 2,
+          "seconds": 12.303905048
+        },
+        {
+          "iteration": 3,
+          "seconds": 12.444909305
+        }
+      ]
+    }
+  ],
+  "warp_depth9": {
+    "count": 1000000,
+    "depth": 9,
+    "full_depth": 4,
+    "seed": 2026,
+    "source_revision": "ecb7e69351b7166153cf479f21995463586a1e0e",
+    "source_dirty": false,
+    "gpu": "NVIDIA L40, 570.158.01",
+    "warp": "1.19.0",
+    "timing_scope": "GPU reconstruction, including Python orchestration; excludes input upload and queries",
+    "first_run_note": "First invocation in process; existing disk kernel cache may be reused. Not a clean-cache compilation measurement.",
+    "warm_median_seconds": 3.680550541728735,
+    "runs": [
+      {
+        "iteration": 0,
+        "seconds": 13.647092912346125,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            729,
+            4913,
+            17088,
+            80560,
+            321056,
+            1048712,
+            2297472
+          ],
+          "integration_cells": 5035948,
+          "timings_seconds": {
+            "samples": 0.006165098398923874,
+            "density": 0.013764407485723495,
+            "normal_field": 0.2263299599289894,
+            "tree": 0.14329377934336662,
+            "integration_grid": 0.30861255154013634,
+            "assembly_and_solve": 12.913995835930109
+          },
+          "operator_integration_cells": {
+            "4": 4096,
+            "5": 20210,
+            "6": 101242,
+            "7": 446125,
+            "8": 1632863,
+            "9": 5035948
+          },
+          "measured_host_sync_seconds": 0.33492959663271904,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.111994504928589,
+              -1.0559988021850586
+            ],
+            [
+              2.111994504928589,
+              0.0,
+              0.0,
+              -1.0559977293014526
+            ],
+            [
+              0.0,
+              2.111994504928589,
+              0.0,
+              -1.0559972524642944
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 9,
+            "full_depth": 4,
+            "base_depth": 4,
+            "solve_depth": 9,
+            "kernel_depth": 7,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        },
+        "peak_device_pool_bytes": 31908059514
+      },
+      {
+        "iteration": 1,
+        "seconds": 3.656726896762848,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            729,
+            4913,
+            17088,
+            80560,
+            321056,
+            1048712,
+            2297472
+          ],
+          "integration_cells": 5035948,
+          "timings_seconds": {
+            "samples": 0.001080986112356186,
+            "density": 0.008267536759376526,
+            "normal_field": 0.22419532388448715,
+            "tree": 0.20805996656417847,
+            "integration_grid": 0.2878734692931175,
+            "assembly_and_solve": 2.9041696041822433
+          },
+          "operator_integration_cells": {
+            "4": 4096,
+            "5": 20210,
+            "6": 101242,
+            "7": 446125,
+            "8": 1632863,
+            "9": 5035948
+          },
+          "measured_host_sync_seconds": 0.788091529160738,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.111994504928589,
+              -1.0559988021850586
+            ],
+            [
+              2.111994504928589,
+              0.0,
+              0.0,
+              -1.0559977293014526
+            ],
+            [
+              0.0,
+              2.111994504928589,
+              0.0,
+              -1.0559972524642944
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 9,
+            "full_depth": 4,
+            "base_depth": 4,
+            "solve_depth": 9,
+            "kernel_depth": 7,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        },
+        "peak_device_pool_bytes": 33527436542
+      },
+      {
+        "iteration": 2,
+        "seconds": 3.680550541728735,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            729,
+            4913,
+            17088,
+            80560,
+            321056,
+            1048712,
+            2297472
+          ],
+          "integration_cells": 5035948,
+          "timings_seconds": {
+            "samples": 0.0010755956172943115,
+            "density": 0.008244827389717102,
+            "normal_field": 0.22913585230708122,
+            "tree": 0.15675783529877663,
+            "integration_grid": 0.38457345962524414,
+            "assembly_and_solve": 2.877221368253231
+          },
+          "operator_integration_cells": {
+            "4": 4096,
+            "5": 20210,
+            "6": 101242,
+            "7": 446125,
+            "8": 1632863,
+            "9": 5035948
+          },
+          "measured_host_sync_seconds": 0.8077981285750866,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.111994504928589,
+              -1.0559988021850586
+            ],
+            [
+              2.111994504928589,
+              0.0,
+              0.0,
+              -1.0559977293014526
+            ],
+            [
+              0.0,
+              2.111994504928589,
+              0.0,
+              -1.0559972524642944
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 9,
+            "full_depth": 4,
+            "base_depth": 4,
+            "solve_depth": 9,
+            "kernel_depth": 7,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        },
+        "peak_device_pool_bytes": 33527436542
+      },
+      {
+        "iteration": 3,
+        "seconds": 3.8168178871273994,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            729,
+            4913,
+            17088,
+            80560,
+            321056,
+            1048712,
+            2297472
+          ],
+          "integration_cells": 5035948,
+          "timings_seconds": {
+            "samples": 0.0011144429445266724,
+            "density": 0.008236236870288849,
+            "normal_field": 0.2242005355656147,
+            "tree": 0.2006964422762394,
+            "integration_grid": 0.28566329553723335,
+            "assembly_and_solve": 3.0737437680363655
+          },
+          "operator_integration_cells": {
+            "4": 4096,
+            "5": 20210,
+            "6": 101242,
+            "7": 446125,
+            "8": 1632863,
+            "9": 5035948
+          },
+          "measured_host_sync_seconds": 0.7936027385294437,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.111994504928589,
+              -1.0559988021850586
+            ],
+            [
+              2.111994504928589,
+              0.0,
+              0.0,
+              -1.0559977293014526
+            ],
+            [
+              0.0,
+              2.111994504928589,
+              0.0,
+              -1.0559972524642944
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 9,
+            "full_depth": 4,
+            "base_depth": 4,
+            "solve_depth": 9,
+            "kernel_depth": 7,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann"
+        },
+        "peak_device_pool_bytes": 33527436542
+      }
+    ]
+  },
+  "warp_depth8_report": "level-performance.json"
+}

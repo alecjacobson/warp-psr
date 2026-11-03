@@ -77,3 +77,16 @@ the leaf, and overlapping fine corrections at leafDepth+1. This reproduces the
 neighbor/polynomial intersection, and the 1e-6 inward nudge at the cube boundary.
 Direct standalone LevelField summation remains available as a mathematical field
 utility; the Reconstruction API supplies the reference cumulative representation.
+
+`python -m tools.check_profiles` varies each exposed parameter independently and
+checks a stronger iteration schedule. `python -m tools.validate` includes these
+profiles. The stronger schedule is run compatibility, not a proof of convergence.
+All depth, density, normalization, screening, and solver arguments are passed
+explicitly to both the oracle and CLI checks. Legacy oracle defaults are tested
+for bitwise equality with their explicit counterparts.
+
+`python -m tools.benchmark_reference --count 100000 --depth 8 --full-depth 4`
+measures the unchanged serial library solve using a timer around `Solver::Solve`.
+Input parsing, query evaluation, export, and process startup are outside the
+timer. The benchmark records the CPU, compiler, reference pin, parameters, input
+checksum, and every run; it does not measure the parallel CLI configuration.

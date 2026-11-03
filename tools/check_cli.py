@@ -4,7 +4,7 @@ import json
 from pathlib import Path
 import subprocess
 import numpy as np
-from tools.make_fixture import ROOT, read_output
+from tools.make_fixture import ROOT, read_output, oracle_parameters
 
 
 def check(directory):
@@ -15,9 +15,9 @@ def check(directory):
         raise ValueError("Official FAST_COMPILE CLI uses float32")
     command=[str(ROOT/".build/PoissonReconCLI"),"--in",str(directory/"input.pts"),"--grid",str(directory/"official.grid"),
              "--out",str(directory/"official.ply"),"--depth",str(p["depth"]),"--fullDepth",str(p["full_depth"]),
-             "--baseDepth",str(p["full_depth"]),"--solveDepth",str(p["depth"]),"--kernelDepth",str(max(0,p["depth"]-2)),
-             "--pointWeight",str(p["weight"]),"--scale","1.1","--samplesPerNode","1.5","--iters",str(p["iters"]),
-             "--cgAccuracy","0.001","--baseVCycles","1","--parallel","1","--alignDir","0","--verbose"]
+             "--baseDepth",str(p["base_depth"]),"--solveDepth",str(p["solve_depth"]),"--kernelDepth",str(p["kernel_depth"]),
+             "--pointWeight",str(p["weight"]),"--scale",str(p["scale"]),"--samplesPerNode",str(p["samples_per_node"]),"--iters",str(p["iters"]),
+             "--cgAccuracy",str(p["cg_accuracy"]),"--baseVCycles",str(p["base_v_cycles"]),"--parallel","1","--alignDir","0","--verbose"]
     if p["exact"]:
         command += ["--exact"]
     with (directory/"official.log").open("w") as f:
@@ -36,7 +36,7 @@ def check(directory):
     queries=(np.c_[unit,np.ones(len(unit))]@transform)[:,:3].astype(np.float32)
     np.savetxt(directory/"cli_queries.txt",queries,fmt="%.17g")
     subprocess.run([str(ROOT/".build/oracle"),str(directory/"input.pts"),str(directory/"cli_queries.txt"),str(directory/"cli_oracle.txt"),
-                    str(p["depth"]),str(p["full_depth"]),str(p["weight"]),str(int(p["exact"])),str(p["iters"]),"float"],check=True)
+                    *oracle_parameters(p)],check=True)
     values=read_output(directory/"cli_oracle.txt")["q"][:,0]
     np.testing.assert_allclose(values,grid,atol=1e-5,rtol=1e-4)
     report={"test":"official CLI grid versus unchanged library oracle", "grid_values":len(grid),
