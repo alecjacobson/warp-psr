@@ -24,7 +24,7 @@ def test_float64_adaptive_point_location():
         levels = np.array([anchors[tuple(c)] for c in origins], dtype=np.uint8)
         geometry = fem.AdaptiveNanogrid(
             volume, cell_level=wp.array(levels, dtype=wp.uint8),
-            level_count=2, scalar_type=wp.float64,
+            level_count=2, scalar_type=wp.float64, temporary_store=None,
         )
         epsilon = 2.0 ** -40  # Deliberately below float32 coordinate resolution.
         probes = [[0.5 + delta, y, z] for delta in (-epsilon, 0, epsilon)
