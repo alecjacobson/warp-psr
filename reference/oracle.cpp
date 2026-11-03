@@ -64,6 +64,28 @@ template<class Real> int run(int argc, char** argv) {
         auto g=eval.grad(q);
         out<<"q "<<eval(q)<<' '<<g[0]<<' '<<g[1]<<' '<<g[2]<<'\n';
     }
+    // Optional offline visualization export. Evaluate the unchanged solved field
+    // at a regular model-space grid, without enormous ASCII query/gradient files.
+    if(const char* spec=std::getenv("WARP_PSR_GRID_SPEC")) {
+        const char* output=std::getenv("WARP_PSR_GRID_OUTPUT");
+        if(!output) throw std::runtime_error("Grid export requires WARP_PSR_GRID_OUTPUT");
+        std::ifstream gridSpec(spec);
+        int resolution; double low[3], high[3];
+        if(!(gridSpec>>resolution>>low[0]>>low[1]>>low[2]>>high[0]>>high[1]>>high[2]) || resolution<2)
+            throw std::runtime_error("Invalid grid specification");
+        std::ofstream binary(output,std::ios::binary);
+        if(!binary) throw std::runtime_error("Cannot open grid output");
+        std::vector<Real> row(resolution);
+        for(int i=0;i<resolution;i++) for(int j=0;j<resolution;j++) {
+            for(int k=0;k<resolution;k++) {
+                int indices[3]={i,j,k}; Point<Real,3> q;
+                for(int a=0;a<3;a++) q[a]=Real(low[a]+(high[a]-low[a])*(double(indices[a])/double(resolution-1)));
+                row[k]=eval(q);
+            }
+            binary.write(reinterpret_cast<const char*>(row.data()),row.size()*sizeof(Real));
+        }
+        if(!binary) throw std::runtime_error("Grid output write failed");
+    }
 #ifdef EXPORT_TREE
     result->tree.tree().processNodes([&](const auto* n){
         int d,off[3]; result->tree.depthAndOffset(n,d,off);
