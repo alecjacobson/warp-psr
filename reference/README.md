@@ -45,10 +45,14 @@ Current omissions are tracked in issue #1: complete acceptance/aggregation IDs,
 ghost/parent/child metadata, solver traces, parallel repeatability, and broader
 query families. Float32 independent reconstruction passes the small and large
 field gates; see the [main README](../README.md) and committed reports. The
-float64 reference driver processes float64 input throughout, while end-to-end
-float64 Warp reconstruction remains unfinished. The built-in B-spline issue has
-[a tested upstream fix](https://github.com/NVIDIA/warp/pull/2219); this repository
-still uses the pinned, unmodified released wheel.
+float64 reference driver and Warp reconstruction both process float64 input
+throughout. Five end-to-end double fixtures meet the design's diagnostic budgets,
+including strict preprocessing and operator comparisons. The built-in B-spline
+issue has [a tested upstream fix](https://github.com/NVIDIA/warp/pull/2219), as does
+[float64 Nanogrid lookup](https://github.com/NVIDIA/warp/pull/2221). This repository
+uses its public basis extension and explicit containing-cell coordinates on the
+pinned, unmodified released wheel. A mixed-depth lookup test probes both sides
+of an interface at separations smaller than float32 coordinate resolution.
 
 `make_fixture.py --operators` additionally exports interpolation records, every
 small per-level screened matrix and initial right-hand side, and restriction
