@@ -4,7 +4,7 @@ import pytest
 import warp as wp
 from warp_psr.forms import uniform_space,assemble_stiffness
 from warp_psr.solver import relax
-from warp_psr.relaxation import row_schedule,relax_scheduled
+from warp_psr.relaxation import row_schedule,relax_scheduled,relaxation_command
 
 @pytest.mark.parametrize('device',['cpu','cuda:0'])
 def test_compact_schedule_matches_full_row_scan(device):
@@ -19,13 +19,15 @@ def test_compact_schedule_matches_full_row_scan(device):
         reference=wp.array(np.cos(np.arange(len(xyz))).astype('f'))
         actual=wp.clone(reference)
         schedule=row_schedule(keys,2)
+        command=relaxation_command(A,b,actual,schedule)
         for forward in [True,False]:
             relax(A,b,reference,keys,3,forward=forward)
-            relax_scheduled(A,b,actual,schedule,3,forward=forward)
+            relax_scheduled(A,b,actual,schedule,3,forward=forward,command=command)
             np.testing.assert_array_equal(actual.numpy(),reference.numpy())
         schedule=row_schedule(keys,2,sliced=True)
+        command=relaxation_command(A,b,actual,schedule)
         for front in range(4,-3,-1):
             for z in range(max(front,0),min(front+3,5)):
                 relax(A,b,reference,keys,1,z=z)
-                relax_scheduled(A,b,actual,schedule,1,z=z)
+                relax_scheduled(A,b,actual,schedule,1,z=z,command=command)
         np.testing.assert_array_equal(actual.numpy(),reference.numpy())

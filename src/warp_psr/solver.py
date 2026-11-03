@@ -9,7 +9,7 @@ from .forms import assemble_stiffness, assemble_screening, assemble_point_load, 
 from .normal_field import assemble_normal_load, cache_normal_quadrature
 from .constraints import point_constraints
 from .spaces import make_level_space
-from .relaxation import row_schedule, relax_scheduled
+from .relaxation import row_schedule, relax_scheduled, relaxation_command
 from .integration import integration_grid
 
 wp.set_module_options({"fuse_fp":False})
@@ -85,10 +85,11 @@ def regular_multigrid(A,b,keys,transfers,iters,cycles,cg_accuracy):
     rhs[base]=b
     x=[wp.zeros_like(v) for v in rhs]
     schedules=[row_schedule(k,d) for d,k in enumerate(keys)]
+    commands=[relaxation_command(matrices[d],rhs[d],x[d],schedules[d]) for d in range(base+1)]
     sync=sum(schedule.sync_seconds for schedule in schedules)
     for _ in range(cycles):
         for d in range(base,0,-1):
-            relax_scheduled(matrices[d],rhs[d],x[d],schedules[d],iters)
+            relax_scheduled(matrices[d],rhs[d],x[d],schedules[d],iters,command=commands[d])
             residual=wp.clone(rhs[d])
             sparse.bsr_mv(matrices[d],x[d],residual,alpha=-1.0,beta=1.0)
             sparse.bsr_mv(restrictions[d-1],residual,rhs[d-1])
@@ -103,7 +104,7 @@ def regular_multigrid(A,b,keys,transfers,iters,cycles,cg_accuracy):
         for d in range(1,base+1):
             sparse.bsr_mv(transfers[d-1],x[d-1],x[d],beta=1.0)
             x[d-1].zero_()
-            relax_scheduled(matrices[d],rhs[d],x[d],schedules[d],iters,forward=False)
+            relax_scheduled(matrices[d],rhs[d],x[d],schedules[d],iters,forward=False,command=commands[d])
     return x[base],sync
 
 
@@ -164,10 +165,11 @@ def solve_levels(tree,geometry,normals,density,*,base_depth,solve_depth,point_we
             # Pinned sliceBlockSize=1, degree=1, coarse-to-fine traversal.
             # Each diagonal wave updates increasing z, then moves its front -1.
             schedule=row_schedule(keys[d],d,sliced=True)
+            command=relaxation_command(A,b,corrections[d],schedule)
             solver_sync+=schedule.sync_seconds
             for front in range(1<<d,-iters,-1):
                 for z in range(max(front,0),min(front+iters,(1<<d)+1)):
-                    relax_scheduled(A,b,corrections[d],schedule,1,z=z)
+                    relax_scheduled(A,b,corrections[d],schedule,1,z=z,command=command)
             next_cumulative=wp.clone(corrections[d])
             sparse.bsr_mv(transfers[d-1],cumulative,next_cumulative,beta=1.0)
             cumulative=next_cumulative

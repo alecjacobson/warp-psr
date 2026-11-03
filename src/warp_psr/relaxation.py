@@ -63,10 +63,20 @@ def row_schedule(keys,depth,sliced=False):
     return RowSchedule(rows,offsets,largest,time.perf_counter()-start)
 
 
-def relax_scheduled(A,b,x,schedule,iters,forward=True,z=-1):
+def relaxation_command(A,b,x,schedule):
+    """Retain fixed arguments for one solve; only its color/slice group changes."""
+    return wp.launch(_relax,schedule.maximum,
+        inputs=[schedule.rows,schedule.offsets,0,A.offsets,A.columns,A.values,b,x],
+        device=x.device,record_cmd=True)
+
+
+def relax_scheduled(A,b,x,schedule,iters,forward=True,z=-1,command=None):
+    if command is None:
+        command=relaxation_command(A,b,x,schedule)
     colors=range(8) if forward else range(7,-1,-1)
     for _ in range(iters):
         for color in colors:
             if z>=0 and (color>>2)!=(z&1):continue
             group=color if z<0 else z*4+(color&3)
-            wp.launch(_relax,schedule.maximum,inputs=[schedule.rows,schedule.offsets,group,A.offsets,A.columns,A.values,b,x],device=x.device)
+            command.set_param_at_index(2,group)
+            command.launch()
