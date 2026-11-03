@@ -82,7 +82,7 @@ def reconstruct(positions,normals,*,depth=6,full_depth=3,base_depth=None,solve_d
         normal=stage('normal_field',lambda:build_normal_field(samples,density,base_depth,depth))
         tree=stage('tree',lambda:build_tree(normal,depth,full_depth,base_depth))
         geometry=stage('integration_grid',lambda:integration_grid(tree,normal,depth))
-        correction,levels=stage('assembly_and_solve',lambda:solve_levels(tree,geometry,normal,density,base_depth=base_depth,solve_depth=solve_depth,point_weight=point_weight,exact=exact_interpolation,iters=iters,base_v_cycles=base_v_cycles,cg_accuracy=cg_accuracy))
+        correction,levels,solver_sync=stage('assembly_and_solve',lambda:solve_levels(tree,geometry,normal,density,base_depth=base_depth,solve_depth=solve_depth,point_weight=point_weight,exact=exact_interpolation,iters=iters,base_v_cycles=base_v_cycles,cg_accuracy=cg_accuracy))
         count=sum(len(level.keys) for level in tree.basis)
         keys=wp.empty(count,dtype=wp.int64,device=device)
         coefficients=wp.empty(count,dtype=float,device=device)
@@ -109,8 +109,8 @@ def reconstruct(positions,normals,*,depth=6,full_depth=3,base_depth=None,solve_d
         field=LevelField(keys,coefficients,tuple(matrix[r][c] for r in range(3) for c in range(3)),tuple(matrix[r][3] for r in range(3)),depth,isovalue,cumulative)
     metadata={"precision":"float32","device":str(device),"basis_counts":[len(l.keys) for l in tree.basis],
               "integration_cells":geometry.cell_count(),"timings_seconds":timings,
-              "measured_host_sync_seconds":samples.host_sync_seconds+density.sync_seconds+tree.host_sync_seconds+normal.records.sync_seconds+status_sync,
-              "sync_measurement_scope":"sample/density/normal/tree count reads and final metadata; excludes Warp-internal synchronization",
+              "measured_host_sync_seconds":samples.host_sync_seconds+density.sync_seconds+tree.host_sync_seconds+normal.records.sync_seconds+solver_sync+status_sync,
+              "sync_measurement_scope":"sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
               "exact_interpolation_behavior":"empty constraints in pinned reference (issue #16)" if exact_interpolation else "level-clustered approximate constraints",
               "cube_to_model":transform[0],
               "parameters":{"depth":depth,"full_depth":full_depth,"base_depth":base_depth,"solve_depth":solve_depth,"kernel_depth":kernel_depth,"samples_per_node":samples_per_node,"scale":scale,"point_weight":point_weight,"exact_interpolation":exact_interpolation,"iters":iters,"base_v_cycles":base_v_cycles,"cg_accuracy":cg_accuracy},

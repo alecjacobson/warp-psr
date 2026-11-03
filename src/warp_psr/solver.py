@@ -5,10 +5,11 @@ import warp.sparse as sparse
 from warp.optim.linear import cg
 from .field import basis_key, find_key
 from .keyed import coordinates
-from .forms import assemble_stiffness, assemble_screening, assemble_point_load
-from .normal_field import assemble_normal_load
+from .forms import assemble_stiffness, assemble_screening, assemble_point_load, point_quadrature
+from .normal_field import assemble_normal_load, cache_normal_quadrature
 from .constraints import point_constraints
 from .spaces import make_level_space
+from .relaxation import row_schedule, relax_scheduled
 
 wp.set_module_options({"fuse_fp":False})
 
@@ -82,10 +83,11 @@ def regular_multigrid(A,b,keys,transfers,iters,cycles,cg_accuracy):
     rhs=[wp.zeros(len(k),dtype=float,device=k.device) for k in keys]
     rhs[base]=b
     x=[wp.zeros_like(v) for v in rhs]
-    sync=0.0
+    schedules=[row_schedule(k,d) for d,k in enumerate(keys)]
+    sync=sum(schedule.sync_seconds for schedule in schedules)
     for _ in range(cycles):
         for d in range(base,0,-1):
-            relax(matrices[d],rhs[d],x[d],keys[d],iters)
+            relax_scheduled(matrices[d],rhs[d],x[d],schedules[d],iters)
             residual=wp.clone(rhs[d])
             sparse.bsr_mv(matrices[d],x[d],residual,alpha=-1.0,beta=1.0)
             sparse.bsr_mv(restrictions[d-1],residual,rhs[d-1])
@@ -100,7 +102,7 @@ def regular_multigrid(A,b,keys,transfers,iters,cycles,cg_accuracy):
         for d in range(1,base+1):
             sparse.bsr_mv(transfers[d-1],x[d-1],x[d],beta=1.0)
             x[d-1].zero_()
-            relax(matrices[d],rhs[d],x[d],keys[d],iters,forward=False)
+            relax_scheduled(matrices[d],rhs[d],x[d],schedules[d],iters,forward=False)
     return x[base],sync
 
 
@@ -112,7 +114,10 @@ def solve_levels(tree,geometry,normals,density,*,base_depth,solve_depth,point_we
     transfers=[prolongation(keys[d-1],keys[d],d) for d in range(1,solve_depth+1)]
     corrections=[wp.zeros(len(k),dtype=float,device=device) for k in keys]
     diagnostics=[]
+    solver_sync=0.0
     cumulative=None
+    normal_quadrature=cache_normal_quadrature(geometry,normals,finest)
+    screened=point_weight>0 and not exact
     for d in range(base_depth,solve_depth+1):
         if not len(keys[d]):
             break
@@ -121,12 +126,13 @@ def solve_levels(tree,geometry,normals,density,*,base_depth,solve_depth,point_we
         # integral spans many fine integration cells. Final reference matrices
         # and solve arithmetic are float32.
         A=assemble_stiffness(space,device,accumulation_dtype=wp.float64)
-        load=assemble_normal_load(space,normals,finest)
+        load=assemble_normal_load(space,normals,finest,cache=normal_quadrature)
         points=point_constraints(density,normals,tree,d,point_weight,exact)
-        if point_weight>0:
-            screen=assemble_screening(space,points.positions,points.weights,accumulation_dtype=wp.float64)
+        if screened:
+            quadrature=point_quadrature(space,points.positions,points.weights)
+            screen=assemble_screening(space,points.positions,points.weights,accumulation_dtype=wp.float64,quadrature=quadrature)
             sparse.bsr_axpy(screen,A)
-            point_load=assemble_point_load(space,points.positions,points.weights)
+            point_load=assemble_point_load(space,points.positions,points.weights,quadrature=quadrature)
         else:
             point_load=wp.zeros_like(load)
         b=wp.empty(len(keys[d]),dtype=float,device=device)
@@ -134,21 +140,24 @@ def solve_levels(tree,geometry,normals,density,*,base_depth,solve_depth,point_we
         A=sparse.bsr_copy(A,scalar_type=wp.float32)
         if d==base_depth:
             corrections[d],sync=regular_multigrid(A,b,keys[:d+1],transfers[:d],iters,base_v_cycles,cg_accuracy)
+            solver_sync+=sync
             cumulative=wp.clone(corrections[d])
         else:
             cross=assemble_stiffness(space,device,trial_space=spaces[d-1],accumulation_dtype=wp.float64)
-            if point_weight>0:
-                screen=assemble_screening(space,points.positions,points.weights,trial_space=spaces[d-1],accumulation_dtype=wp.float64)
+            if screened:
+                screen=assemble_screening(space,points.positions,points.weights,trial_space=spaces[d-1],accumulation_dtype=wp.float64,quadrature=quadrature)
                 sparse.bsr_axpy(screen,cross)
             cross=sparse.bsr_copy(cross,scalar_type=wp.float32)
             sparse.bsr_mv(cross,cumulative,b,alpha=-1.0,beta=1.0)
             # Pinned sliceBlockSize=1, degree=1, coarse-to-fine traversal.
             # Each diagonal wave updates increasing z, then moves its front -1.
+            schedule=row_schedule(keys[d],d,sliced=True)
+            solver_sync+=schedule.sync_seconds
             for front in range(1<<d,-iters,-1):
                 for z in range(max(front,0),min(front+iters,(1<<d)+1)):
-                    relax(A,b,corrections[d],keys[d],1,z=z)
+                    relax_scheduled(A,b,corrections[d],schedule,1,z=z)
             next_cumulative=wp.clone(corrections[d])
             sparse.bsr_mv(transfers[d-1],cumulative,next_cumulative,beta=1.0)
             cumulative=next_cumulative
         diagnostics.append({"depth":d,"matrix":A,"rhs":b,"coefficients":corrections[d]})
-    return corrections,diagnostics
+    return corrections,diagnostics,solver_sync

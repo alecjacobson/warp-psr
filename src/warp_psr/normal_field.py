@@ -1,6 +1,7 @@
 """Evaluate the reference quadratic Dirichlet vector field for FEM quadrature."""
 import warp as wp
 import warp.fem as fem
+from .forms import value
 from .field import basis_key, find_key
 from .density import quadratic
 
@@ -35,8 +36,26 @@ def normal_load(s: fem.Sample, v: fem.Field, normal: fem.Field):
     return wp.dot(fem.grad(v,s),normal(s))
 
 
-def assemble_normal_load(space,normals,depth):
-    domain=fem.Cells(space.geometry)
+@wp.func
+def _cached_normal(index: int, values: wp.array(dtype=wp.vec3)):
+    return values[index]
+
+
+def cache_normal_quadrature(geometry,normals,depth):
+    domain=fem.Cells(geometry)
+    quadrature=fem.RegularQuadrature(domain,order=3)
     normal=fem.ImplicitField(domain,normal_value,values={"keys":normals.records.keys,"values":normals.records.values,"depth":depth},degree=2)
+    data=wp.empty(quadrature.total_point_count(),dtype=wp.vec3,device=normals.records.keys.device)
+    fem.interpolate(value,dest=data,at=quadrature,fields={"u":normal})
+    return quadrature,fem.ImplicitField(domain,_cached_normal,values={"values":data},degree=2)
+
+
+def assemble_normal_load(space,normals,depth,cache=None):
+    domain=fem.Cells(space.geometry)
+    if cache is None:
+        quadrature=fem.RegularQuadrature(domain,order=3)
+        normal=fem.ImplicitField(domain,normal_value,values={"keys":normals.records.keys,"values":normals.records.values,"depth":depth},degree=2)
+    else:
+        quadrature,normal=cache
     v=fem.make_test(space,domain=domain)
-    return fem.integrate(normal_load,quadrature=fem.RegularQuadrature(domain,order=3),fields={"v":v,"normal":normal},output_dtype=wp.float64,device=normals.records.keys.device)
+    return fem.integrate(normal_load,quadrature=quadrature,fields={"v":v,"normal":normal},output_dtype=wp.float64,device=normals.records.keys.device)

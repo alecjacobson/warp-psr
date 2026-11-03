@@ -40,20 +40,35 @@ def assemble_stiffness(space, device=None, trial_space=None, accumulation_dtype=
                          output_dtype=accumulation_dtype or space.dtype, device=device)
 
 
-def assemble_screening(space, positions, effective_weights, trial_space=None, accumulation_dtype=None):
+def point_quadrature(space, positions, effective_weights):
+    domain=fem.Cells(space.geometry)
+    quadrature=fem.PicQuadrature(domain,positions,measures=effective_weights)
+    mask=wp.empty(space.geometry.cell_count(),dtype=int,device=positions.device)
+    quadrature.fill_element_mask(mask)
+    # Keep the original quadrature's domain stable: Warp 1.19's cached particle
+    # binning closure retains its first instance, so mutating that instance can
+    # invalidate subsequent CPU/CUDA compilations. A fresh public constructor
+    # avoids that cache aliasing while still restricting matrix triplets.
+    restricted=fem.Subdomain(domain,element_mask=mask)
+    return fem.PicQuadrature(restricted,(quadrature.cell_indices,quadrature.particle_coords),measures=effective_weights)
+
+
+def assemble_screening(space, positions, effective_weights, trial_space=None, accumulation_dtype=None, quadrature=None):
     """Sum w_s phi_i(p_s) phi_j(p_s); weights are NOT the public pointWeight."""
     if positions.shape[0] != effective_weights.shape[0]:
         raise ValueError("One effective weight per point is required")
-    domain = fem.Cells(space.geometry)
-    quadrature = fem.PicQuadrature(domain, positions, measures=effective_weights)
+    if quadrature is None:
+        quadrature=point_quadrature(space,positions,effective_weights)
+    domain=quadrature.domain
     u, v = fem.make_trial(trial_space or space, domain=domain), fem.make_test(space, domain=domain)
     return fem.integrate(mass, quadrature=quadrature, fields={"u": u, "v": v},
                          output_dtype=accumulation_dtype or space.dtype, device=positions.device)
 
 
-def assemble_point_load(space, positions, effective_weights):
-    domain = fem.Cells(space.geometry)
-    quadrature = fem.PicQuadrature(domain, positions, measures=effective_weights)
+def assemble_point_load(space, positions, effective_weights, quadrature=None):
+    if quadrature is None:
+        quadrature=point_quadrature(space,positions,effective_weights)
+    domain=quadrature.domain
     v = fem.make_test(space, domain=domain)
     return fem.integrate(value, quadrature=quadrature, fields={"u":v},
                          output_dtype=wp.float64, device=positions.device)
