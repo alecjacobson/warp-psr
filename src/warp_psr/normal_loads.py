@@ -69,6 +69,7 @@ def assemble_reference_normal_loads(
     transfers,
     operator_geometries=None,
     level_partitions=True,
+    ordered_root=True,
 ):
     device = normals.records.keys.device
     dtype = (
@@ -76,6 +77,16 @@ def assemble_reference_normal_loads(
         if wp.types.types_equal(normals.average.dtype, wp.vec3d)
         else wp.float32
     )
+    if base_depth == 0 and dtype == wp.float32 and ordered_root:
+        from .ordered_normal_loads import ordered_normal_loads
+
+        rounded = ordered_normal_loads(tree, normals, max_depth, base_depth)
+        result = []
+        for load in rounded:
+            output = wp.empty(len(load), dtype=wp.float64, device=device)
+            wp.utils.array_cast(load, output)
+            result.append(output)
+        return result
     vec4 = normals.records.values.dtype
     finest = len(tree.basis) - 1
 

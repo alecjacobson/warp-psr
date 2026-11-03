@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 import numpy as np
 import pytest
 import warp as wp
@@ -7,6 +8,7 @@ from warp_psr.density import build_density
 from warp_psr.normals import build_normal_field
 from warp_psr.tree import build_tree
 from tools.make_fixture import read_output
+from tools.check_profiles import ZERO_BASE_CASES
 
 
 def test_effective_floating_point_options():
@@ -18,7 +20,7 @@ def test_effective_floating_point_options():
 
 @pytest.mark.cuda
 @pytest.mark.reference
-@pytest.mark.parametrize("name,depth,full",[("sphere",4,2),("torus",6,3),("sparse",5,1),("sphere-psr-double",4,2),("torus-double",6,3),("sparse-double",5,1),("geometry-cluster-float",5,2),("geometry-cluster-double",5,2)])
+@pytest.mark.parametrize("name,depth,full",[("sphere",4,2),("torus",6,3),("sparse",5,1),("sphere-psr-double",4,2),("torus-double",6,3),("sparse-double",5,1),("geometry-cluster-float",5,2),("geometry-cluster-double",5,2)]+[(f'profile-{case}-{precision}',None,None) for case in ZERO_BASE_CASES for precision in ('float','double')])
 def test_gpu_density_normal_tree(name,depth,full):
     wp.init()
     if not wp.is_cuda_available():
@@ -26,6 +28,8 @@ def test_gpu_density_normal_tree(name,depth,full):
     path=Path('.build/fixtures')/name
     if not (path/'preprocess.txt').exists():
         pytest.skip("Regenerate reference preprocessing exports")
+    parameters=json.loads((path/'manifest.json').read_text())['parameters']
+    depth,full,base=parameters['depth'],parameters['full_depth'],parameters['base_depth']
     double=name.endswith('double')
     atol,rtol=(1e-10,1e-9) if double else (1e-6,1e-5)
     vector=wp.vec3d if double else wp.vec3
@@ -33,9 +37,9 @@ def test_gpu_density_normal_tree(name,depth,full):
     samples=prepare_samples(wp.array(data[:,:3],dtype=vector,device='cuda'),
                             wp.array(data[:,3:],dtype=vector,device='cuda'),depth=depth)
     assert samples.weights.dtype==(wp.float64 if double else wp.float32)
-    density=build_density(samples,depth)
-    normal=build_normal_field(samples,density,full,depth)
-    tree=build_tree(normal,depth,full)
+    density=build_density(samples,depth,parameters['kernel_depth'],parameters['samples_per_node'])
+    normal=build_normal_field(samples,density,base,depth)
+    tree=build_tree(normal,depth,full,base)
     pre=read_output(path/'preprocess.txt')
     stage=read_output(path/'stages.txt')
     order=np.argsort(samples.first_indices.numpy())

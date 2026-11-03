@@ -1,11 +1,12 @@
 """Reference cascadic correction solve using Warp FEM and Warp sparse algebra."""
 
 import time
+import math
 from functools import lru_cache
 from types import SimpleNamespace
 import warp as wp
 import warp.sparse as sparse
-from warp.optim.linear import cg
+from warp.optim.linear import cg, aslinearoperator, LinearOperator
 from .field import basis_key, find_key
 from .keyed import coordinates
 from .forms import (
@@ -21,6 +22,26 @@ from .relaxation import row_schedule, relax_scheduled, relaxation_command
 from .integration import integration_grid
 
 wp.set_module_options({"fuse_fp": False})
+
+
+@wp.func
+def root_row(key: wp.int64):
+    c = coordinates(key) + wp.vec3i(2)
+    return c[2] * 16 + (c[0] & 1) + 2 * (c[1] & 1) + 2 * (c[0] & 2) + 4 * (c[1] & 2)
+
+
+@wp.kernel
+def root_matrix_rows(
+    keys: wp.array(dtype=wp.int64),
+    offsets: wp.array(dtype=int),
+    columns: wp.array(dtype=int),
+    rows: wp.array(dtype=int),
+    cols: wp.array(dtype=int),
+):
+    i = wp.tid()
+    for j in range(offsets[i], offsets[i + 1]):
+        rows[j] = root_row(keys[i])
+        cols[j] = root_row(keys[columns[j]])
 
 
 @lru_cache(None)
@@ -95,7 +116,81 @@ def precision_kernels(dtype):
         i = wp.tid()
         out[i] = dtype(a[i]) + dtype(0.5) * dtype(b[i])
 
-    return SimpleNamespace(_transfer=_transfer, _gs=_gs, _combine=_combine, _rhs=_rhs)
+    @wp.kernel
+    def _add_mean(x: wp.array(dtype=dtype), out: wp.array(dtype=dtype), alpha: dtype):
+        # Preserve the reference's padded root row order and scalar accumulation.
+        mean = dtype(0.0)
+        for i in range(x.shape[0]):
+            mean += x[i]
+        mean /= dtype(x.shape[0])
+        for i in range(out.shape[0]):
+            out[i] += alpha * mean
+
+    @wp.kernel
+    def _root_embed(
+        keys: wp.array(dtype=wp.int64),
+        src: wp.array(dtype=dtype),
+        out: wp.array(dtype=dtype),
+    ):
+        i = wp.tid()
+        out[root_row(keys[i])] = src[i]
+
+    @wp.kernel
+    def _root_extract(
+        keys: wp.array(dtype=wp.int64),
+        src: wp.array(dtype=dtype),
+        out: wp.array(dtype=dtype),
+    ):
+        i = wp.tid()
+        out[i] = src[root_row(keys[i])]
+
+    return SimpleNamespace(
+        _transfer=_transfer,
+        _gs=_gs,
+        _combine=_combine,
+        _rhs=_rhs,
+        _add_mean=_add_mean,
+        _root_embed=_root_embed,
+        _root_extract=_root_extract,
+    )
+
+
+def constant_mode_operator(matrix):
+    """Reference root operator: K x + mean(x), through public Warp CG APIs."""
+    operator = aslinearoperator(matrix)
+
+    def matvec(x, y, z, alpha, beta):
+        operator.matvec(x, y, z, alpha, beta)
+        wp.launch(
+            precision_kernels(x.dtype)._add_mean,
+            1,
+            inputs=[x, z, x.dtype(alpha)],
+            device=x.device,
+        )
+
+    return LinearOperator(operator.shape, operator.dtype, operator.device, matvec)
+
+
+def padded_root_system(matrix, b, keys):
+    """Retain the 56 inactive rows included in the official root mean term."""
+    count = matrix.nnz
+    rows = wp.empty(count, dtype=int, device=b.device)
+    cols = wp.empty_like(rows)
+    wp.launch(
+        root_matrix_rows,
+        len(keys),
+        inputs=[keys, matrix.offsets, matrix.columns, rows, cols],
+        device=b.device,
+    )
+    padded = sparse.bsr_from_triplets(64, 64, rows, cols, matrix.values[:count])
+    rhs = wp.zeros(64, dtype=b.dtype, device=b.device)
+    wp.launch(
+        precision_kernels(b.dtype)._root_embed,
+        len(keys),
+        inputs=[keys, b, rhs],
+        device=b.device,
+    )
+    return padded, rhs
 
 
 def prolongation(coarse_keys, fine_keys, depth, dtype=wp.float32):
@@ -132,7 +227,9 @@ def relax(A, b, x, keys, iters, forward=True, z=-1):
             )
 
 
-def regular_multigrid(A, b, keys, transfers, iters, cycles, cg_accuracy):
+def regular_multigrid(
+    A, b, keys, transfers, iters, cycles, cg_accuracy, add_dc_term=False
+):
     base = len(keys) - 1
     matrices = [None] * base + [A]
     restrictions = [sparse.bsr_transposed(P) for P in transfers]
@@ -149,7 +246,14 @@ def regular_multigrid(A, b, keys, transfers, iters, cycles, cg_accuracy):
         for d in range(base + 1)
     ]
     sync = sum(schedule.sync_seconds for schedule in schedules)
-    for _ in range(cycles):
+    root_rhs, root_x = rhs[0], x[0]
+    if add_dc_term:
+        padded, root_rhs = padded_root_system(matrices[0], rhs[0], keys[0])
+        root_x = wp.zeros_like(root_rhs)
+        root_operator = constant_mode_operator(padded)
+    else:
+        root_operator = aslinearoperator(matrices[0])
+    for cycle in range(cycles):
         for d in range(base, 0, -1):
             relax_scheduled(
                 matrices[d], rhs[d], x[d], schedules[d], iters, command=commands[d]
@@ -160,16 +264,22 @@ def regular_multigrid(A, b, keys, transfers, iters, cycles, cg_accuracy):
             x[d - 1].zero_()
         # The reference skips CG altogether when its initial squared residual
         # is <= eps^2. After this check its stopping tolerance is relative.
+        residual = root_rhs
+        if base == 0 and cycle > 0:
+            # Unlike a V-cycle with a finer base, a repeated root-only cycle
+            # retains x[0]. The reference threshold is relative to b - A x.
+            residual = wp.empty_like(root_rhs)
+            root_operator.matvec(root_x, root_rhs, residual, -1.0, 1.0)
         start = time.perf_counter()
-        norm_squared = wp.utils.array_inner(rhs[0], rhs[0])
+        norm_squared = wp.utils.array_inner(residual, residual)
         sync += time.perf_counter() - start
         if norm_squared > cg_accuracy * cg_accuracy:
             cg(
-                matrices[0],
-                rhs[0],
-                x[0],
-                tol=cg_accuracy,
-                atol=0,
+                root_operator,
+                root_rhs,
+                root_x,
+                tol=0 if base == 0 else cg_accuracy,
+                atol=cg_accuracy * math.sqrt(norm_squared) if base == 0 else 0,
                 maxiter=len(keys[0]),
                 check_every=1,
                 use_cuda_graph=False,
@@ -186,6 +296,13 @@ def regular_multigrid(A, b, keys, transfers, iters, cycles, cg_accuracy):
                 forward=False,
                 command=commands[d],
             )
+    if add_dc_term:
+        wp.launch(
+            precision_kernels(b.dtype)._root_extract,
+            len(keys[0]),
+            inputs=[keys[0], root_x, x[0]],
+            device=b.device,
+        )
     return x[base], sync
 
 
@@ -266,7 +383,18 @@ def solve_levels(
         A = sparse.bsr_copy(A, scalar_type=dtype)
         if d == base_depth:
             corrections[d], sync = regular_multigrid(
-                A, b, keys[: d + 1], transfers[:d], iters, base_v_cycles, cg_accuracy
+                A,
+                b,
+                keys[: d + 1],
+                transfers[:d],
+                iters,
+                base_v_cycles,
+                cg_accuracy,
+                # Pinned _solveRegularMG compares the root row count with
+                # dimensions at base_depth, so this is enabled only at base 0.
+                # Exact interpolation still claims to constrain the constant
+                # mode despite its empty spans (reference issue #16).
+                add_dc_term=base_depth == 0 and point_weight == 0,
             )
             solver_sync += sync
             cumulative = wp.clone(corrections[d])
