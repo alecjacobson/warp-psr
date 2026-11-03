@@ -16,6 +16,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0,str(ROOT))
 from reference.queries import coverage_queries
 from tools.datasets import DATASETS, download, load_input
+from tools.fixture_provenance import REFERENCE_FILES
 
 
 def read_output(path):
@@ -131,6 +132,8 @@ def generate(args):
         "application_revision": revision, "application_dirty": bool(subprocess.check_output(["git","status","--porcelain"],cwd=ROOT)),
         "build": json.loads((ROOT/".build/build.json").read_text()),
         "input_sha256": checksum(out/"input.pts"), "queries_sha256": checksum(out/"queries.txt"),
+        "reference_file_sha256": {name: checksum(out/name) for name in
+                                  (*REFERENCE_FILES, *(("operators.txt",) if args.operators else ()))},
         "input_order": "file order; seeded numpy Generator", "seed": args.seed,
         "input_source":source_metadata,
         "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",

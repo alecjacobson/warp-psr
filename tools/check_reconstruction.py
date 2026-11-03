@@ -1,7 +1,6 @@
 """Validate independent GPU reconstruction against pinned reference fields."""
 import argparse
 import json
-import hashlib
 import subprocess
 from pathlib import Path
 import numpy as np
@@ -10,11 +9,13 @@ from warp_psr import reconstruct
 from tools.make_fixture import read_output, ROOT
 from reference.cells import query_cell_widths
 from tools.check_tree import check_tree
+from tools.fixture_provenance import verify_fixture, production_hashes
 
 
 def check(directory,device='cuda:0'):
     directory=Path(directory)
     manifest=json.loads((directory/'manifest.json').read_text())
+    provenance=verify_fixture(directory,manifest)
     double=manifest['precision']=='double'
     numpy_dtype=np.float64 if double else np.float32
     vector=wp.vec3d if double else wp.vec3
@@ -62,7 +63,8 @@ def check(directory,device='cuda:0'):
     report={"test":"Independent GPU reconstruction from oriented points","reconstruction_compatibility":True,
         "source_revision":subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),
         "source_dirty":bool(subprocess.check_output(['git','status','--porcelain'],cwd=ROOT)),
-        "production_source_sha256":{str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(ROOT.glob('src/**/*.py'))},
+        "production_source_sha256":production_hashes(),
+        "fixture_provenance":provenance,"queries_sha256":manifest['queries_sha256'],
         "fixture":manifest["name"],"input_sha256":manifest["input_sha256"],
         "input_source":manifest.get("input_source"),"tree":tree_report,
         "device":device,"queries":len(queries),"coefficients":len(result.field.keys),

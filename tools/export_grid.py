@@ -10,6 +10,7 @@ import warp as wp
 from tools.benchmark_input import benchmark_input, reconstruction_parameters
 from tools.datasets import checksum
 from tools.make_fixture import ROOT, oracle_parameters, read_output
+from tools.fixture_provenance import require_acceptance
 from warp_psr import reconstruct
 
 
@@ -18,9 +19,7 @@ def export(directory, resolution):
         raise ValueError('resolution must be at least two')
     directory = Path(directory)
     manifest = json.loads((directory/'manifest.json').read_text())
-    report = json.loads((directory/'reconstruction_report.json').read_text())
-    if report.get('input_sha256') != manifest['input_sha256']:
-        raise ValueError('Validate this exact fixture before rendering')
+    report = require_acceptance(directory)
     p, n, parameters, provenance = benchmark_input(argparse.Namespace(fixture=directory))
     dtype = p.dtype
     vector = wp.vec3d if dtype == np.float64 else wp.vec3

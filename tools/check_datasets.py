@@ -1,11 +1,11 @@
 """Reproduce public-cloud accuracy and matched timing experiments in fresh processes."""
 import argparse
-import hashlib
 import json
 from pathlib import Path
 import subprocess
 import sys
 from tools.make_fixture import ROOT
+from tools.fixture_provenance import require_acceptance
 
 
 def cases(suite):
@@ -45,12 +45,7 @@ def main(args):
         directory.mkdir(parents=True, exist_ok=True)
         if args.benchmark_only:
             manifest=json.loads((directory/'manifest.json').read_text())
-            validation=json.loads((directory/'reconstruction_report.json').read_text())
-            actual_hashes={str(path.relative_to(ROOT)):hashlib.sha256(path.read_bytes()).hexdigest() for path in sorted(ROOT.glob('src/**/*.py'))}
-            if (not validation['reconstruction_compatibility'] or not validation['tree']['exact_active_and_support_keys']
-                    or validation['production_source_sha256'] != actual_hashes
-                    or validation['input_sha256'] != manifest['input_sha256']):
-                raise ValueError(f'{name}: regenerate accuracy results for the current production source/input')
+            require_acceptance(directory)
             expected={'dataset':dataset,'grid':24,'seed':2026,'precision':'float','weight':2.,'samples_per_node':1.5}
             for option,value in zip(options[::2],options[1::2]):
                 key=option[2:].replace('-','_')
