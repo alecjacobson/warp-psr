@@ -1,7 +1,7 @@
 {
   "test": "Independent GPU reconstruction from oriented points",
   "reconstruction_compatibility": true,
-  "source_revision": "b0ad1c453aec9654d10ec1c3aab3a1fa511173af",
+  "source_revision": "d377a85aa14888157df603309afd3598f43c9cbf",
   "source_dirty": false,
   "production_source_sha256": {
     "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -14,9 +14,9 @@
     "src/warp_psr/normal_field.py": "71e4bc7ba6fa0d895e2bf5f56c74e9aa20d2ff7cf19915f5f9320861e184b31b",
     "src/warp_psr/normals.py": "ffc6e75224e31ac3bb29f1aab4252f40a9c002084ceec860405e83eb7683b071",
     "src/warp_psr/reconstruction.py": "8736c9b08c12ea65a99280ec4cd6a564964c21a2949406231c7793e3172ea7fb",
-    "src/warp_psr/relaxation.py": "3d1ffbdd813d84648389dbf3ac19c7148ddb8fbab2d6314f2f4cd18f70b6912d",
+    "src/warp_psr/relaxation.py": "20f97bb0b55bc5c3447a799eeeaa4ac3df9a981d95eb28c3f3049764c042c23c",
     "src/warp_psr/samples.py": "9404925d076dd339daba98edd956ee00d2fbc1a96872f5e64aff170c604b7d48",
-    "src/warp_psr/solver.py": "234001fd023e1b899408d3569d2297b9ad5b0d9f41cacb169b39061212a4c5b3",
+    "src/warp_psr/solver.py": "b5f07f4bdd7ce120bde20120bb445c7b7ef596c6c50d8b6654e34ecc4d74ab32",
     "src/warp_psr/spaces.py": "5bed1769dc7c8770e75d481c5e6e125c8a74a075fc3afb94f74244c25574e7af",
     "src/warp_psr/transforms.py": "c3f25caa4e141acb787e5be50b7c9b75e9de5a382158ec0999c50902e5985e94",
     "src/warp_psr/tree.py": "351a9671087a2086f06a14b37e210eebd53d09bd92d2f8823265631290417637"
@@ -55,12 +55,12 @@
     ],
     "integration_cells": 1223993,
     "timings_seconds": {
-      "samples": 0.008806191384792328,
-      "density": 0.012086637318134308,
-      "normal_field": 0.036068737506866455,
-      "tree": 0.03500369191169739,
-      "integration_grid": 0.08398260176181793,
-      "assembly_and_solve": 1.5066870488226414
+      "samples": 0.010996539145708084,
+      "density": 0.012241069227457047,
+      "normal_field": 0.03614576533436775,
+      "tree": 0.0351179800927639,
+      "integration_grid": 0.12773405760526657,
+      "assembly_and_solve": 1.3041739240288734
     },
     "operator_integration_cells": {
       "4": 4096,
@@ -69,7 +69,7 @@
       "7": 394451,
       "8": 1223993
     },
-    "measured_host_sync_seconds": 0.06901881098747253,
+    "measured_host_sync_seconds": 0.07012609392404556,
     "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
     "exact_interpolation_behavior": "level-clustered approximate constraints",
     "cube_to_model": [
