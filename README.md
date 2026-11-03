@@ -7,6 +7,8 @@ and evaluates implicit values and gradients.
 
 The float32 and float64 degree-1 implementations match the pinned official output on
 sphere, sparse, and torus fixtures, including PSR and both interpolation modes.
+Public-cloud checks also cover horse, Stanford bunny, eagle, and torso scans in
+both precisions; see the [dataset experiments](docs/datasets.md).
 [Explicit parameter checks](docs/results/profiles.json) also vary base/solve/kernel
 depths, density, scale, screening, and solver controls.
 Broader profiles and performance work are tracked in
@@ -51,37 +53,47 @@ including normalization, density, assembly, solving, and evaluation.
 Production reconstruction uses Warp arrays, kernels, FEM, and sparse algebra;
 NumPy, SciPy, and the C++ reference are used only by tests and visualization.
 
-## Flagship: independent torus reconstruction
+## Flagship: the eagle
 
-![Official PoissonRecon and independent Warp reconstruction](docs/results/torus-reconstruction.png)
+![Official PoissonRecon and independent pure-Warp eagle reconstruction](docs/results/eagle-reconstruction.png)
 
-Both implementations reconstruct the same **8,192 oriented points**, at depth 6.
-Across **272,256 volume and sample queries**, maximum field error is **7.16e-7**;
-the isovalue is identical. The largest cell-width-scaled gradient error uses
-**4.8% of the design tolerance**. Raw cube-gradient error is **6.45e-5**, reported
-separately rather than hidden by the scaling. Both panels use the same
-visualization-only marching-cubes extractor.
+The **796,825-point eagle scan** reconstructs at depth 9 with **3,323,866 basis
+coefficients**. Both independent solves have exactly the same active and support
+keys. Across **812,815 diagnostic queries**, including every input point and
+refinement interfaces, maximum field error is **3.12e-6**; scaled gradient error
+uses **29.4% of the fixed design tolerance**. The isovalues differ by **5.97e-8**.
 
-The [validation report](docs/results/validation.json) records fixtures, source
-hashes, parameters, and errors. The reference is
-[PoissonRecon 262b0f5](https://github.com/mkazhdan/PoissonRecon/tree/262b0f539d404057d1f36e1adc07fc9388678899),
-and the Warp pin is
-[1.19.0](https://github.com/NVIDIA/warp/tree/06ce5ea6d5e29590706c7d3d48135ffdcc730912).
+The figure compares another **134,217,728 shared volume-grid samples**, with
+maximum field error **2.95e-6**. Both panels use the same marching-cubes extraction,
+material, camera, and lighting, with no mesh smoothing or trimming. See the
+[field report](docs/results/eagle.json) and [render provenance](docs/results/eagle-reconstruction.json).
+The scan is from the **EPFL Geometric Computing Laboratory**,
+[Scanning 3D Statues from Photos](https://lgg.epfl.ch/statues.php), distributed
+through PoissonRecon's example datasets.
 
 ## Reproduce the comparison
 
 ```sh
-pip install -e '.[test,visualization]'
+pip install -e '.[test,rendering]'
 sudo apt-get install g++ libjpeg-dev libturbojpeg0-dev libpng-dev zlib1g-dev
 python tools/build_reference.py
-python tools/make_fixture.py --name torus --shape torus --count 8192 --depth 6 --full-depth 3 --grid 64
-python -m tools.check_reconstruction .build/fixtures/torus
-python -m tools.render_comparison .build/fixtures/torus
+python tools/make_fixture.py --name eagle-full-d9-spsr --dataset eagle --depth 9 --full-depth 4 --grid 24
+python -m tools.check_reconstruction .build/fixtures/eagle-full-d9-spsr
+python -m tools.export_grid .build/fixtures/eagle-full-d9-spsr --resolution 512
+python -m tools.render_flagship .build/fixtures/eagle-full-d9-spsr --resolution 512
 ```
 
-`python -m tools.validate` runs the reference, operator, preprocessing, and
-reconstruction gates and regenerates the report. Build products stay in ignored
-`.build/`. See [reference tooling](reference/README.md) for instrumentation.
+The pinned reference is
+[PoissonRecon 262b0f5](https://github.com/mkazhdan/PoissonRecon/tree/262b0f539d404057d1f36e1adc07fc9388678899),
+and Warp is [1.19.0](https://github.com/NVIDIA/warp/tree/06ce5ea6d5e29590706c7d3d48135ffdcc730912).
+Downloads and build products stay in ignored `.build/`. The large dense grid is
+used only for visualization; the reconstruction itself is adaptive.
+
+`python -m tools.validate` runs the synthetic reference, operator, preprocessing,
+and reconstruction gates. `python -m tools.check_datasets --suite smoke` runs
+[16 public-cloud PSR/SPSR checks](docs/results/public-smoke.json) in float32 and
+float64. The [dataset guide](docs/datasets.md) describes full-cloud scaling runs,
+matched benchmarks, source checksums, and reproducible subsets.
 
 ## Supported profile and known limits
 
