@@ -136,8 +136,14 @@ Parallel variation is measured separately from the fixed serial compatibility
 budgets. Run `python -m tools.check_repeatability` after generating the fixtures;
 it is also included in `tools.validate`.
 
-Remaining work includes complete ghost/flag metadata and
-threshold-sensitive input families and broader
+The [threshold checks](docs/results/thresholds.json) cover quantized positions on
+both sides of dyadic cell boundaries, coincident and opposing normals, zero normals,
+and adjacent density settings that change the pinned oracle's integer splat depth.
+Both precisions pass exact aggregate and tree checks and three independent field
+acceptance runs per case. Run `python -m tools.check_thresholds` to reproduce the
+oracle search and all eight cases without changing the fixed numerical budgets.
+
+Remaining work includes complete ghost/flag metadata and broader
 performance experiments. Two Warp float64
 issues have tested upstream proposals: [built-in B-spline gradients](https://github.com/NVIDIA/warp/pull/2219)
 and [sparse-grid particle lookup](https://github.com/NVIDIA/warp/pull/2221).

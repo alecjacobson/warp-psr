@@ -195,6 +195,11 @@ def main(args):
                                     '--precision', precision, '--depth', '5', '--full-depth', '2',
                                     '--grid', '8', *options], cwd=ROOT, check=True,
                                    stdout=log, stderr=subprocess.STDOUT)
+                    if case.startswith('density-'):
+                        selected = read_output(directory/'splats.txt')['splat'][discovery['aggregate_index']]
+                        expected_top = discovery['integer_depth'] + (case == 'density-below')
+                        assert selected[5] == expected_top, 'Final fixture must preserve the discovered decision'
+                        entry['selected_splat'] = {'raw_depth': float(selected[3]), 'top_depth': int(selected[5])}
                     entry['stage'] = 'preprocessing'
                     entry['preprocessing'] = [check_preprocessing(directory) for _ in range(args.repeats)]
                     entry['stage'] = 'reconstruction'
