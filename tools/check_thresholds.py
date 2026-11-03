@@ -147,12 +147,22 @@ def check_preprocessing(directory):
     np.testing.assert_array_equal(top, splats[:, 5], err_msg='Discrete splat depth differs')
     normals = build_normal_field(samples, density, p['base_depth'], p['depth'])
     rows = stages['normal'][np.argsort(field_keys(stages['normal']))]
-    np.testing.assert_array_equal(normals.records.keys.numpy(), field_keys(rows))
-    np.testing.assert_allclose(normals.records.values.numpy()[:, :3], rows[:, 4:], atol=atol, rtol=rtol)
+    normal_keys, normal_values = normals.records.keys.numpy(), normals.records.values.numpy()[:, :3]
+    expected_keys = field_keys(rows)
+    shared, actual_indices, expected_indices = np.intersect1d(normal_keys, expected_keys, return_indices=True)
+    # The reference export follows tree finalization, which removes some zero
+    # stencil entries. Prove that different storage contains only exact zeros;
+    # retain exact comparisons of the final support/active tree below.
+    extra = ~np.isin(normal_keys, shared)
+    missing = ~np.isin(expected_keys, shared)
+    np.testing.assert_array_equal(normal_values[extra], 0)
+    np.testing.assert_array_equal(rows[missing, 4:], 0)
+    np.testing.assert_allclose(normal_values[actual_indices], rows[expected_indices, 4:], atol=atol, rtol=rtol)
     tree = build_tree(normals, p['depth'], p['full_depth'], p['base_depth'])
     tree_report = check_tree(tree, read_output(directory/'oracle_instrumented.txt')['node'])
     return {'accepted_samples': int(samples.weights.numpy().sum()), 'aggregates': len(order),
             'cancelled_normal_aggregates': int((~live).sum()), 'splats': len(splats),
+            'extra_zero_normal_records': int(extra.sum()), 'missing_zero_normal_records': int(missing.sum()),
             'exact_aggregate_keys_and_weights': True, 'exact_top_depths': True,
             'max_raw_depth_error': float(np.abs(dw[:, 0]-splats[:, 3]).max()), 'tree': tree_report}
 
