@@ -92,11 +92,12 @@ def reconstruct(
     if any(not isinstance(v, int) or isinstance(v, bool) for v in depths):
         raise ValueError("Depth parameters must be integers")
     if (
-        not 1 <= base_depth <= full_depth <= solve_depth <= depth <= 15
+        not 0 <= base_depth <= full_depth <= solve_depth <= depth <= 15
+        or depth < 1
         or not 0 <= kernel_depth <= depth
     ):
         raise ValueError(
-            "Require 1 <= base_depth <= full_depth <= solve_depth <= depth <= 15 and 0 <= kernel_depth <= depth"
+            "Require 0 <= base_depth <= full_depth <= solve_depth <= depth <= 15, depth >= 1, and 0 <= kernel_depth <= depth"
         )
     if depth - full_depth > 7:
         raise ValueError(
@@ -265,6 +266,9 @@ def reconstruct(
             "cg_accuracy": cg_accuracy,
         },
         "profile": "pinned cascadic degree-1 Neumann",
+        "constant_mode": "reference root mean term"
+        if base_depth == 0 and point_weight == 0
+        else "reference solve without an added mean term",
     }
     return Reconstruction(
         field,

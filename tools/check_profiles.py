@@ -19,6 +19,19 @@ PROFILE_CASES={
     'strict':['--iters','32','--base-v-cycles','2','--cg-accuracy','0.000001'],
 }
 
+ZERO_BASE_CASES={
+    'base-zero':['--base-depth','0'],
+    'base-zero-psr':['--base-depth','0','--weight','0'],
+    'base-zero-exact':['--base-depth','0','--exact'],
+    'full-zero':['--base-depth','0','--full-depth','0'],
+    'base-zero-cycles':['--base-depth','0','--base-v-cycles','3','--cg-accuracy','0.000001'],
+    'root-solve':['--base-depth','0','--full-depth','0','--solve-depth','0'],
+    'depth-one':['--depth','1','--full-depth','0','--base-depth','0','--kernel-depth','0'],
+}
+for precision in ('float','double'):
+    for case,options in ZERO_BASE_CASES.items():
+        PROFILE_CASES[f'{case}-{precision}']=[*options,'--precision',precision,'--operators']
+
 
 def main():
     reports=[]

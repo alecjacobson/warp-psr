@@ -13,6 +13,7 @@ from warp_psr.integration import integration_grid
 from warp_psr.spaces import make_level_space
 from warp_psr.forms import assemble_stiffness, assemble_screening
 from warp_psr.constraints import point_constraints
+from tools.check_profiles import ZERO_BASE_CASES
 
 
 def csr(a):
@@ -20,7 +21,7 @@ def csr(a):
 
 @pytest.mark.reference
 @pytest.mark.cuda
-@pytest.mark.parametrize('name,weight,exact',[(name+suffix,weight,exact) for suffix in ('','-double') for name,weight,exact in [('sphere',2.,False),('sphere-psr',0.,False),('sphere-exact',2.,True)]]+[(f'geometry-cluster-{precision}',2.,False) for precision in ('float','double')])
+@pytest.mark.parametrize('name,weight,exact',[(name+suffix,weight,exact) for suffix in ('','-double') for name,weight,exact in [('sphere',2.,False),('sphere-psr',0.,False),('sphere-exact',2.,True)]]+[(f'geometry-cluster-{precision}',2.,False) for precision in ('float','double')]+[(f'profile-{case}-{precision}',0. if case=='base-zero-psr' else 2.,case=='base-zero-exact') for case in ZERO_BASE_CASES for precision in ('float','double')])
 def test_level_operators_and_transfers(name,weight,exact):
     wp.init()
     if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
@@ -34,7 +35,7 @@ def test_level_operators_and_transfers(name,weight,exact):
     scalar=wp.float64 if double else wp.float32
     data=np.loadtxt(directory/'input.pts').astype(np.float64 if double else np.float32)
     with wp.ScopedDevice('cuda'):
-        result=reconstruct(wp.array(data[:,:3],dtype=vector),wp.array(data[:,3:],dtype=vector),depth=depth,full_depth=full_depth,point_weight=weight,exact_interpolation=exact)
+        result=reconstruct(wp.array(data[:,:3],dtype=vector),wp.array(data[:,3:],dtype=vector),depth=depth,full_depth=full_depth,base_depth=parameters['base_depth'],solve_depth=parameters['solve_depth'],kernel_depth=parameters['kernel_depth'],point_weight=weight,exact_interpolation=exact)
         tree=result.diagnostics['tree']
         nodes=read_output(directory/'oracle_instrumented.txt')['node']
         lookup={int(row[6]):tuple(map(int,row[:4])) for row in nodes}
@@ -60,7 +61,10 @@ def test_level_operators_and_transfers(name,weight,exact):
                 if i is not None:expected_load[i]=row[4]
             scale=np.max(np.abs(expected_load)) or 1.
             np.testing.assert_allclose(level['normal_load'].numpy()/scale,expected_load/scale,atol=atol,rtol=rtol)
-        for d in range(1,depth+1):
+            if name=='profile-base-zero-float' and d==0:
+                np.testing.assert_array_equal(level['normal_load'].numpy(),expected_load)
+        # The oracle exports transfer matrices only through the solve depth.
+        for d in range(1,parameters['solve_depth']+1):
             actual=csr(prolongation(tree.basis[d-1].keys,tree.basis[d].keys,d,scalar)).T
             rr=[];cc=[];vv=[]
             for row in ops:

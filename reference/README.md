@@ -115,6 +115,30 @@ logarithm internally in double and rounds its result to float32 at that point.
 This avoids CUDA `logf` approximation differences on the diagnostic sphere,
 whose raw depths and weights now match the reference bitwise (#44).
 
+Base-depth-zero profiles cover screening, PSR, the pinned exact mode, zero full
+depth, a solve stopping at the root, repeated root cycles, and reconstruction
+depth one in both precisions. Their preprocessing, canonical active/support
+nodes, normal loads, operator actions, and transfers have separate checks.
+For unscreened base depth zero, the pinned root CG operator is `K x + mean(x)`
+on all 64 padded rows, including 56 inactive rows. Warp retains those rows for
+this operation and extracts the eight active coefficients after the solve.
+Its enabling condition compares the root row count against dimensions at the
+requested base depth, so it is absent at higher base depths. Exact interpolation
+still reports that it constrains the constant mode despite its empty spans, and
+also omits this term. These reference decisions are preserved explicitly.
+Repeated root cycles retain the previous solution and use its current residual
+for the initial and relative stopping tests. No fitted gauge offset is applied
+to the field comparisons.
+
+Float32 base-depth-zero loads use ordered polynomial accumulation because the
+root's cancellation exposes the reference's rounding order (#43). Same-level
+gathers and restrictions follow lexicographic neighbor order; fine-to-parent
+contributions follow z slices and Morton order within each slice. Public Warp
+segmented sorting constructs that order on the GPU. Polynomial integrals are
+checked against `basis --normal` and randomized multilevel loads against the
+assembled FEM path in double precision. The latter remains the default for
+other profiles and is available as `ordered_root=False` for diagnostics.
+
 `python -m tools.benchmark_reference --count 100000 --depth 8 --full-depth 4`
 measures the unchanged serial library solve using a timer around `Solver::Solve`.
 Input parsing, query evaluation, export, and process startup are outside the

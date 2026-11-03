@@ -86,8 +86,9 @@ reconstruction gates and regenerates the report. Build products stay in ignored
 ## Supported profile and known limits
 
 The current API accepts matching float32 or float64 CUDA inputs, degree 1, Neumann boundaries,
-confidence disabled, finite positions, and scale > 1. Base depth must be at least
-1, and `depth - full_depth <= 7` reflects Warp’s eight-level geometry limit.
+confidence disabled, finite positions, and scale > 1. Reconstruction depth is
+1 through 15; base and full depth may be zero. The constraint
+`depth - full_depth <= 7` reflects Warp’s eight-level geometry limit.
 Depth, full/base/solve/kernel depths, density target, screening weight,
 interpolation mode, and iteration settings are explicit arguments. Unsupported
 profiles fail before reconstruction. The alignment matches the reference library's
@@ -124,7 +125,7 @@ budgets. Run `python -m tools.check_repeatability` after generating the fixtures
 it is also included in `tools.validate`.
 
 Remaining work includes complete ghost/flag metadata and
-threshold-sensitive input families, base-depth-zero support, and broader
+threshold-sensitive input families and broader
 performance experiments. Two Warp float64
 issues have tested upstream proposals: [built-in B-spline gradients](https://github.com/NVIDIA/warp/pull/2219)
 and [sparse-grid particle lookup](https://github.com/NVIDIA/warp/pull/2221).

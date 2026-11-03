@@ -3,11 +3,11 @@
   "parallel_policy": "Parallel variability is reported separately; serial compatibility budgets stay fixed.",
   "reference_parallel_mode": "Default CLI backend for the pinned build without OpenMP: ASYNC, dynamic schedule, hardware thread count",
   "timing_scope": "Reference times cover Solver::Solve only; GPU timings separately cover reconstruction and queries with readback; first invocations may compile kernels",
-  "source_revision": "239cef733cc37710bb0136f1a5024ca76394d589",
+  "source_revision": "5104209db41c3e87853a04cbc3692781fd153dee",
   "source_dirty": false,
   "source_sha256": {
     "reference/adapter.py": "5aedcc2691fc5b48a6fd0df48f75ee617067956159fef0ebdf41e09cc2b8127d",
-    "reference/basis.cpp": "471669170dbc9d7ac83f52933ed518879adce1904797abd2d2b3fa6205e6bb05",
+    "reference/basis.cpp": "4c062f49c675eeeacdcd8f67ad3f4edf674e1e6244a40164e9641abfd4ea930c",
     "reference/cells.py": "1edd0a2abf14a3e1c10dc58162b454c20a10fa26c4bb0fcad2fdff0f5702005f",
     "reference/operator_export.inc": "9303320e9717646f57a8388a97e5230f1bc2edd6a9474136023553a76308bf99",
     "reference/oracle.cpp": "681cc450793b5cd08cded564a5fdac92f1357c0780090e248cf91807b705a1f9",
@@ -22,26 +22,29 @@
     "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
     "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
     "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-    "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+    "src/warp_psr/normal_loads.py": "d0ab72125c97288f3d5636ce05d2bf135bf08e1fe61e363000bd45ccf3ef2705",
     "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
+    "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
     "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
-    "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+    "src/warp_psr/reconstruction.py": "cf884b40409ac48b9218a0e114e3b0184edbb9fbdc4b81dc69fb8bbc27a74ad6",
     "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
     "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
-    "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+    "src/warp_psr/solver.py": "1132b567428dc70e11dc183f2e892cbd0b00167a866ff9e52efa7e63c1fc908c",
     "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
     "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
     "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b",
-    "tests/test_adaptive_operators.py": "d671a857e641302be3323918cc3d29d5eb75b335d88050e580f5e25b2afe3679",
+    "tests/test_adaptive_operators.py": "9cbb97feeee60f819309ee08e0b76338f9242a1c1cb61d6572eef022ba6da5e3",
     "tests/test_field.py": "cdc40da3cf012b513e428f64a0730afb8e6918d55dbcb495f49388222ec33407",
     "tests/test_limitations.py": "c337570ebed523c7807df622a272103ffd9e43e4b8951b26cfce991d143ddd10",
+    "tests/test_ordered_normal_loads.py": "376d9384ae1f457cdb37faf179f03c2a96615d32807f8797a15a8c942866cd30",
     "tests/test_point_location.py": "faa391801ba17e98f3d1856a26fa6cef6b13ffe76b1054bd4ddfb63a4c429d3b",
-    "tests/test_preprocessing.py": "dc54606c414d581cab242785adc37cfb3b5040eeb1e959958a2143f9cfcfaef4",
+    "tests/test_preprocessing.py": "d0d8a277c5890cd36dda584ef9576e1b45095ee1427f5083314b5568c4b84673",
     "tests/test_query_coverage.py": "980329edd770a692d1a811e4ce30ec24f838ad4b7dd1aee0e7ba5c4d255758a7",
     "tests/test_reconstruction.py": "9db320db2fe4b629346e6874b368a24768146574316783aa08f975c46ac4de69",
     "tests/test_reference_profiles.py": "03249ea7c9b3afea15393e067cd5023fbea7b09f6b6de9dd5cdd53b449c99d3a",
     "tests/test_relaxation.py": "b315b9d56c4ac532145c9b35556cb6f6c3b6d89e68aaf5225df9858bacf51e01",
     "tests/test_repeatability.py": "3ee26d419845f62b2c62e27614eb55036cdfc6cbbca7b5787c2233350788e2b8",
+    "tests/test_root_solver.py": "73cc2ebb52c8fb44cf3bb8dae0715a338a40ae8a04143c969974bad0b9313991",
     "tests/test_samples.py": "9507df6590b6af68d3a026a9b67df38d01a579223f4bfe025046a22437611025",
     "tests/test_uniform.py": "d939abe937169a568661cf78580643b27bf4128d8f6caa675444b85b6549fc47",
     "tools/benchmark.py": "b8ad2638875ae49b838d692805f2622cd9228548f5a53a1544bc5e84e0d82ea1",
@@ -51,12 +54,12 @@
     "tools/check_environment.py": "80fd563e1e907128599df22b341938f96a146d22bc47e666d28ec3bd260c2701",
     "tools/check_field.py": "09975643b5a2f1f094b4d4fedf8dd3a98ccdf616c62d4dc6d06ab6d9e858db7f",
     "tools/check_geometry_profiles.py": "00fbf546c03a2b5057b564273cc442378cb54809024eea0374ce94e050cf191a",
-    "tools/check_profiles.py": "00d823e4ab7e3cf17103d102520907fd07e9f4085351cf83fdb6b2af47cc2d2c",
+    "tools/check_profiles.py": "16bb1c44982b7ecd8cfc8463846fec18d653d6752230ab54a23858825e83c203",
     "tools/check_reconstruction.py": "436c91fe03fb35f18dd620145dac6911df7885e0e05246c0820b528503b12cba",
     "tools/check_repeatability.py": "c7e4b2f89c5b203194af7e9017683e561622f3241a48e4368e9dd2b8f1b6e270",
     "tools/make_fixture.py": "01391290cea8c75e75de25209d8af112380a397a6ae7f249e7a366a25305fd08",
     "tools/render_comparison.py": "9a17165b8c400011feb08ced19cf85e682addd69642ca1c1a9311f76c5afc869",
-    "tools/validate.py": "e8ab266b67a50ea3954b67393c6a1302bf93eab3e2ad2862575b1f96efefdf76"
+    "tools/validate.py": "0530f7a82175eb62d6d12db441b2c5227c25108fab38b9c01b6aed1a20500f93"
   },
   "cpu": "Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz",
   "python": "3.11.15",
@@ -76,14 +79,14 @@
         "-DNDEBUG",
         "-pthread",
         "-Wno-invalid-offsetof",
-        "-I/opt/warp-psr/main/.build/PoissonRecon/Src",
-        "-I/opt/warp-psr/main/.build/PoissonRecon",
-        "/opt/warp-psr/main/reference/oracle.cpp",
+        "-I/opt/warp-psr/base-zero/.build/PoissonRecon/Src",
+        "-I/opt/warp-psr/base-zero/.build/PoissonRecon",
+        "/opt/warp-psr/base-zero/reference/oracle.cpp",
         "-lz",
         "-lpng",
         "-ljpeg",
         "-o",
-        "/opt/warp-psr/main/.build/oracle"
+        "/opt/warp-psr/base-zero/.build/oracle"
       ],
       [
         "g++",
@@ -93,14 +96,14 @@
         "-pthread",
         "-Wno-invalid-offsetof",
         "-DEXPORT_TREE",
-        "-I/opt/warp-psr/main/.build/instrumented",
-        "-I/opt/warp-psr/main/.build/PoissonRecon",
-        "/opt/warp-psr/main/reference/oracle.cpp",
+        "-I/opt/warp-psr/base-zero/.build/instrumented",
+        "-I/opt/warp-psr/base-zero/.build/PoissonRecon",
+        "/opt/warp-psr/base-zero/reference/oracle.cpp",
         "-lz",
         "-lpng",
         "-ljpeg",
         "-o",
-        "/opt/warp-psr/main/.build/oracle_instrumented"
+        "/opt/warp-psr/base-zero/.build/oracle_instrumented"
       ],
       [
         "g++",
@@ -109,14 +112,14 @@
         "-DNDEBUG",
         "-pthread",
         "-Wno-invalid-offsetof",
-        "-I/opt/warp-psr/main/.build/PoissonRecon/Src",
-        "-I/opt/warp-psr/main/.build/PoissonRecon",
-        "/opt/warp-psr/main/reference/basis.cpp",
+        "-I/opt/warp-psr/base-zero/.build/PoissonRecon/Src",
+        "-I/opt/warp-psr/base-zero/.build/PoissonRecon",
+        "/opt/warp-psr/base-zero/reference/basis.cpp",
         "-lz",
         "-lpng",
         "-ljpeg",
         "-o",
-        "/opt/warp-psr/main/.build/basis"
+        "/opt/warp-psr/base-zero/.build/basis"
       ],
       [
         "g++",
@@ -126,14 +129,14 @@
         "-pthread",
         "-Wno-invalid-offsetof",
         "-DFAST_COMPILE",
-        "-I/opt/warp-psr/main/.build/PoissonRecon/Src",
-        "-I/opt/warp-psr/main/.build/PoissonRecon",
-        "/opt/warp-psr/main/.build/PoissonRecon/Src/PoissonRecon.cpp",
+        "-I/opt/warp-psr/base-zero/.build/PoissonRecon/Src",
+        "-I/opt/warp-psr/base-zero/.build/PoissonRecon",
+        "/opt/warp-psr/base-zero/.build/PoissonRecon/Src/PoissonRecon.cpp",
         "-lz",
         "-lpng",
         "-ljpeg",
         "-o",
-        "/opt/warp-psr/main/.build/PoissonReconCLI"
+        "/opt/warp-psr/base-zero/.build/PoissonReconCLI"
       ]
     ],
     "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -192,7 +195,7 @@
       "reference_runs": {
         "none": [
           {
-            "solve_seconds": 0.089946569,
+            "solve_seconds": 0.093293058,
             "parallel_async": false,
             "configured_threads": 128,
             "schedule": 1,
@@ -230,7 +233,7 @@
             }
           },
           {
-            "solve_seconds": 0.244114012,
+            "solve_seconds": 0.090850909,
             "parallel_async": false,
             "configured_threads": 128,
             "schedule": 1,
@@ -268,7 +271,7 @@
             }
           },
           {
-            "solve_seconds": 0.09083565,
+            "solve_seconds": 0.091046744,
             "parallel_async": false,
             "configured_threads": 128,
             "schedule": 1,
@@ -308,7 +311,7 @@
         ],
         "async": [
           {
-            "solve_seconds": 1.293011944,
+            "solve_seconds": 1.159311313,
             "parallel_async": true,
             "configured_threads": 128,
             "schedule": 1,
@@ -318,16 +321,16 @@
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 0.012231309966197253,
-                "centered_value": 0.011569450311119871,
-                "scaled_gradient": 0.020479752377977285,
-                "isovalue": 0.0
+                "value": 0.012673283659086812,
+                "centered_value": 0.014722903761796137,
+                "scaled_gradient": 0.016710055008578927,
+                "isovalue": 0.0004982370082756968
               },
               "max_abs_value_error": 2.384185791015625e-07,
-              "rms_value_error": 4.4367032191377446e-08,
-              "max_abs_centered_value_error": 2.384185791015625e-07,
-              "max_abs_cube_gradient_error": 3.308655806999461e-06,
-              "isovalue_error": 0.0
+              "rms_value_error": 4.406535220170454e-08,
+              "max_abs_centered_value_error": 2.682209014892578e-07,
+              "max_abs_cube_gradient_error": 3.4016702272765542e-06,
+              "isovalue_error": 2.9802322387695312e-08
             },
             "against_first_in_mode": {
               "bitwise_equal": true,
@@ -346,7 +349,7 @@
             }
           },
           {
-            "solve_seconds": 1.453206911,
+            "solve_seconds": 1.14313641,
             "parallel_async": true,
             "configured_threads": 128,
             "schedule": 1,
@@ -357,34 +360,34 @@
               "within_budget": true,
               "budget_ratios": {
                 "value": 0.011502279190424316,
-                "centered_value": 0.01774370445761399,
-                "scaled_gradient": 0.021770413324874834,
+                "centered_value": 0.013283362386703544,
+                "scaled_gradient": 0.02067579769044744,
                 "isovalue": 0.0004982370082756968
               },
               "max_abs_value_error": 2.384185791015625e-07,
-              "rms_value_error": 4.7009634617985985e-08,
+              "rms_value_error": 4.808902654264743e-08,
               "max_abs_centered_value_error": 2.682209014892578e-07,
-              "max_abs_cube_gradient_error": 4.186671048955759e-06,
+              "max_abs_cube_gradient_error": 3.3382977651097434e-06,
               "isovalue_error": 2.9802322387695312e-08
             },
             "against_first_in_mode": {
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 0.007496380525650547,
-                "centered_value": 0.013951853604204662,
-                "scaled_gradient": 0.0152593954618992,
-                "isovalue": 0.0004982370082756968
+                "value": 0.00887777132399395,
+                "centered_value": 0.011778780832578412,
+                "scaled_gradient": 0.019207815754719894,
+                "isovalue": 0.0
               },
               "max_abs_value_error": 3.5762786865234375e-07,
-              "rms_value_error": 4.001748432079978e-08,
-              "max_abs_centered_value_error": 3.8743019104003906e-07,
-              "max_abs_cube_gradient_error": 3.1400032867168193e-06,
-              "isovalue_error": 2.9802322387695312e-08
+              "rms_value_error": 4.2328714774050275e-08,
+              "max_abs_centered_value_error": 3.5762786865234375e-07,
+              "max_abs_cube_gradient_error": 3.1072949191468524e-06,
+              "isovalue_error": 0.0
             }
           },
           {
-            "solve_seconds": 1.579263703,
+            "solve_seconds": 1.373661506,
             "parallel_async": true,
             "configured_threads": 128,
             "schedule": 1,
@@ -394,13 +397,13 @@
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 0.01596504564846001,
-                "centered_value": 0.013525784690283335,
-                "scaled_gradient": 0.017409181759631017,
+                "value": 0.013167047957492791,
+                "centered_value": 0.014771645719685214,
+                "scaled_gradient": 0.01474035930488775,
                 "isovalue": 0.0004982370082756968
               },
-              "max_abs_value_error": 2.4586915969848633e-07,
-              "rms_value_error": 4.875464580348843e-08,
+              "max_abs_value_error": 2.384185791015625e-07,
+              "rms_value_error": 4.700633979959644e-08,
               "max_abs_centered_value_error": 2.682209014892578e-07,
               "max_abs_cube_gradient_error": 4.186671048955759e-06,
               "isovalue_error": 2.9802322387695312e-08
@@ -409,24 +412,24 @@
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 0.010579796646998223,
-                "centered_value": 0.01305145258490805,
-                "scaled_gradient": 0.016656176980597907,
-                "isovalue": 0.0004982370082756968
+                "value": 0.010433669391085672,
+                "centered_value": 0.016083099444859656,
+                "scaled_gradient": 0.01784323061684967,
+                "isovalue": 0.0
               },
               "max_abs_value_error": 2.384185791015625e-07,
-              "rms_value_error": 3.905529233101432e-08,
-              "max_abs_centered_value_error": 2.682209014892578e-07,
-              "max_abs_cube_gradient_error": 3.85958737325609e-06,
-              "isovalue_error": 2.9802322387695312e-08
+              "rms_value_error": 3.7862875049384816e-08,
+              "max_abs_centered_value_error": 2.384185791015625e-07,
+              "max_abs_cube_gradient_error": 3.925004108396024e-06,
+              "isovalue_error": 0.0
             }
           }
         ]
       },
       "gpu_runs": [
         {
-          "reconstruction_seconds": 0.5711032077670097,
-          "query_and_readback_seconds": 0.0006129555404186249,
+          "reconstruction_seconds": 0.5749502442777157,
+          "query_and_readback_seconds": 0.0006168000400066376,
           "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
           "against_serial": {
             "bitwise_equal": false,
@@ -460,8 +463,8 @@
           }
         },
         {
-          "reconstruction_seconds": 0.06643056496977806,
-          "query_and_readback_seconds": 0.0004144608974456787,
+          "reconstruction_seconds": 0.0669785626232624,
+          "query_and_readback_seconds": 0.00041162222623825073,
           "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
           "against_serial": {
             "bitwise_equal": false,
@@ -495,8 +498,8 @@
           }
         },
         {
-          "reconstruction_seconds": 0.06551606580615044,
-          "query_and_readback_seconds": 0.00042387843132019043,
+          "reconstruction_seconds": 0.06774317100644112,
+          "query_and_readback_seconds": 0.00041533634066581726,
           "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
           "against_serial": {
             "bitwise_equal": false,
@@ -581,7 +584,7 @@
       "reference_runs": {
         "none": [
           {
-            "solve_seconds": 0.09371512,
+            "solve_seconds": 0.093283021,
             "parallel_async": false,
             "configured_threads": 128,
             "schedule": 1,
@@ -619,7 +622,7 @@
             }
           },
           {
-            "solve_seconds": 0.091527216,
+            "solve_seconds": 0.092506608,
             "parallel_async": false,
             "configured_threads": 128,
             "schedule": 1,
@@ -657,7 +660,7 @@
             }
           },
           {
-            "solve_seconds": 0.091748588,
+            "solve_seconds": 0.091043097,
             "parallel_async": false,
             "configured_threads": 128,
             "schedule": 1,
@@ -697,7 +700,7 @@
         ],
         "async": [
           {
-            "solve_seconds": 1.388529476,
+            "solve_seconds": 0.998833778,
             "parallel_async": true,
             "configured_threads": 128,
             "schedule": 1,
@@ -707,15 +710,15 @@
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 2.100232547634668e-08,
-                "centered_value": 5.409261186389619e-08,
-                "scaled_gradient": 3.314107114746697e-08,
+                "value": 1.6025907328245137e-08,
+                "centered_value": 5.801706300671063e-08,
+                "scaled_gradient": 3.909293698619573e-08,
                 "isovalue": 2.1749685045823738e-10
               },
-              "max_abs_value_error": 7.771561172376096e-16,
-              "rms_value_error": 1.9499200084206945e-16,
-              "max_abs_centered_value_error": 8.881784197001252e-16,
-              "max_abs_cube_gradient_error": 1.4921397450962104e-13,
+              "max_abs_value_error": 8.326672684688674e-16,
+              "rms_value_error": 1.5264338634943605e-16,
+              "max_abs_centered_value_error": 9.43689570931383e-16,
+              "max_abs_cube_gradient_error": 1.2789769243681803e-13,
               "isovalue_error": 1.1102230246251565e-16
             },
             "against_first_in_mode": {
@@ -735,7 +738,7 @@
             }
           },
           {
-            "solve_seconds": 1.43318769,
+            "solve_seconds": 0.988067163,
             "parallel_async": true,
             "configured_threads": 128,
             "schedule": 1,
@@ -745,35 +748,35 @@
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 7.765229111828419e-09,
-                "centered_value": 5.029184275092489e-08,
-                "scaled_gradient": 4.693857831906547e-08,
-                "isovalue": 2.1749685045823738e-10
+                "value": 9.459460918045528e-09,
+                "centered_value": 7.684824306345957e-08,
+                "scaled_gradient": 4.463899379046572e-08,
+                "isovalue": 4.3499370091647476e-10
               },
-              "max_abs_value_error": 7.771561172376096e-16,
-              "rms_value_error": 1.1955831558090955e-16,
-              "max_abs_centered_value_error": 8.881784197001252e-16,
-              "max_abs_cube_gradient_error": 1.2789769243681803e-13,
-              "isovalue_error": 1.1102230246251565e-16
+              "max_abs_value_error": 9.43689570931383e-16,
+              "rms_value_error": 1.6659361546493026e-16,
+              "max_abs_centered_value_error": 1.1657341758564144e-15,
+              "max_abs_cube_gradient_error": 1.7763568394002505e-13,
+              "isovalue_error": 2.220446049250313e-16
             },
             "against_first_in_mode": {
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 2.100232547634624e-08,
-                "centered_value": 3.976513889071839e-08,
-                "scaled_gradient": 5.626578538761864e-08,
-                "isovalue": 0.0
+                "value": 2.134107266144937e-08,
+                "centered_value": 7.423001209926799e-08,
+                "scaled_gradient": 4.2983302936477203e-08,
+                "isovalue": 2.1749685045823736e-10
               },
-              "max_abs_value_error": 9.992007221626409e-16,
-              "rms_value_error": 1.633990660243973e-16,
-              "max_abs_centered_value_error": 8.881784197001252e-16,
-              "max_abs_cube_gradient_error": 1.2079226507921703e-13,
-              "isovalue_error": 0.0
+              "max_abs_value_error": 7.216449660063518e-16,
+              "rms_value_error": 2.1409837600865818e-16,
+              "max_abs_centered_value_error": 8.326672684688674e-16,
+              "max_abs_cube_gradient_error": 9.237055564881302e-14,
+              "isovalue_error": 1.1102230246251565e-16
             }
           },
           {
-            "solve_seconds": 1.173613997,
+            "solve_seconds": 1.071422112,
             "parallel_async": true,
             "configured_threads": 128,
             "schedule": 1,
@@ -783,30 +786,30 @@
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 1.3549887404094631e-08,
-                "centered_value": 6.035021130110987e-08,
-                "scaled_gradient": 4.322276416367347e-08,
+                "value": 8.823778793843709e-09,
+                "centered_value": 5.655890652312969e-08,
+                "scaled_gradient": 5.7472843498416435e-08,
                 "isovalue": 2.1749685045823738e-10
               },
-              "max_abs_value_error": 7.771561172376096e-16,
-              "rms_value_error": 1.4854062828907346e-16,
-              "max_abs_centered_value_error": 8.881784197001252e-16,
-              "max_abs_cube_gradient_error": 1.5631940186722204e-13,
+              "max_abs_value_error": 6.661338147750939e-16,
+              "rms_value_error": 1.246981775753845e-16,
+              "max_abs_centered_value_error": 7.771561172376096e-16,
+              "max_abs_cube_gradient_error": 1.7053025658242404e-13,
               "isovalue_error": 1.1102230246251565e-16
             },
             "against_first_in_mode": {
               "bitwise_equal": false,
               "within_budget": true,
               "budget_ratios": {
-                "value": 7.45243807225189e-09,
-                "centered_value": 5.456080072175575e-08,
-                "scaled_gradient": 4.286916981913801e-08,
+                "value": 9.100138332118953e-09,
+                "centered_value": 6.598539094365192e-08,
+                "scaled_gradient": 5.878386938627001e-08,
                 "isovalue": 0.0
               },
-              "max_abs_value_error": 8.326672684688674e-16,
-              "rms_value_error": 1.3016349262444361e-16,
-              "max_abs_centered_value_error": 8.326672684688674e-16,
-              "max_abs_cube_gradient_error": 9.237055564881302e-14,
+              "max_abs_value_error": 7.771561172376096e-16,
+              "rms_value_error": 1.1701103522439391e-16,
+              "max_abs_centered_value_error": 7.771561172376096e-16,
+              "max_abs_cube_gradient_error": 9.592326932761353e-14,
               "isovalue_error": 0.0
             }
           }
@@ -814,8 +817,8 @@
       },
       "gpu_runs": [
         {
-          "reconstruction_seconds": 0.7894733063876629,
-          "query_and_readback_seconds": 0.00044511258602142334,
+          "reconstruction_seconds": 2.2800320088863373,
+          "query_and_readback_seconds": 0.0005356408655643463,
           "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
           "against_serial": {
             "bitwise_equal": false,
@@ -849,8 +852,8 @@
           }
         },
         {
-          "reconstruction_seconds": 0.22747526317834854,
-          "query_and_readback_seconds": 0.0003519915044307709,
+          "reconstruction_seconds": 0.11664430797100067,
+          "query_and_readback_seconds": 0.00033805519342422485,
           "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
           "against_serial": {
             "bitwise_equal": false,
@@ -884,8 +887,8 @@
           }
         },
         {
-          "reconstruction_seconds": 0.11398980021476746,
-          "query_and_readback_seconds": 0.0003638714551925659,
+          "reconstruction_seconds": 0.12089525535702705,
+          "query_and_readback_seconds": 0.00035871192812919617,
           "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
           "against_serial": {
             "bitwise_equal": false,
