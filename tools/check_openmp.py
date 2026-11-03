@@ -72,7 +72,8 @@ def main(args):
                      and r['effective_threads'] == threads for r in runs)
         entries.append({**provenance, 'fixture': name, 'parameters': parameters, 'runs': runs, 'passed': passed})
         print(name, 'PASS' if passed else 'FAIL', flush=True)
-    report = {'scope': 'OpenMP variability is separate from the unchanged serial/GPU acceptance budgets',
+    report = {'scope': 'OpenMP compatibility is separate from the unchanged serial/GPU acceptance budgets; repeatability requires multiple runs',
+              'repeats':args.repeats,'repeatability_measured':args.repeats>1,
               'execution_environment': environment, 'requested_threads': threads,
               'build': json.loads((ROOT/'.build/build.json').read_text()),
               'source_revision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
@@ -90,6 +91,6 @@ if __name__ == '__main__':
     parser.add_argument('--repeats', type=int, default=3)
     parser.add_argument('--output', type=Path, default=ROOT/'.build/openmp-validation.json')
     args = parser.parse_args()
-    if args.repeats < 2 or (args.threads is not None and args.threads < 1):
-        parser.error('Require at least two repeats and positive thread count')
+    if args.repeats < 1 or (args.threads is not None and args.threads < 1):
+        parser.error('Require at least one run and positive thread count')
     raise SystemExit(main(args))
