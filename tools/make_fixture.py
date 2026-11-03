@@ -84,7 +84,7 @@ def generate(args):
     np.savetxt(out/"queries.txt", q, fmt="%.17g")
     command_args = [str(out/"input.pts"), str(out/"queries.txt"), "OUTPUT", *oracle_parameters(vars(args))]
     timings = {}
-    environment={**os.environ, "WARP_PSR_ORACLE_DIR": str(out)}
+    environment={**os.environ, "WARP_PSR_ORACLE_DIR": str(out), "WARP_PSR_REFERENCE_PARALLELISM":"none"}
     # The pilot exports support cells used only to choose offline diagnostic
     # queries. Both final drivers independently solve again on the full query set.
     command_args[2] = str(out/'pilot.txt')
@@ -125,6 +125,7 @@ def generate(args):
         "input_sha256": checksum(out/"input.pts"), "queries_sha256": checksum(out/"queries.txt"),
         "input_order": "file order; seeded numpy Generator", "seed": args.seed,
         "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {key:int(baseline[key][0,0]) for key in ("parallel_async","threads","schedule","chunk_size")},
         "instrumentation_max_abs_error": 0.0, "timings_seconds": timings,
         "grid": {"resolution": args.grid, "cube_min": .001, "cube_max": .999, "order": "ij, z fastest"},
         "query_families":ranges, "query_coverage":coverage,

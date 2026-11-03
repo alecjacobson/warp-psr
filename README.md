@@ -115,7 +115,15 @@ inputs in both precisions. Named queries cover every integration depth, both
 sides of refinement interfaces, cube boundaries, and regions far from samples.
 Reports include raw and isovalue-centered fields and per-family gradient errors.
 
-Remaining work includes complete ghost/flag metadata, repeatability and
+The [repeatability report](docs/results/repeatability.json) compares three fresh
+GPU solves with three serial and three default-parallel official solves on a
+float32 sphere and a float64 cluster. It records canonical active-basis hashes,
+raw/centered fields, gradients, isovalues, and the actual thread settings.
+Parallel variation is measured separately from the fixed serial compatibility
+budgets. Run `python -m tools.check_repeatability` after generating the fixtures;
+it is also included in `tools.validate`.
+
+Remaining work includes complete ghost/flag metadata and
 threshold-sensitive input families, base-depth-zero support, and broader
 performance experiments. Two Warp float64
 issues have tested upstream proposals: [built-in B-spline gradients](https://github.com/NVIDIA/warp/pull/2219)

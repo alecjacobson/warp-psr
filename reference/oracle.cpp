@@ -49,6 +49,10 @@ template<class Real> int run(int argc, char** argv) {
         timing<<std::setprecision(17)<<std::chrono::duration<double>(stop-start).count()<<'\n';
     }
     std::ofstream out(argv[3]); out<<std::setprecision(17);
+    out<<"parallel_async "<<(ThreadPool::ParallelizationType==ThreadPool::ASYNC)<<'\n';
+    out<<"threads "<<ThreadPool::NumThreads()<<'\n';
+    out<<"schedule "<<int(ThreadPool::Schedule)<<'\n';
+    out<<"chunk_size "<<ThreadPool::ChunkSize<<'\n';
     out<<"iso "<<result->isoValue<<'\n';
     out<<"transform";
     for(int i=0;i<4;i++) for(int j=0;j<4;j++) out<<' '<<result->unitCubeToModel(i,j);
@@ -75,6 +79,13 @@ int main(int argc,char** argv) {
     if(argc!=10 && argc!=17) { std::cerr<<"input queries output depth full-depth point-weight exact iterations float|double [base-depth solve-depth kernel-depth scale samples-per-node cg-accuracy base-v-cycles]\n"; return 2; }
     ThreadPool::ParallelizationType=ThreadPool::NONE;
     Reconstructor::ProfilerMS=0;
-    try { return std::string(argv[9])=="double" ? run<double>(argc,argv) : run<float>(argc,argv); }
+    try {
+        if(const char* setting=std::getenv("WARP_PSR_REFERENCE_PARALLELISM")) {
+            std::string name(setting);
+            if(name=="async") ThreadPool::ParallelizationType=ThreadPool::ASYNC;
+            else if(name!="none") throw std::runtime_error("Reference parallelism must be none or async");
+        }
+        return std::string(argv[9])=="double" ? run<double>(argc,argv) : run<float>(argc,argv);
+    }
     catch(const std::exception& e) { std::cerr<<e.what()<<'\n'; return 1; }
 }
