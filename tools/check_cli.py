@@ -14,7 +14,7 @@ def check(directory):
     if m["precision"]!="float":
         raise ValueError("Official FAST_COMPILE CLI uses float32")
     command=[str(ROOT/".build/PoissonReconCLI"),"--in",str(directory/"input.pts"),"--grid",str(directory/"official.grid"),
-             "--out",str(directory/"official.ply"),"--depth",str(p["depth"]),"--fullDepth",str(p["full_depth"]),
+             "--depth",str(p["depth"]),"--fullDepth",str(p["full_depth"]),
              "--baseDepth",str(p["base_depth"]),"--solveDepth",str(p["solve_depth"]),"--kernelDepth",str(p["kernel_depth"]),
              "--pointWeight",str(p["weight"]),"--scale",str(p["scale"]),"--samplesPerNode",str(p["samples_per_node"]),"--iters",str(p["iters"]),
              "--cgAccuracy",str(p["cg_accuracy"]),"--baseVCycles",str(p["base_v_cycles"]),"--parallel","1","--alignDir","0","--verbose"]

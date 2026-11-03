@@ -9,7 +9,7 @@ from tools.check_profiles import PROFILE_CASES
 
 @pytest.mark.cuda
 @pytest.mark.reference
-@pytest.mark.parametrize('name',['sphere','sphere-psr','sphere-exact','sparse','torus']+['profile-'+case for case in PROFILE_CASES])
+@pytest.mark.parametrize('name',['sphere','sphere-psr','sphere-exact','sparse','torus','sphere-double','sphere-psr-double','sphere-exact-double','sparse-double','torus-double']+['profile-'+case for case in PROFILE_CASES])
 def test_independent_reconstruction(name):
     wp.init()
     if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
