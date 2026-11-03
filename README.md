@@ -109,17 +109,18 @@ basis extension.
 ## Performance
 
 On an NVIDIA L40, quadrature reuse, occupied-cell point assembly, indexed
-relaxation, and per-level integration reduce the 100,000-point warm median
-from **2.68 s to 1.05 s** and peak device-pool usage from **19.46 GiB to
+relaxation with reusable launch commands, and per-level integration reduce the 100,000-point warm median
+from **2.68 s to 0.75 s** and peak device-pool usage from **19.46 GiB to
 7.30 GiB**. This follows the earlier tree optimization from 496 ms to 34 ms.
 
 | Torus samples | Depth / full depth | Basis coefficients | Integration cells | Warp warm median | Official serial median | Peak device pool |
 | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 100,000 | 8 / 4 | 911,002 | 1,223,993 | 1.05 s | 2.52 s | 7.30 GiB |
-| 1,000,000 | 8 / 4 | 963,898 | 1,265,874 | 1.15 s | 3.09 s | 7.78 GiB |
-| 1,000,000 | 9 / 4 | 3,770,690 | 5,035,948 | 3.68 s | 12.30 s | 31.22 GiB |
+| 100,000 | 8 / 4 | 911,002 | 1,223,993 | 0.75 s | 2.52 s | 7.30 GiB |
+| 1,000,000 | 8 / 4 | 963,898 | 1,265,874 | 0.84 s | 3.09 s | 7.78 GiB |
+| 1,000,000 | 9 / 4 | 3,770,690 | 5,035,948 | 3.13 s | 12.30 s | 31.22 GiB |
 
-The [current per-level measurements](docs/results/level-performance.json),
+The [current launch-reuse measurements](docs/results/launch-performance.json),
+[per-level measurements](docs/results/level-performance.json),
 [quadrature measurements](docs/results/fem-performance.json), and
 [earlier tree measurements](docs/results/tree-performance.json) include Python
 orchestration and exclude input upload and queries. Warm medians use three runs
