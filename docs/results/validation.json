@@ -6,7 +6,7 @@
     "reference/basis.cpp": "471669170dbc9d7ac83f52933ed518879adce1904797abd2d2b3fa6205e6bb05",
     "reference/cells.py": "1edd0a2abf14a3e1c10dc58162b454c20a10fa26c4bb0fcad2fdff0f5702005f",
     "reference/operator_export.inc": "9303320e9717646f57a8388a97e5230f1bc2edd6a9474136023553a76308bf99",
-    "reference/oracle.cpp": "3a706f93a54fdc50208dfed0e46ed6e42f476a7c7fd947516d7ec9ccdfcc86be",
+    "reference/oracle.cpp": "681cc450793b5cd08cded564a5fdac92f1357c0780090e248cf91807b705a1f9",
     "reference/preprocess_export.inc": "73f187710ec0ad3b4417d3e6c821cf009f0a351332e15d4a42f469d69d4576ca",
     "reference/queries.py": "89a2042db40d916b23f3d4a39cf558b198d0510b8c548d8e5e11c821298622c9",
     "reference/splat_export.inc": "89f8f29f299c6bd143a944d15e14ca672ccc13831ecb7895925208670dcfc7a6",
@@ -35,12 +35,13 @@
     "tests/test_preprocessing.py": "08c7111895d60a66e72c6420409e5d5b8b168d9c62fddb043d090d6079fe11c2",
     "tests/test_query_coverage.py": "980329edd770a692d1a811e4ce30ec24f838ad4b7dd1aee0e7ba5c4d255758a7",
     "tests/test_reconstruction.py": "9db320db2fe4b629346e6874b368a24768146574316783aa08f975c46ac4de69",
-    "tests/test_reference_profiles.py": "990b841f966ddd3edfa549dd15fbf6dc99f1f768050503e2fc8ae18df6c56328",
+    "tests/test_reference_profiles.py": "03249ea7c9b3afea15393e067cd5023fbea7b09f6b6de9dd5cdd53b449c99d3a",
     "tests/test_relaxation.py": "b315b9d56c4ac532145c9b35556cb6f6c3b6d89e68aaf5225df9858bacf51e01",
+    "tests/test_repeatability.py": "3ee26d419845f62b2c62e27614eb55036cdfc6cbbca7b5787c2233350788e2b8",
     "tests/test_samples.py": "9507df6590b6af68d3a026a9b67df38d01a579223f4bfe025046a22437611025",
     "tests/test_uniform.py": "d939abe937169a568661cf78580643b27bf4128d8f6caa675444b85b6549fc47",
     "tools/benchmark.py": "b8ad2638875ae49b838d692805f2622cd9228548f5a53a1544bc5e84e0d82ea1",
-    "tools/benchmark_reference.py": "77fef4cd4c27a9ab7916a19add441f98bef11fa7e8701cd5d1ce8d4b8dacb2f2",
+    "tools/benchmark_reference.py": "76b336f1f74417ad4340cd7e279f5d5093d5599d1f32266afff31746c7fbc8ca",
     "tools/build_reference.py": "21c19eea9b49be52129344aac9404045d85aa5fad25fa7ccdb68b88f74f3aa35",
     "tools/check_cli.py": "dfa036119efd165e46e84596d0dd4f2f1b427cb10a6b9c7ffa184805a09d61b3",
     "tools/check_environment.py": "80fd563e1e907128599df22b341938f96a146d22bc47e666d28ec3bd260c2701",
@@ -48,9 +49,10 @@
     "tools/check_geometry_profiles.py": "00fbf546c03a2b5057b564273cc442378cb54809024eea0374ce94e050cf191a",
     "tools/check_profiles.py": "00d823e4ab7e3cf17103d102520907fd07e9f4085351cf83fdb6b2af47cc2d2c",
     "tools/check_reconstruction.py": "436c91fe03fb35f18dd620145dac6911df7885e0e05246c0820b528503b12cba",
-    "tools/make_fixture.py": "b6e009071c42f2cc5d1636d463763ddd162dabdbc1360375afe235ca8147f598",
+    "tools/check_repeatability.py": "c7e4b2f89c5b203194af7e9017683e561622f3241a48e4368e9dd2b8f1b6e270",
+    "tools/make_fixture.py": "01391290cea8c75e75de25209d8af112380a397a6ae7f249e7a366a25305fd08",
     "tools/render_comparison.py": "9a17165b8c400011feb08ced19cf85e682addd69642ca1c1a9311f76c5afc869",
-    "tools/validate.py": "bf98ed32192e0b34d0aa688e336551d627942c56396df8d00e91cb2dc61423ae"
+    "tools/validate.py": "e8ab266b67a50ea3954b67393c6a1302bf93eab3e2ad2862575b1f96efefdf76"
   },
   "fixtures": [
     {
@@ -64,7 +66,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -81,14 +83,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -98,14 +100,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -114,14 +116,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -131,14 +133,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -180,11 +182,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.15137814730405807,
-          "oracle": 0.13994676992297173,
-          "oracle_instrumented": 0.21297645568847656
+          "query_coverage_pilot": 0.15275779366493225,
+          "oracle": 0.14006490260362625,
+          "oracle_instrumented": 0.21289632096886635
         },
         "grid": {
           "resolution": 24,
@@ -264,7 +272,7 @@
         "grid_values": 4096,
         "max_abs_value_error": 6.556510925292969e-07,
         "command": [
-          "/opt/warp-psr/normal-levels/.build/PoissonReconCLI",
+          "/opt/warp-psr/repeatability/.build/PoissonReconCLI",
           "--in",
           "/opt/warp-psr/build/fixtures/sphere/input.pts",
           "--grid",
@@ -301,7 +309,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -459,19 +467,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.014197275042533875,
-            "density": 0.014378957450389862,
-            "normal_field": 0.0057139769196510315,
-            "tree": 0.008566517382860184,
-            "integration_grid": 0.02132335677742958,
-            "assembly_and_solve": 0.4999648965895176
+            "samples": 0.013445675373077393,
+            "density": 0.01432684063911438,
+            "normal_field": 0.005698654800653458,
+            "tree": 0.008511222898960114,
+            "integration_grid": 0.019858282059431076,
+            "assembly_and_solve": 0.49447620287537575
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.004743322730064392,
+          "measured_host_sync_seconds": 0.0037681497633457184,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -529,7 +537,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -546,14 +554,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -563,14 +571,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -579,14 +587,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -596,14 +604,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -645,11 +653,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.09819988533854485,
-          "oracle": 0.08603889122605324,
-          "oracle_instrumented": 0.15442175790667534
+          "query_coverage_pilot": 0.09875565394759178,
+          "oracle": 0.08686934038996696,
+          "oracle_instrumented": 0.15488921478390694
         },
         "grid": {
           "resolution": 16,
@@ -729,7 +743,7 @@
         "grid_values": 4096,
         "max_abs_value_error": 5.438923835754395e-07,
         "command": [
-          "/opt/warp-psr/normal-levels/.build/PoissonReconCLI",
+          "/opt/warp-psr/repeatability/.build/PoissonReconCLI",
           "--in",
           "/opt/warp-psr/build/fixtures/sphere-exact/input.pts",
           "--grid",
@@ -767,7 +781,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -925,19 +939,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.021530412137508392,
-            "density": 0.014550238847732544,
-            "normal_field": 0.00583837553858757,
-            "tree": 0.008641012012958527,
-            "integration_grid": 0.020373281091451645,
-            "assembly_and_solve": 0.32804103195667267
+            "samples": 0.015242695808410645,
+            "density": 0.01733972877264023,
+            "normal_field": 0.006163857877254486,
+            "tree": 0.009286083281040192,
+            "integration_grid": 0.02223912626504898,
+            "assembly_and_solve": 0.3641469217836857
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.003836236894130707,
+          "measured_host_sync_seconds": 0.00399017333984375,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "empty constraints in pinned reference (issue #16)",
           "cube_to_model": [
@@ -995,7 +1009,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -1012,14 +1026,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -1029,14 +1043,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -1045,14 +1059,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -1062,14 +1076,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -1111,11 +1125,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.0987960733473301,
-          "oracle": 0.08704790845513344,
-          "oracle_instrumented": 0.15284541249275208
+          "query_coverage_pilot": 0.09621207043528557,
+          "oracle": 0.0854794830083847,
+          "oracle_instrumented": 0.15317115560173988
         },
         "grid": {
           "resolution": 16,
@@ -1193,7 +1213,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -1351,19 +1371,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.012493971735239029,
-            "density": 0.015310358256101608,
-            "normal_field": 0.005886778235435486,
-            "tree": 0.008583161979913712,
-            "integration_grid": 0.020393695682287216,
-            "assembly_and_solve": 0.3337918855249882
+            "samples": 0.01268182322382927,
+            "density": 0.0151650570333004,
+            "normal_field": 0.005748104304075241,
+            "tree": 0.00848538801074028,
+            "integration_grid": 0.019299663603305817,
+            "assembly_and_solve": 0.3295791633427143
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.0038421377539634705,
+          "measured_host_sync_seconds": 0.0037330910563468933,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -1421,7 +1441,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -1438,14 +1458,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -1455,14 +1475,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -1471,14 +1491,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -1488,14 +1508,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -1537,11 +1557,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.0756363645195961,
-          "oracle": 0.07161194458603859,
-          "oracle_instrumented": 0.07429038733243942
+          "query_coverage_pilot": 0.07643454894423485,
+          "oracle": 0.07241848111152649,
+          "oracle_instrumented": 0.07464410364627838
         },
         "grid": {
           "resolution": 8,
@@ -1610,7 +1636,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -1738,18 +1764,18 @@
           ],
           "integration_cells": 64,
           "timings_seconds": {
-            "samples": 0.01429855078458786,
-            "density": 0.015369277447462082,
-            "normal_field": 0.005669265985488892,
-            "tree": 0.006572965532541275,
-            "integration_grid": 0.01825530454516411,
-            "assembly_and_solve": 0.45906463637948036
+            "samples": 0.01619681715965271,
+            "density": 0.015370454639196396,
+            "normal_field": 0.005685195326805115,
+            "tree": 0.006578993052244186,
+            "integration_grid": 0.01841430738568306,
+            "assembly_and_solve": 0.4509842097759247
           },
           "operator_integration_cells": {
             "1": 8,
             "2": 64
           },
-          "measured_host_sync_seconds": 0.0035630501806735992,
+          "measured_host_sync_seconds": 0.0018767192959785461,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -1807,7 +1833,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -1824,14 +1850,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -1841,14 +1867,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -1857,14 +1883,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -1874,14 +1900,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -1923,11 +1949,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.10248879715800285,
-          "oracle": 0.08876699581742287,
-          "oracle_instrumented": 0.15640166029334068
+          "query_coverage_pilot": 0.10071836039423943,
+          "oracle": 0.0893191508948803,
+          "oracle_instrumented": 0.15675938874483109
         },
         "grid": {
           "resolution": 16,
@@ -2005,7 +2037,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -2163,19 +2195,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.0159885473549366,
-            "density": 0.014563899487257004,
-            "normal_field": 1.0293123461306095,
-            "tree": 0.009676270186901093,
-            "integration_grid": 0.018962495028972626,
-            "assembly_and_solve": 0.31476039066910744
+            "samples": 0.013218536972999573,
+            "density": 0.015002463012933731,
+            "normal_field": 0.005969967693090439,
+            "tree": 0.00831478089094162,
+            "integration_grid": 0.019823983311653137,
+            "assembly_and_solve": 0.3152369558811188
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.0024031810462474823,
+          "measured_host_sync_seconds": 0.0039174556732177734,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -2233,7 +2265,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -2250,14 +2282,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -2267,14 +2299,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -2283,14 +2315,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -2300,14 +2332,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -2349,11 +2381,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.13808954134583473,
-          "oracle": 0.12368151172995567,
-          "oracle_instrumented": 0.19685712456703186
+          "query_coverage_pilot": 0.13355018571019173,
+          "oracle": 0.12046753615140915,
+          "oracle_instrumented": 0.19231251627206802
         },
         "grid": {
           "resolution": 16,
@@ -2431,7 +2469,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -2589,19 +2627,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.012410320341587067,
-            "density": 0.015435848385095596,
-            "normal_field": 0.006082452833652496,
-            "tree": 0.008607763797044754,
-            "integration_grid": 0.02032637968659401,
-            "assembly_and_solve": 0.5205022990703583
+            "samples": 0.012106120586395264,
+            "density": 0.015234999358654022,
+            "normal_field": 0.006050784140825272,
+            "tree": 0.008585378527641296,
+            "integration_grid": 0.020082123577594757,
+            "assembly_and_solve": 0.5130822509527206
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.004224967211484909,
+          "measured_host_sync_seconds": 0.004080150276422501,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -2659,7 +2697,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -2676,14 +2714,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -2693,14 +2731,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -2709,14 +2747,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -2726,14 +2764,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -2775,11 +2813,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.10567513480782509,
-          "oracle": 0.09482873976230621,
-          "oracle_instrumented": 0.16176926344633102
+          "query_coverage_pilot": 0.10289696231484413,
+          "oracle": 0.09069907665252686,
+          "oracle_instrumented": 0.1574249118566513
         },
         "grid": {
           "resolution": 16,
@@ -2857,7 +2901,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -3015,19 +3059,19 @@
           ],
           "integration_cells": 4040,
           "timings_seconds": {
-            "samples": 0.014234602451324463,
-            "density": 0.01625746861100197,
-            "normal_field": 0.0061870962381362915,
-            "tree": 0.008769582957029343,
-            "integration_grid": 0.021252945065498352,
-            "assembly_and_solve": 0.3461000956594944
+            "samples": 0.015577293932437897,
+            "density": 0.014743246138095856,
+            "normal_field": 0.006259523332118988,
+            "tree": 0.008737992495298386,
+            "integration_grid": 0.021415863186120987,
+            "assembly_and_solve": 0.32954633235931396
           },
           "operator_integration_cells": {
             "2": 64,
             "3": 512,
             "4": 4040
           },
-          "measured_host_sync_seconds": 0.004374537616968155,
+          "measured_host_sync_seconds": 0.003363925963640213,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "empty constraints in pinned reference (issue #16)",
           "cube_to_model": [
@@ -3085,7 +3129,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -3102,14 +3146,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -3119,14 +3163,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -3135,14 +3179,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -3152,14 +3196,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -3201,11 +3245,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.08696587011218071,
-          "oracle": 0.08744289726018906,
-          "oracle_instrumented": 0.08805925771594048
+          "query_coverage_pilot": 0.0867711529135704,
+          "oracle": 0.08582918345928192,
+          "oracle_instrumented": 0.087609201669693
         },
         "grid": {
           "resolution": 8,
@@ -3274,7 +3324,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -3402,18 +3452,18 @@
           ],
           "integration_cells": 64,
           "timings_seconds": {
-            "samples": 0.014980446547269821,
-            "density": 0.020289789885282516,
-            "normal_field": 0.00589192658662796,
-            "tree": 0.006859883666038513,
-            "integration_grid": 0.019855622202157974,
-            "assembly_and_solve": 0.4874121621251106
+            "samples": 0.012982260435819626,
+            "density": 0.016066357493400574,
+            "normal_field": 0.005616467446088791,
+            "tree": 0.006427425891160965,
+            "integration_grid": 0.017907124012708664,
+            "assembly_and_solve": 0.43619397282600403
           },
           "operator_integration_cells": {
             "1": 8,
             "2": 64
           },
-          "measured_host_sync_seconds": 0.003575313836336136,
+          "measured_host_sync_seconds": 0.0033375099301338196,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -3471,7 +3521,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -3488,14 +3538,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -3505,14 +3555,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -3521,14 +3571,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -3538,14 +3588,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -3587,11 +3637,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.5035898759961128,
-          "oracle": 0.3589586243033409,
-          "oracle_instrumented": 0.49281078577041626
+          "query_coverage_pilot": 0.5099074207246304,
+          "oracle": 0.3520726375281811,
+          "oracle_instrumented": 0.500798974186182
         },
         "grid": {
           "resolution": 24,
@@ -3671,7 +3727,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -3853,12 +3909,12 @@
           ],
           "integration_cells": 69861,
           "timings_seconds": {
-            "samples": 0.012127302587032318,
-            "density": 0.017708152532577515,
-            "normal_field": 0.010551746934652328,
-            "tree": 0.011320777237415314,
-            "integration_grid": 0.023508861660957336,
-            "assembly_and_solve": 0.6537137627601624
+            "samples": 0.013800527900457382,
+            "density": 0.016522075980901718,
+            "normal_field": 0.010601222515106201,
+            "tree": 0.011385176330804825,
+            "integration_grid": 0.024348102509975433,
+            "assembly_and_solve": 0.6517237760126591
           },
           "operator_integration_cells": {
             "3": 512,
@@ -3866,7 +3922,7 @@
             "5": 19062,
             "6": 69861
           },
-          "measured_host_sync_seconds": 0.009103193879127502,
+          "measured_host_sync_seconds": 0.009316492825746536,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -3924,7 +3980,7 @@
           "warp_version": "1.19.0",
           "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "application_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -3941,14 +3997,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle"
+              "/opt/warp-psr/repeatability/.build/oracle"
             ],
             [
               "g++",
@@ -3958,14 +4014,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr/.build/instrumented",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-I/opt/warp-psr/repeatability/.build/instrumented",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/oracle.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+              "/opt/warp-psr/repeatability/.build/oracle_instrumented"
             ],
             [
               "g++",
@@ -3974,14 +4030,14 @@
               "-DNDEBUG",
               "-pthread",
               "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/reference/basis.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/basis"
+              "/opt/warp-psr/repeatability/.build/basis"
             ],
             [
               "g++",
@@ -3991,14 +4047,14 @@
               "-pthread",
               "-Wno-invalid-offsetof",
               "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+              "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+              "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
               "-lz",
               "-lpng",
               "-ljpeg",
               "-o",
-              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+              "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
             ]
           ],
           "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
@@ -4040,11 +4096,17 @@
           "confidence": false
         },
         "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 1.2991944886744022,
-          "oracle": 1.1897739246487617,
-          "oracle_instrumented": 1.3137235753238201
+          "query_coverage_pilot": 1.4764717556536198,
+          "oracle": 1.1314506642520428,
+          "oracle_instrumented": 1.2966926470398903
         },
         "grid": {
           "resolution": 64,
@@ -4124,7 +4186,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "260b7dbb65aa70be4ce32cfabc1dd8f4701e1874",
+        "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -4306,12 +4368,12 @@
           ],
           "integration_cells": 69861,
           "timings_seconds": {
-            "samples": 0.022685565054416656,
-            "density": 0.018305208534002304,
-            "normal_field": 0.0072060078382492065,
-            "tree": 0.011508990079164505,
-            "integration_grid": 0.025863151997327805,
-            "assembly_and_solve": 0.6583002097904682
+            "samples": 0.013243459165096283,
+            "density": 0.01706346496939659,
+            "normal_field": 0.0071667879819869995,
+            "tree": 0.01118156686425209,
+            "integration_grid": 0.022533126175403595,
+            "assembly_and_solve": 0.677520390599966
           },
           "operator_integration_cells": {
             "3": 512,
@@ -4319,7 +4381,7 @@
             "5": 19062,
             "6": 69861
           },
-          "measured_host_sync_seconds": 0.006023980677127838,
+          "measured_host_sync_seconds": 0.005760643631219864,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -4371,7 +4433,7 @@
     "built-in B-spline FEM issue #8 (application basis supports float64)",
     "base-depth-zero profile",
     "complete ghost flags and parent/child metadata",
-    "repeatability and threshold-sensitive input families",
+    "threshold-sensitive input families",
     "distribution/density performance scaling"
   ]
 }

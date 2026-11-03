@@ -1,5 +1,6 @@
 """Explicit oracle defaults preserve the previously frozen reference run."""
 import json
+import os
 import subprocess
 import numpy as np
 import pytest
@@ -16,7 +17,10 @@ def test_explicit_defaults_match_legacy_oracle_arguments(tmp_path):
     results=[]
     for name,settings in [('legacy',arguments[:6]),('explicit',arguments)]:
         output=tmp_path/(name+'.txt')
-        subprocess.run([str(ROOT/'.build/oracle'),str(directory/'input.pts'),str(directory/'queries.txt'),str(output),*settings],check=True)
+        environment={**os.environ,'WARP_PSR_REFERENCE_PARALLELISM':'none'}
+        subprocess.run([str(ROOT/'.build/oracle'),str(directory/'input.pts'),str(directory/'queries.txt'),str(output),*settings],env=environment,check=True)
         results.append(read_output(output))
+        assert results[-1]['parallel_async'][0,0]==0
+        assert results[-1]['threads'][0,0]>=1
     for key in ('q','iso','transform'):
         np.testing.assert_array_equal(results[0][key],results[1][key])

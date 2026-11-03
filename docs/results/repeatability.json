@@ -1,0 +1,924 @@
+{
+  "scope": "Separate serial/default-async official reference and GPU repeatability measurements",
+  "parallel_policy": "Parallel variability is reported separately; serial compatibility budgets stay fixed.",
+  "reference_parallel_mode": "Default CLI backend for the pinned build without OpenMP: ASYNC, dynamic schedule, hardware thread count",
+  "timing_scope": "Reference times cover Solver::Solve only; GPU timings separately cover reconstruction and queries with readback; first invocations may compile kernels",
+  "source_revision": "a178920080e090f9995a5971e725f939ddad359d",
+  "source_dirty": false,
+  "source_sha256": {
+    "reference/adapter.py": "5aedcc2691fc5b48a6fd0df48f75ee617067956159fef0ebdf41e09cc2b8127d",
+    "reference/basis.cpp": "471669170dbc9d7ac83f52933ed518879adce1904797abd2d2b3fa6205e6bb05",
+    "reference/cells.py": "1edd0a2abf14a3e1c10dc58162b454c20a10fa26c4bb0fcad2fdff0f5702005f",
+    "reference/operator_export.inc": "9303320e9717646f57a8388a97e5230f1bc2edd6a9474136023553a76308bf99",
+    "reference/oracle.cpp": "681cc450793b5cd08cded564a5fdac92f1357c0780090e248cf91807b705a1f9",
+    "reference/preprocess_export.inc": "73f187710ec0ad3b4417d3e6c821cf009f0a351332e15d4a42f469d69d4576ca",
+    "reference/queries.py": "89a2042db40d916b23f3d4a39cf558b198d0510b8c548d8e5e11c821298622c9",
+    "reference/splat_export.inc": "89f8f29f299c6bd143a944d15e14ca672ccc13831ecb7895925208670dcfc7a6",
+    "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+    "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+    "src/warp_psr/density.py": "226e9fff5811425a009e850161a653a2ef496db8cfd9f7bcb5fa0f3fd1fde9c5",
+    "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+    "src/warp_psr/forms.py": "9353d2485d77190b951fd8c871feeb6027227afdbdc59f5824ee685f58301e77",
+    "src/warp_psr/integration.py": "d4b9b8ee4f4dd09a7becfb23b0b033c6dc1d0213de472d7e11d8e033d6dcda46",
+    "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+    "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+    "src/warp_psr/normal_loads.py": "c15cd12c6b5229b1dc7b344055786508bead19548dd18c96373266de57d174e1",
+    "src/warp_psr/normals.py": "11403601c77150f84d39f01e185dce6ac682053288db8ce95eeaec65492c80fd",
+    "src/warp_psr/point_location.py": "eed65aca1e58b937a5c6b6b3caba7256a5ac2ae0f85d30f8305f367ccce49898",
+    "src/warp_psr/reconstruction.py": "1ed9a4924a9900e401b2f133ed6599f408a3fe12624f1b06028118966f7b2f1f",
+    "src/warp_psr/relaxation.py": "5a2843bab26dbd13eca321f028e3200a9f4ec452cbd045422a6287886e0cf90a",
+    "src/warp_psr/samples.py": "dd60bbea72466bfcdb24f8ff05ed67360c8c71b041c54a00a7494f155aee1645",
+    "src/warp_psr/solver.py": "ea57fa3428266be42101b1d1e27d722ecf9eb2716379da7ebb6e2118ffa5a98c",
+    "src/warp_psr/spaces.py": "bdfc5f34d002f6d238973b55e92ba0967b3ce7eb3377e611fdd2872f32c6694f",
+    "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+    "src/warp_psr/tree.py": "c2113c7f35a97a2b1171b8ce21e28b616bb5300ce39325e32358e16cd03c8e3b",
+    "tests/test_adaptive_operators.py": "d671a857e641302be3323918cc3d29d5eb75b335d88050e580f5e25b2afe3679",
+    "tests/test_field.py": "cdc40da3cf012b513e428f64a0730afb8e6918d55dbcb495f49388222ec33407",
+    "tests/test_limitations.py": "c337570ebed523c7807df622a272103ffd9e43e4b8951b26cfce991d143ddd10",
+    "tests/test_point_location.py": "faa391801ba17e98f3d1856a26fa6cef6b13ffe76b1054bd4ddfb63a4c429d3b",
+    "tests/test_preprocessing.py": "08c7111895d60a66e72c6420409e5d5b8b168d9c62fddb043d090d6079fe11c2",
+    "tests/test_query_coverage.py": "980329edd770a692d1a811e4ce30ec24f838ad4b7dd1aee0e7ba5c4d255758a7",
+    "tests/test_reconstruction.py": "9db320db2fe4b629346e6874b368a24768146574316783aa08f975c46ac4de69",
+    "tests/test_reference_profiles.py": "03249ea7c9b3afea15393e067cd5023fbea7b09f6b6de9dd5cdd53b449c99d3a",
+    "tests/test_relaxation.py": "b315b9d56c4ac532145c9b35556cb6f6c3b6d89e68aaf5225df9858bacf51e01",
+    "tests/test_repeatability.py": "3ee26d419845f62b2c62e27614eb55036cdfc6cbbca7b5787c2233350788e2b8",
+    "tests/test_samples.py": "9507df6590b6af68d3a026a9b67df38d01a579223f4bfe025046a22437611025",
+    "tests/test_uniform.py": "d939abe937169a568661cf78580643b27bf4128d8f6caa675444b85b6549fc47",
+    "tools/benchmark.py": "b8ad2638875ae49b838d692805f2622cd9228548f5a53a1544bc5e84e0d82ea1",
+    "tools/benchmark_reference.py": "76b336f1f74417ad4340cd7e279f5d5093d5599d1f32266afff31746c7fbc8ca",
+    "tools/build_reference.py": "21c19eea9b49be52129344aac9404045d85aa5fad25fa7ccdb68b88f74f3aa35",
+    "tools/check_cli.py": "dfa036119efd165e46e84596d0dd4f2f1b427cb10a6b9c7ffa184805a09d61b3",
+    "tools/check_environment.py": "80fd563e1e907128599df22b341938f96a146d22bc47e666d28ec3bd260c2701",
+    "tools/check_field.py": "09975643b5a2f1f094b4d4fedf8dd3a98ccdf616c62d4dc6d06ab6d9e858db7f",
+    "tools/check_geometry_profiles.py": "00fbf546c03a2b5057b564273cc442378cb54809024eea0374ce94e050cf191a",
+    "tools/check_profiles.py": "00d823e4ab7e3cf17103d102520907fd07e9f4085351cf83fdb6b2af47cc2d2c",
+    "tools/check_reconstruction.py": "436c91fe03fb35f18dd620145dac6911df7885e0e05246c0820b528503b12cba",
+    "tools/check_repeatability.py": "c7e4b2f89c5b203194af7e9017683e561622f3241a48e4368e9dd2b8f1b6e270",
+    "tools/make_fixture.py": "01391290cea8c75e75de25209d8af112380a397a6ae7f249e7a366a25305fd08",
+    "tools/render_comparison.py": "9a17165b8c400011feb08ced19cf85e682addd69642ca1c1a9311f76c5afc869",
+    "tools/validate.py": "e8ab266b67a50ea3954b67393c6a1302bf93eab3e2ad2862575b1f96efefdf76"
+  },
+  "cpu": "Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz",
+  "python": "3.11.15",
+  "warp": "1.19.0",
+  "build": {
+    "pins": {
+      "fixture_format": 1,
+      "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+      "warp_version": "1.19.0",
+      "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+    },
+    "commands": [
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+        "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+        "/opt/warp-psr/repeatability/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/opt/warp-psr/repeatability/.build/oracle"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-DEXPORT_TREE",
+        "-I/opt/warp-psr/repeatability/.build/instrumented",
+        "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+        "/opt/warp-psr/repeatability/reference/oracle.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/opt/warp-psr/repeatability/.build/oracle_instrumented"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+        "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+        "/opt/warp-psr/repeatability/reference/basis.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/opt/warp-psr/repeatability/.build/basis"
+      ],
+      [
+        "g++",
+        "-std=c++17",
+        "-O2",
+        "-DNDEBUG",
+        "-pthread",
+        "-Wno-invalid-offsetof",
+        "-DFAST_COMPILE",
+        "-I/opt/warp-psr/repeatability/.build/PoissonRecon/Src",
+        "-I/opt/warp-psr/repeatability/.build/PoissonRecon",
+        "/opt/warp-psr/repeatability/.build/PoissonRecon/Src/PoissonRecon.cpp",
+        "-lz",
+        "-lpng",
+        "-ljpeg",
+        "-o",
+        "/opt/warp-psr/repeatability/.build/PoissonReconCLI"
+      ]
+    ],
+    "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+  },
+  "gpu": "NVIDIA L40, 570.158.01",
+  "all_passed": true,
+  "repeats": 3,
+  "fixtures": [
+    {
+      "fixture": "sphere",
+      "precision": "float",
+      "input_sha256": "88bdcfd39d3a8d24f8d089c79d4db2cb32d7173516be3bda02da3d59b9ae0d61",
+      "queries_sha256": "d794d94f7c7ad49b7a81a0a2de09ce9bb38ad6fc7ff5b2825ed7a25f58893d62",
+      "queries": 15816,
+      "parameters": {
+        "name": "sphere",
+        "shape": "sphere",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 512,
+        "seed": 2026,
+        "depth": 4,
+        "full_depth": 2,
+        "base_depth": 2,
+        "solve_depth": 4,
+        "kernel_depth": 2,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": true,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "tolerances": {
+        "absolute": 1e-05,
+        "relative": 0.0001
+      },
+      "serial_active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+      "serial_bitwise_repeatable": true,
+      "gpu_matches_serial": true,
+      "gpu_repeatable_within_budget": true,
+      "parallel_topology_matches_serial": true,
+      "passed": true,
+      "reference_runs": {
+        "none": [
+          {
+            "solve_seconds": 0.094881671,
+            "parallel_async": false,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+            "against_serial": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            }
+          },
+          {
+            "solve_seconds": 0.091545494,
+            "parallel_async": false,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+            "against_serial": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            }
+          },
+          {
+            "solve_seconds": 0.090906674,
+            "parallel_async": false,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+            "against_serial": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            }
+          }
+        ],
+        "async": [
+          {
+            "solve_seconds": 1.246997924,
+            "parallel_async": true,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+            "against_serial": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.013171106765722227,
+                "centered_value": 0.01462017287945065,
+                "scaled_gradient": 0.015146159432863699,
+                "isovalue": 0.0004982370082756968
+              },
+              "max_abs_value_error": 3.5762786865234375e-07,
+              "rms_value_error": 4.7922947920753253e-08,
+              "max_abs_centered_value_error": 3.8743019104003906e-07,
+              "max_abs_cube_gradient_error": 3.663337167836289e-06,
+              "isovalue_error": 2.9802322387695312e-08
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            }
+          },
+          {
+            "solve_seconds": 1.246599646,
+            "parallel_async": true,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+            "against_serial": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.013595981177519718,
+                "centered_value": 0.012674074612581422,
+                "scaled_gradient": 0.021770413324874834,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 2.384185791015625e-07,
+              "rms_value_error": 4.3125873393431664e-08,
+              "max_abs_centered_value_error": 2.384185791015625e-07,
+              "max_abs_cube_gradient_error": 3.5171716502579997e-06,
+              "isovalue_error": 0.0
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.00794893256325587,
+                "centered_value": 0.014289959628577655,
+                "scaled_gradient": 0.013077173538003046,
+                "isovalue": 0.0004982370330997096
+              },
+              "max_abs_value_error": 2.384185791015625e-07,
+              "rms_value_error": 3.8024634873066254e-08,
+              "max_abs_centered_value_error": 2.682209014892578e-07,
+              "max_abs_cube_gradient_error": 2.8783363461570843e-06,
+              "isovalue_error": 2.9802322387695312e-08
+            }
+          },
+          {
+            "solve_seconds": 1.350597529,
+            "parallel_async": true,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+            "against_serial": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.013171106765722227,
+                "centered_value": 0.015208889535097705,
+                "scaled_gradient": 0.021030181311213002,
+                "isovalue": 0.0004982370082756968
+              },
+              "max_abs_value_error": 2.384185791015625e-07,
+              "rms_value_error": 4.435342293841245e-08,
+              "max_abs_centered_value_error": 2.682209014892578e-07,
+              "max_abs_cube_gradient_error": 4.710004930075229e-06,
+              "isovalue_error": 2.9802322387695312e-08
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.008552285693648524,
+                "centered_value": 0.011696155403541922,
+                "scaled_gradient": 0.02385168648788096,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 2.384185791015625e-07,
+              "rms_value_error": 4.233386299235483e-08,
+              "max_abs_centered_value_error": 2.384185791015625e-07,
+              "max_abs_cube_gradient_error": 3.8220238573749565e-06,
+              "isovalue_error": 0.0
+            }
+          }
+        ]
+      },
+      "gpu_runs": [
+        {
+          "reconstruction_seconds": 0.5652147196233273,
+          "query_and_readback_seconds": 0.0005988143384456635,
+          "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.013660812255898772,
+              "centered_value": 0.016028923872549537,
+              "scaled_gradient": 0.024306245707567738,
+              "isovalue": 0.0009964740165513935
+            },
+            "max_abs_value_error": 5.960464477539062e-07,
+            "rms_value_error": 1.0670900491141915e-07,
+            "max_abs_centered_value_error": 5.364418029785156e-07,
+            "max_abs_cube_gradient_error": 5.5863094985397765e-06,
+            "isovalue_error": 5.960464477539063e-08
+          },
+          "against_first_gpu": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          }
+        },
+        {
+          "reconstruction_seconds": 0.06649592146277428,
+          "query_and_readback_seconds": 0.00041386857628822327,
+          "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.013660812255898772,
+              "centered_value": 0.016028923872549537,
+              "scaled_gradient": 0.024306245707567738,
+              "isovalue": 0.0009964740165513935
+            },
+            "max_abs_value_error": 5.960464477539062e-07,
+            "rms_value_error": 1.0670900491141915e-07,
+            "max_abs_centered_value_error": 5.364418029785156e-07,
+            "max_abs_cube_gradient_error": 5.5863094985397765e-06,
+            "isovalue_error": 5.960464477539063e-08
+          },
+          "against_first_gpu": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          }
+        },
+        {
+          "reconstruction_seconds": 0.06675324589014053,
+          "query_and_readback_seconds": 0.0004155859351158142,
+          "active_basis_sha256": "ce8e5d242f2137f4da4021569d7b6a16dfe7bf3e45e762271f21dde976825d6b",
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.013660812255898772,
+              "centered_value": 0.016028923872549537,
+              "scaled_gradient": 0.024306245707567738,
+              "isovalue": 0.0009964740165513935
+            },
+            "max_abs_value_error": 5.960464477539062e-07,
+            "rms_value_error": 1.0670900491141915e-07,
+            "max_abs_centered_value_error": 5.364418029785156e-07,
+            "max_abs_cube_gradient_error": 5.5863094985397765e-06,
+            "isovalue_error": 5.960464477539063e-08
+          },
+          "against_first_gpu": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          }
+        }
+      ]
+    },
+    {
+      "fixture": "geometry-cluster-double",
+      "precision": "double",
+      "input_sha256": "6247f60f372743438ad2bbb1493222b11285e4a3e119dc8a2d8eb6dbd2e67157",
+      "queries_sha256": "6b0cb54a778c7c5bfe964343ff0baa732054046301511f6445e36905c301533f",
+      "queries": 4460,
+      "parameters": {
+        "name": "geometry-cluster-double",
+        "shape": "cluster",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 1024,
+        "seed": 2026,
+        "depth": 5,
+        "full_depth": 2,
+        "base_depth": 2,
+        "solve_depth": 5,
+        "kernel_depth": 3,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "double",
+        "grid": 12,
+        "operators": true,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "tolerances": {
+        "absolute": 1e-08,
+        "relative": 1e-06
+      },
+      "serial_active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+      "serial_bitwise_repeatable": true,
+      "gpu_matches_serial": true,
+      "gpu_repeatable_within_budget": true,
+      "parallel_topology_matches_serial": true,
+      "passed": true,
+      "reference_runs": {
+        "none": [
+          {
+            "solve_seconds": 0.095295621,
+            "parallel_async": false,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+            "against_serial": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            }
+          },
+          {
+            "solve_seconds": 0.096142918,
+            "parallel_async": false,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+            "against_serial": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            }
+          },
+          {
+            "solve_seconds": 0.090236376,
+            "parallel_async": false,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+            "against_serial": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            }
+          }
+        ],
+        "async": [
+          {
+            "solve_seconds": 1.034198458,
+            "parallel_async": true,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+            "against_serial": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 2.167981984655141e-08,
+                "centered_value": 6.179253371937591e-08,
+                "scaled_gradient": 3.421874608081275e-08,
+                "isovalue": 2.1749685045823738e-10
+              },
+              "max_abs_value_error": 7.771561172376096e-16,
+              "rms_value_error": 2.2427479617088466e-16,
+              "max_abs_centered_value_error": 8.881784197001252e-16,
+              "max_abs_cube_gradient_error": 1.7053025658242404e-13,
+              "isovalue_error": 1.1102230246251565e-16
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": true,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 0.0,
+                "centered_value": 0.0,
+                "scaled_gradient": 0.0,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 0.0,
+              "rms_value_error": 0.0,
+              "max_abs_centered_value_error": 0.0,
+              "max_abs_cube_gradient_error": 0.0,
+              "isovalue_error": 0.0
+            }
+          },
+          {
+            "solve_seconds": 1.039693884,
+            "parallel_async": true,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+            "against_serial": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 5.5997057730162e-09,
+                "centered_value": 1.1618747490941205e-07,
+                "scaled_gradient": 4.24746789400189e-08,
+                "isovalue": 6.524905513747122e-10
+              },
+              "max_abs_value_error": 8.881784197001252e-16,
+              "rms_value_error": 1.1968928722606335e-16,
+              "max_abs_centered_value_error": 1.2212453270876722e-15,
+              "max_abs_cube_gradient_error": 1.0658141036401503e-13,
+              "isovalue_error": 3.3306690738754696e-16
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 2.2548730583134703e-08,
+                "centered_value": 9.506247947133511e-08,
+                "scaled_gradient": 3.089429846010295e-08,
+                "isovalue": 4.349937009164747e-10
+              },
+              "max_abs_value_error": 8.881784197001252e-16,
+              "rms_value_error": 2.3747976749083433e-16,
+              "max_abs_centered_value_error": 1.1102230246251565e-15,
+              "max_abs_cube_gradient_error": 1.5631940186722204e-13,
+              "isovalue_error": 2.220446049250313e-16
+            }
+          },
+          {
+            "solve_seconds": 1.042424982,
+            "parallel_async": true,
+            "configured_threads": 128,
+            "schedule": 1,
+            "chunk_size": 128,
+            "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+            "against_serial": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 8.616945146342863e-09,
+                "centered_value": 7.099655307136375e-08,
+                "scaled_gradient": 4.8289168754287204e-08,
+                "isovalue": 2.1749685045823738e-10
+              },
+              "max_abs_value_error": 1.0547118733938987e-15,
+              "rms_value_error": 1.8696114995724677e-16,
+              "max_abs_centered_value_error": 1.1657341758564144e-15,
+              "max_abs_cube_gradient_error": 1.8474111129762605e-13,
+              "isovalue_error": 1.1102230246251565e-16
+            },
+            "against_first_in_mode": {
+              "bitwise_equal": false,
+              "within_budget": true,
+              "budget_ratios": {
+                "value": 1.3211140218991981e-08,
+                "centered_value": 6.2376436366885e-08,
+                "scaled_gradient": 3.9206998586304825e-08,
+                "isovalue": 0.0
+              },
+              "max_abs_value_error": 8.326672684688674e-16,
+              "rms_value_error": 1.2056618731352642e-16,
+              "max_abs_centered_value_error": 7.771561172376096e-16,
+              "max_abs_cube_gradient_error": 1.3500311979441904e-13,
+              "isovalue_error": 0.0
+            }
+          }
+        ]
+      },
+      "gpu_runs": [
+        {
+          "reconstruction_seconds": 0.6296756006777287,
+          "query_and_readback_seconds": 0.0004401989281177521,
+          "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 7.521510740464326e-08,
+              "centered_value": 1.4911927084019398e-07,
+              "scaled_gradient": 5.7709373033949835e-08,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 1.9984014443252818e-15,
+            "rms_value_error": 6.699222526190992e-16,
+            "max_abs_centered_value_error": 1.9984014443252818e-15,
+            "max_abs_cube_gradient_error": 2.3447910280083306e-13,
+            "isovalue_error": 0.0
+          },
+          "against_first_gpu": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          }
+        },
+        {
+          "reconstruction_seconds": 0.11627377197146416,
+          "query_and_readback_seconds": 0.0003595016896724701,
+          "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 7.521510740464326e-08,
+              "centered_value": 1.4911927084019398e-07,
+              "scaled_gradient": 5.7709373033949835e-08,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 1.9984014443252818e-15,
+            "rms_value_error": 6.699222526190992e-16,
+            "max_abs_centered_value_error": 1.9984014443252818e-15,
+            "max_abs_cube_gradient_error": 2.3447910280083306e-13,
+            "isovalue_error": 0.0
+          },
+          "against_first_gpu": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          }
+        },
+        {
+          "reconstruction_seconds": 0.11559915542602539,
+          "query_and_readback_seconds": 0.0003515668213367462,
+          "active_basis_sha256": "c754d6ba4350854d8f5e76c2f5b413744af2e7fbac9e17c296bc7ac3eee54f6a",
+          "against_serial": {
+            "bitwise_equal": false,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 7.521510740464326e-08,
+              "centered_value": 1.4911927084019398e-07,
+              "scaled_gradient": 5.7709373033949835e-08,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 1.9984014443252818e-15,
+            "rms_value_error": 6.699222526190992e-16,
+            "max_abs_centered_value_error": 1.9984014443252818e-15,
+            "max_abs_cube_gradient_error": 2.3447910280083306e-13,
+            "isovalue_error": 0.0
+          },
+          "against_first_gpu": {
+            "bitwise_equal": true,
+            "within_budget": true,
+            "budget_ratios": {
+              "value": 0.0,
+              "centered_value": 0.0,
+              "scaled_gradient": 0.0,
+              "isovalue": 0.0
+            },
+            "max_abs_value_error": 0.0,
+            "rms_value_error": 0.0,
+            "max_abs_centered_value_error": 0.0,
+            "max_abs_cube_gradient_error": 0.0,
+            "isovalue_error": 0.0
+          }
+        }
+      ]
+    }
+  ]
+}
