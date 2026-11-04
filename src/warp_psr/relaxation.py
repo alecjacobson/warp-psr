@@ -99,7 +99,7 @@ def graph_kernels(dtype):
 
     @wp.kernel
     def wavefront_update(descriptor: wp.array(dtype=state_type), first_z: int, color: int):
-        row, slice_index = wp.tid()
+        slice_index, row = wp.tid()
         state = descriptor[0]
         group = 4 * (first_z + 2 * slice_index) + color
         j = state.group_offsets[group] + row
@@ -164,7 +164,7 @@ class SlicedGraph:
 def sliced_graph(dtype, device, stream, depth, iters, capacity, wavefront=True):
     state_type, bind, update, wavefront_update = graph_kernels(dtype)
     descriptor = wp.empty(1, dtype=state_type, device=device)
-    command = (wp.launch(wavefront_update, (capacity, 1), inputs=[descriptor, 0, 0],
+    command = (wp.launch(wavefront_update, (1, capacity), inputs=[descriptor, 0, 0],
                          device=device, record_cmd=True)
                if wavefront else
                wp.launch(update, capacity, inputs=[descriptor, 0],
@@ -175,7 +175,7 @@ def sliced_graph(dtype, device, stream, depth, iters, capacity, wavefront=True):
     with wp.ScopedCapture(device=device) as capture:
         if wavefront:
             for z, count, color in wavefront_groups(depth, iters):
-                command.set_dim((capacity, count))
+                command.set_dim((count, capacity))
                 command.set_param_at_index(1, z)
                 command.set_param_at_index(2, color)
                 command.launch()
