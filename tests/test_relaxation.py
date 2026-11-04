@@ -1,4 +1,5 @@
 """The compact GPU schedule must preserve the verified relaxation arithmetic."""
+from dataclasses import replace
 import numpy as np
 import pytest
 import warp as wp
@@ -7,7 +8,8 @@ from warp_psr.solver import relax
 from warp_psr.relaxation import row_schedule,relax_scheduled,relaxation_command,relax_sliced
 
 @pytest.mark.parametrize('device',['cpu','cuda:0'])
-def test_compact_schedule_matches_full_row_scan(device):
+@pytest.mark.parametrize('capacity',[None,2])
+def test_compact_schedule_matches_full_row_scan(device, capacity):
     wp.init()
     if device.startswith('cuda') and not wp.is_cuda_available():pytest.skip('CUDA unavailable')
     with wp.ScopedDevice(device):
@@ -19,12 +21,14 @@ def test_compact_schedule_matches_full_row_scan(device):
         reference=wp.array(np.cos(np.arange(len(xyz))).astype('f'))
         actual=wp.clone(reference)
         schedule=row_schedule(keys,2)
+        if capacity is not None: schedule=replace(schedule,capacity=capacity)
         command=relaxation_command(A,b,actual,schedule)
         for forward in [True,False]:
             relax(A,b,reference,keys,3,forward=forward)
             relax_scheduled(A,b,actual,schedule,3,forward=forward,command=command)
             np.testing.assert_array_equal(actual.numpy(),reference.numpy())
         schedule=row_schedule(keys,2,sliced=True)
+        if capacity is not None: schedule=replace(schedule,capacity=capacity)
         command=relaxation_command(A,b,actual,schedule)
         for front in range(4,-3,-1):
             for z in range(max(front,0),min(front+3,5)):
@@ -36,7 +40,8 @@ def test_compact_schedule_matches_full_row_scan(device):
 @pytest.mark.cuda
 @pytest.mark.parametrize('dtype', [wp.float32, wp.float64])
 @pytest.mark.parametrize('depth', [2, 3])
-def test_sliced_graph_rebinds_fresh_arrays_and_preserves_order(dtype, depth):
+@pytest.mark.parametrize('capacity', [None, 2])
+def test_sliced_graph_rebinds_fresh_arrays_and_preserves_order(dtype, depth, capacity):
     import warp.sparse as sparse
     wp.init()
     if not wp.is_cuda_available():
@@ -47,6 +52,7 @@ def test_sliced_graph_rebinds_fresh_arrays_and_preserves_order(dtype, depth):
         xyz = np.rint(space.node_positions().numpy() * (1 << depth)).astype(np.int64)
         keys = wp.array((depth << 48) | (xyz[:, 0] << 32) | (xyz[:, 1] << 16) | xyz[:, 2], dtype=wp.int64)
         schedule = row_schedule(keys, depth, sliced=True)
+        if capacity is not None: schedule = replace(schedule, capacity=capacity)
         # Reusing a graph must never reuse the previous RHS, solution, or matrix.
         retained = []
         for iteration in range(3):
