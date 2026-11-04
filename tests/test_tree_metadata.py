@@ -16,7 +16,8 @@ CASES = (['sphere', 'sparse', 'sphere-double', 'sparse-double',
          + [f'geometry-{name}-{precision}' for name in GEOMETRY_CASES for precision in ('float', 'double')]
          + [f'profile-{name}-{precision}' for name in ZERO_BASE_CASES for precision in ('float', 'double')]
          + [f'threshold-{name}-{precision}' for name in ('density-above', 'density-below', 'ownership-psr', 'ownership-spsr') for precision in ('float', 'double')]
-         + [f'{name}-10k-d7-spsr-float' for name in ('horse', 'bunny', 'eagle', 'torso')])
+         + [f'{name}-10k-d7-spsr-float' for name in ('horse', 'bunny', 'eagle', 'torso')]
+         + [f'topology-{name}-{precision}' for name in ('sphere', 'sparse') for precision in ('float', 'double')])
 
 
 def decode(keys):
@@ -43,6 +44,9 @@ def test_complete_tree_metadata(name):
         diagnostic = result.diagnostics
         metadata = build_tree_metadata(diagnostic['tree'], diagnostic['samples'],
                                        diagnostic['density'], diagnostic['normals'])
+        if 'topology.txt' in manifest['reference_file_sha256']:
+            from tools.check_tree_metadata import check_tree_metadata
+            check_tree_metadata(metadata, read_output(directory/'topology.txt')['topology'])
         coordinates = [decode(level.keys.numpy()) for level in metadata.levels]
         for g, level in enumerate(metadata.levels):
             d = level.local_depth

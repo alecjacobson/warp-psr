@@ -33,6 +33,12 @@ Files in each fixture directory:
   `parallel_async`, configured `threads`, `schedule`, and `chunk_size`.
 - `oracle_instrumented.txt`: the same plus `node` rows (depth, x, y, z,
   flags, inherited ghost status, incidental reference index, coefficient).
+- `topology.txt` (opt-in `make_fixture.py --topology`): `topology` rows containing
+  global depth and x/y/z, local depth and x/y/z, flags, inherited ghost status,
+  parent global depth and x/y/z, and child count (0 or 8). The root has parent
+  coordinates and depth -1. Global coordinates uniquely identify the padding
+  nodes at local depths -2 and -1; the ordinary local accessor returns -1 for
+  all coordinates at those depths, so those local tuples cannot identify nodes.
 - `preprocess.txt`: ordered aggregate position/normal sums and density coefficients
   before tree padding (which relocates the reference root coefficient).
 - `splats.txt`: normalized sample positions, raw depth, density weight, top level,
@@ -57,8 +63,18 @@ retain original input order within each group. The reconstruction checker checks
 these arrays when the fixture contains `inputs.txt`; older fixtures remain usable
 for their existing field and tree gates.
 
-Current omissions are tracked in issue #1: full ghost/parent/child metadata and
-detailed solver traces. Float32 independent reconstruction passes the small and large
+`warp_psr.tree_metadata.build_tree_metadata(tree, samples, density, normals)`
+materializes the complete retained hierarchy on the GPU when requested. Pass the
+four arrays/structures from `result.diagnostics`. Each level has global keys,
+flags, inherited ghost status, parent indices, and eight child indices in
+x-bit-first order. Missing links are -1. Global depth is local depth plus two.
+Retained input, density and normal broods include nodes pruned from the solve;
+ordinary reconstruction only constructs its active support sets. This diagnostic
+adds no work to ordinary reconstruction. `check_reconstruction` verifies every
+global identity, flag and link when a fixture includes `topology.txt`.
+
+Detailed solver iteration traces remain tracked in issue #1.
+Float32 independent reconstruction passes the small and large
 field gates; see the [main README](../README.md) and committed reports. The
 float64 reference driver and Warp reconstruction both process float64 input
 throughout. Five end-to-end double fixtures meet the design's diagnostic budgets,

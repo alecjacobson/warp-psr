@@ -100,12 +100,29 @@ template<class Real> int run(int argc, char** argv) {
         if(!binary) throw std::runtime_error("Grid output write failed");
     }
 #ifdef EXPORT_TREE
+    std::ofstream topology;
+    if(const char* directory=std::getenv("WARP_PSR_TOPOLOGY")) {
+        topology.open(std::string(directory)+"/topology.txt");
+        if(!topology) throw std::runtime_error("Cannot open topology output");
+    }
     result->tree.tree().processNodes([&](const auto* n){
         int d,off[3]; result->tree.depthAndOffset(n,d,off);
         auto idx=n->nodeData.nodeIndex;
         out<<"node "<<d<<' '<<off[0]<<' '<<off[1]<<' '<<off[2]<<' '<<int(n->nodeData.flags)
            <<' '<<GetGhostFlag<3>(n)<<' '<<idx;
         out<<' '<<(idx>=0 && size_t(idx)<result->solution.size()?result->solution[idx]:Real(0))<<'\n';
+        if(topology.is_open()) {
+            int gd,go[3],pd=-1,po[3]={-1,-1,-1};
+            n->depthAndOffset(gd,go);
+            if(n->parent) n->parent->depthAndOffset(pd,po);
+            topology<<"topology "<<gd;
+            for(int a=0;a<3;a++) topology<<' '<<go[a];
+            topology<<' '<<d;
+            for(int a=0;a<3;a++) topology<<' '<<off[a];
+            topology<<' '<<int(n->nodeData.flags)<<' '<<GetGhostFlag<3>(n)<<' '<<pd;
+            for(int a=0;a<3;a++) topology<<' '<<po[a];
+            topology<<' '<<(n->children?8:0)<<'\n';
+        }
     });
 #endif
     return 0;
