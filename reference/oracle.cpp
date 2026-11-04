@@ -53,6 +53,19 @@ template<class Real> int run(int argc, char** argv) {
     out<<"threads "<<ThreadPool::NumThreads()<<'\n';
     out<<"schedule "<<int(ThreadPool::Schedule)<<'\n';
     out<<"chunk_size "<<ThreadPool::ChunkSize<<'\n';
+#ifdef _OPENMP
+    unsigned openmpThreads=0;
+    if(ThreadPool::ParallelizationType==ThreadPool::OPEN_MP) {
+#pragma omp parallel num_threads(ThreadPool::NumThreads())
+        {
+#pragma omp single
+            openmpThreads=omp_get_num_threads();
+        }
+    }
+    out<<"openmp_effective_threads "<<openmpThreads<<'\n';
+#else
+    out<<"openmp_effective_threads 0\n";
+#endif
     out<<"iso "<<result->isoValue<<'\n';
     out<<"transform";
     for(int i=0;i<4;i++) for(int j=0;j<4;j++) out<<' '<<result->unitCubeToModel(i,j);
@@ -63,6 +76,28 @@ template<class Real> int run(int argc, char** argv) {
         Point<Real,3> q{Real(x),Real(y),Real(z)};
         auto g=eval.grad(q);
         out<<"q "<<eval(q)<<' '<<g[0]<<' '<<g[1]<<' '<<g[2]<<'\n';
+    }
+    // Optional offline visualization export. Evaluate the unchanged solved field
+    // at a regular model-space grid, without enormous ASCII query/gradient files.
+    if(const char* spec=std::getenv("WARP_PSR_GRID_SPEC")) {
+        const char* output=std::getenv("WARP_PSR_GRID_OUTPUT");
+        if(!output) throw std::runtime_error("Grid export requires WARP_PSR_GRID_OUTPUT");
+        std::ifstream gridSpec(spec);
+        int resolution; double low[3], high[3];
+        if(!(gridSpec>>resolution>>low[0]>>low[1]>>low[2]>>high[0]>>high[1]>>high[2]) || resolution<2)
+            throw std::runtime_error("Invalid grid specification");
+        std::ofstream binary(output,std::ios::binary);
+        if(!binary) throw std::runtime_error("Cannot open grid output");
+        std::vector<Real> row(resolution);
+        for(int i=0;i<resolution;i++) for(int j=0;j<resolution;j++) {
+            for(int k=0;k<resolution;k++) {
+                int indices[3]={i,j,k}; Point<Real,3> q;
+                for(int a=0;a<3;a++) q[a]=Real(low[a]+(high[a]-low[a])*(double(indices[a])/double(resolution-1)));
+                row[k]=eval(q);
+            }
+            binary.write(reinterpret_cast<const char*>(row.data()),row.size()*sizeof(Real));
+        }
+        if(!binary) throw std::runtime_error("Grid output write failed");
     }
 #ifdef EXPORT_TREE
     result->tree.tree().processNodes([&](const auto* n){
@@ -83,7 +118,10 @@ int main(int argc,char** argv) {
         if(const char* setting=std::getenv("WARP_PSR_REFERENCE_PARALLELISM")) {
             std::string name(setting);
             if(name=="async") ThreadPool::ParallelizationType=ThreadPool::ASYNC;
-            else if(name!="none") throw std::runtime_error("Reference parallelism must be none or async");
+#ifdef _OPENMP
+            else if(name=="openmp") ThreadPool::ParallelizationType=ThreadPool::OPEN_MP;
+#endif
+            else if(name!="none") throw std::runtime_error("Reference parallelism must be none, async, or openmp (requires an OpenMP build)");
         }
         return std::string(argv[9])=="double" ? run<double>(argc,argv) : run<float>(argc,argv);
     }

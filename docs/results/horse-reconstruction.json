@@ -1,0 +1,197 @@
+{
+  "grid": {
+    "input_sha256": "2d0405025896714809cb987c88bee7c6a8b7c2fdcdabd4edd328f7dae1c0b404",
+    "input_source": {
+      "source_file": "horse.npts",
+      "source_sha256": "e6fd6bfccccb1aad72c83144acd7543f672f1a59641071ef008ae6055df053ec",
+      "original_count": 100000,
+      "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+      "ignored_properties": [],
+      "selection": "all rows in original file order",
+      "dataset": "horse",
+      "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/horse.npts",
+      "description": "Curvature-weighted, nonuniform samples of a virtual horse; supplied by the PoissonRecon project",
+      "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+      "selected_count": 100000
+    },
+    "seed": 2026,
+    "fixture": "horse-full-d8-spsr",
+    "shape": "horse",
+    "resolution": 256,
+    "grid_queries": 16777216,
+    "dtype": "float32",
+    "model_min": [
+      -0.10055732584893703,
+      -0.10061782456338406,
+      -0.1008088276475668
+    ],
+    "model_max": [
+      0.1005673245280981,
+      0.10050682581365109,
+      0.10031582272946835
+    ],
+    "order": "ij, z fastest",
+    "official_file": "official-grid-256.bin",
+    "warp_file": "warp-grid-256.npy",
+    "official_sha256": "c91d5a8fd8d73fc8a05ae6a9554f36e944cc18869c8af172002a100b92314f08",
+    "warp_sha256": "02e5a15e4a94864123b8e16cc60d9ec5bffe415a1b134f25c71a2eb9fb763046",
+    "official_iso_value": 0.5063387751579285,
+    "warp_iso_value": 0.5063387155532837,
+    "max_abs_value_error": 2.2649765014648438e-06,
+    "rms_value_error": 3.383830319018742e-07,
+    "tolerances": {
+      "atol": 1e-05,
+      "rtol": 0.0001
+    },
+    "field_compatibility": true,
+    "source_revision": "c29cb260e818160766a1c7a4024dd3744629c0c9",
+    "source_dirty": false,
+    "build": {
+      "pins": {
+        "fixture_format": 1,
+        "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+        "warp_version": "1.19.0",
+        "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+      },
+      "commands": [
+        [
+          "g++",
+          "-std=c++17",
+          "-O2",
+          "-DNDEBUG",
+          "-pthread",
+          "-Wno-invalid-offsetof",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+          "-lz",
+          "-lpng",
+          "-ljpeg",
+          "-o",
+          "/home/horde/projects/warp-psr-public-render/.build/oracle"
+        ],
+        [
+          "g++",
+          "-std=c++17",
+          "-O2",
+          "-DNDEBUG",
+          "-pthread",
+          "-Wno-invalid-offsetof",
+          "-DEXPORT_TREE",
+          "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+          "-lz",
+          "-lpng",
+          "-ljpeg",
+          "-o",
+          "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented"
+        ],
+        [
+          "g++",
+          "-std=c++17",
+          "-O2",
+          "-DNDEBUG",
+          "-pthread",
+          "-Wno-invalid-offsetof",
+          "-fopenmp",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+          "-lz",
+          "-lpng",
+          "-ljpeg",
+          "-o",
+          "/home/horde/projects/warp-psr-public-render/.build/oracle_openmp"
+        ],
+        [
+          "g++",
+          "-std=c++17",
+          "-O2",
+          "-DNDEBUG",
+          "-pthread",
+          "-Wno-invalid-offsetof",
+          "-fopenmp",
+          "-DEXPORT_TREE",
+          "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+          "-lz",
+          "-lpng",
+          "-ljpeg",
+          "-o",
+          "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented_openmp"
+        ],
+        [
+          "g++",
+          "-std=c++17",
+          "-O2",
+          "-DNDEBUG",
+          "-pthread",
+          "-Wno-invalid-offsetof",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/reference/basis.cpp",
+          "-lz",
+          "-lpng",
+          "-ljpeg",
+          "-o",
+          "/home/horde/projects/warp-psr-public-render/.build/basis"
+        ],
+        [
+          "g++",
+          "-std=c++17",
+          "-O2",
+          "-DNDEBUG",
+          "-pthread",
+          "-Wno-invalid-offsetof",
+          "-DFAST_COMPILE",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+          "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+          "/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src/PoissonRecon.cpp",
+          "-lz",
+          "-lpng",
+          "-ljpeg",
+          "-o",
+          "/home/horde/projects/warp-psr-public-render/.build/PoissonReconCLI"
+        ]
+      ],
+      "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+    }
+  },
+  "camera": [
+    2.0,
+    0.8,
+    0.35
+  ],
+  "up": [
+    0.0,
+    0.0,
+    1.0
+  ],
+  "parallel_scale": 0.5618997320333385,
+  "model_grid_center": [
+    -0.018717665319255967,
+    0.03203194729584328,
+    -0.022075639153145286
+  ],
+  "render_source_revision": "c29cb260e818160766a1c7a4024dd3744629c0c9",
+  "render_source_sha256": "d77b8314d3a94eb99c1ce8d8a991e20413c254695882fab4f857b47e9705b87b",
+  "pyvista": "0.46.4",
+  "vtk": [
+    9,
+    5,
+    2
+  ],
+  "extractor": "skimage.measure.marching_cubes; no smoothing, decimation or trimming",
+  "meshes": [
+    {
+      "vertices": 83492,
+      "triangles": 166980
+    },
+    {
+      "vertices": 83492,
+      "triangles": 166980
+    }
+  ]
+}

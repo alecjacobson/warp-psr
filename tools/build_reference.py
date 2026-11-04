@@ -83,6 +83,8 @@ def build():
     for name, cpp, inc, extra in [
         ("oracle", "oracle.cpp", source / "Src", []),
         ("oracle_instrumented", "oracle.cpp", instrumented, ["-DEXPORT_TREE"]),
+        ("oracle_openmp", "oracle.cpp", source / "Src", ["-fopenmp"]),
+        ("oracle_instrumented_openmp", "oracle.cpp", instrumented, ["-fopenmp", "-DEXPORT_TREE"]),
         ("basis", "basis.cpp", source / "Src", []),
         ("PoissonReconCLI", "PoissonRecon.cpp", source / "Src", ["-DFAST_COMPILE"]),
     ]:
