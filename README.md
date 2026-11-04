@@ -168,18 +168,18 @@ The C++ baseline runs on a Xeon Platinum 8362 host with a four-core CPU quota;
 OpenMP is explicitly limited to four threads. Both reference builds use `-O2`
 without fast-math. All rows use full depth 4 and density target 1.5.
 
-The depth-9 eagle is **12.5× faster than the four-thread CPU baseline**, and
-**6.3× faster than the original GPU implementation** with unchanged solve settings.
+The depth-9 eagle is **16.8× faster than the four-thread CPU baseline**, and
+**8.4× faster than the original GPU implementation** with unchanged solve settings.
 Peak GPU pool use fell from **24.89 GiB to 2.33 GiB**.
 
 | SPSR input | Depth | Coefficients | Warp (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Horse · 100k | 8 | 362,534 | 0.13 | 1.01 | 0.61 | 0.24 |
-| Bunny · 362k | 8 | 1,175,586 | 0.22 | 3.27 | 1.99 | 0.84 |
-| Eagle · 797k | 8 | 832,634 | 0.16 | 2.36 | 1.33 | 0.63 |
-| Torso · 3.49m | 8 | 492,578 | 0.13 | 1.82 | 1.19 | 0.56 |
-| Eagle · 797k | 9 | 3,323,866 | 0.39 | 9.37 | 4.88 | 2.33 |
-| Torso · 1m subset | 9 | 2,051,674 | 0.29 | 6.41 | 3.20 | 1.52 |
+| Horse · 100k | 8 | 362,534 | 0.08 | 1.01 | 0.61 | 0.24 |
+| Bunny · 362k | 8 | 1,175,586 | 0.14 | 3.27 | 1.99 | 0.84 |
+| Eagle · 797k | 8 | 832,634 | 0.12 | 2.36 | 1.33 | 0.63 |
+| Torso · 3.49m | 8 | 492,578 | 0.09 | 1.82 | 1.19 | 0.56 |
+| Eagle · 797k | 9 | 3,323,866 | 0.29 | 9.37 | 4.88 | 2.33 |
+| Torso · 1m subset | 9 | 2,051,674 | 0.22 | 6.41 | 3.20 | 1.52 |
 
 These are solve timings: GPU medians include Python orchestration and exclude
 upload and queries; C++ timings exclude parsing, queries, export, and startup.
@@ -188,7 +188,7 @@ CUDA-pool high-water mark. The [full report](docs/results/public-scaling.json)
 includes every run, per-stage timings, support counts, and environment limits.
 GPU timings are fresh; CPU timings retain their recorded provenance for the same
 inputs and unchanged reference build. Both depth-9 OpenMP cases were remeasured
-in isolation. See the [CSR comparison](docs/results/csr-performance.json).
+in isolation. See the [relaxation comparison](docs/results/wavefront-performance.json).
 
 The [performance guide](docs/performance.md) includes PSR, independent sample-count,
 density and depth sweeps, and the earlier torus optimization history. The

@@ -439,7 +439,8 @@ def solve_levels(
             cross = sparse.bsr_copy(cross, scalar_type=dtype, topology="padded")
             sparse.bsr_mv(cross, cumulative, b, alpha=-1.0, beta=1.0)
             # Pinned sliceBlockSize=1, degree=1, coarse-to-fine traversal.
-            # Each diagonal wave updates increasing z, then moves its front -1.
+            # Independent slices share a launch; every coupled slice/color
+            # retains the reference order.
             schedule = row_schedule(keys[d], d, sliced=True)
             solver_sync += schedule.sync_seconds
             relax_sliced(A, b, corrections[d], schedule, d, iters)
