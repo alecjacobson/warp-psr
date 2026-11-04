@@ -92,6 +92,10 @@ def compare(args):
             report['accuracy_passed'] = True
         except (AssertionError, ValueError, RuntimeError, ImportError, OSError) as error:
             report.update(accuracy_passed=False, validation_error=str(error)[:4000])
+        report['method_exercised'] = bool(calls)
+        if not calls:
+            report['method_note'] = ('The reference initial-residual threshold skipped root CG. '
+                                     'No preconditioner or direct solver was invoked.')
         report['validation_root_calls'] = list(calls)
         calls.clear()
         if not args.validate_only:
@@ -103,7 +107,7 @@ def compare(args):
             except (ValueError, RuntimeError, ImportError, OSError) as error:
                 report['benchmark_error'] = str(error)
     (out / 'report.json').write_text(json.dumps(report, indent=2) + '\n')
-    print(json.dumps({k: report.get(k) for k in ['method', 'accuracy_passed', 'validation_error', 'benchmark_error']}))
+    print(json.dumps({k: report.get(k) for k in ['method', 'method_exercised', 'accuracy_passed', 'validation_error', 'benchmark_error']}))
     return report
 
 
