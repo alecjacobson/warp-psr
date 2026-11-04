@@ -3,7 +3,7 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 import warp as wp
-from warp_psr.normal_stencils import assemble_normal_stencil, load_kernel, _integrals
+from warp_psr.normal_stencils import assemble_normal_stencil, load_kernel, range_load_kernel, normal_row_bounds, _integrals
 
 
 def keys(depth, xyz):
@@ -13,15 +13,16 @@ def keys(depth, xyz):
 
 @pytest.mark.cuda
 @pytest.mark.parametrize('vector', [wp.vec4, wp.vec4d])
-@pytest.mark.parametrize('test_depth,normal_depth', [(0, 0), (0, 1), (1, 0), (1, 1), (1, 2), (3, 2), (3, 3), (3, 4)])
-@pytest.mark.parametrize('layout', ['empty', 'dense', 'sparse'])
+@pytest.mark.parametrize('test_depth,normal_depth', [(0, 0), (0, 1), (1, 0), (1, 1), (1, 2), (3, 2), (3, 3), (3, 4), (4, 4)])
+@pytest.mark.parametrize('layout', ['empty', 'dense', 'sparse', 'boundary'])
 def test_normal_ranges_match_individual_searches_bitwise(vector, test_depth, normal_depth, layout):
     wp.init()
     if not wp.is_cuda_available():
         pytest.skip('CUDA unavailable')
     rng = np.random.default_rng(601)
     xyz = np.indices(((1 << test_depth) + 1,) * 3).reshape(3, -1).T
-    normal_xyz = np.indices((1 << normal_depth,) * 3).reshape(3, -1).T
+    normal_width = (1 << normal_depth) + (layout == "boundary")
+    normal_xyz = np.indices((normal_width,) * 3).reshape(3, -1).T
     if layout == 'empty':
         normal_xyz = normal_xyz[:0]
     elif layout == 'sparse':
@@ -38,3 +39,7 @@ def test_normal_ranges_match_individual_searches_bitwise(vector, test_depth, nor
         wp.launch(_integrals, table.shape, inputs=[test_depth, normal_depth, first, table])
         wp.launch(load_kernel(vector), len(xyz), inputs=[row_keys, records.keys, records.values, test_depth, normal_depth, first, width, table, expected])
         np.testing.assert_array_equal(actual.view(np.uint64), expected.numpy().view(np.uint64))
+        indexed = wp.empty(len(xyz), dtype=wp.float64)
+        offsets = normal_row_bounds(records.keys, normal_depth)
+        wp.launch(range_load_kernel(vector), len(xyz), inputs=[row_keys, records.keys, records.values, offsets, test_depth, normal_depth, first, width, table, indexed])
+        np.testing.assert_array_equal(indexed.numpy().view(np.uint64), expected.numpy().view(np.uint64))

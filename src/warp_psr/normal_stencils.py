@@ -54,12 +54,35 @@ def load_kernel(vector):
     return load
 
 
+@wp.kernel
+def _row_bounds(keys: wp.array(dtype=wp.int64), depth: int, n: int,
+                offsets: wp.array(dtype=int)):
+    row = wp.tid()
+    key = basis_key(depth, row // n, row % n, 0)
+    lo, hi = int(0), keys.shape[0]
+    while lo < hi:
+        mid = (lo + hi) // 2
+        if keys[mid] < key:
+            lo = mid + 1
+        else:
+            hi = mid
+    offsets[row] = lo
+
+
+def normal_row_bounds(keys, depth):
+    n = 1 << depth
+    offsets = wp.empty(n * n + 1, dtype=int, device=keys.device)
+    wp.launch(_row_bounds, len(offsets), inputs=[keys, depth, n, offsets], device=keys.device)
+    return offsets
+
+
 @lru_cache(None)
 def range_load_kernel(vector):
     @wp.kernel
     def load_ranges(keys: wp.array(dtype=wp.int64), normal_keys: wp.array(dtype=wp.int64),
-                    normals: wp.array(dtype=vector), test_depth: int, normal_depth: int,
-                    first: int, width: int, table: wp.array2d(dtype=wp.vec2d),
+                    normals: wp.array(dtype=vector), row_bounds: wp.array(dtype=int),
+                    test_depth: int, normal_depth: int, first: int, width: int,
+                    table: wp.array2d(dtype=wp.vec2d),
                     out: wp.array(dtype=wp.float64)):
         i = wp.tid()
         c = coordinates(keys[i])
@@ -78,7 +101,9 @@ def range_load_kernel(vector):
                     if ny >= 0 and ny < n and z0 <= z1:
                         begin = basis_key(normal_depth, nx, ny, z0)
                         end = basis_key(normal_depth, nx, ny, z1)
-                        lo, hi = int(0), normal_keys.shape[0]
+                        row = nx * n + ny
+                        lo = int(row_bounds[row])
+                        hi = int(row_bounds[row + 1])
                         while lo < hi:
                             mid = (lo + hi) // 2
                             if normal_keys[mid] < begin:
@@ -114,7 +139,15 @@ def assemble_normal_stencil(keys, records, test_depth, normal_depth):
     width, first = (6, -3) if test_depth < normal_depth else (4, -2)
     table = wp.empty(((1 << test_depth) + 1, width), dtype=wp.vec2d, device=device)
     wp.launch(_integrals, table.shape, inputs=[test_depth, normal_depth, first, table], device=device)
-    wp.launch(range_load_kernel(records.values.dtype), len(keys),
-              inputs=[keys, records.keys, records.values, test_depth, normal_depth,
-                      first, width, table, out], device=device)
+    # Bound auxiliary storage to about 4 MiB and avoid building a dense x/y index
+    # for tiny or very sparse inputs. The original lookup remains the fallback.
+    if normal_depth <= 10 and len(keys) >= 4096 and (1 << (2 * normal_depth)) <= 2 * len(records.keys):
+        offsets = normal_row_bounds(records.keys, normal_depth)
+        wp.launch(range_load_kernel(records.values.dtype), len(keys),
+                  inputs=[keys, records.keys, records.values, offsets, test_depth,
+                          normal_depth, first, width, table, out], device=device)
+    else:
+        wp.launch(load_kernel(records.values.dtype), len(keys),
+                  inputs=[keys, records.keys, records.values, test_depth, normal_depth,
+                          first, width, table, out], device=device)
     return out
