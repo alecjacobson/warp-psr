@@ -2,6 +2,11 @@
 
 This directory is development tooling, never a production dependency. Sources are
 fetched at the exact revision in `pins.json`. The build refuses a modified checkout.
+Warp v1.19.0 has annotated tag object `06ce5ea6d5e29590706c7d3d48135ffdcc730912`,
+which peels to source commit `dca5011a3fd9857756ccd9824c637ca6f8b436d6`.
+The pins now distinguish these identities. Historical reports recorded the tag
+object in `warp_commit`; it still resolves to the same released source. The
+installed dependency remains the unmodified v1.19.0 wheel.
 `oracle` calls the unchanged official library; `oracle_instrumented` adds read-only
 exports before temporary data is released. Both use C++17, `-O2`, no fast-math,
 serial `ThreadPool::NONE` by default, and explicit solver settings. `PoissonReconCLI` is the

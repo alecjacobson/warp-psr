@@ -90,7 +90,7 @@ python -m tools.render_flagship .build/fixtures/eagle-full-d9-spsr --resolution 
 
 The pinned reference is
 [PoissonRecon 262b0f5](https://github.com/mkazhdan/PoissonRecon/tree/262b0f539d404057d1f36e1adc07fc9388678899),
-and Warp is [1.19.0](https://github.com/NVIDIA/warp/tree/06ce5ea6d5e29590706c7d3d48135ffdcc730912).
+and Warp is [1.19.0](https://github.com/NVIDIA/warp/tree/dca5011a3fd9857756ccd9824c637ca6f8b436d6).
 Downloads and build products stay in ignored `.build/`. The large dense grid is
 used only for visualization; the reconstruction itself is adaptive.
 
