@@ -168,7 +168,7 @@ without fast-math. All rows use full depth 4 and density target 1.5.
 
 The depth-9 eagle is **10× faster than the four-thread CPU baseline**, and
 **5× faster than the original GPU implementation** with unchanged solve settings.
-Peak GPU pool use fell from **24.89 GiB to 3.96 GiB**.
+Peak GPU pool use fell from **24.89 GiB to 3.97 GiB**.
 
 | SPSR input | Depth | Coefficients | Warp (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |

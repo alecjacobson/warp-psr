@@ -25,7 +25,7 @@ measurement of every CUDA allocation. Timing runs were isolated from rendering,
 accuracy generation, and other benchmark jobs.
 
 The depth-9 eagle now takes **0.491 s**, versus **4.884 s with four CPU threads**
-(9.96×), with a **3.96 GiB** peak pool. The
+(9.96×), with a **3.97 GiB** peak pool. The
 [direct screening comparison](results/screening-performance.json) measured
 0.854 s before and 0.490 s after eliminating fine-level FEM point assembly.
 The earlier [GPU pipeline comparison](results/gpu-pipeline-performance.json)
