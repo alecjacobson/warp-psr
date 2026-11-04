@@ -398,7 +398,9 @@ def solve_levels(
             inputs=[load, point_load, b],
             device=device,
         )
-        A = sparse.bsr_copy(A, scalar_type=dtype)
+        # Assembly produces compact rows. Preserve their exact capacities while
+        # casting, instead of rebuilding the same topology through triplet sort.
+        A = sparse.bsr_copy(A, scalar_type=dtype, topology="padded")
         if d == base_depth:
             corrections[d], sync = regular_multigrid(
                 A,
@@ -434,7 +436,7 @@ def solve_levels(
                     quadrature=quadrature,
                 )
                 sparse.bsr_axpy(screen, cross)
-            cross = sparse.bsr_copy(cross, scalar_type=dtype)
+            cross = sparse.bsr_copy(cross, scalar_type=dtype, topology="padded")
             sparse.bsr_mv(cross, cumulative, b, alpha=-1.0, beta=1.0)
             # Pinned sliceBlockSize=1, degree=1, coarse-to-fine traversal.
             # Each diagonal wave updates increasing z, then moves its front -1.
