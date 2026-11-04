@@ -38,7 +38,7 @@ def tensor_stiffness(row_coords, col_coords, mass, derivative):
 @pytest.mark.cuda
 @pytest.mark.reference
 @pytest.mark.parametrize('double', [False, True])
-@pytest.mark.parametrize('refinement', ['uniform', 'one_octant'])
+@pytest.mark.parametrize('refinement', ['uniform', 'one_octant', 'grid3d'])
 def test_application_basis_against_exact_reference(double, refinement):
     wp.init()
     if not wp.is_cuda_available():
@@ -66,7 +66,8 @@ def test_application_basis_against_exact_reference(double, refinement):
             x, y, z = coords.astype(np.int64).T
             levels.append(SimpleNamespace(keys=wp.array((depth << 48) | (x << 32) | (y << 16) | z,
                                                        dtype=wp.int64)))
-        geometry = integration_grid(SimpleNamespace(basis=levels), None, 2, dtype=dtype)
+        geometry = (fem.Grid3D(wp.vec3i(4), scalar_type=dtype) if refinement == 'grid3d'
+                    else integration_grid(SimpleNamespace(basis=levels), None, 2, dtype=dtype))
         assert geometry.cell_count() == (15 if refinement == 'one_octant' else 64)
         coarse = make_level_space(geometry, levels[1].keys, 1, 2)
         fine = make_level_space(geometry, levels[2].keys, 2, 2)

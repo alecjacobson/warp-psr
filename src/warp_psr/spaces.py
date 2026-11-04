@@ -24,6 +24,12 @@ class LevelTopologyArg:
 
 
 @wp.kernel
+def _grid_cells(res: wp.vec3i, ijk: wp.array(dtype=wp.vec3i)):
+    i = wp.tid()
+    ijk[i] = fem.Grid3D.get_cell(res, i)
+
+
+@wp.kernel
 def _connect(
     ijk: wp.array(dtype=wp.vec3i),
     cell_level: wp.array(dtype=wp.uint8),
@@ -68,13 +74,18 @@ class LevelTopology(SpaceTopology):
         self.arg.origins = wp.empty(count, dtype=wp.vec3, device=device)
         self.arg.scales = wp.empty(count, dtype=float, device=device)
         geo_arg = geometry.cell_arg_value(device)
+        if isinstance(geometry, fem.Grid3D):
+            cell_ijk = wp.empty(count, dtype=wp.vec3i, device=device)
+            wp.launch(_grid_cells, count, inputs=[geometry.res, cell_ijk], device=device)
+        else:
+            cell_ijk = geo_arg.cell_ijk
         cell_level = (geo_arg.cell_level if isinstance(geometry, fem.AdaptiveNanogrid)
                       else wp.zeros(count, dtype=wp.uint8, device=device))
         wp.launch(
             _connect,
             count,
             inputs=[
-                geo_arg.cell_ijk,
+                cell_ijk,
                 cell_level,
                 keys,
                 depth,

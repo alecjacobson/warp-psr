@@ -5,6 +5,7 @@ import math
 from functools import lru_cache
 from types import SimpleNamespace
 import warp as wp
+import warp.fem as fem
 import warp.sparse as sparse
 from warp.optim.linear import cg, aslinearoperator, LinearOperator
 from .field import basis_key, find_key
@@ -361,7 +362,10 @@ def solve_levels(
         space = None
         if needs_fem:
             if d not in operator_geometries:
-                operator_geometries[d] = level_integration_grid(tree, d, dtype=dtype)
+                # base_depth <= full_depth: this level already covers the cube
+                # uniformly. Avoid constructing a sparse voxel index for it.
+                operator_geometries[d] = (fem.Grid3D(wp.vec3i(1 << d), scalar_type=dtype)
+                                          if d == base_depth else level_integration_grid(tree, d, dtype=dtype))
             operator_geometry = operator_geometries[d]
             space = make_level_space(operator_geometry, keys[d], d, d)
         operator_finest = d
