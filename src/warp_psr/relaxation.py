@@ -1,7 +1,6 @@
 """Compact GPU row schedules for reference multicolor and sliced relaxation."""
 
 from dataclasses import dataclass
-import time
 import threading
 from functools import lru_cache
 from types import SimpleNamespace
@@ -29,12 +28,6 @@ def _assign(
     wp.atomic_add(counts, group, 1)
 
 
-@wp.kernel
-def _maximum(counts: wp.array(dtype=int), maximum: wp.array(dtype=int)):
-    i = wp.tid()
-    wp.atomic_max(maximum, 0, counts[i])
-
-
 @lru_cache(None)
 def precision_kernels(dtype):
     @wp.kernel
@@ -47,9 +40,10 @@ def precision_kernels(dtype):
         values: wp.array(dtype=dtype),
         b: wp.array(dtype=dtype),
         x: wp.array(dtype=dtype),
+        capacity: int,
     ):
         j = group_offsets[group] + wp.tid()
-        if j < group_offsets[group + 1]:
+        while j < group_offsets[group + 1]:
             i = rows[j]
             r = b[i]
             diagonal = dtype(0.0)
@@ -60,6 +54,7 @@ def precision_kernels(dtype):
                     diagonal = values[k]
             if diagonal != dtype(0.0):
                 x[i] += r * (dtype(1.0) / diagonal)
+            j += capacity
 
     return SimpleNamespace(_relax=_relax)
 
@@ -82,10 +77,10 @@ def graph_kernels(dtype):
         descriptor[0] = state
 
     @wp.kernel
-    def update(descriptor: wp.array(dtype=state_type), group: int):
+    def update(descriptor: wp.array(dtype=state_type), group: int, capacity: int):
         state = descriptor[0]
         j = state.group_offsets[group] + wp.tid()
-        if j < state.group_offsets[group + 1]:
+        while j < state.group_offsets[group + 1]:
             i = state.rows[j]
             r = state.b[i]
             diagonal = dtype(0.0)
@@ -96,6 +91,7 @@ def graph_kernels(dtype):
                     diagonal = state.values[k]
             if diagonal != dtype(0.0):
                 state.x[i] += r * (dtype(1.0) / diagonal)
+            j += capacity
 
     return state_type, bind, update
 
@@ -128,7 +124,7 @@ class SlicedGraph:
 def sliced_graph(dtype, device, stream, depth, iters, capacity):
     state_type, bind, update = graph_kernels(dtype)
     descriptor = wp.empty(1, dtype=state_type, device=device)
-    command = wp.launch(update, capacity, inputs=[descriptor, 0],
+    command = wp.launch(update, capacity, inputs=[descriptor, 0, capacity],
                         device=device, record_cmd=True)
     # Compile the binding kernel before any capture starts.
     wp.launch(bind, 1, inputs=[state_type(), descriptor], device=device,
@@ -148,7 +144,7 @@ def relax_sliced(A, b, x, schedule, depth, iters, use_graph=True):
             command.set_param_at_index(2, group)
             command.launch()
         return
-    capacity = 1 << max(0, schedule.maximum - 1).bit_length()
+    capacity = schedule.capacity
     cached = sliced_graph(
         b.dtype, str(x.device), wp.get_stream(x.device).cuda_stream, depth, iters, capacity
     )
@@ -168,7 +164,7 @@ def relax_sliced(A, b, x, schedule, depth, iters, use_graph=True):
 class RowSchedule:
     rows: wp.array
     offsets: wp.array
-    maximum: int
+    capacity: int
     sync_seconds: float
 
 
@@ -185,18 +181,18 @@ def row_schedule(keys, depth, sliced=False):
     )
     wp.utils.radix_sort_pairs(groups, rows, n)
     wp.utils.array_scan(counts, offsets, inclusive=False)
-    maximum = wp.zeros(1, dtype=int, device=device)
-    wp.launch(_maximum, group_count, inputs=[counts, maximum], device=device)
-    start = time.perf_counter()
-    largest = int(maximum.numpy()[0])
-    return RowSchedule(rows, offsets, largest, time.perf_counter() - start)
+    # Rows in one color have no same-level coupling. A bounded launch visits
+    # arbitrarily large groups with a grid stride, preserving every row's
+    # arithmetic and the reference color/slice order. Counts stay on device.
+    capacity = min(4096, 1 << max(0, n - 1).bit_length())
+    return RowSchedule(rows, offsets, capacity, 0.0)
 
 
 def relaxation_command(A, b, x, schedule):
     """Retain fixed arguments for one solve; only its color/slice group changes."""
     return wp.launch(
         precision_kernels(b.dtype)._relax,
-        schedule.maximum,
+        schedule.capacity,
         inputs=[
             schedule.rows,
             schedule.offsets,
@@ -206,6 +202,7 @@ def relaxation_command(A, b, x, schedule):
             A.values,
             b,
             x,
+            schedule.capacity,
         ],
         device=x.device,
         record_cmd=True,
