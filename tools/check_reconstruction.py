@@ -9,6 +9,7 @@ from warp_psr import reconstruct
 from tools.make_fixture import read_output, ROOT
 from reference.cells import query_cell_widths
 from tools.check_tree import check_tree
+from tools.check_samples import check_samples
 from tools.fixture_provenance import verify_fixture, production_hashes
 
 
@@ -42,6 +43,9 @@ def check(directory,device='cuda:0'):
     np.testing.assert_allclose(centered_actual,centered_expected,atol=atol,rtol=rtol)
     tree=read_output(directory/'oracle_instrumented.txt')['node']
     tree_report=check_tree(result.diagnostics['tree'],tree)
+    input_report = None
+    if 'inputs.txt' in manifest['reference_file_sha256']:
+        input_report = check_samples(result.diagnostics['samples'], read_output(directory/'inputs.txt')['input'])
     normal=read_output(directory/'stages.txt')['normal']
     cube=queries@np.array(result.field.linear).reshape(3,3).T+result.field.translation
     widths=query_cell_widths(tree,normal,cube,p['depth'])
@@ -66,7 +70,7 @@ def check(directory,device='cuda:0'):
         "production_source_sha256":production_hashes(),
         "fixture_provenance":provenance,"queries_sha256":manifest['queries_sha256'],
         "fixture":manifest["name"],"input_sha256":manifest["input_sha256"],
-        "input_source":manifest.get("input_source"),"tree":tree_report,
+        "input_source":manifest.get("input_source"),"tree":tree_report,"samples":input_report,
         "device":device,"queries":len(queries),"coefficients":len(result.field.keys),
         "field_tolerances":{"absolute":atol,"relative":rtol},
         "max_abs_value_error":float(np.max(np.abs(error[:,0]))),

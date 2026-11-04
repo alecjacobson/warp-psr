@@ -97,6 +97,7 @@ def precision_kernels(dtype):
         unit_normals: wp.array(dtype=vec3),
         keys: wp.array(dtype=wp.int64),
         order: wp.array(dtype=int),
+        input_status: wp.array(dtype=int),
     ):
         i = wp.tid()
         p = points[i]
@@ -114,12 +115,16 @@ def precision_kernels(dtype):
         order[i] = i
         keys[i] = wp.int64(9223372036854775807)
         unit_normals[i] = vec3(dtype(0.0))
+        input_status[i] = 1  # Invalid normal; checked before unit-cube bounds.
+        if length2 > dtype(0.0) and wp.isfinite(length2):
+            input_status[i] = 2
         if (
             length2 > dtype(0.0)
             and wp.isfinite(length2)
             and (wp.min(p) >= dtype(0.0))
             and (wp.max(p) <= dtype(1.0))
         ):
+            input_status[i] = 0
             unit_normals[i] = point_div(n, wp.sqrt(length2))
             res = 1 << depth
             # ChildIndex uses > center: exact split planes belong below.
@@ -154,6 +159,8 @@ def precision_kernels(dtype):
         normal_sums: wp.array(dtype=vec3),
         weights: wp.array(dtype=dtype),
         first_indices: wp.array(dtype=int),
+        input_group_indices: wp.array(dtype=int),
+        group_offsets: wp.array(dtype=int),
     ):
         i = wp.tid()
         if marks[i] != 0:
@@ -169,12 +176,16 @@ def precision_kernels(dtype):
                 p += positions[order[j]]
                 n += normals[order[j]]
                 weight += dtype(1.0)
+                input_group_indices[order[j]] = g
                 j += 1
             unique[g] = keys[i]
             sums[g] = p
             normal_sums[g] = n
             weights[g] = weight
             first_indices[g] = order[i]
+            group_offsets[g] = i
+            if g == unique.shape[0] - 1:
+                group_offsets[g + 1] = j
 
     return SimpleNamespace(
         _init_bounds=_init_bounds,
@@ -199,6 +210,10 @@ class SampleGroups:
     first_indices: wp.array
     host_sync_seconds: float
     host_status_reads: int = 2
+    input_status: wp.array = None
+    input_group_indices: wp.array = None
+    input_order: wp.array = None
+    group_offsets: wp.array = None
 
 
 def prepare_samples(points, normals, depth=8, scale=1.1):
@@ -244,10 +259,11 @@ def prepare_samples(points, normals, depth=8, scale=1.1):
     ns = wp.empty_like(normals)
     keys = wp.empty(2 * count, dtype=wp.int64, device=device)
     order = wp.empty(2 * count, dtype=int, device=device)
+    input_status = wp.empty(count, dtype=int, device=device)
     wp.launch(
         kernels._classify,
         count,
-        inputs=[points, normals, transform, depth, q, ns, keys, order],
+        inputs=[points, normals, transform, depth, q, ns, keys, order, input_status],
         device=device,
     )
     wp.utils.radix_sort_pairs(keys, order, count)
@@ -266,6 +282,8 @@ def prepare_samples(points, normals, depth=8, scale=1.1):
     normal_sums = wp.empty_like(sums)
     weights = wp.empty(groups, dtype=dtype, device=device)
     first_indices = wp.empty(groups, dtype=int, device=device)
+    input_group_indices = wp.full(count, -1, dtype=int, device=device)
+    group_offsets = wp.empty(groups + 1, dtype=int, device=device)
     wp.launch(
         kernels._groups,
         count,
@@ -281,9 +299,13 @@ def prepare_samples(points, normals, depth=8, scale=1.1):
             normal_sums,
             weights,
             first_indices,
+            input_group_indices,
+            group_offsets,
         ],
         device=device,
     )
     return SampleGroups(
-        unique, sums, normal_sums, weights, transform, q, ns, first_indices, sync
+        unique, sums, normal_sums, weights, transform, q, ns, first_indices, sync,
+        input_status=input_status, input_group_indices=input_group_indices,
+        input_order=order[:count], group_offsets=group_offsets,
     )

@@ -1,0 +1,1184 @@
+{
+  "scope": "Exact per-input classification and stable aggregate membership, with field/tree acceptance and bitwise instrumentation neutrality",
+  "source_revision": "cb85dbcb836d6f42dc2c82ddfadfc4af9c16205b",
+  "all_passed": true,
+  "tests": "5 sample tests passed; 3 legacy fixture tests skipped because those fixtures were absent in this checkout",
+  "profiles": [
+    {
+      "fixture": "diagnostics-ownership-float",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "diagnostics-ownership-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "bd8b0846658a1579acda50429d07016ca192b28c",
+        "application_dirty": true,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "52beacbcc733bfd48e14c80ddb49e166353df53666beb109c3c43ff7ce0e9012",
+        "queries_sha256": "400a9b5d08013480374e218c6c6afee175e189da8293a2f04a1500958c4a27dc",
+        "reference_file_sha256": {
+          "oracle.txt": "14b08152e11dc3487cfc62030a2f8cffc4f0e0f2fac660eccb39d5eea08d658e",
+          "oracle_instrumented.txt": "65d3a2458069647d72ad7d212f1e9ad5546fc26a445c1339d171037fabf21622",
+          "preprocess.txt": "42b4bdc3a30d1191a144843db03521e381ffd3c29b27cc91dda33ab483b09b96",
+          "stages.txt": "858cbe9536ab1aeaf2da820ab3af7d13edc34999724c89c10dfe640e1e25582d",
+          "splats.txt": "c65fc62bd59f1eb44d9528753d7e484f87ee2336d69faf8746c3668b87b04961",
+          "inputs.txt": "5839eac1f4eb690276e8a0f29bc0b921f7fa58888fdad25f0e5fbd5fd016e764"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": {
+          "source_file": "diagnostics-ownership-float.pts",
+          "source_sha256": "52beacbcc733bfd48e14c80ddb49e166353df53666beb109c3c43ff7ce0e9012",
+          "original_count": 115,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [],
+          "selection": "all rows in original file order",
+          "selected_count": 115
+        },
+        "precision": "float",
+        "parameters": {
+          "name": "diagnostics-ownership-float",
+          "dataset": null,
+          "input": ".build/diagnostics-ownership-float.pts",
+          "max_points": null,
+          "shape": "external",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 115,
+          "seed": 2026,
+          "depth": 4,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 4,
+          "kernel_depth": 2,
+          "scale": 2.0,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "float",
+          "grid": 4,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.07400920242071152,
+          "oracle": 0.07302920892834663,
+          "oracle_instrumented": 0.07598281279206276
+        },
+        "grid": {
+          "resolution": 4,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            64
+          ],
+          "random_volume": [
+            64,
+            1088
+          ],
+          "input_samples": [
+            1088,
+            1203
+          ],
+          "cell_interiors": [
+            1203,
+            1331
+          ],
+          "interface_minus": [
+            1331,
+            1422
+          ],
+          "interface_plus": [
+            1422,
+            1513
+          ],
+          "cube_boundary": [
+            1513,
+            1705
+          ],
+          "far_from_samples": [
+            1705,
+            1833
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64
+          },
+          "refinement_interface_pairs": 91,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.5095821602953622
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "cb85dbcb836d6f42dc2c82ddfadfc4af9c16205b",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "e45aefb0aab0a8a735fac90d8fc4181ec6441d58ea6e7f153b7e9f81ff37a2cf",
+          "src/warp_psr/relaxation.py": "784248b8b2dc8350ce17525c3f6d34546c31f50f8be7e23c03bdf115d4894360",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/solver.py": "6fa34b46cd88431a119da6a525fd6c8c472f80eabc935cb627c385fe5a3c7376",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "8672181cdc9254a8f5d05bd79a9768bd292674136f6237d951d505497a58c1ca",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254"
+        },
+        "fixture_provenance": {
+          "input_sha256": "52beacbcc733bfd48e14c80ddb49e166353df53666beb109c3c43ff7ce0e9012",
+          "queries_sha256": "400a9b5d08013480374e218c6c6afee175e189da8293a2f04a1500958c4a27dc",
+          "precision": "float",
+          "parameters": {
+            "name": "diagnostics-ownership-float",
+            "dataset": null,
+            "input": ".build/diagnostics-ownership-float.pts",
+            "max_points": null,
+            "shape": "external",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 115,
+            "seed": 2026,
+            "depth": 4,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 4,
+            "kernel_depth": 2,
+            "scale": 2.0,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 0.001,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 8,
+            "precision": "float",
+            "grid": 4,
+            "operators": false,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "14b08152e11dc3487cfc62030a2f8cffc4f0e0f2fac660eccb39d5eea08d658e",
+            "oracle_instrumented.txt": "65d3a2458069647d72ad7d212f1e9ad5546fc26a445c1339d171037fabf21622",
+            "preprocess.txt": "42b4bdc3a30d1191a144843db03521e381ffd3c29b27cc91dda33ab483b09b96",
+            "stages.txt": "858cbe9536ab1aeaf2da820ab3af7d13edc34999724c89c10dfe640e1e25582d",
+            "splats.txt": "c65fc62bd59f1eb44d9528753d7e484f87ee2336d69faf8746c3668b87b04961",
+            "inputs.txt": "5839eac1f4eb690276e8a0f29bc0b921f7fa58888fdad25f0e5fbd5fd016e764"
+          }
+        },
+        "queries_sha256": "400a9b5d08013480374e218c6c6afee175e189da8293a2f04a1500958c4a27dc",
+        "fixture": "diagnostics-ownership-float",
+        "input_sha256": "52beacbcc733bfd48e14c80ddb49e166353df53666beb109c3c43ff7ce0e9012",
+        "input_source": {
+          "source_file": "diagnostics-ownership-float.pts",
+          "source_sha256": "52beacbcc733bfd48e14c80ddb49e166353df53666beb109c3c43ff7ce0e9012",
+          "original_count": 115,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [],
+          "selection": "all rows in original file order",
+          "selected_count": 115
+        },
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 512,
+              "active_count": 125,
+              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
+              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+            },
+            {
+              "depth": 3,
+              "support_count": 768,
+              "active_count": 636,
+              "support_sha256": "4db52ddedf9a2a781b98a746adcaafc55e54ccbae496c2319678dd0b1c6b41ca",
+              "active_sha256": "92a3cfda1051bbe0443f7073469cd53d02ba259813801e1b10e9165f2984ddca"
+            },
+            {
+              "depth": 4,
+              "support_count": 416,
+              "active_count": 416,
+              "support_sha256": "bca4e93c67703e49ecff48c13fc95d0ff3f4af72e3eafc75df2395c05d78aa4f",
+              "active_sha256": "af2f64feb9db79c626c72a415997f41085a6b1b0a88e389637eb7a1c032d4ce8"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 115,
+          "accepted": 114,
+          "aggregates": 25,
+          "rejected_by_status": {
+            "1": 1
+          }
+        },
+        "device": "cuda:0",
+        "queries": 1833,
+        "coefficients": 1212,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 2.980232238769531e-07,
+        "max_abs_centered_value_error": 2.980232238769531e-07,
+        "rms_value_error": 1.5741046294138113e-07,
+        "max_abs_cube_gradient_error": 3.814697265625e-06,
+        "max_scaled_gradient_budget_ratio": 0.017382544274689816,
+        "max_unscaled_gradient_budget_ratio": 0.14400078197489966,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 6.705522537231445e-07,
+          "4": 3.814697265625e-06
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 1224,
+            "max_abs_value_error": 2.980232238769531e-07,
+            "rms_value_error": 1.7074240560836317e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 1.7070415233843105e-07,
+            "max_abs_cube_gradient_error": 6.705522537231445e-07,
+            "rms_cube_gradient_error": 1.5573083791532463e-07,
+            "max_scaled_gradient_budget_ratio": 0.008288278222220018
+          },
+          "4": {
+            "queries": 609,
+            "max_abs_value_error": 2.980232238769531e-07,
+            "rms_value_error": 1.2643227741087128e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 1.2631705318740272e-07,
+            "max_abs_cube_gradient_error": 3.814697265625e-06,
+            "rms_cube_gradient_error": 6.288405893019914e-07,
+            "max_scaled_gradient_budget_ratio": 0.017382544274689816
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 64,
+            "max_abs_value_error": 2.682209014892578e-07,
+            "rms_value_error": 1.6666251017352593e-07,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 1.665063079677804e-07,
+            "max_abs_cube_gradient_error": 8.344650268554688e-07,
+            "rms_cube_gradient_error": 2.1839280632697372e-07,
+            "max_scaled_gradient_budget_ratio": 0.0076338907140940165
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 2.980232238769531e-07,
+            "rms_value_error": 1.5878624215962027e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 1.587503054211492e-07,
+            "max_abs_cube_gradient_error": 2.86102294921875e-06,
+            "rms_cube_gradient_error": 2.652345149399241e-07,
+            "max_scaled_gradient_budget_ratio": 0.013349295165430215
+          },
+          "input_samples": {
+            "queries": 115,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 6.821851138679975e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 6.821851138679975e-08,
+            "max_abs_cube_gradient_error": 3.814697265625e-06,
+            "rms_cube_gradient_error": 1.2055269443857566e-06,
+            "max_scaled_gradient_budget_ratio": 0.010971825752485365
+          },
+          "cell_interiors": {
+            "queries": 128,
+            "max_abs_value_error": 2.682209014892578e-07,
+            "rms_value_error": 1.50345869823041e-07,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 1.5022899993828842e-07,
+            "max_abs_cube_gradient_error": 2.9653310775756836e-06,
+            "rms_cube_gradient_error": 3.3056920357480974e-07,
+            "max_scaled_gradient_budget_ratio": 0.017382544274689816
+          },
+          "interface_minus": {
+            "queries": 91,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 1.555020947813767e-07,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "rms_centered_value_error": 1.5495192137933058e-07,
+            "max_abs_cube_gradient_error": 5.662441253662109e-07,
+            "rms_cube_gradient_error": 1.802102179383979e-07,
+            "max_scaled_gradient_budget_ratio": 0.005574805195894091
+          },
+          "interface_plus": {
+            "queries": 91,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 1.5877078693985233e-07,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "rms_centered_value_error": 1.588168854030371e-07,
+            "max_abs_cube_gradient_error": 4.6193599700927734e-07,
+            "rms_cube_gradient_error": 1.6876280582218687e-07,
+            "max_scaled_gradient_budget_ratio": 0.00450504744795261
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 2.980232238769531e-07,
+            "rms_value_error": 1.7138697260164385e-07,
+            "max_abs_centered_value_error": 2.980232238769531e-07,
+            "rms_centered_value_error": 1.7138697260164385e-07,
+            "max_abs_cube_gradient_error": 6.705522537231445e-07,
+            "rms_cube_gradient_error": 1.705861477799328e-07,
+            "max_scaled_gradient_budget_ratio": 0.008288278222220018
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 2.682209014892578e-07,
+            "rms_value_error": 1.824251494809284e-07,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 1.824251494809284e-07,
+            "max_abs_cube_gradient_error": 5.736947059631348e-07,
+            "rms_cube_gradient_error": 1.5729952565998826e-07,
+            "max_scaled_gradient_budget_ratio": 0.0071673249040898005
+          }
+        },
+        "iso_value": 0.47336888313293457,
+        "reference_iso_value": 0.47336888313293457,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            636,
+            416
+          ],
+          "integration_cells": 671,
+          "timings_seconds": {
+            "samples": 0.014294015884399413,
+            "density": 0.01788083267211914,
+            "normal_field": 0.010693728446960449,
+            "tree": 0.010194592475891114,
+            "integration_grid": 0.017633279800415038,
+            "assembly_and_solve": 0.68380078125
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 508,
+            "4": 671
+          },
+          "measured_host_sync_seconds": 0.004299994558095932,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.0,
+              -1.0
+            ],
+            [
+              2.0,
+              0.0,
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              2.0,
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 4,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 4,
+            "kernel_depth": 2,
+            "samples_per_node": 1.5,
+            "scale": 2.0,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    },
+    {
+      "fixture": "diagnostics-ownership-double",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "diagnostics-ownership-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "bd8b0846658a1579acda50429d07016ca192b28c",
+        "application_dirty": true,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr/.build/instrumented",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "5e4a817d43844937ed23f00d187525cb6308cd8fa9797e5692896c87d9c76f19",
+        "queries_sha256": "aaf9218e0b6b5a0a07a92634af82b379cbc6a4bb00c37b750a04b38c7af7e7dd",
+        "reference_file_sha256": {
+          "oracle.txt": "93cb2fec1649782c31bbbf350072d80fb88577063cd956722a6af6afe5db3f1e",
+          "oracle_instrumented.txt": "1bd5b9e31690aa490294280fb4e10e7ddf30f1dca1a9f1674557915552e3b160",
+          "preprocess.txt": "06c3b2090c9d6c563da8f327a35ac629bd441bad7984bd5a757b92d1116c6447",
+          "stages.txt": "31d7f0a8c5b8cc73280e12d6e78147fb01d37883a9530e64bc7c738d5723a5a7",
+          "splats.txt": "10b1023c99597fe164fa403d23e7507697540a59338538a8350f612176bc0d95",
+          "inputs.txt": "5839eac1f4eb690276e8a0f29bc0b921f7fa58888fdad25f0e5fbd5fd016e764"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": {
+          "source_file": "diagnostics-ownership-double.pts",
+          "source_sha256": "5e4a817d43844937ed23f00d187525cb6308cd8fa9797e5692896c87d9c76f19",
+          "original_count": 115,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [],
+          "selection": "all rows in original file order",
+          "selected_count": 115
+        },
+        "precision": "double",
+        "parameters": {
+          "name": "diagnostics-ownership-double",
+          "dataset": null,
+          "input": ".build/diagnostics-ownership-double.pts",
+          "max_points": null,
+          "shape": "external",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 115,
+          "seed": 2026,
+          "depth": 4,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 4,
+          "kernel_depth": 2,
+          "scale": 2.0,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "double",
+          "grid": 4,
+          "operators": false,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.08471006900072098,
+          "oracle": 0.08129816874861717,
+          "oracle_instrumented": 0.08592407032847404
+        },
+        "grid": {
+          "resolution": 4,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            64
+          ],
+          "random_volume": [
+            64,
+            1088
+          ],
+          "input_samples": [
+            1088,
+            1203
+          ],
+          "cell_interiors": [
+            1203,
+            1331
+          ],
+          "interface_minus": [
+            1331,
+            1422
+          ],
+          "interface_plus": [
+            1422,
+            1513
+          ],
+          "cube_boundary": [
+            1513,
+            1705
+          ],
+          "far_from_samples": [
+            1705,
+            1833
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64,
+            "4": 64
+          },
+          "refinement_interface_pairs": 91,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.5095821691546708
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "cb85dbcb836d6f42dc2c82ddfadfc4af9c16205b",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "e45aefb0aab0a8a735fac90d8fc4181ec6441d58ea6e7f153b7e9f81ff37a2cf",
+          "src/warp_psr/relaxation.py": "784248b8b2dc8350ce17525c3f6d34546c31f50f8be7e23c03bdf115d4894360",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/solver.py": "6fa34b46cd88431a119da6a525fd6c8c472f80eabc935cb627c385fe5a3c7376",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "8672181cdc9254a8f5d05bd79a9768bd292674136f6237d951d505497a58c1ca",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254"
+        },
+        "fixture_provenance": {
+          "input_sha256": "5e4a817d43844937ed23f00d187525cb6308cd8fa9797e5692896c87d9c76f19",
+          "queries_sha256": "aaf9218e0b6b5a0a07a92634af82b379cbc6a4bb00c37b750a04b38c7af7e7dd",
+          "precision": "double",
+          "parameters": {
+            "name": "diagnostics-ownership-double",
+            "dataset": null,
+            "input": ".build/diagnostics-ownership-double.pts",
+            "max_points": null,
+            "shape": "external",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 115,
+            "seed": 2026,
+            "depth": 4,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 4,
+            "kernel_depth": 2,
+            "scale": 2.0,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 0.001,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 8,
+            "precision": "double",
+            "grid": 4,
+            "operators": false,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "93cb2fec1649782c31bbbf350072d80fb88577063cd956722a6af6afe5db3f1e",
+            "oracle_instrumented.txt": "1bd5b9e31690aa490294280fb4e10e7ddf30f1dca1a9f1674557915552e3b160",
+            "preprocess.txt": "06c3b2090c9d6c563da8f327a35ac629bd441bad7984bd5a757b92d1116c6447",
+            "stages.txt": "31d7f0a8c5b8cc73280e12d6e78147fb01d37883a9530e64bc7c738d5723a5a7",
+            "splats.txt": "10b1023c99597fe164fa403d23e7507697540a59338538a8350f612176bc0d95",
+            "inputs.txt": "5839eac1f4eb690276e8a0f29bc0b921f7fa58888fdad25f0e5fbd5fd016e764"
+          }
+        },
+        "queries_sha256": "aaf9218e0b6b5a0a07a92634af82b379cbc6a4bb00c37b750a04b38c7af7e7dd",
+        "fixture": "diagnostics-ownership-double",
+        "input_sha256": "5e4a817d43844937ed23f00d187525cb6308cd8fa9797e5692896c87d9c76f19",
+        "input_source": {
+          "source_file": "diagnostics-ownership-double.pts",
+          "source_sha256": "5e4a817d43844937ed23f00d187525cb6308cd8fa9797e5692896c87d9c76f19",
+          "original_count": 115,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [],
+          "selection": "all rows in original file order",
+          "selected_count": 115
+        },
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 512,
+              "active_count": 125,
+              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
+              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+            },
+            {
+              "depth": 3,
+              "support_count": 768,
+              "active_count": 636,
+              "support_sha256": "4db52ddedf9a2a781b98a746adcaafc55e54ccbae496c2319678dd0b1c6b41ca",
+              "active_sha256": "92a3cfda1051bbe0443f7073469cd53d02ba259813801e1b10e9165f2984ddca"
+            },
+            {
+              "depth": 4,
+              "support_count": 416,
+              "active_count": 416,
+              "support_sha256": "bca4e93c67703e49ecff48c13fc95d0ff3f4af72e3eafc75df2395c05d78aa4f",
+              "active_sha256": "af2f64feb9db79c626c72a415997f41085a6b1b0a88e389637eb7a1c032d4ce8"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 115,
+          "accepted": 114,
+          "aggregates": 25,
+          "rejected_by_status": {
+            "1": 1
+          }
+        },
+        "device": "cuda:0",
+        "queries": 1833,
+        "coefficients": 1212,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 1.3322676295501878e-15,
+        "max_abs_centered_value_error": 1.2212453270876722e-15,
+        "rms_value_error": 9.250237082420962e-16,
+        "max_abs_cube_gradient_error": 1.0658141036401503e-14,
+        "max_scaled_gradient_budget_ratio": 2.336171303929757e-08,
+        "max_unscaled_gradient_budget_ratio": 2.2911553812611446e-07,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 2.4424906541753444e-15,
+          "4": 1.0658141036401503e-14
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 1224,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 9.922883098122587e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 8.820089282634099e-16,
+            "max_abs_cube_gradient_error": 2.4424906541753444e-15,
+            "rms_cube_gradient_error": 3.7949779905617827e-16,
+            "max_scaled_gradient_budget_ratio": 1.3070166049384893e-08
+          },
+          "4": {
+            "queries": 609,
+            "max_abs_value_error": 1.3322676295501878e-15,
+            "rms_value_error": 7.723106821456878e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 6.720626496634541e-16,
+            "max_abs_cube_gradient_error": 1.0658141036401503e-14,
+            "rms_cube_gradient_error": 1.9677202039779924e-15,
+            "max_scaled_gradient_budget_ratio": 2.336171303929757e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 64,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 9.949633488422296e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 8.858375239164498e-16,
+            "max_abs_cube_gradient_error": 2.4424906541753444e-15,
+            "rms_cube_gradient_error": 5.640595919106221e-16,
+            "max_scaled_gradient_budget_ratio": 8.985145895793768e-09
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 1.3322676295501878e-15,
+            "rms_value_error": 9.3251362378405e-16,
+            "max_abs_centered_value_error": 1.2212453270876722e-15,
+            "rms_centered_value_error": 8.238078321225473e-16,
+            "max_abs_cube_gradient_error": 1.0658141036401503e-14,
+            "rms_cube_gradient_error": 8.510056134841924e-16,
+            "max_scaled_gradient_budget_ratio": 1.8789208504899433e-08
+          },
+          "input_samples": {
+            "queries": 115,
+            "max_abs_value_error": 1.1102230246251565e-15,
+            "rms_value_error": 3.402796757080008e-16,
+            "max_abs_centered_value_error": 9.992007221626409e-16,
+            "rms_centered_value_error": 2.687515527017354e-16,
+            "max_abs_cube_gradient_error": 1.0658141036401503e-14,
+            "rms_cube_gradient_error": 3.73875164779711e-15,
+            "max_scaled_gradient_budget_ratio": 2.336171303929757e-08
+          },
+          "cell_interiors": {
+            "queries": 128,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 9.11958378249111e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 8.046312468834095e-16,
+            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
+            "rms_cube_gradient_error": 7.977339686624009e-16,
+            "max_scaled_gradient_budget_ratio": 1.4007525481692413e-08
+          },
+          "interface_minus": {
+            "queries": 91,
+            "max_abs_value_error": 1.1102230246251565e-15,
+            "rms_value_error": 9.31959142867826e-16,
+            "max_abs_centered_value_error": 9.992007221626409e-16,
+            "rms_centered_value_error": 8.207167651473383e-16,
+            "max_abs_cube_gradient_error": 1.7763568394002505e-15,
+            "rms_cube_gradient_error": 5.060926130123149e-16,
+            "max_scaled_gradient_budget_ratio": 9.657907758086532e-09
+          },
+          "interface_plus": {
+            "queries": 91,
+            "max_abs_value_error": 1.1102230246251565e-15,
+            "rms_value_error": 9.224591459788994e-16,
+            "max_abs_centered_value_error": 9.992007221626409e-16,
+            "rms_centered_value_error": 8.122405492664784e-16,
+            "max_abs_cube_gradient_error": 1.4849232954361469e-15,
+            "rms_cube_gradient_error": 4.684285380329227e-16,
+            "max_scaled_gradient_budget_ratio": 9.096656241502571e-09
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 9.960878270010602e-16,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 8.856540623179637e-16,
+            "max_abs_cube_gradient_error": 1.27675647831893e-15,
+            "rms_cube_gradient_error": 3.56287922054224e-16,
+            "max_scaled_gradient_budget_ratio": 1.2229304427456202e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 1.2212453270876722e-15,
+            "rms_value_error": 1.0748904352361723e-15,
+            "max_abs_centered_value_error": 1.1102230246251565e-15,
+            "rms_centered_value_error": 9.641442639889552e-16,
+            "max_abs_cube_gradient_error": 1.1379786002407855e-15,
+            "rms_cube_gradient_error": 3.504523543885316e-16,
+            "max_scaled_gradient_budget_ratio": 1.0117454001952124e-08
+          }
+        },
+        "iso_value": 0.4733688584354688,
+        "reference_iso_value": 0.4733688584354689,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            636,
+            416
+          ],
+          "integration_cells": 671,
+          "timings_seconds": {
+            "samples": 0.02235811233520508,
+            "density": 0.060340606689453125,
+            "normal_field": 0.009618911743164062,
+            "tree": 0.009309503555297851,
+            "integration_grid": 0.01608252716064453,
+            "assembly_and_solve": 0.7919703979492188
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 508,
+            "4": 671
+          },
+          "measured_host_sync_seconds": 0.003923453390598297,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.0,
+              -1.0
+            ],
+            [
+              2.0,
+              0.0,
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              2.0,
+              0.0,
+              -1.0
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 4,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 4,
+            "kernel_depth": 2,
+            "samples_per_node": 1.5,
+            "scale": 2.0,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    }
+  ]
+}

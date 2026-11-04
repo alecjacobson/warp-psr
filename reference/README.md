@@ -22,6 +22,11 @@ CLI default `alignDir=2` differ, so the CLI comparison explicitly passes `0`.
 Files in each fixture directory:
 
 - `input.pts`: quantized positions and normals in preserved order.
+- `inputs.txt`: one `input` row per original input: zero-based ID, status,
+  accepted leaf depth and x/y/z. Status 0 is accepted, 1 invalid data, 2 outside
+  the reconstruction cube, and 3 rejected by the sample processor. Rejected
+  inputs without a leaf have depth -1. These read-only rows are checksum-bound
+  to the fixture and checked against GPU classification and aggregate membership.
 - `queries.txt`: visualization grid, random volume points, input samples, and
   named cell-interior, refinement-interface, boundary, and far-from-sample probes.
 - `oracle.txt`: `iso`, `transform`, `q` (value + model-space gradient), and
@@ -44,8 +49,16 @@ Mathematical keys are `(depth,x,y,z)`. Negative/support coordinates are preserve
 in exports. Array order and the incidental node index are not compatibility keys.
 The `transform` is cube-to-model in the reference's column-first indexing.
 
-Current omissions are tracked in issue #1: complete acceptance/aggregation IDs,
-ghost/parent/child metadata and solver traces. Float32 independent reconstruction passes the small and large
+`result.diagnostics['samples']` retains GPU input statuses, input-to-group IDs
+(-1 for rejected inputs), stable sorted input IDs, and aggregate offsets. These
+are populated during the existing classification and ordered group reductions,
+without additional host status reads. Groups use canonical leaf-key order and
+retain original input order within each group. The reconstruction checker checks
+these arrays when the fixture contains `inputs.txt`; older fixtures remain usable
+for their existing field and tree gates.
+
+Current omissions are tracked in issue #1: full ghost/parent/child metadata and
+detailed solver traces. Float32 independent reconstruction passes the small and large
 field gates; see the [main README](../README.md) and committed reports. The
 float64 reference driver and Warp reconstruction both process float64 input
 throughout. Five end-to-end double fixtures meet the design's diagnostic budgets,

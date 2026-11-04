@@ -294,5 +294,5 @@ def reconstruct(
     return Reconstruction(
         field,
         metadata,
-        {"tree": tree, "density": density, "normals": normal, "levels": levels},
+        {"samples": samples, "tree": tree, "density": density, "normals": normal, "levels": levels},
     )

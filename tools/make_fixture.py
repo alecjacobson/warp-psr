@@ -133,7 +133,7 @@ def generate(args):
         "build": json.loads((ROOT/".build/build.json").read_text()),
         "input_sha256": checksum(out/"input.pts"), "queries_sha256": checksum(out/"queries.txt"),
         "reference_file_sha256": {name: checksum(out/name) for name in
-                                  (*REFERENCE_FILES, *(("operators.txt",) if args.operators else ()))},
+                                  (*REFERENCE_FILES, "inputs.txt", *(("operators.txt",) if args.operators else ()))},
         "input_order": "file order; seeded numpy Generator", "seed": args.seed,
         "input_source":source_metadata,
         "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",
