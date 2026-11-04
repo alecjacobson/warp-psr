@@ -106,6 +106,15 @@ Applying the same layout to screening was slower and was not adopted. The
 consistent with the extra work outweighing more contiguous writes. Its source
 and measurements are retained on the experimental branch.
 
+A cooperative normal-load kernel was also rejected. Its first five-run pair
+suggested an improvement (226 ms to 210 ms), but a fresh-process A–B–B–A repeat
+measured 207, 221, 224 and 206 ms: both candidate medians were slower than both
+baseline medians. Normal kernels increased from 13.2 to 15.3 ms. All 31 fixed
+accuracy gates and 355 tests passed, but the performance gain did not reproduce.
+The [normal-load experiment](results/normal-load-experiment.json) preserves all
+samples, source revisions, profiles and isolation audits. Its experimental
+branch remains available; production keeps the existing normal-load kernel.
+
 To profile a warmed reconstruction with Nsight Systems:
 
 ```sh
