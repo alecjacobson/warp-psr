@@ -139,3 +139,11 @@ See [per-level normal integration](results/normal-level-performance.json),
 [FEM assembly](results/fem-performance.json), and [tree construction](results/tree-performance.json).
 The [historical serial CPU measurements](results/reference-performance.json)
 use the explicitly recorded backend and compiler configuration.
+
+## Root solvers and preconditioners
+
+[Solver experiments](solver-experiments.md) compare Jacobi, block-Jacobi, FSAI
+and optional cuDSS with all setup costs included. The default eagle and horse
+cases skip root CG at the existing initial-residual threshold. A stricter fixture
+exercises all seven methods; FSAI halves root iterations but changes its total
+reconstruction time by only about 1.6 ms. Production defaults remain unchanged.
