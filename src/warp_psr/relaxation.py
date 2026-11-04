@@ -97,7 +97,25 @@ def graph_kernels(dtype):
             if diagonal != dtype(0.0):
                 state.x[i] += r * (dtype(1.0) / diagonal)
 
-    return state_type, bind, update
+    @wp.kernel
+    def wavefront_update(descriptor: wp.array(dtype=state_type), first_z: int, color: int):
+        row, slice_index = wp.tid()
+        state = descriptor[0]
+        group = 4 * (first_z + 2 * slice_index) + color
+        j = state.group_offsets[group] + row
+        if j < state.group_offsets[group + 1]:
+            i = state.rows[j]
+            r = state.b[i]
+            diagonal = dtype(0.0)
+            for k in range(state.offsets[i], state.offsets[i + 1]):
+                col = state.columns[k]
+                r -= state.x[col] * state.values[k]
+                if col == i:
+                    diagonal = state.values[k]
+            if diagonal != dtype(0.0):
+                state.x[i] += r * (dtype(1.0) / diagonal)
+
+    return state_type, bind, update, wavefront_update
 
 
 def sliced_groups(depth, iters):
@@ -105,6 +123,24 @@ def sliced_groups(depth, iters):
         for z in range(max(front, 0), min(front + iters, (1 << depth) + 1)):
             for color in range(4):
                 yield z * 4 + color
+
+
+def wavefront_groups(depth, iters):
+    """Batch commuting slices without changing any neighbor's update order.
+
+    Visit t of slice z depends on visit t of z+1 and visit t-1 of z-1.
+    Both predecessors lie on the preceding wave q = 2*t + 2**depth - z.
+    Slices in one wave are two cells apart, so degree-one same-level
+    operators have no coupling between them. Keep all four colors ordered.
+    """
+    n = 1 << depth
+    for q in range(n + 2 * (iters - 1) + 1):
+        first = max(0, (q - n + 1) // 2)
+        last = min(iters - 1, q // 2)
+        if last < first:
+            continue
+        for color in range(4):
+            yield n - q + 2 * first, last - first + 1, color
 
 
 @dataclass
@@ -125,23 +161,33 @@ class SlicedGraph:
 
 
 @lru_cache(maxsize=32)
-def sliced_graph(dtype, device, stream, depth, iters, capacity):
-    state_type, bind, update = graph_kernels(dtype)
+def sliced_graph(dtype, device, stream, depth, iters, capacity, wavefront=True):
+    state_type, bind, update, wavefront_update = graph_kernels(dtype)
     descriptor = wp.empty(1, dtype=state_type, device=device)
-    command = wp.launch(update, capacity, inputs=[descriptor, 0],
-                        device=device, record_cmd=True)
+    command = (wp.launch(wavefront_update, (capacity, 1), inputs=[descriptor, 0, 0],
+                         device=device, record_cmd=True)
+               if wavefront else
+               wp.launch(update, capacity, inputs=[descriptor, 0],
+                         device=device, record_cmd=True))
     # Compile the binding kernel before any capture starts.
     wp.launch(bind, 1, inputs=[state_type(), descriptor], device=device,
               record_cmd=True)
     with wp.ScopedCapture(device=device) as capture:
-        for group in sliced_groups(depth, iters):
-            command.set_param_at_index(1, group)
-            command.launch()
+        if wavefront:
+            for z, count, color in wavefront_groups(depth, iters):
+                command.set_dim((capacity, count))
+                command.set_param_at_index(1, z)
+                command.set_param_at_index(2, color)
+                command.launch()
+        else:
+            for group in sliced_groups(depth, iters):
+                command.set_param_at_index(1, group)
+                command.launch()
     return SlicedGraph(descriptor, capture.graph, wp.get_stream(device), threading.Lock())
 
 
-def relax_sliced(A, b, x, schedule, depth, iters, use_graph=True):
-    """Execute the reference slice/color order with fresh data on every call."""
+def relax_sliced(A, b, x, schedule, depth, iters, use_graph=True, wavefront=True):
+    """Preserve reference dependencies for degree-one same-level operators."""
     if not use_graph or not x.device.is_cuda or x.device.is_capturing:
         command = relaxation_command(A, b, x, schedule)
         for group in sliced_groups(depth, iters):
@@ -150,9 +196,9 @@ def relax_sliced(A, b, x, schedule, depth, iters, use_graph=True):
         return
     capacity = 1 << max(0, schedule.maximum - 1).bit_length()
     cached = sliced_graph(
-        b.dtype, str(x.device), wp.get_stream(x.device).cuda_stream, depth, iters, capacity
+        b.dtype, str(x.device), wp.get_stream(x.device).cuda_stream, depth, iters, capacity, wavefront
     )
-    state_type, bind, _ = graph_kernels(b.dtype)
+    state_type, bind, _, _ = graph_kernels(b.dtype)
     state = state_type()
     state.rows, state.group_offsets = schedule.rows, schedule.offsets
     state.offsets, state.columns, state.values = A.offsets, A.columns, A.values

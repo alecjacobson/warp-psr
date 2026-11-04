@@ -89,3 +89,59 @@ def test_sliced_graph_separates_streams_and_survives_cache_eviction():
         for stream, b, expected, actual in pending:
             wp.synchronize_stream(stream)
             np.testing.assert_array_equal(actual.numpy(), expected.numpy())
+
+
+@pytest.mark.parametrize('depth', [0, 1, 3, 5])
+@pytest.mark.parametrize('iters', [0, 1, 3, 8])
+def test_wavefront_preserves_every_coupled_slice_order(depth, iters):
+    from warp_psr.relaxation import sliced_groups, wavefront_groups
+    sequential = list(sliced_groups(depth, iters))
+    parallel = [4 * (first_z + 2 * offset) + color
+                for first_z, count, color in wavefront_groups(depth, iters)
+                for offset in range(count)]
+    assert len(parallel) == len(sequential)
+    # Degree-one rows couple only to their own and adjacent z slices. Compare
+    # the complete sequence for every such pair, including all color visits.
+    for z in range(1 << depth):
+        assert [g for g in parallel if g // 4 in (z, z + 1)] == [
+            g for g in sequential if g // 4 in (z, z + 1)]
+
+
+@pytest.mark.cuda
+@pytest.mark.parametrize('dtype', [wp.float32, wp.float64])
+@pytest.mark.parametrize('iters', [0, 1, 3, 8])
+@pytest.mark.parametrize('pattern', ['full', 'sparse', 'empty_slices'])
+def test_wavefront_matches_serialized_updates_for_arbitrary_local_matrices(dtype, iters, pattern):
+    import itertools
+    import warp.sparse as sparse
+    wp.init()
+    if not wp.is_cuda_available():
+        pytest.skip('CUDA unavailable')
+    xyz = list(itertools.product(range(9), repeat=3))
+    if pattern == 'sparse':
+        xyz = [c for i, c in enumerate(xyz) if i % 3 != 0]
+    elif pattern == 'empty_slices':
+        xyz = [c for c in xyz if c[2] not in (2, 5)]
+    indices = {c: i for i, c in enumerate(xyz)}
+    rows, cols, values = [], [], []
+    for c, i in indices.items():
+        total = 2.0
+        for delta in itertools.product((-1, 0, 1), repeat=3):
+            j = indices.get(tuple(a + b for a, b in zip(c, delta)))
+            if j is None or j == i:
+                continue
+            value = np.cos(123 * i + 7 * j)
+            rows.append(i); cols.append(j); values.append(value)
+            total += abs(value)
+        rows.append(i); cols.append(i); values.append(total)
+    with wp.ScopedDevice('cuda'):
+        A = sparse.bsr_from_triplets(len(xyz), len(xyz), wp.array(rows, dtype=int),
+                                    wp.array(cols, dtype=int), wp.array(values, dtype=dtype))
+        keys = wp.array([(3 << 48) | (x << 32) | (y << 16) | z for x, y, z in xyz], dtype=wp.int64)
+        schedule = row_schedule(keys, 3, sliced=True)
+        b = wp.array(np.sin(np.arange(len(xyz))), dtype=dtype)
+        expected = wp.array(np.cos(np.arange(len(xyz))), dtype=dtype)
+        actual = wp.clone(expected)
+        relax_sliced(A, b, expected, schedule, 3, iters, use_graph=False)
+        relax_sliced(A, b, actual, schedule, 3, iters)
+        np.testing.assert_array_equal(actual.numpy(), expected.numpy())
