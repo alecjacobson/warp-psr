@@ -13,6 +13,7 @@ from warp_psr.forms import (assemble_screening, assemble_stiffness, gradient,
                             point_quadrature, value)
 from warp_psr.integration import integration_grid
 from warp_psr.spaces import make_level_space
+from warp_psr.stiffness import assemble_level_stiffness
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -72,10 +73,14 @@ def test_application_basis_against_exact_reference(double, refinement):
         expected = tensor_stiffness(coordinates[2], coordinates[2], mass, derivative)
         actual = dense(assemble_stiffness(fine))
         np.testing.assert_allclose(actual, expected, atol=atol, rtol=rtol)
+        stencil = dense(assemble_level_stiffness(levels[2].keys, levels[2].keys, 2))
+        np.testing.assert_allclose(stencil, expected, atol=atol, rtol=rtol)
         np.testing.assert_allclose(actual, actual.T, atol=atol, rtol=rtol)
         cross = dense(assemble_stiffness(fine, trial_space=coarse))
         expected = tensor_stiffness(coordinates[1], coordinates[2], cross_mass, cross_derivative).T
         np.testing.assert_allclose(cross, expected, atol=atol, rtol=rtol)
+        stencil_cross = dense(assemble_level_stiffness(levels[2].keys, levels[1].keys, 2, 1))
+        np.testing.assert_allclose(stencil_cross, expected, atol=atol, rtol=rtol)
         # Both sides of the hanging interface and near the cube boundary.
         epsilon = real(2.**(-32 if double else -16))
         positions = np.array([[.0001, .03125, .0625], [.27, .31, .43],

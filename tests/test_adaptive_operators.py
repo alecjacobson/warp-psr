@@ -131,7 +131,7 @@ def test_normal_load_partitions_preserve_hierarchical_constraints(precision):
         tree=result.diagnostics['tree'];normals=result.diagnostics['normals']
         geometry=integration_grid(tree,normals,5,dtype=scalar)
         transfers=[prolongation(tree.basis[d-1].keys,tree.basis[d].keys,d,scalar) for d in range(1,6)]
-        full=assemble_reference_normal_loads(tree,geometry,normals,5,2,transfers,level_partitions=False)
+        full=assemble_reference_normal_loads(tree,geometry,normals,5,2,transfers,level_partitions=False,stencil_loads=False)
         for level in result.diagnostics['levels']:
             reference=full[level['depth']].numpy()
             scale=np.max(np.abs(reference)) or 1.

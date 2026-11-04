@@ -18,8 +18,9 @@ from .forms import (
 from .normal_loads import assemble_reference_normal_loads
 from .constraints import point_constraints
 from .spaces import make_level_space
-from .relaxation import row_schedule, relax_scheduled, relaxation_command
-from .integration import integration_grid
+from .relaxation import row_schedule, relax_scheduled, relaxation_command, relax_sliced
+from .stiffness import assemble_level_stiffness
+from .integration import level_integration_grid
 
 wp.set_module_options({"fuse_fp": False})
 
@@ -319,6 +320,7 @@ def solve_levels(
     iters=8,
     base_v_cycles=1,
     cg_accuracy=1e-3,
+    stencil_stiffness=True,
 ):
     device = normals.records.keys.device
     dtype = density.scale.dtype
@@ -349,14 +351,16 @@ def solve_levels(
             break
         load = normal_loads[d]
         if d not in operator_geometries:
-            operator_geometries[d] = integration_grid(tree, None, d, dtype=dtype)
+            operator_geometries[d] = level_integration_grid(tree, d, dtype=dtype)
         operator_geometry = operator_geometries[d]
         operator_finest = d
         space = make_level_space(operator_geometry, keys[d], d, d)
         # Double accumulation avoids a coarse row losing accuracy when its
         # integral spans many fine integration cells. Final reference matrices
         # and solve arithmetic use the input precision.
-        A = assemble_stiffness(space, device, accumulation_dtype=wp.float64)
+        A = (assemble_level_stiffness(keys[d], keys[d], d)
+             if stencil_stiffness and d > base_depth
+             else assemble_stiffness(space, device, accumulation_dtype=wp.float64))
         points = point_constraints(density, normals, tree, d, point_weight, exact)
         if screened:
             quadrature = point_quadrature(space, points.positions, points.weights)
@@ -402,9 +406,9 @@ def solve_levels(
             coarse_space = make_level_space(
                 operator_geometry, keys[d - 1], d - 1, operator_finest
             )
-            cross = assemble_stiffness(
-                space, device, trial_space=coarse_space, accumulation_dtype=wp.float64
-            )
+            cross = (assemble_level_stiffness(keys[d], keys[d - 1], d, d - 1)
+                     if stencil_stiffness else assemble_stiffness(
+                         space, device, trial_space=coarse_space, accumulation_dtype=wp.float64))
             if screened:
                 screen = assemble_screening(
                     space,
@@ -420,13 +424,8 @@ def solve_levels(
             # Pinned sliceBlockSize=1, degree=1, coarse-to-fine traversal.
             # Each diagonal wave updates increasing z, then moves its front -1.
             schedule = row_schedule(keys[d], d, sliced=True)
-            command = relaxation_command(A, b, corrections[d], schedule)
             solver_sync += schedule.sync_seconds
-            for front in range(1 << d, -iters, -1):
-                for z in range(max(front, 0), min(front + iters, (1 << d) + 1)):
-                    relax_scheduled(
-                        A, b, corrections[d], schedule, 1, z=z, command=command
-                    )
+            relax_sliced(A, b, corrections[d], schedule, d, iters)
             next_cumulative = wp.clone(corrections[d])
             sparse.bsr_mv(transfers[d - 1], cumulative, next_cumulative, beta=1.0)
             cumulative = next_cumulative

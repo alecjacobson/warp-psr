@@ -10,7 +10,7 @@ from .samples import prepare_samples, point_div
 from .density import build_density
 from .normals import build_normal_field
 from .tree import build_tree
-from .integration import integration_grid
+from .integration import level_integration_grid
 from .solver import solve_levels
 from .field import LevelField, cumulative_coefficients
 from .transforms import precision_kernels as transform_kernels
@@ -42,7 +42,27 @@ def precision_kernels(dtype):
             weight += wp.float64(weights[i])
         out[0] = dtype(total / weight)
 
-    return SimpleNamespace(_centroids=_centroids, _isovalue=_isovalue)
+    @wp.kernel(module="unique")
+    def _isovalue_tiled(values: wp.array(dtype=dtype), weights: wp.array(dtype=dtype),
+                        out: wp.array(dtype=dtype)):
+        block, lane = wp.tid()
+        total = wp.float64(0.0)
+        weight = wp.float64(0.0)
+        for begin in range(0, values.shape[0], 128):
+            value_tile = wp.tile_load(values, shape=128, offset=begin)
+            weight_tile = wp.tile_load(weights, shape=128, offset=begin)
+            for j in range(wp.min(128, values.shape[0] - begin)):
+                v = wp.tile_extract(value_tile, j)
+                w = wp.tile_extract(weight_tile, j)
+                # Keep multiplication beside accumulation, including the
+                # original float64 fused operation when enabled by Warp.
+                total += wp.float64(v * w)
+                weight += wp.float64(w)
+        if lane == 0:
+            out[0] = dtype(total / weight)
+
+    return SimpleNamespace(_centroids=_centroids, _isovalue=_isovalue,
+                           _isovalue_tiled=_isovalue_tiled)
 
 
 @dataclass
@@ -141,14 +161,15 @@ def reconstruct(
     )
     kernels = precision_kernels(dtype)
     mat44 = wp.types.matrix(shape=(4, 4), dtype=dtype)
-    timings = {}
+    stage_events = {}
 
     def stage(name, func):
-        wp.synchronize_device(device)
-        start = time.perf_counter()
+        start = wp.Event(device, enable_timing=True)
+        end = wp.Event(device, enable_timing=True)
+        wp.record_event(start)
         result = func()
-        wp.synchronize_device(device)
-        timings[name] = time.perf_counter() - start
+        wp.record_event(end)
+        stage_events[name] = (start, end)
         return result
 
     with wp.ScopedDevice(device):
@@ -167,7 +188,7 @@ def reconstruct(
         tree = stage("tree", lambda: build_tree(normal, depth, full_depth, base_depth))
         geometry = stage(
             "integration_grid",
-            lambda: integration_grid(tree, normal, depth, dtype=dtype),
+            lambda: level_integration_grid(tree, depth, dtype=dtype),
         )
         correction, levels, solver_sync = stage(
             "assembly_and_solve",
@@ -207,9 +228,7 @@ def reconstruct(
         )
         value, _, _ = cube_field.evaluate(centroids)
         iso = wp.empty(1, dtype=dtype, device=device)
-        wp.launch(
-            kernels._isovalue, 1, inputs=[value, samples.weights, iso], device=device
-        )
+        wp.launch_tiled(kernels._isovalue_tiled, dim=1, inputs=[value, samples.weights, iso], block_dim=32, device=device)
         transforms = wp.empty(2, dtype=mat44, device=device)
         wp.launch(
             transform_kernels(dtype).evaluation_transform,
@@ -236,7 +255,9 @@ def reconstruct(
         "device": str(device),
         "basis_counts": [len(l.keys) for l in tree.basis],
         "integration_cells": geometry.cell_count(),
-        "timings_seconds": timings,
+        "timings_seconds": {name: wp.get_event_elapsed_time(start, end, synchronize=False) / 1000
+                            for name, (start, end) in stage_events.items()},
+        "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
         "operator_integration_cells": {
             level["depth"]: level["operator_integration_cells"] for level in levels
         },

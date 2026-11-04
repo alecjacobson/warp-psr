@@ -2,7 +2,7 @@
 
 Poisson Surface Reconstruction (PSR) and Screened Poisson Surface Reconstruction
 (SPSR) in NVIDIA Warp. The GPU builds its own adaptive tree, density and normal
-fields, assembles through `warp.fem`, solves the reference's multilevel system,
+fields, assembles with `warp.fem` and verified spline stencils, solves the reference's multilevel system,
 and evaluates implicit values and gradients.
 
 The float32 and float64 degree-1 implementations match the pinned official output on
