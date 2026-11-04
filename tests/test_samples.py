@@ -22,6 +22,10 @@ def test_multiplicity_rejections_and_split_ownership(cuda):
     np.testing.assert_array_equal(result.normal_sums.numpy()[1],[0,0,0])
     assert result.host_status_reads==2
     assert result.host_sync_seconds>=0
+    np.testing.assert_array_equal(result.input_status.numpy(), [0,0,0,0,1])
+    np.testing.assert_array_equal(result.input_group_indices.numpy(), [0,2,1,1,-1])
+    np.testing.assert_array_equal(result.input_order.numpy(), [0,2,3,1,4])
+    np.testing.assert_array_equal(result.group_offsets.numpy(), [0,1,3,4])
 
 
 def test_degenerate_rejected(cuda):
@@ -47,3 +51,24 @@ def test_aggregated_samples_against_reference(cuda,name,depth):
     np.testing.assert_array_equal(result.keys.numpy(),expected_keys)
     np.testing.assert_array_equal(result.weights.numpy(),expected[:,7])
     np.testing.assert_allclose(result.position_sums.numpy(),expected[:,4:7],atol=1e-6,rtol=1e-5)
+
+
+@pytest.mark.reference
+@pytest.mark.parametrize('name', ['diagnostics-sphere', 'diagnostics-ownership-float', 'diagnostics-ownership-double'])
+def test_input_membership_against_reference(cuda, name):
+    import json
+    from pathlib import Path
+    from tools.make_fixture import read_output
+    from tools.check_samples import check_samples
+    path = Path('.build/fixtures')/name
+    if not (path/'inputs.txt').exists():
+        pytest.skip('Generate input-classification traces first')
+    manifest = json.loads((path/'manifest.json').read_text())
+    double = manifest['precision'] == 'double'
+    vector = wp.vec3d if double else wp.vec3
+    data = np.loadtxt(path/'input.pts').astype(np.float64 if double else np.float32)
+    parameters = manifest['parameters']
+    samples = prepare_samples(wp.array(data[:, :3], dtype=vector, device=cuda),
+                              wp.array(data[:, 3:], dtype=vector, device=cuda),
+                              depth=parameters['depth'], scale=parameters['scale'])
+    check_samples(samples, read_output(path/'inputs.txt')['input'])

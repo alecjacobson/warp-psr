@@ -78,6 +78,24 @@ def build():
     assert weighted_text.count(splat_marker) == 2
     weighted_text = weighted_text.replace(splat_marker, (ROOT/"reference/splat_export.inc").read_text()+splat_marker, 1)
     weighted.write_text("#include <fstream>\n#include <iomanip>\n"+weighted_text)
+    initialize = instrumented / "FEMTree.Initialize.inl"
+    initialize_text = initialize.read_text()
+    input_marker = "\t// Add the point data\n"
+    assert initialize_text.count(input_marker) == 1
+    initialize_text = initialize_text.replace(input_marker,
+        (ROOT/"reference/input_export.inc").read_text()+input_marker)
+    replacements = {
+        "if( !IsValid( p , d... ) ){ badDataCount++ ; continue; }":
+        "if( !IsValid( p , d... ) ){ traceInput(1,nullptr); badDataCount++ ; continue; }",
+        "if( !leaf ){ outOfBoundPoints++ ; continue; }":
+        "if( !leaf ){ traceInput(2,nullptr); outOfBoundPoints++ ; continue; }",
+        "if( Process( *leaf , p , d ... ) ) pointCount++;":
+        "if( Process( *leaf , p , d ... ) ){ traceInput(0,leaf); pointCount++; } else traceInput(3,leaf);",
+    }
+    for original, replacement in replacements.items():
+        assert initialize_text.count(original) == 1
+        initialize_text = initialize_text.replace(original, replacement)
+    initialize.write_text("#include <fstream>\n#include <iomanip>\n"+initialize_text)
     header.write_text("#include <fstream>\n#include <iomanip>\n" + text.replace(marker, hook + marker, 1))
     commands = []
     for name, cpp, inc, extra in [
@@ -91,7 +109,7 @@ def build():
         cpp_path = inc / cpp if name == "PoissonReconCLI" else ROOT / "reference" / cpp
         command = ["g++", *FLAGS, *extra, "-I"+str(inc), "-I"+str(source), str(cpp_path), "-lz", "-lpng", "-ljpeg", "-o", str(BUILD / name)]
         print("Building", name, flush=True)
-        digest = hashlib.sha256((str(command)+cpp_path.read_text()+header.read_text()+weighted.read_text()).encode()).hexdigest()
+        digest = hashlib.sha256((str(command)+cpp_path.read_text()+header.read_text()+weighted.read_text()+initialize.read_text()).encode()).hexdigest()
         stamp = BUILD / (name + ".sha256")
         if not (BUILD/name).exists() or not stamp.exists() or stamp.read_text() != digest:
             subprocess.run(command, check=True)
