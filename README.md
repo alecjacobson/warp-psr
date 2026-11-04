@@ -63,10 +63,11 @@ the field, its gradient, and the isovalue are zero,
 The **796,825-point eagle scan** reconstructs at depth 9 with **3,323,866 basis
 coefficients**. Both independent solves have exactly the same active and support
 keys. Across **812,815 diagnostic queries**, including every input point and
-refinement interfaces, maximum field error is **3.11e-6**; scaled gradient error
-uses **29.4% of the fixed design tolerance**. The isovalues differ by **5.96e-8**.
+refinement interfaces, maximum field error is **5.51e-7**; scaled gradient error
+uses **3.77% of the fixed design tolerance**. The isovalues match exactly.
 
-The figure compares another **134,217,728 shared volume-grid samples**, with
+The figure records the earlier reconstruction revision in its provenance and
+compares **134,217,728 shared volume-grid samples**, with
 maximum field error **2.95e-6**. Both panels use the same marching-cubes extraction,
 material, camera, and lighting, with no mesh smoothing or trimming. See the
 [field report](docs/results/eagle.json) and [render provenance](docs/results/eagle-reconstruction.json).
@@ -99,8 +100,8 @@ and reconstruction gates. `python -m tools.check_datasets --suite smoke` runs
 float64. The [15 scaling cases](docs/results/public-scaling-accuracy.json) also pass,
 including the full 3.49-million-point torso, independent sample-count and density
 sweeps, and depth-9 eagle and million-point torso reconstructions. Across these
-cases the maximum field error is **5.20e-6**, and scaled gradient errors stay below
-**29.4% of the design budget**. The [dataset guide](docs/datasets.md) describes
+cases the maximum field error is **4.71e-6**, and scaled gradient errors stay below
+**19.4% of the design budget**. The [dataset guide](docs/datasets.md) describes
 matched benchmarks, source checksums, and reproducible subsets.
 
 ## Supported profile and known limits
@@ -165,20 +166,26 @@ The C++ baseline runs on a Xeon Platinum 8362 host with a four-core CPU quota;
 OpenMP is explicitly limited to four threads. Both reference builds use `-O2`
 without fast-math. All rows use full depth 4 and density target 1.5.
 
+The depth-9 eagle is **5.5× faster than the four-thread CPU baseline**, and
+**2.85× faster than the previous GPU implementation** with unchanged solve settings.
+Peak GPU pool use fell from **24.89 GiB to 7.14 GiB**.
+
 | SPSR input | Depth | Coefficients | Warp (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Horse · 100k | 8 | 362,534 | 0.45 | 1.01 | 0.61 | 2.96 |
-| Bunny · 362k | 8 | 1,175,586 | 0.91 | 3.31 | 1.87 | 9.10 |
-| Eagle · 797k | 8 | 832,634 | 0.72 | 2.46 | 1.35 | 6.29 |
-| Torso · 3.49m | 8 | 492,578 | 0.52 | 1.83 | 1.21 | 3.88 |
-| Eagle · 797k | 9 | 3,323,866 | 2.42 | 9.36 | 4.61 | 24.89 |
-| Torso · 1m subset | 9 | 2,051,674 | 1.65 | 6.46 | 3.37 | 15.37 |
+| Horse · 100k | 8 | 362,534 | 0.17 | 1.01 | 0.61 | 0.65 |
+| Bunny · 362k | 8 | 1,175,586 | 0.38 | 3.27 | 1.99 | 2.68 |
+| Eagle · 797k | 8 | 832,634 | 0.28 | 2.36 | 1.33 | 1.96 |
+| Torso · 3.49m | 8 | 492,578 | 0.21 | 1.82 | 1.19 | 1.47 |
+| Eagle · 797k | 9 | 3,323,866 | 0.86 | 9.37 | 4.72 | 7.14 |
+| Torso · 1m subset | 9 | 2,051,674 | 0.59 | 6.41 | 3.37 | 5.07 |
 
 These are solve timings: GPU medians include Python orchestration and exclude
 upload and queries; C++ timings exclude parsing, queries, export, and startup.
 Three measured runs follow the first invocation. GPU memory is the process
 CUDA-pool high-water mark. The [full report](docs/results/public-scaling.json)
 includes every run, per-stage timings, support counts, and environment limits.
+The torso depth-9 CPU entry retains the earlier isolated measurement; a new repeat
+overlapped an unrelated build and is explicitly excluded in the report.
 
 The [performance guide](docs/performance.md) includes PSR, independent sample-count,
 density and depth sweeps, and the earlier torus optimization history. The
