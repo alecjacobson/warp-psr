@@ -10,7 +10,6 @@ from .samples import prepare_samples, point_div
 from .density import build_density
 from .normals import build_normal_field
 from .tree import build_tree
-from .integration import level_integration_grid
 from .solver import solve_levels
 from .field import LevelField, cumulative_coefficients
 from .transforms import precision_kernels as transform_kernels
@@ -186,15 +185,11 @@ def reconstruct(
             lambda: build_normal_field(samples, density, base_depth, depth),
         )
         tree = stage("tree", lambda: build_tree(normal, depth, full_depth, base_depth))
-        geometry = stage(
-            "integration_grid",
-            lambda: level_integration_grid(tree, depth, dtype=dtype),
-        )
         correction, levels, solver_sync = stage(
             "assembly_and_solve",
             lambda: solve_levels(
                 tree,
-                geometry,
+                None,
                 normal,
                 density,
                 base_depth=base_depth,
@@ -254,7 +249,8 @@ def reconstruct(
         "precision": dtype.__name__,
         "device": str(device),
         "basis_counts": [len(l.keys) for l in tree.basis],
-        "integration_cells": geometry.cell_count(),
+        "integration_cells": next((level["operator_integration_cells"] for level in levels if level["depth"] == depth), 0),
+        "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
         "timings_seconds": {name: wp.get_event_elapsed_time(start, end, synchronize=False) / 1000
                             for name, (start, end) in stage_events.items()},
         "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
