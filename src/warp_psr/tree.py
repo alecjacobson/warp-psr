@@ -5,7 +5,9 @@ unsigned Morton code. The level keys below are for logical nodes, not field keys
 """
 from dataclasses import dataclass
 from typing import Any
+import time
 import warp as wp
+import warp.utils
 from .field import basis_key
 from .keyed import coordinates, unique_keys, Records
 
@@ -26,19 +28,6 @@ def parent(c: wp.vec3i):
     return wp.vec3i(int(wp.floor(float(c[0])/2.0)),int(wp.floor(float(c[1])/2.0)),int(wp.floor(float(c[2])/2.0)))
 
 @wp.kernel
-def _seeds(normal_keys: wp.array(dtype=wp.int64), normals: wp.array(dtype=Any), d: int,
-           keys: wp.array(dtype=wp.int64)):
-    i,k=wp.tid()
-    idx=i*8+k
-    keys[idx]=wp.int64(0x7fffffffffffffff)
-    nd=int(normal_keys[i]>>wp.int64(48))
-    if nd>=d and wp.float64(wp.length_sq(normals[i]))>wp.float64(0.0):
-        c=coordinates(normal_keys[i])
-        c=wp.vec3i(c[0]>>(nd-d),c[1]>>(nd-d),c[2]>>(nd-d))
-        c=parent(c)*2+wp.vec3i(k&1,(k>>1)&1,(k>>2)&1)
-        keys[idx]=tree_key(c)
-
-@wp.kernel
 def _coarse(d: int, count: int, lo: int, offset: int, keys: wp.array(dtype=wp.int64)):
     i=wp.tid()
     c=wp.vec3i(i//(count*count)+lo,(i//count)%count+lo,i%count+lo)
@@ -50,29 +39,108 @@ def _parent_keys(fine: wp.array(dtype=wp.int64), out: wp.array(dtype=wp.int64)):
     out[i]=tree_key(parent(tree_coordinates(fine[i])))
 
 @wp.kernel
-def _support(fine: wp.array(dtype=wp.int64), radius: int, offset: int, depth: int, keys: wp.array(dtype=wp.int64)):
-    i,j,k=wp.tid()
-    # Completing broods over a radius-two node window produces exactly the
-    # 3^3 adjacent broods around parent(center), regardless of center parity.
-    # Emit each of their eight children once (216 candidates instead of 1000).
-    brood_radius=radius//2
-    width=brood_radius*2+1
-    c=parent(tree_coordinates(fine[i]))
-    c+=wp.vec3i(j//(width*width)-brood_radius,(j//width)%width-brood_radius,j%width-brood_radius)
-    c=c*2+wp.vec3i(k&1,(k>>1)&1,(k>>2)&1)
-    idx=offset+(i*width*width*width+j)*8+k
-    keys[idx]=wp.int64(0x7fffffffffffffff)
-    n=1<<depth
-    if wp.min(c)>=-2*n and wp.max(c)<2*n:
-        keys[idx]=tree_key(c)
+def _seed_broods(normal_keys: wp.array(dtype=wp.int64), normals: wp.array(dtype=Any), d: int,
+                 keys: wp.array(dtype=wp.int64)):
+    i=wp.tid()
+    keys[i]=wp.int64(0x7fffffffffffffff)
+    nd=int(normal_keys[i]>>wp.int64(48))
+    if nd>=d and wp.float64(wp.length_sq(normals[i]))>wp.float64(0.0):
+        c=coordinates(normal_keys[i])
+        c=wp.vec3i(c[0]>>(nd-d),c[1]>>(nd-d),c[2]>>(nd-d))
+        keys[i]=tree_key(parent(c))
 
 @wp.kernel
-def _field_keys(keys: wp.array(dtype=wp.int64), d: int, out: wp.array(dtype=wp.int64)):
+def _support_broods(fine: wp.array(dtype=wp.int64), radius: int, offset: int, depth: int,
+                    keys: wp.array(dtype=wp.int64)):
+    i,j=wp.tid()
+    width=radius*2+1
+    c=parent(tree_coordinates(fine[i]))
+    c+=wp.vec3i(j//(width*width)-radius,(j//width)%width-radius,j%width-radius)
+    idx=offset+i*width*width*width+j
+    keys[idx]=wp.int64(0x7fffffffffffffff)
+    # The original child bounds [-2*n, 2*n) fall on brood boundaries.
+    n=1<<depth
+    if wp.min(c)>=-n and wp.max(c)<n:
+        keys[idx]=tree_key(c)
+
+@wp.func
+def _lower_bound(keys: wp.array(dtype=wp.int64), key: wp.int64):
+    lo=int(0)
+    hi=keys.shape[0]
+    while lo<hi:
+        mid=(lo+hi)//2
+        if keys[mid]<key:
+            lo=mid+1
+        else:
+            hi=mid
+    return lo
+
+@wp.kernel
+def _expand_broods(broods: wp.array(dtype=wp.int64), children: wp.array(dtype=wp.int64)):
+    i=wp.tid()
+    key=broods[i]
+    c=2*tree_coordinates(key)
+    x=(key>>wp.int64(40))<<wp.int64(40)
+    xy=(key>>wp.int64(20))<<wp.int64(20)
+    x0=_lower_bound(broods,x)
+    x1=_lower_bound(broods,x+(wp.int64(1)<<wp.int64(40)))
+    xy0=_lower_bound(broods,xy)
+    xy1=_lower_bound(broods,xy+(wp.int64(1)<<wp.int64(20)))
+    for k in range(8):
+        ox=(k>>2)&1
+        oy=(k>>1)&1
+        oz=k&1
+        # Lexicographic children: two x halves, then two y halves, then z.
+        # Prefix sizes come from the already sorted unique parent keys.
+        dest=8*x0+4*ox*(x1-x0)+4*(xy0-x0)+2*oy*(xy1-xy0)+2*(i-xy0)+oz
+        children[dest]=tree_key(c+wp.vec3i(ox,oy,oz))
+
+
+def expand_broods(broods):
+    """Expand unique sorted parents into unique sorted children without sorting."""
+    children=wp.empty(8*len(broods.keys),dtype=wp.int64,device=broods.keys.device)
+    wp.launch(_expand_broods,len(broods.keys),inputs=[broods.keys,children],device=children.device)
+    return Records(children,wp.zeros(len(children),dtype=wp.vec4,device=children.device))
+
+@wp.kernel
+def _basis_marks(keys: wp.array(dtype=wp.int64), d: int, marks: wp.array(dtype=int)):
     i=wp.tid()
     c=tree_coordinates(keys[i])
-    out[i]=wp.int64(0x7fffffffffffffff)
+    marks[i]=0
     if wp.min(c)>=0 and wp.max(c)<=1<<d:
-        out[i]=basis_key(d,c[0],c[1],c[2])
+        marks[i]=1
+
+@wp.kernel
+def _basis_count(prefix: wp.array(dtype=int), out: wp.array(dtype=int)):
+    out[0]=prefix[prefix.shape[0]-1]
+
+@wp.kernel
+def _basis_fill(keys: wp.array(dtype=wp.int64), d: int, marks: wp.array(dtype=int),
+                prefix: wp.array(dtype=int), out: wp.array(dtype=wp.int64)):
+    i=wp.tid()
+    if marks[i]:
+        c=tree_coordinates(keys[i])
+        out[prefix[i]-1]=basis_key(d,c[0],c[1],c[2])
+
+
+def compact_basis(keys,depth):
+    """The signed-to-field key map preserves lexicographic order in the cube."""
+    device=keys.device
+    n=len(keys)
+    if not n:
+        return Records(wp.empty(0,dtype=wp.int64,device=device),wp.empty(0,dtype=wp.vec4,device=device))
+    marks=wp.empty(n,dtype=int,device=device)
+    prefix=wp.empty_like(marks)
+    count=wp.empty(1,dtype=int,device=device)
+    wp.launch(_basis_marks,n,inputs=[keys,depth,marks],device=device)
+    wp.utils.array_scan(marks,prefix,inclusive=True)
+    wp.launch(_basis_count,1,inputs=[prefix,count],device=device)
+    start=time.perf_counter()
+    size=int(count.numpy()[0])
+    sync=time.perf_counter()-start
+    out=wp.empty(size,dtype=wp.int64,device=device)
+    wp.launch(_basis_fill,n,inputs=[keys,depth,marks,prefix,out],device=device)
+    return Records(out,wp.zeros(size,dtype=wp.vec4,device=device),sync)
 
 @dataclass
 class LogicalTree:
@@ -91,22 +159,17 @@ def build_tree(normals,depth,full_depth,base_depth=None):
     basis=[None]*(depth+1)
     sync=0.0
     requests=None
+    broods=None
     for d in range(depth,-1,-1):
         # Finer normal broods are already represented by `parents` below.
         # Only seed this level's records instead of projecting every finer
         # normal and sorting the same ancestor broods again at every depth.
         records=normals.levels[d] if normals.levels is not None else normals.records
         count=len(records.keys)
-        # Current correctness path emits neighborhoods from unique parent nodes,
-        # so temporary storage is O(active nodes * fixed stencil), never dense D.
-        radius=2
-        fine=levels[d+1].keys if d<depth else wp.empty(0,dtype=wp.int64,device=device)
-        # Deduplicate fine parents before expanding the support stencil.
-        pk=wp.empty(2*len(fine),dtype=wp.int64,device=device)
-        if len(fine):
-            wp.launch(_parent_keys,len(fine),inputs=[fine,pk],device=device)
-        parents=unique_keys(pk,len(fine))
-        sync+=parents.sync_seconds
+        # Every level consists of complete eight-child broods. The unique
+        # parents are therefore already available from the finer-level union.
+        parents=broods if broods is not None else Records(
+            wp.empty(0,dtype=wp.int64,device=device),wp.empty(0,dtype=wp.vec4,device=device))
 
         if d>base_depth:
             requests=parents
@@ -117,24 +180,22 @@ def build_tree(normals,depth,full_depth,base_depth=None):
             sync+=requests.sync_seconds
         else:
             requests=parents
-        coarse_count=(4 if d==0 else (1<<d)+4) if d<=full_depth else 0
+        coarse_count=(2 if d==0 else (1<<(d-1))+2) if d<=full_depth else 0
         nc=coarse_count**3
-        ns=len(requests.keys)*27*8
-        np=8*len(parents.keys)
-        total=count*8+nc+ns+np
+        ns=len(requests.keys)*27
+        np=len(parents.keys)
+        total=count+nc+ns+np
         keys=wp.empty(2*total,dtype=wp.int64,device=device)
-        wp.launch(_seeds,(count,8),inputs=[records.keys,records.values,d,keys],device=device)
+        wp.launch(_seed_broods,count,inputs=[records.keys,records.values,d,keys],device=device)
         if nc:
-            wp.launch(_coarse,nc,inputs=[d,coarse_count,-2,count*8,keys],device=device)
+            wp.launch(_coarse,nc,inputs=[d,coarse_count,-1,count,keys],device=device)
         if ns:
-            wp.launch(_support,(len(requests.keys),27,8),inputs=[requests.keys,2,count*8+nc,d,keys],device=device)
+            wp.launch(_support_broods,(len(requests.keys),27),inputs=[requests.keys,1,count+nc,d,keys],device=device)
         if np:
-            wp.launch(_support,(len(parents.keys),1,8),inputs=[parents.keys,0,count*8+nc+ns,d,keys],device=device)
-        levels[d]=unique_keys(keys,total)
-        sync+=levels[d].sync_seconds
-        n=len(levels[d].keys)
-        fk=wp.empty(2*n,dtype=wp.int64,device=device)
-        wp.launch(_field_keys,n,inputs=[levels[d].keys,d,fk],device=device)
-        basis[d]=unique_keys(fk,n)
+            wp.launch(_support_broods,(len(parents.keys),1),inputs=[parents.keys,0,count+nc+ns,d,keys],device=device)
+        broods=unique_keys(keys,total)
+        sync+=broods.sync_seconds
+        levels[d]=expand_broods(broods)
+        basis[d]=compact_basis(levels[d].keys,d)
         sync+=basis[d].sync_seconds
     return LogicalTree(levels,basis,sync)
