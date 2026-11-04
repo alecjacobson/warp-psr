@@ -3,2291 +3,12 @@
   "all_passed": true,
   "validation": {
     "full_suite": {
-      "passed": 309,
+      "passed": 313,
       "expected_upstream_failures": 1
-    },
-    "after_adding_initial_skip_cases": {
-      "trace_tests_passed": 12
     },
     "fixture_count": 6
   },
   "profiles": [
-    {
-      "fixture": "solver-trace-default-float",
-      "manifest": {
-        "fixture_format": 2,
-        "name": "solver-trace-default-float",
-        "pins": {
-          "fixture_format": 1,
-          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
-          "warp_version": "1.19.0",
-          "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
-          "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
-        },
-        "application_revision": "daf32714b8b319b52f0c253373ac47c73969aa16",
-        "application_dirty": false,
-        "build": {
-          "pins": {
-            "fixture_format": 1,
-            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
-            "warp_version": "1.19.0",
-            "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
-            "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
-          },
-          "commands": [
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-fopenmp",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_openmp"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-fopenmp",
-              "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented_openmp"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/basis.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/basis"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src/PoissonRecon.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/PoissonReconCLI"
-            ]
-          ],
-          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
-        },
-        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
-        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
-        "reference_file_sha256": {
-          "oracle.txt": "385a9112be943dd16df95bb795441df23e2617e82dc97e1adb80c45ba32ed894",
-          "oracle_instrumented.txt": "4bca3c871dea42a6a8176d063a4f3869f757abc6016210615172554cc87138b7",
-          "preprocess.txt": "929c9e7fc0e73d77ab9b00799355272b9408a50726c2c1ddea36bfc30e22aec3",
-          "stages.txt": "27da88d35ad9aa5d4e52c3fc340d541b996326065643fa7a363a3ebd9b676c3b",
-          "splats.txt": "a380e6b66465760e4790b0b54044d81cd3d9086c218f4a0923210e46b18eb3f7",
-          "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
-          "operators.txt": "340673fbc7640a2c18a5a3b5f0ea2797d14de166f4cc858791e11395ac38e878",
-          "solve_trace.txt": "b3b0fdfb587a0676e812c941b0e161773574bbd1b1a062c133f39abbe85f56c9"
-        },
-        "input_order": "file order; seeded numpy Generator",
-        "seed": 2026,
-        "input_source": null,
-        "precision": "float",
-        "parameters": {
-          "name": "solver-trace-default-float",
-          "dataset": null,
-          "input": null,
-          "max_points": null,
-          "shape": "sphere",
-          "input_scale": 1.0,
-          "translation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "count": 128,
-          "seed": 2026,
-          "depth": 3,
-          "full_depth": 2,
-          "base_depth": 2,
-          "solve_depth": 3,
-          "kernel_depth": 1,
-          "scale": 1.1,
-          "samples_per_node": 1.5,
-          "cg_accuracy": 0.001,
-          "base_v_cycles": 1,
-          "weight": 2.0,
-          "exact": false,
-          "iters": 3,
-          "precision": "float",
-          "grid": 8,
-          "operators": true,
-          "topology": false,
-          "solver_trace": true,
-          "align_dir": 0,
-          "degree": 1,
-          "boundary": "Neumann",
-          "confidence": false
-        },
-        "reference_parallelism": "ThreadPool::NONE (serial)",
-        "reference_thread_settings": {
-          "parallel_async": 0,
-          "threads": 128,
-          "schedule": 1,
-          "chunk_size": 128
-        },
-        "instrumentation_max_abs_error": 0.0,
-        "timings_seconds": {
-          "query_coverage_pilot": 0.07701513543725014,
-          "oracle": 0.07553521916270256,
-          "oracle_instrumented": 0.11289878562092781
-        },
-        "grid": {
-          "resolution": 8,
-          "cube_min": 0.001,
-          "cube_max": 0.999,
-          "order": "ij, z fastest"
-        },
-        "query_families": {
-          "visualization_grid": [
-            0,
-            512
-          ],
-          "random_volume": [
-            512,
-            1536
-          ],
-          "input_samples": [
-            1536,
-            1664
-          ],
-          "cell_interiors": [
-            1664,
-            1728
-          ],
-          "cube_boundary": [
-            1728,
-            1920
-          ],
-          "far_from_samples": [
-            1920,
-            2048
-          ]
-        },
-        "query_coverage": {
-          "cell_interiors_by_depth": {
-            "3": 64
-          },
-          "refinement_interface_pairs": 0,
-          "boundary_distance_in_cube": 1e-05,
-          "far_from_samples_min_distance_in_cube": 0.2672727317573193
-        },
-        "environment": {
-          "python": "3.10.12",
-          "numpy": "2.2.6",
-          "warp": "1.19.0",
-          "devices": [
-            "cpu",
-            "cuda:0"
-          ],
-          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
-        },
-        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
-      },
-      "trace_replay": {
-        "fixture": "solver-trace-default-float",
-        "trace_sha256": "b3b0fdfb587a0676e812c941b0e161773574bbd1b1a062c133f39abbe85f56c9",
-        "precision": "float",
-        "instrumentation_max_abs_error": 0.0,
-        "replay": "bitwise exact serial input-precision arithmetic",
-        "gs_updates": 39,
-        "gs_phases": [
-          "prolong",
-          "restrict",
-          "slice"
-        ],
-        "cg_solves": 1,
-        "cg_stops": [
-          {
-            "reason": "tolerance",
-            "iterations": 6,
-            "residual_squared": 1.5714362591127268e-13,
-            "threshold_squared": 4.059290335121411e-12
-          }
-        ],
-        "levels": [
-          {
-            "depth": 2,
-            "phase": "prolongation",
-            "iterations": 3
-          },
-          {
-            "depth": 3,
-            "phase": "prolongation",
-            "iterations": 3
-          }
-        ]
-      },
-      "reconstruction": {
-        "test": "Independent GPU reconstruction from oriented points",
-        "reconstruction_compatibility": true,
-        "source_revision": "daf32714b8b319b52f0c253373ac47c73969aa16",
-        "source_dirty": false,
-        "production_source_sha256": {
-          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
-          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
-          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
-          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
-          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
-          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
-          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
-          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
-          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
-          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
-          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
-          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
-          "src/warp_psr/reconstruction.py": "d3955c51b72b63479c0b6eac2843cd8e22b8c5c03c96c3d87c528a9c3f7ece10",
-          "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
-          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
-          "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
-          "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
-          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
-          "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
-          "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
-          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
-          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
-        },
-        "fixture_provenance": {
-          "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
-          "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
-          "precision": "float",
-          "parameters": {
-            "name": "solver-trace-default-float",
-            "dataset": null,
-            "input": null,
-            "max_points": null,
-            "shape": "sphere",
-            "input_scale": 1.0,
-            "translation": [
-              0.0,
-              0.0,
-              0.0
-            ],
-            "count": 128,
-            "seed": 2026,
-            "depth": 3,
-            "full_depth": 2,
-            "base_depth": 2,
-            "solve_depth": 3,
-            "kernel_depth": 1,
-            "scale": 1.1,
-            "samples_per_node": 1.5,
-            "cg_accuracy": 0.001,
-            "base_v_cycles": 1,
-            "weight": 2.0,
-            "exact": false,
-            "iters": 3,
-            "precision": "float",
-            "grid": 8,
-            "operators": true,
-            "topology": false,
-            "solver_trace": true,
-            "align_dir": 0,
-            "degree": 1,
-            "boundary": "Neumann",
-            "confidence": false
-          },
-          "reference_file_sha256": {
-            "oracle.txt": "385a9112be943dd16df95bb795441df23e2617e82dc97e1adb80c45ba32ed894",
-            "oracle_instrumented.txt": "4bca3c871dea42a6a8176d063a4f3869f757abc6016210615172554cc87138b7",
-            "preprocess.txt": "929c9e7fc0e73d77ab9b00799355272b9408a50726c2c1ddea36bfc30e22aec3",
-            "stages.txt": "27da88d35ad9aa5d4e52c3fc340d541b996326065643fa7a363a3ebd9b676c3b",
-            "splats.txt": "a380e6b66465760e4790b0b54044d81cd3d9086c218f4a0923210e46b18eb3f7",
-            "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
-            "operators.txt": "340673fbc7640a2c18a5a3b5f0ea2797d14de166f4cc858791e11395ac38e878",
-            "solve_trace.txt": "b3b0fdfb587a0676e812c941b0e161773574bbd1b1a062c133f39abbe85f56c9"
-          }
-        },
-        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
-        "fixture": "solver-trace-default-float",
-        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
-        "input_source": null,
-        "tree": {
-          "exact_active_and_support_keys": true,
-          "levels": [
-            {
-              "depth": 0,
-              "support_count": 64,
-              "active_count": 8,
-              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
-              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
-            },
-            {
-              "depth": 1,
-              "support_count": 216,
-              "active_count": 27,
-              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
-              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
-            },
-            {
-              "depth": 2,
-              "support_count": 512,
-              "active_count": 125,
-              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
-              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
-            },
-            {
-              "depth": 3,
-              "support_count": 512,
-              "active_count": 512,
-              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
-              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
-            }
-          ]
-        },
-        "samples": {
-          "exact_input_status_and_membership": true,
-          "input_count": 128,
-          "accepted": 128,
-          "aggregates": 91,
-          "rejected_by_status": {}
-        },
-        "complete_tree": null,
-        "device": "cuda:0",
-        "queries": 2048,
-        "coefficients": 672,
-        "field_tolerances": {
-          "absolute": 1e-05,
-          "relative": 0.0001
-        },
-        "max_abs_value_error": 2.384185791015625e-07,
-        "max_abs_centered_value_error": 2.682209014892578e-07,
-        "rms_value_error": 4.789074504627188e-08,
-        "max_abs_cube_gradient_error": 2.076847781751212e-06,
-        "max_scaled_gradient_budget_ratio": 0.016873183236233918,
-        "max_unscaled_gradient_budget_ratio": 0.07831412168139913,
-        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
-        "gradient_errors_by_depth": {
-          "3": 2.076847781751212e-06
-        },
-        "errors_by_depth": {
-          "3": {
-            "queries": 2048,
-            "max_abs_value_error": 2.384185791015625e-07,
-            "rms_value_error": 4.789074504627188e-08,
-            "max_abs_centered_value_error": 2.682209014892578e-07,
-            "rms_centered_value_error": 4.892503766626299e-08,
-            "max_abs_cube_gradient_error": 2.076847781751212e-06,
-            "rms_cube_gradient_error": 3.1648427545722884e-07,
-            "max_scaled_gradient_budget_ratio": 0.016873183236233918
-          }
-        },
-        "errors_by_query_family": {
-          "visualization_grid": {
-            "queries": 512,
-            "max_abs_value_error": 1.7881393432617188e-07,
-            "rms_value_error": 4.462132922925438e-08,
-            "max_abs_centered_value_error": 1.7881393432617188e-07,
-            "rms_centered_value_error": 4.664610014163371e-08,
-            "max_abs_cube_gradient_error": 1.5576358358693199e-06,
-            "rms_cube_gradient_error": 2.7588746082838045e-07,
-            "max_scaled_gradient_budget_ratio": 0.01056853760370184
-          },
-          "random_volume": {
-            "queries": 1024,
-            "max_abs_value_error": 2.384185791015625e-07,
-            "rms_value_error": 5.0231862389353946e-08,
-            "max_abs_centered_value_error": 2.682209014892578e-07,
-            "rms_centered_value_error": 5.034010395838594e-08,
-            "max_abs_cube_gradient_error": 2.076847781751212e-06,
-            "rms_cube_gradient_error": 3.322572342325537e-07,
-            "max_scaled_gradient_budget_ratio": 0.016873183236233918
-          },
-          "input_samples": {
-            "queries": 128,
-            "max_abs_value_error": 1.1920928955078125e-07,
-            "rms_value_error": 4.9210506728376844e-08,
-            "max_abs_centered_value_error": 1.1920928955078125e-07,
-            "rms_centered_value_error": 4.9210506728376844e-08,
-            "max_abs_cube_gradient_error": 1.8172418085882214e-06,
-            "rms_cube_gradient_error": 4.7495551876298876e-07,
-            "max_scaled_gradient_budget_ratio": 0.008953717464459124
-          },
-          "cell_interiors": {
-            "queries": 64,
-            "max_abs_value_error": 1.1920928955078125e-07,
-            "rms_value_error": 4.912229997754318e-08,
-            "max_abs_centered_value_error": 1.4901161193847656e-07,
-            "rms_centered_value_error": 4.9675387714410525e-08,
-            "max_abs_cube_gradient_error": 7.788179181567045e-07,
-            "rms_cube_gradient_error": 2.541331325315157e-07,
-            "max_scaled_gradient_budget_ratio": 0.007078673871343417
-          },
-          "cube_boundary": {
-            "queries": 192,
-            "max_abs_value_error": 1.1920928955078125e-07,
-            "rms_value_error": 3.757510780546201e-08,
-            "max_abs_centered_value_error": 1.1920928955078125e-07,
-            "rms_centered_value_error": 3.8614338110951714e-08,
-            "max_abs_cube_gradient_error": 1.5576358358693199e-06,
-            "rms_cube_gradient_error": 2.7683652421227215e-07,
-            "max_scaled_gradient_budget_ratio": 0.006828970116374432
-          },
-          "far_from_samples": {
-            "queries": 128,
-            "max_abs_value_error": 2.384185791015625e-07,
-            "rms_value_error": 5.2916878743295364e-08,
-            "max_abs_centered_value_error": 2.682209014892578e-07,
-            "rms_centered_value_error": 5.8566279529516416e-08,
-            "max_abs_cube_gradient_error": 8.599447844093167e-07,
-            "rms_cube_gradient_error": 2.0530456152575477e-07,
-            "max_scaled_gradient_budget_ratio": 0.009578863599159158
-          }
-        },
-        "iso_value": 0.49932870268821716,
-        "reference_iso_value": 0.49932870268821716,
-        "metadata": {
-          "precision": "float32",
-          "device": "cuda:0",
-          "basis_counts": [
-            8,
-            27,
-            125,
-            512
-          ],
-          "integration_cells": 512,
-          "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
-          "timings_seconds": {
-            "samples": 0.01749056053161621,
-            "density": 0.016141439437866213,
-            "normal_field": 0.00997606372833252,
-            "tree": 0.007609983921051025,
-            "assembly_and_solve": 0.4258309326171875
-          },
-          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
-          "operator_integration_cells": {
-            "2": 64,
-            "3": 512
-          },
-          "measured_host_sync_seconds": 0.0036206580698490143,
-          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
-          "exact_interpolation_behavior": "level-clustered approximate constraints",
-          "cube_to_model": [
-            [
-              0.0,
-              0.0,
-              2.1777327060699463,
-              -1.095521092414856
-            ],
-            [
-              2.1777327060699463,
-              0.0,
-              0.0,
-              -1.0973303318023682
-            ],
-            [
-              0.0,
-              2.1777327060699463,
-              0.0,
-              -1.0903044939041138
-            ],
-            [
-              0.0,
-              0.0,
-              0.0,
-              1.0
-            ]
-          ],
-          "parameters": {
-            "depth": 3,
-            "full_depth": 2,
-            "base_depth": 2,
-            "solve_depth": 3,
-            "kernel_depth": 1,
-            "samples_per_node": 1.5,
-            "scale": 1.1,
-            "point_weight": 2.0,
-            "exact_interpolation": false,
-            "iters": 3,
-            "base_v_cycles": 1,
-            "cg_accuracy": 0.001
-          },
-          "profile": "pinned cascadic degree-1 Neumann",
-          "constant_mode": "reference solve without an added mean term"
-        }
-      }
-    },
-    {
-      "fixture": "solver-trace-tight-float",
-      "manifest": {
-        "fixture_format": 2,
-        "name": "solver-trace-tight-float",
-        "pins": {
-          "fixture_format": 1,
-          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
-          "warp_version": "1.19.0",
-          "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
-          "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
-        },
-        "application_revision": "daf32714b8b319b52f0c253373ac47c73969aa16",
-        "application_dirty": false,
-        "build": {
-          "pins": {
-            "fixture_format": 1,
-            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
-            "warp_version": "1.19.0",
-            "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
-            "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
-          },
-          "commands": [
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-fopenmp",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_openmp"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-fopenmp",
-              "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented_openmp"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/basis.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/basis"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src/PoissonRecon.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/PoissonReconCLI"
-            ]
-          ],
-          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
-        },
-        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
-        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
-        "reference_file_sha256": {
-          "oracle.txt": "21def01ce3310529ae0da1688409aa7a9541c40787d9219a009425d3e6708022",
-          "oracle_instrumented.txt": "90e448d7b6bdaddf0506304de5e0975e31be0cc74023a4352073f091a1109234",
-          "preprocess.txt": "929c9e7fc0e73d77ab9b00799355272b9408a50726c2c1ddea36bfc30e22aec3",
-          "stages.txt": "591bf936a841e98c81867c7a9aa3eb7018bbc902381ed819691a7c779a2a8214",
-          "splats.txt": "a380e6b66465760e4790b0b54044d81cd3d9086c218f4a0923210e46b18eb3f7",
-          "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
-          "operators.txt": "340673fbc7640a2c18a5a3b5f0ea2797d14de166f4cc858791e11395ac38e878",
-          "solve_trace.txt": "15d0def2f8f84e7e6da6ba0b700a761492da01eb7ddb8f9b658e8681cf047de5"
-        },
-        "input_order": "file order; seeded numpy Generator",
-        "seed": 2026,
-        "input_source": null,
-        "precision": "float",
-        "parameters": {
-          "name": "solver-trace-tight-float",
-          "dataset": null,
-          "input": null,
-          "max_points": null,
-          "shape": "sphere",
-          "input_scale": 1.0,
-          "translation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "count": 128,
-          "seed": 2026,
-          "depth": 3,
-          "full_depth": 2,
-          "base_depth": 2,
-          "solve_depth": 3,
-          "kernel_depth": 1,
-          "scale": 1.1,
-          "samples_per_node": 1.5,
-          "cg_accuracy": 1e-08,
-          "base_v_cycles": 1,
-          "weight": 2.0,
-          "exact": false,
-          "iters": 3,
-          "precision": "float",
-          "grid": 8,
-          "operators": true,
-          "topology": false,
-          "solver_trace": true,
-          "align_dir": 0,
-          "degree": 1,
-          "boundary": "Neumann",
-          "confidence": false
-        },
-        "reference_parallelism": "ThreadPool::NONE (serial)",
-        "reference_thread_settings": {
-          "parallel_async": 0,
-          "threads": 128,
-          "schedule": 1,
-          "chunk_size": 128
-        },
-        "instrumentation_max_abs_error": 0.0,
-        "timings_seconds": {
-          "query_coverage_pilot": 0.07562412694096565,
-          "oracle": 0.07202208787202835,
-          "oracle_instrumented": 0.11384260281920433
-        },
-        "grid": {
-          "resolution": 8,
-          "cube_min": 0.001,
-          "cube_max": 0.999,
-          "order": "ij, z fastest"
-        },
-        "query_families": {
-          "visualization_grid": [
-            0,
-            512
-          ],
-          "random_volume": [
-            512,
-            1536
-          ],
-          "input_samples": [
-            1536,
-            1664
-          ],
-          "cell_interiors": [
-            1664,
-            1728
-          ],
-          "cube_boundary": [
-            1728,
-            1920
-          ],
-          "far_from_samples": [
-            1920,
-            2048
-          ]
-        },
-        "query_coverage": {
-          "cell_interiors_by_depth": {
-            "3": 64
-          },
-          "refinement_interface_pairs": 0,
-          "boundary_distance_in_cube": 1e-05,
-          "far_from_samples_min_distance_in_cube": 0.2672727317573193
-        },
-        "environment": {
-          "python": "3.10.12",
-          "numpy": "2.2.6",
-          "warp": "1.19.0",
-          "devices": [
-            "cpu",
-            "cuda:0"
-          ],
-          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
-        },
-        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
-      },
-      "trace_replay": {
-        "fixture": "solver-trace-tight-float",
-        "trace_sha256": "15d0def2f8f84e7e6da6ba0b700a761492da01eb7ddb8f9b658e8681cf047de5",
-        "precision": "float",
-        "instrumentation_max_abs_error": 0.0,
-        "replay": "bitwise exact serial input-precision arithmetic",
-        "gs_updates": 39,
-        "gs_phases": [
-          "prolong",
-          "restrict",
-          "slice"
-        ],
-        "cg_solves": 1,
-        "cg_stops": [
-          {
-            "reason": "limit",
-            "iterations": 8,
-            "residual_squared": 4.5234979775212545e-18,
-            "threshold_squared": 4.0592899001691144e-22
-          }
-        ],
-        "levels": [
-          {
-            "depth": 2,
-            "phase": "prolongation",
-            "iterations": 3
-          },
-          {
-            "depth": 3,
-            "phase": "prolongation",
-            "iterations": 3
-          }
-        ]
-      },
-      "reconstruction": {
-        "test": "Independent GPU reconstruction from oriented points",
-        "reconstruction_compatibility": true,
-        "source_revision": "daf32714b8b319b52f0c253373ac47c73969aa16",
-        "source_dirty": false,
-        "production_source_sha256": {
-          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
-          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
-          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
-          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
-          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
-          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
-          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
-          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
-          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
-          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
-          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
-          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
-          "src/warp_psr/reconstruction.py": "d3955c51b72b63479c0b6eac2843cd8e22b8c5c03c96c3d87c528a9c3f7ece10",
-          "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
-          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
-          "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
-          "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
-          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
-          "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
-          "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
-          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
-          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
-        },
-        "fixture_provenance": {
-          "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
-          "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
-          "precision": "float",
-          "parameters": {
-            "name": "solver-trace-tight-float",
-            "dataset": null,
-            "input": null,
-            "max_points": null,
-            "shape": "sphere",
-            "input_scale": 1.0,
-            "translation": [
-              0.0,
-              0.0,
-              0.0
-            ],
-            "count": 128,
-            "seed": 2026,
-            "depth": 3,
-            "full_depth": 2,
-            "base_depth": 2,
-            "solve_depth": 3,
-            "kernel_depth": 1,
-            "scale": 1.1,
-            "samples_per_node": 1.5,
-            "cg_accuracy": 1e-08,
-            "base_v_cycles": 1,
-            "weight": 2.0,
-            "exact": false,
-            "iters": 3,
-            "precision": "float",
-            "grid": 8,
-            "operators": true,
-            "topology": false,
-            "solver_trace": true,
-            "align_dir": 0,
-            "degree": 1,
-            "boundary": "Neumann",
-            "confidence": false
-          },
-          "reference_file_sha256": {
-            "oracle.txt": "21def01ce3310529ae0da1688409aa7a9541c40787d9219a009425d3e6708022",
-            "oracle_instrumented.txt": "90e448d7b6bdaddf0506304de5e0975e31be0cc74023a4352073f091a1109234",
-            "preprocess.txt": "929c9e7fc0e73d77ab9b00799355272b9408a50726c2c1ddea36bfc30e22aec3",
-            "stages.txt": "591bf936a841e98c81867c7a9aa3eb7018bbc902381ed819691a7c779a2a8214",
-            "splats.txt": "a380e6b66465760e4790b0b54044d81cd3d9086c218f4a0923210e46b18eb3f7",
-            "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
-            "operators.txt": "340673fbc7640a2c18a5a3b5f0ea2797d14de166f4cc858791e11395ac38e878",
-            "solve_trace.txt": "15d0def2f8f84e7e6da6ba0b700a761492da01eb7ddb8f9b658e8681cf047de5"
-          }
-        },
-        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
-        "fixture": "solver-trace-tight-float",
-        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
-        "input_source": null,
-        "tree": {
-          "exact_active_and_support_keys": true,
-          "levels": [
-            {
-              "depth": 0,
-              "support_count": 64,
-              "active_count": 8,
-              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
-              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
-            },
-            {
-              "depth": 1,
-              "support_count": 216,
-              "active_count": 27,
-              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
-              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
-            },
-            {
-              "depth": 2,
-              "support_count": 512,
-              "active_count": 125,
-              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
-              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
-            },
-            {
-              "depth": 3,
-              "support_count": 512,
-              "active_count": 512,
-              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
-              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
-            }
-          ]
-        },
-        "samples": {
-          "exact_input_status_and_membership": true,
-          "input_count": 128,
-          "accepted": 128,
-          "aggregates": 91,
-          "rejected_by_status": {}
-        },
-        "complete_tree": null,
-        "device": "cuda:0",
-        "queries": 2048,
-        "coefficients": 672,
-        "field_tolerances": {
-          "absolute": 1e-05,
-          "relative": 0.0001
-        },
-        "max_abs_value_error": 2.384185791015625e-07,
-        "max_abs_centered_value_error": 2.682209014892578e-07,
-        "rms_value_error": 4.841163106912258e-08,
-        "max_abs_cube_gradient_error": 2.076847781751212e-06,
-        "max_scaled_gradient_budget_ratio": 0.016873183236233918,
-        "max_unscaled_gradient_budget_ratio": 0.07831412168139913,
-        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
-        "gradient_errors_by_depth": {
-          "3": 2.076847781751212e-06
-        },
-        "errors_by_depth": {
-          "3": {
-            "queries": 2048,
-            "max_abs_value_error": 2.384185791015625e-07,
-            "rms_value_error": 4.841163106912258e-08,
-            "max_abs_centered_value_error": 2.682209014892578e-07,
-            "rms_centered_value_error": 4.954790161593841e-08,
-            "max_abs_cube_gradient_error": 2.076847781751212e-06,
-            "rms_cube_gradient_error": 3.2081211666211896e-07,
-            "max_scaled_gradient_budget_ratio": 0.016873183236233918
-          }
-        },
-        "errors_by_query_family": {
-          "visualization_grid": {
-            "queries": 512,
-            "max_abs_value_error": 1.7881393432617188e-07,
-            "rms_value_error": 4.518270387150588e-08,
-            "max_abs_centered_value_error": 1.7881393432617188e-07,
-            "rms_centered_value_error": 4.7226899661693987e-08,
-            "max_abs_cube_gradient_error": 1.5576358358693199e-06,
-            "rms_cube_gradient_error": 2.7478279963591514e-07,
-            "max_scaled_gradient_budget_ratio": 0.010248149017276527
-          },
-          "random_volume": {
-            "queries": 1024,
-            "max_abs_value_error": 2.384185791015625e-07,
-            "rms_value_error": 5.06477899140543e-08,
-            "max_abs_centered_value_error": 2.682209014892578e-07,
-            "rms_centered_value_error": 5.0956477106930306e-08,
-            "max_abs_cube_gradient_error": 2.076847781751212e-06,
-            "rms_cube_gradient_error": 3.365180716701e-07,
-            "max_scaled_gradient_budget_ratio": 0.016873183236233918
-          },
-          "input_samples": {
-            "queries": 128,
-            "max_abs_value_error": 1.7881393432617188e-07,
-            "rms_value_error": 5.141710393817075e-08,
-            "max_abs_centered_value_error": 1.7881393432617188e-07,
-            "rms_centered_value_error": 5.141710393817075e-08,
-            "max_abs_cube_gradient_error": 2.076847781307123e-06,
-            "rms_cube_gradient_error": 5.02057223600619e-07,
-            "max_scaled_gradient_budget_ratio": 0.01074445903298761
-          },
-          "cell_interiors": {
-            "queries": 64,
-            "max_abs_value_error": 1.1920928955078125e-07,
-            "rms_value_error": 4.884784684309123e-08,
-            "max_abs_centered_value_error": 1.4901161193847656e-07,
-            "rms_centered_value_error": 4.919287803115046e-08,
-            "max_abs_cube_gradient_error": 1.038423890875606e-06,
-            "rms_cube_gradient_error": 2.63756704331943e-07,
-            "max_scaled_gradient_budget_ratio": 0.007021770349796069
-          },
-          "cube_boundary": {
-            "queries": 192,
-            "max_abs_value_error": 1.1920928955078125e-07,
-            "rms_value_error": 3.72864179465823e-08,
-            "max_abs_centered_value_error": 1.1920928955078125e-07,
-            "rms_centered_value_error": 3.822490193298471e-08,
-            "max_abs_cube_gradient_error": 1.2980298635945076e-06,
-            "rms_cube_gradient_error": 2.6972422168557086e-07,
-            "max_scaled_gradient_budget_ratio": 0.006259888917429438
-          },
-          "far_from_samples": {
-            "queries": 128,
-            "max_abs_value_error": 2.384185791015625e-07,
-            "rms_value_error": 5.375211967408002e-08,
-            "max_abs_centered_value_error": 2.682209014892578e-07,
-            "rms_centered_value_error": 5.950201088455521e-08,
-            "max_abs_cube_gradient_error": 7.382544847285566e-07,
-            "rms_cube_gradient_error": 2.068259892101124e-07,
-            "max_scaled_gradient_budget_ratio": 0.008902846321352773
-          }
-        },
-        "iso_value": 0.49932870268821716,
-        "reference_iso_value": 0.49932870268821716,
-        "metadata": {
-          "precision": "float32",
-          "device": "cuda:0",
-          "basis_counts": [
-            8,
-            27,
-            125,
-            512
-          ],
-          "integration_cells": 512,
-          "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
-          "timings_seconds": {
-            "samples": 0.015716095924377442,
-            "density": 0.01668604850769043,
-            "normal_field": 0.010185503959655761,
-            "tree": 0.0076592001914978025,
-            "assembly_and_solve": 0.4368727722167969
-          },
-          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
-          "operator_integration_cells": {
-            "2": 64,
-            "3": 512
-          },
-          "measured_host_sync_seconds": 0.0036930441856384277,
-          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
-          "exact_interpolation_behavior": "level-clustered approximate constraints",
-          "cube_to_model": [
-            [
-              0.0,
-              0.0,
-              2.1777327060699463,
-              -1.095521092414856
-            ],
-            [
-              2.1777327060699463,
-              0.0,
-              0.0,
-              -1.0973303318023682
-            ],
-            [
-              0.0,
-              2.1777327060699463,
-              0.0,
-              -1.0903044939041138
-            ],
-            [
-              0.0,
-              0.0,
-              0.0,
-              1.0
-            ]
-          ],
-          "parameters": {
-            "depth": 3,
-            "full_depth": 2,
-            "base_depth": 2,
-            "solve_depth": 3,
-            "kernel_depth": 1,
-            "samples_per_node": 1.5,
-            "scale": 1.1,
-            "point_weight": 2.0,
-            "exact_interpolation": false,
-            "iters": 3,
-            "base_v_cycles": 1,
-            "cg_accuracy": 1e-08
-          },
-          "profile": "pinned cascadic degree-1 Neumann",
-          "constant_mode": "reference solve without an added mean term"
-        }
-      }
-    },
-    {
-      "fixture": "solver-trace-default-double",
-      "manifest": {
-        "fixture_format": 2,
-        "name": "solver-trace-default-double",
-        "pins": {
-          "fixture_format": 1,
-          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
-          "warp_version": "1.19.0",
-          "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
-          "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
-        },
-        "application_revision": "daf32714b8b319b52f0c253373ac47c73969aa16",
-        "application_dirty": false,
-        "build": {
-          "pins": {
-            "fixture_format": 1,
-            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
-            "warp_version": "1.19.0",
-            "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
-            "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
-          },
-          "commands": [
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-fopenmp",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_openmp"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-fopenmp",
-              "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented_openmp"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/basis.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/basis"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src/PoissonRecon.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/PoissonReconCLI"
-            ]
-          ],
-          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
-        },
-        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
-        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
-        "reference_file_sha256": {
-          "oracle.txt": "3b561fd5d6c8504d9841cbee01e563112530e0be5946c0a558c712c2638c872a",
-          "oracle_instrumented.txt": "bff911dfe6f73120bbbb7723d54241e252b07bfa475cb84a1c38435b94507366",
-          "preprocess.txt": "3be9264a3a7c63c961a5d50e0d427c36d6c491413abb15ec2db95162aad9717f",
-          "stages.txt": "e90e9c924d934ca9b3f5bb1b43e78c60343898c65556704cfbbaab829b278cd4",
-          "splats.txt": "e8765fa0c22fcbb6cadbe8630872854d6b83afb6f3238c8c052b8b6030e583af",
-          "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
-          "operators.txt": "6951ae347c55bf2a9c9251ae97be1cef430d9a6bd9470ff47d1b763c2798c264",
-          "solve_trace.txt": "4bb5445848078dec7eb5f27c271297f2d0678fde827bf7ce20f1834a18bff0c7"
-        },
-        "input_order": "file order; seeded numpy Generator",
-        "seed": 2026,
-        "input_source": null,
-        "precision": "double",
-        "parameters": {
-          "name": "solver-trace-default-double",
-          "dataset": null,
-          "input": null,
-          "max_points": null,
-          "shape": "sphere",
-          "input_scale": 1.0,
-          "translation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "count": 128,
-          "seed": 2026,
-          "depth": 3,
-          "full_depth": 2,
-          "base_depth": 2,
-          "solve_depth": 3,
-          "kernel_depth": 1,
-          "scale": 1.1,
-          "samples_per_node": 1.5,
-          "cg_accuracy": 0.001,
-          "base_v_cycles": 1,
-          "weight": 2.0,
-          "exact": false,
-          "iters": 3,
-          "precision": "double",
-          "grid": 8,
-          "operators": true,
-          "topology": false,
-          "solver_trace": true,
-          "align_dir": 0,
-          "degree": 1,
-          "boundary": "Neumann",
-          "confidence": false
-        },
-        "reference_parallelism": "ThreadPool::NONE (serial)",
-        "reference_thread_settings": {
-          "parallel_async": 0,
-          "threads": 128,
-          "schedule": 1,
-          "chunk_size": 128
-        },
-        "instrumentation_max_abs_error": 0.0,
-        "timings_seconds": {
-          "query_coverage_pilot": 0.08814719691872597,
-          "oracle": 0.08495387062430382,
-          "oracle_instrumented": 0.12669243291020393
-        },
-        "grid": {
-          "resolution": 8,
-          "cube_min": 0.001,
-          "cube_max": 0.999,
-          "order": "ij, z fastest"
-        },
-        "query_families": {
-          "visualization_grid": [
-            0,
-            512
-          ],
-          "random_volume": [
-            512,
-            1536
-          ],
-          "input_samples": [
-            1536,
-            1664
-          ],
-          "cell_interiors": [
-            1664,
-            1728
-          ],
-          "cube_boundary": [
-            1728,
-            1920
-          ],
-          "far_from_samples": [
-            1920,
-            2048
-          ]
-        },
-        "query_coverage": {
-          "cell_interiors_by_depth": {
-            "3": 64
-          },
-          "refinement_interface_pairs": 0,
-          "boundary_distance_in_cube": 1e-10,
-          "far_from_samples_min_distance_in_cube": 0.26727274766695275
-        },
-        "environment": {
-          "python": "3.10.12",
-          "numpy": "2.2.6",
-          "warp": "1.19.0",
-          "devices": [
-            "cpu",
-            "cuda:0"
-          ],
-          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
-        },
-        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
-      },
-      "trace_replay": {
-        "fixture": "solver-trace-default-double",
-        "trace_sha256": "4bb5445848078dec7eb5f27c271297f2d0678fde827bf7ce20f1834a18bff0c7",
-        "precision": "double",
-        "instrumentation_max_abs_error": 0.0,
-        "replay": "bitwise exact serial input-precision arithmetic",
-        "gs_updates": 39,
-        "gs_phases": [
-          "prolong",
-          "restrict",
-          "slice"
-        ],
-        "cg_solves": 1,
-        "cg_stops": [
-          {
-            "reason": "tolerance",
-            "iterations": 6,
-            "residual_squared": 1.5713467510095926e-13,
-            "threshold_squared": 4.059225292592041e-12
-          }
-        ],
-        "levels": [
-          {
-            "depth": 2,
-            "phase": "prolongation",
-            "iterations": 3
-          },
-          {
-            "depth": 3,
-            "phase": "prolongation",
-            "iterations": 3
-          }
-        ]
-      },
-      "reconstruction": {
-        "test": "Independent GPU reconstruction from oriented points",
-        "reconstruction_compatibility": true,
-        "source_revision": "daf32714b8b319b52f0c253373ac47c73969aa16",
-        "source_dirty": false,
-        "production_source_sha256": {
-          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
-          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
-          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
-          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
-          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
-          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
-          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
-          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
-          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
-          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
-          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
-          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
-          "src/warp_psr/reconstruction.py": "d3955c51b72b63479c0b6eac2843cd8e22b8c5c03c96c3d87c528a9c3f7ece10",
-          "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
-          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
-          "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
-          "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
-          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
-          "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
-          "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
-          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
-          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
-        },
-        "fixture_provenance": {
-          "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
-          "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
-          "precision": "double",
-          "parameters": {
-            "name": "solver-trace-default-double",
-            "dataset": null,
-            "input": null,
-            "max_points": null,
-            "shape": "sphere",
-            "input_scale": 1.0,
-            "translation": [
-              0.0,
-              0.0,
-              0.0
-            ],
-            "count": 128,
-            "seed": 2026,
-            "depth": 3,
-            "full_depth": 2,
-            "base_depth": 2,
-            "solve_depth": 3,
-            "kernel_depth": 1,
-            "scale": 1.1,
-            "samples_per_node": 1.5,
-            "cg_accuracy": 0.001,
-            "base_v_cycles": 1,
-            "weight": 2.0,
-            "exact": false,
-            "iters": 3,
-            "precision": "double",
-            "grid": 8,
-            "operators": true,
-            "topology": false,
-            "solver_trace": true,
-            "align_dir": 0,
-            "degree": 1,
-            "boundary": "Neumann",
-            "confidence": false
-          },
-          "reference_file_sha256": {
-            "oracle.txt": "3b561fd5d6c8504d9841cbee01e563112530e0be5946c0a558c712c2638c872a",
-            "oracle_instrumented.txt": "bff911dfe6f73120bbbb7723d54241e252b07bfa475cb84a1c38435b94507366",
-            "preprocess.txt": "3be9264a3a7c63c961a5d50e0d427c36d6c491413abb15ec2db95162aad9717f",
-            "stages.txt": "e90e9c924d934ca9b3f5bb1b43e78c60343898c65556704cfbbaab829b278cd4",
-            "splats.txt": "e8765fa0c22fcbb6cadbe8630872854d6b83afb6f3238c8c052b8b6030e583af",
-            "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
-            "operators.txt": "6951ae347c55bf2a9c9251ae97be1cef430d9a6bd9470ff47d1b763c2798c264",
-            "solve_trace.txt": "4bb5445848078dec7eb5f27c271297f2d0678fde827bf7ce20f1834a18bff0c7"
-          }
-        },
-        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
-        "fixture": "solver-trace-default-double",
-        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
-        "input_source": null,
-        "tree": {
-          "exact_active_and_support_keys": true,
-          "levels": [
-            {
-              "depth": 0,
-              "support_count": 64,
-              "active_count": 8,
-              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
-              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
-            },
-            {
-              "depth": 1,
-              "support_count": 216,
-              "active_count": 27,
-              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
-              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
-            },
-            {
-              "depth": 2,
-              "support_count": 512,
-              "active_count": 125,
-              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
-              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
-            },
-            {
-              "depth": 3,
-              "support_count": 512,
-              "active_count": 512,
-              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
-              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
-            }
-          ]
-        },
-        "samples": {
-          "exact_input_status_and_membership": true,
-          "input_count": 128,
-          "accepted": 128,
-          "aggregates": 91,
-          "rejected_by_status": {}
-        },
-        "complete_tree": null,
-        "device": "cuda:0",
-        "queries": 2048,
-        "coefficients": 672,
-        "field_tolerances": {
-          "absolute": 1e-08,
-          "relative": 1e-06
-        },
-        "max_abs_value_error": 6.661338147750939e-16,
-        "max_abs_centered_value_error": 6.661338147750939e-16,
-        "rms_value_error": 1.6798538309789532e-16,
-        "max_abs_cube_gradient_error": 5.329070518200751e-15,
-        "max_scaled_gradient_budget_ratio": 3.126854658925773e-08,
-        "max_unscaled_gradient_budget_ratio": 1.3260102044083293e-07,
-        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
-        "gradient_errors_by_depth": {
-          "3": 5.329070518200751e-15
-        },
-        "errors_by_depth": {
-          "3": {
-            "queries": 2048,
-            "max_abs_value_error": 6.661338147750939e-16,
-            "rms_value_error": 1.6798538309789532e-16,
-            "max_abs_centered_value_error": 6.661338147750939e-16,
-            "rms_centered_value_error": 2.0126624050402596e-16,
-            "max_abs_cube_gradient_error": 5.329070518200751e-15,
-            "rms_cube_gradient_error": 8.567006465068781e-16,
-            "max_scaled_gradient_budget_ratio": 3.126854658925773e-08
-          }
-        },
-        "errors_by_query_family": {
-          "visualization_grid": {
-            "queries": 512,
-            "max_abs_value_error": 5.551115123125783e-16,
-            "rms_value_error": 1.6569731836371328e-16,
-            "max_abs_centered_value_error": 6.106226635438361e-16,
-            "rms_centered_value_error": 2.0167978987939517e-16,
-            "max_abs_cube_gradient_error": 4.884981308350689e-15,
-            "rms_cube_gradient_error": 8.557769001283949e-16,
-            "max_scaled_gradient_budget_ratio": 2.536803725487535e-08
-          },
-          "random_volume": {
-            "queries": 1024,
-            "max_abs_value_error": 5.551115123125783e-16,
-            "rms_value_error": 1.693096513888618e-16,
-            "max_abs_centered_value_error": 6.106226635438361e-16,
-            "rms_centered_value_error": 2.0302935586009e-16,
-            "max_abs_cube_gradient_error": 5.329070518200751e-15,
-            "rms_cube_gradient_error": 8.722739418236512e-16,
-            "max_scaled_gradient_budget_ratio": 3.126854658925773e-08
-          },
-          "input_samples": {
-            "queries": 128,
-            "max_abs_value_error": 3.3306690738754696e-16,
-            "rms_value_error": 1.0385185452638061e-16,
-            "max_abs_centered_value_error": 3.885780586188048e-16,
-            "rms_centered_value_error": 1.2907088757326182e-16,
-            "max_abs_cube_gradient_error": 4.884981308350689e-15,
-            "rms_cube_gradient_error": 1.052365865888605e-15,
-            "max_scaled_gradient_budget_ratio": 7.53113791675907e-09
-          },
-          "cell_interiors": {
-            "queries": 64,
-            "max_abs_value_error": 6.661338147750939e-16,
-            "rms_value_error": 1.8401974106137688e-16,
-            "max_abs_centered_value_error": 6.661338147750939e-16,
-            "rms_centered_value_error": 2.2041230194153869e-16,
-            "max_abs_cube_gradient_error": 2.4424906541753444e-15,
-            "rms_cube_gradient_error": 7.264503649576125e-16,
-            "max_scaled_gradient_budget_ratio": 9.930291989113693e-09
-          },
-          "cube_boundary": {
-            "queries": 192,
-            "max_abs_value_error": 3.3306690738754696e-16,
-            "rms_value_error": 1.296084529740918e-16,
-            "max_abs_centered_value_error": 3.885780586188048e-16,
-            "rms_centered_value_error": 1.70862190298702e-16,
-            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
-            "rms_cube_gradient_error": 8.210002915397671e-16,
-            "max_scaled_gradient_budget_ratio": 1.909884183303648e-08
-          },
-          "far_from_samples": {
-            "queries": 128,
-            "max_abs_value_error": 6.661338147750939e-16,
-            "rms_value_error": 2.4380850356679024e-16,
-            "max_abs_centered_value_error": 6.661338147750939e-16,
-            "rms_centered_value_error": 2.663125423296093e-16,
-            "max_abs_cube_gradient_error": 2.275957200481571e-15,
-            "rms_cube_gradient_error": 5.867399045840107e-16,
-            "max_scaled_gradient_budget_ratio": 2.1856117408823762e-08
-          }
-        },
-        "iso_value": 0.4993286948251439,
-        "reference_iso_value": 0.49932869482514386,
-        "metadata": {
-          "precision": "float64",
-          "device": "cuda:0",
-          "basis_counts": [
-            8,
-            27,
-            125,
-            512
-          ],
-          "integration_cells": 512,
-          "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
-          "timings_seconds": {
-            "samples": 0.013413760185241699,
-            "density": 0.015254400253295898,
-            "normal_field": 0.009542143821716309,
-            "tree": 0.007982207775115966,
-            "assembly_and_solve": 0.41227084350585935
-          },
-          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
-          "operator_integration_cells": {
-            "2": 64,
-            "3": 512
-          },
-          "measured_host_sync_seconds": 0.0035773441195487976,
-          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
-          "exact_interpolation_behavior": "level-clustered approximate constraints",
-          "cube_to_model": [
-            [
-              0.0,
-              0.0,
-              2.177732816608759,
-              -1.095521178912658
-            ],
-            [
-              2.177732816608759,
-              0.0,
-              0.0,
-              -1.097330329404935
-            ],
-            [
-              0.0,
-              2.177732816608759,
-              0.0,
-              -1.0903046531953406
-            ],
-            [
-              0.0,
-              0.0,
-              0.0,
-              1.0
-            ]
-          ],
-          "parameters": {
-            "depth": 3,
-            "full_depth": 2,
-            "base_depth": 2,
-            "solve_depth": 3,
-            "kernel_depth": 1,
-            "samples_per_node": 1.5,
-            "scale": 1.1,
-            "point_weight": 2.0,
-            "exact_interpolation": false,
-            "iters": 3,
-            "base_v_cycles": 1,
-            "cg_accuracy": 0.001
-          },
-          "profile": "pinned cascadic degree-1 Neumann",
-          "constant_mode": "reference solve without an added mean term"
-        }
-      }
-    },
-    {
-      "fixture": "solver-trace-tight-double",
-      "manifest": {
-        "fixture_format": 2,
-        "name": "solver-trace-tight-double",
-        "pins": {
-          "fixture_format": 1,
-          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
-          "warp_version": "1.19.0",
-          "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
-          "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
-        },
-        "application_revision": "daf32714b8b319b52f0c253373ac47c73969aa16",
-        "application_dirty": false,
-        "build": {
-          "pins": {
-            "fixture_format": 1,
-            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
-            "warp_version": "1.19.0",
-            "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
-            "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
-          },
-          "commands": [
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-fopenmp",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_openmp"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-fopenmp",
-              "-DEXPORT_TREE",
-              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented_openmp"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/reference/basis.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/basis"
-            ],
-            [
-              "g++",
-              "-std=c++17",
-              "-O2",
-              "-DNDEBUG",
-              "-pthread",
-              "-Wno-invalid-offsetof",
-              "-DFAST_COMPILE",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
-              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
-              "/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src/PoissonRecon.cpp",
-              "-lz",
-              "-lpng",
-              "-ljpeg",
-              "-o",
-              "/home/horde/projects/warp-psr-traces/.build/PoissonReconCLI"
-            ]
-          ],
-          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
-        },
-        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
-        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
-        "reference_file_sha256": {
-          "oracle.txt": "64595f6a8bb5df0db25fc315dfe972894a16393108fa0fe1fe4c9f74ea744149",
-          "oracle_instrumented.txt": "20a99dfa50d31446aa1e378ad257e6ee9bac714eac623d49f42e8f5cdcec6c5e",
-          "preprocess.txt": "3be9264a3a7c63c961a5d50e0d427c36d6c491413abb15ec2db95162aad9717f",
-          "stages.txt": "0250f41529de7344a6a99db028309a5909958676a5e5204f09381bc3583178e4",
-          "splats.txt": "e8765fa0c22fcbb6cadbe8630872854d6b83afb6f3238c8c052b8b6030e583af",
-          "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
-          "operators.txt": "6951ae347c55bf2a9c9251ae97be1cef430d9a6bd9470ff47d1b763c2798c264",
-          "solve_trace.txt": "41db55953f595843da11b319ac9e3bd649ad18abe1b7831f273532d6d7b05709"
-        },
-        "input_order": "file order; seeded numpy Generator",
-        "seed": 2026,
-        "input_source": null,
-        "precision": "double",
-        "parameters": {
-          "name": "solver-trace-tight-double",
-          "dataset": null,
-          "input": null,
-          "max_points": null,
-          "shape": "sphere",
-          "input_scale": 1.0,
-          "translation": [
-            0.0,
-            0.0,
-            0.0
-          ],
-          "count": 128,
-          "seed": 2026,
-          "depth": 3,
-          "full_depth": 2,
-          "base_depth": 2,
-          "solve_depth": 3,
-          "kernel_depth": 1,
-          "scale": 1.1,
-          "samples_per_node": 1.5,
-          "cg_accuracy": 1e-08,
-          "base_v_cycles": 1,
-          "weight": 2.0,
-          "exact": false,
-          "iters": 3,
-          "precision": "double",
-          "grid": 8,
-          "operators": true,
-          "topology": false,
-          "solver_trace": true,
-          "align_dir": 0,
-          "degree": 1,
-          "boundary": "Neumann",
-          "confidence": false
-        },
-        "reference_parallelism": "ThreadPool::NONE (serial)",
-        "reference_thread_settings": {
-          "parallel_async": 0,
-          "threads": 128,
-          "schedule": 1,
-          "chunk_size": 128
-        },
-        "instrumentation_max_abs_error": 0.0,
-        "timings_seconds": {
-          "query_coverage_pilot": 0.08735256269574165,
-          "oracle": 0.08328936249017715,
-          "oracle_instrumented": 0.1270037740468979
-        },
-        "grid": {
-          "resolution": 8,
-          "cube_min": 0.001,
-          "cube_max": 0.999,
-          "order": "ij, z fastest"
-        },
-        "query_families": {
-          "visualization_grid": [
-            0,
-            512
-          ],
-          "random_volume": [
-            512,
-            1536
-          ],
-          "input_samples": [
-            1536,
-            1664
-          ],
-          "cell_interiors": [
-            1664,
-            1728
-          ],
-          "cube_boundary": [
-            1728,
-            1920
-          ],
-          "far_from_samples": [
-            1920,
-            2048
-          ]
-        },
-        "query_coverage": {
-          "cell_interiors_by_depth": {
-            "3": 64
-          },
-          "refinement_interface_pairs": 0,
-          "boundary_distance_in_cube": 1e-10,
-          "far_from_samples_min_distance_in_cube": 0.26727274766695275
-        },
-        "environment": {
-          "python": "3.10.12",
-          "numpy": "2.2.6",
-          "warp": "1.19.0",
-          "devices": [
-            "cpu",
-            "cuda:0"
-          ],
-          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
-        },
-        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
-      },
-      "trace_replay": {
-        "fixture": "solver-trace-tight-double",
-        "trace_sha256": "41db55953f595843da11b319ac9e3bd649ad18abe1b7831f273532d6d7b05709",
-        "precision": "double",
-        "instrumentation_max_abs_error": 0.0,
-        "replay": "bitwise exact serial input-precision arithmetic",
-        "gs_updates": 39,
-        "gs_phases": [
-          "prolong",
-          "restrict",
-          "slice"
-        ],
-        "cg_solves": 1,
-        "cg_stops": [
-          {
-            "reason": "tolerance",
-            "iterations": 8,
-            "residual_squared": 1.117779544486865e-34,
-            "threshold_squared": 4.0592252925920416e-22
-          }
-        ],
-        "levels": [
-          {
-            "depth": 2,
-            "phase": "prolongation",
-            "iterations": 3
-          },
-          {
-            "depth": 3,
-            "phase": "prolongation",
-            "iterations": 3
-          }
-        ]
-      },
-      "reconstruction": {
-        "test": "Independent GPU reconstruction from oriented points",
-        "reconstruction_compatibility": true,
-        "source_revision": "daf32714b8b319b52f0c253373ac47c73969aa16",
-        "source_dirty": false,
-        "production_source_sha256": {
-          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
-          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
-          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
-          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
-          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
-          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
-          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
-          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
-          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
-          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
-          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
-          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
-          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
-          "src/warp_psr/reconstruction.py": "d3955c51b72b63479c0b6eac2843cd8e22b8c5c03c96c3d87c528a9c3f7ece10",
-          "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
-          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
-          "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
-          "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
-          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
-          "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
-          "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
-          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
-          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
-        },
-        "fixture_provenance": {
-          "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
-          "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
-          "precision": "double",
-          "parameters": {
-            "name": "solver-trace-tight-double",
-            "dataset": null,
-            "input": null,
-            "max_points": null,
-            "shape": "sphere",
-            "input_scale": 1.0,
-            "translation": [
-              0.0,
-              0.0,
-              0.0
-            ],
-            "count": 128,
-            "seed": 2026,
-            "depth": 3,
-            "full_depth": 2,
-            "base_depth": 2,
-            "solve_depth": 3,
-            "kernel_depth": 1,
-            "scale": 1.1,
-            "samples_per_node": 1.5,
-            "cg_accuracy": 1e-08,
-            "base_v_cycles": 1,
-            "weight": 2.0,
-            "exact": false,
-            "iters": 3,
-            "precision": "double",
-            "grid": 8,
-            "operators": true,
-            "topology": false,
-            "solver_trace": true,
-            "align_dir": 0,
-            "degree": 1,
-            "boundary": "Neumann",
-            "confidence": false
-          },
-          "reference_file_sha256": {
-            "oracle.txt": "64595f6a8bb5df0db25fc315dfe972894a16393108fa0fe1fe4c9f74ea744149",
-            "oracle_instrumented.txt": "20a99dfa50d31446aa1e378ad257e6ee9bac714eac623d49f42e8f5cdcec6c5e",
-            "preprocess.txt": "3be9264a3a7c63c961a5d50e0d427c36d6c491413abb15ec2db95162aad9717f",
-            "stages.txt": "0250f41529de7344a6a99db028309a5909958676a5e5204f09381bc3583178e4",
-            "splats.txt": "e8765fa0c22fcbb6cadbe8630872854d6b83afb6f3238c8c052b8b6030e583af",
-            "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
-            "operators.txt": "6951ae347c55bf2a9c9251ae97be1cef430d9a6bd9470ff47d1b763c2798c264",
-            "solve_trace.txt": "41db55953f595843da11b319ac9e3bd649ad18abe1b7831f273532d6d7b05709"
-          }
-        },
-        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
-        "fixture": "solver-trace-tight-double",
-        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
-        "input_source": null,
-        "tree": {
-          "exact_active_and_support_keys": true,
-          "levels": [
-            {
-              "depth": 0,
-              "support_count": 64,
-              "active_count": 8,
-              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
-              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
-            },
-            {
-              "depth": 1,
-              "support_count": 216,
-              "active_count": 27,
-              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
-              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
-            },
-            {
-              "depth": 2,
-              "support_count": 512,
-              "active_count": 125,
-              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
-              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
-            },
-            {
-              "depth": 3,
-              "support_count": 512,
-              "active_count": 512,
-              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
-              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
-            }
-          ]
-        },
-        "samples": {
-          "exact_input_status_and_membership": true,
-          "input_count": 128,
-          "accepted": 128,
-          "aggregates": 91,
-          "rejected_by_status": {}
-        },
-        "complete_tree": null,
-        "device": "cuda:0",
-        "queries": 2048,
-        "coefficients": 672,
-        "field_tolerances": {
-          "absolute": 1e-08,
-          "relative": 1e-06
-        },
-        "max_abs_value_error": 6.661338147750939e-16,
-        "max_abs_centered_value_error": 8.881784197001252e-16,
-        "rms_value_error": 1.6809980851427127e-16,
-        "max_abs_cube_gradient_error": 5.218048215738236e-15,
-        "max_scaled_gradient_budget_ratio": 3.179071623094749e-08,
-        "max_unscaled_gradient_budget_ratio": 1.928742115477666e-07,
-        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
-        "gradient_errors_by_depth": {
-          "3": 5.218048215738236e-15
-        },
-        "errors_by_depth": {
-          "3": {
-            "queries": 2048,
-            "max_abs_value_error": 6.661338147750939e-16,
-            "rms_value_error": 1.6809980851427127e-16,
-            "max_abs_centered_value_error": 8.881784197001252e-16,
-            "rms_centered_value_error": 3.0903284421063974e-16,
-            "max_abs_cube_gradient_error": 5.218048215738236e-15,
-            "rms_cube_gradient_error": 8.294840092558356e-16,
-            "max_scaled_gradient_budget_ratio": 3.179071623094749e-08
-          }
-        },
-        "errors_by_query_family": {
-          "visualization_grid": {
-            "queries": 512,
-            "max_abs_value_error": 4.996003610813204e-16,
-            "rms_value_error": 1.7388096235329547e-16,
-            "max_abs_centered_value_error": 6.661338147750939e-16,
-            "rms_centered_value_error": 3.1131641548909766e-16,
-            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
-            "rms_cube_gradient_error": 8.249173458600974e-16,
-            "max_scaled_gradient_budget_ratio": 2.70782420136865e-08
-          },
-          "random_volume": {
-            "queries": 1024,
-            "max_abs_value_error": 6.661338147750939e-16,
-            "rms_value_error": 1.69737485713408e-16,
-            "max_abs_centered_value_error": 8.881784197001252e-16,
-            "rms_centered_value_error": 3.111592991105875e-16,
-            "max_abs_cube_gradient_error": 5.218048215738236e-15,
-            "rms_cube_gradient_error": 8.398201792522948e-16,
-            "max_scaled_gradient_budget_ratio": 2.4117686970134784e-08
-          },
-          "input_samples": {
-            "queries": 128,
-            "max_abs_value_error": 2.220446049250313e-16,
-            "rms_value_error": 9.139869328267027e-17,
-            "max_abs_centered_value_error": 3.885780586188048e-16,
-            "rms_centered_value_error": 2.1189205230146654e-16,
-            "max_abs_cube_gradient_error": 3.774758283725532e-15,
-            "rms_cube_gradient_error": 1.0236554089451876e-15,
-            "max_scaled_gradient_budget_ratio": 6.307137728103632e-09
-          },
-          "cell_interiors": {
-            "queries": 64,
-            "max_abs_value_error": 5.551115123125783e-16,
-            "rms_value_error": 1.8491696598605482e-16,
-            "max_abs_centered_value_error": 7.216449660063518e-16,
-            "rms_centered_value_error": 3.2723341043959784e-16,
-            "max_abs_cube_gradient_error": 2.6645352591003757e-15,
-            "rms_cube_gradient_error": 7.433804556201511e-16,
-            "max_scaled_gradient_budget_ratio": 1.3382779987232384e-08
-          },
-          "cube_boundary": {
-            "queries": 192,
-            "max_abs_value_error": 3.3306690738754696e-16,
-            "rms_value_error": 1.3524657634332173e-16,
-            "max_abs_centered_value_error": 4.996003610813204e-16,
-            "rms_centered_value_error": 2.7182993249393443e-16,
-            "max_abs_cube_gradient_error": 3.524958103184872e-15,
-            "rms_cube_gradient_error": 7.747525763093773e-16,
-            "max_scaled_gradient_budget_ratio": 1.7187583852867003e-08
-          },
-          "far_from_samples": {
-            "queries": 128,
-            "max_abs_value_error": 4.440892098500626e-16,
-            "rms_value_error": 2.186493615976012e-16,
-            "max_abs_centered_value_error": 6.661338147750939e-16,
-            "rms_centered_value_error": 3.9561584983016536e-16,
-            "max_abs_cube_gradient_error": 2.6645352591003757e-15,
-            "rms_cube_gradient_error": 6.47936408169092e-16,
-            "max_scaled_gradient_budget_ratio": 3.179071623094749e-08
-          }
-        },
-        "iso_value": 0.499328694825148,
-        "reference_iso_value": 0.49932869482514786,
-        "metadata": {
-          "precision": "float64",
-          "device": "cuda:0",
-          "basis_counts": [
-            8,
-            27,
-            125,
-            512
-          ],
-          "integration_cells": 512,
-          "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
-          "timings_seconds": {
-            "samples": 0.014541952133178711,
-            "density": 0.015438176155090333,
-            "normal_field": 0.009599552154541016,
-            "tree": 0.007243872165679932,
-            "assembly_and_solve": 0.4052354125976563
-          },
-          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
-          "operator_integration_cells": {
-            "2": 64,
-            "3": 512
-          },
-          "measured_host_sync_seconds": 0.003793109208345413,
-          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
-          "exact_interpolation_behavior": "level-clustered approximate constraints",
-          "cube_to_model": [
-            [
-              0.0,
-              0.0,
-              2.177732816608759,
-              -1.095521178912658
-            ],
-            [
-              2.177732816608759,
-              0.0,
-              0.0,
-              -1.097330329404935
-            ],
-            [
-              0.0,
-              2.177732816608759,
-              0.0,
-              -1.0903046531953406
-            ],
-            [
-              0.0,
-              0.0,
-              0.0,
-              1.0
-            ]
-          ],
-          "parameters": {
-            "depth": 3,
-            "full_depth": 2,
-            "base_depth": 2,
-            "solve_depth": 3,
-            "kernel_depth": 1,
-            "samples_per_node": 1.5,
-            "scale": 1.1,
-            "point_weight": 2.0,
-            "exact_interpolation": false,
-            "iters": 3,
-            "base_v_cycles": 1,
-            "cg_accuracy": 1e-08
-          },
-          "profile": "pinned cascadic degree-1 Neumann",
-          "constant_mode": "reference solve without an added mean term"
-        }
-      }
-    },
     {
       "fixture": "solver-trace-loose-float",
       "manifest": {
@@ -2300,7 +21,7 @@
           "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
           "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "3643621d57210c9d35779ea5ea05c1fe2353582d",
+        "application_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -2476,9 +197,9 @@
         },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.11578448861837387,
-          "oracle": 0.07571393623948097,
-          "oracle_instrumented": 0.11473395675420761
+          "query_coverage_pilot": 0.10939834639430046,
+          "oracle": 0.07188824191689491,
+          "oracle_instrumented": 0.11486693471670151
         },
         "grid": {
           "resolution": 8,
@@ -2569,7 +290,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "3643621d57210c9d35779ea5ea05c1fe2353582d",
+        "source_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -2798,18 +519,18 @@
           "integration_cells": 512,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.016679231643676757,
-            "density": 0.015515135765075684,
-            "normal_field": 0.0096210880279541,
-            "tree": 0.007302495956420898,
-            "assembly_and_solve": 0.37163241577148437
+            "samples": 0.01516819190979004,
+            "density": 0.01550774383544922,
+            "normal_field": 0.009577216148376465,
+            "tree": 0.007887328147888183,
+            "assembly_and_solve": 0.395014892578125
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
             "2": 64,
             "3": 512
           },
-          "measured_host_sync_seconds": 0.0036378391087055206,
+          "measured_host_sync_seconds": 0.0035947151482105255,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -2869,7 +590,7 @@
           "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
           "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
         },
-        "application_revision": "3643621d57210c9d35779ea5ea05c1fe2353582d",
+        "application_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
         "application_dirty": false,
         "build": {
           "pins": {
@@ -3045,9 +766,9 @@
         },
         "instrumentation_max_abs_error": 0.0,
         "timings_seconds": {
-          "query_coverage_pilot": 0.13190363347530365,
-          "oracle": 0.0853043794631958,
-          "oracle_instrumented": 0.1251167617738247
+          "query_coverage_pilot": 0.13590820133686066,
+          "oracle": 0.08604803681373596,
+          "oracle_instrumented": 0.12432120740413666
         },
         "grid": {
           "resolution": 8,
@@ -3138,7 +859,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "3643621d57210c9d35779ea5ea05c1fe2353582d",
+        "source_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -3367,18 +1088,18 @@
           "integration_cells": 512,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.013917984008789063,
-            "density": 0.015443872451782227,
-            "normal_field": 0.009549407958984376,
-            "tree": 0.007276447772979736,
-            "assembly_and_solve": 0.3545688171386719
+            "samples": 0.015588064193725586,
+            "density": 0.017037343978881837,
+            "normal_field": 0.009677727699279786,
+            "tree": 0.007482143878936767,
+            "assembly_and_solve": 0.36730609130859376
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
             "2": 64,
             "3": 512
           },
-          "measured_host_sync_seconds": 0.0034853368997573853,
+          "measured_host_sync_seconds": 0.0035734809935092926,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -3420,6 +1141,2282 @@
             "iters": 3,
             "base_v_cycles": 1,
             "cg_accuracy": 0.1
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    },
+    {
+      "fixture": "solver-trace-default-float",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "solver-trace-default-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+          "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+            "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+        "reference_file_sha256": {
+          "oracle.txt": "385a9112be943dd16df95bb795441df23e2617e82dc97e1adb80c45ba32ed894",
+          "oracle_instrumented.txt": "4bca3c871dea42a6a8176d063a4f3869f757abc6016210615172554cc87138b7",
+          "preprocess.txt": "929c9e7fc0e73d77ab9b00799355272b9408a50726c2c1ddea36bfc30e22aec3",
+          "stages.txt": "27da88d35ad9aa5d4e52c3fc340d541b996326065643fa7a363a3ebd9b676c3b",
+          "splats.txt": "a380e6b66465760e4790b0b54044d81cd3d9086c218f4a0923210e46b18eb3f7",
+          "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
+          "operators.txt": "340673fbc7640a2c18a5a3b5f0ea2797d14de166f4cc858791e11395ac38e878",
+          "solve_trace.txt": "b3b0fdfb587a0676e812c941b0e161773574bbd1b1a062c133f39abbe85f56c9"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": null,
+        "precision": "float",
+        "parameters": {
+          "name": "solver-trace-default-float",
+          "dataset": null,
+          "input": null,
+          "max_points": null,
+          "shape": "sphere",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 128,
+          "seed": 2026,
+          "depth": 3,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 3,
+          "kernel_depth": 1,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 3,
+          "precision": "float",
+          "grid": 8,
+          "operators": true,
+          "topology": false,
+          "solver_trace": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.1050175279378891,
+          "oracle": 0.07260118797421455,
+          "oracle_instrumented": 0.11556011065840721
+        },
+        "grid": {
+          "resolution": 8,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            512
+          ],
+          "random_volume": [
+            512,
+            1536
+          ],
+          "input_samples": [
+            1536,
+            1664
+          ],
+          "cell_interiors": [
+            1664,
+            1728
+          ],
+          "cube_boundary": [
+            1728,
+            1920
+          ],
+          "far_from_samples": [
+            1920,
+            2048
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64
+          },
+          "refinement_interface_pairs": 0,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.2672727317573193
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "trace_replay": {
+        "fixture": "solver-trace-default-float",
+        "trace_sha256": "b3b0fdfb587a0676e812c941b0e161773574bbd1b1a062c133f39abbe85f56c9",
+        "precision": "float",
+        "instrumentation_max_abs_error": 0.0,
+        "replay": "bitwise exact serial input-precision arithmetic",
+        "gs_updates": 39,
+        "gs_phases": [
+          "prolong",
+          "restrict",
+          "slice"
+        ],
+        "cg_solves": 1,
+        "cg_stops": [
+          {
+            "reason": "tolerance",
+            "iterations": 6,
+            "residual_squared": 1.5714362591127268e-13,
+            "threshold_squared": 4.059290335121411e-12
+          }
+        ],
+        "levels": [
+          {
+            "depth": 2,
+            "phase": "prolongation",
+            "iterations": 3
+          },
+          {
+            "depth": 3,
+            "phase": "prolongation",
+            "iterations": 3
+          }
+        ]
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "d3955c51b72b63479c0b6eac2843cd8e22b8c5c03c96c3d87c528a9c3f7ece10",
+          "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+          "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
+          "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+        },
+        "fixture_provenance": {
+          "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+          "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+          "precision": "float",
+          "parameters": {
+            "name": "solver-trace-default-float",
+            "dataset": null,
+            "input": null,
+            "max_points": null,
+            "shape": "sphere",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 128,
+            "seed": 2026,
+            "depth": 3,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 3,
+            "kernel_depth": 1,
+            "scale": 1.1,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 0.001,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 3,
+            "precision": "float",
+            "grid": 8,
+            "operators": true,
+            "topology": false,
+            "solver_trace": true,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "385a9112be943dd16df95bb795441df23e2617e82dc97e1adb80c45ba32ed894",
+            "oracle_instrumented.txt": "4bca3c871dea42a6a8176d063a4f3869f757abc6016210615172554cc87138b7",
+            "preprocess.txt": "929c9e7fc0e73d77ab9b00799355272b9408a50726c2c1ddea36bfc30e22aec3",
+            "stages.txt": "27da88d35ad9aa5d4e52c3fc340d541b996326065643fa7a363a3ebd9b676c3b",
+            "splats.txt": "a380e6b66465760e4790b0b54044d81cd3d9086c218f4a0923210e46b18eb3f7",
+            "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
+            "operators.txt": "340673fbc7640a2c18a5a3b5f0ea2797d14de166f4cc858791e11395ac38e878",
+            "solve_trace.txt": "b3b0fdfb587a0676e812c941b0e161773574bbd1b1a062c133f39abbe85f56c9"
+          }
+        },
+        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+        "fixture": "solver-trace-default-float",
+        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+        "input_source": null,
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 512,
+              "active_count": 125,
+              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
+              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+            },
+            {
+              "depth": 3,
+              "support_count": 512,
+              "active_count": 512,
+              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
+              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 128,
+          "accepted": 128,
+          "aggregates": 91,
+          "rejected_by_status": {}
+        },
+        "complete_tree": null,
+        "device": "cuda:0",
+        "queries": 2048,
+        "coefficients": 672,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 2.384185791015625e-07,
+        "max_abs_centered_value_error": 2.682209014892578e-07,
+        "rms_value_error": 4.789074504627188e-08,
+        "max_abs_cube_gradient_error": 2.076847781751212e-06,
+        "max_scaled_gradient_budget_ratio": 0.016873183236233918,
+        "max_unscaled_gradient_budget_ratio": 0.07831412168139913,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 2.076847781751212e-06
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 2048,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 4.789074504627188e-08,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 4.892503766626299e-08,
+            "max_abs_cube_gradient_error": 2.076847781751212e-06,
+            "rms_cube_gradient_error": 3.1648427545722884e-07,
+            "max_scaled_gradient_budget_ratio": 0.016873183236233918
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 512,
+            "max_abs_value_error": 1.7881393432617188e-07,
+            "rms_value_error": 4.462132922925438e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 4.664610014163371e-08,
+            "max_abs_cube_gradient_error": 1.5576358358693199e-06,
+            "rms_cube_gradient_error": 2.7588746082838045e-07,
+            "max_scaled_gradient_budget_ratio": 0.01056853760370184
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 5.0231862389353946e-08,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 5.034010395838594e-08,
+            "max_abs_cube_gradient_error": 2.076847781751212e-06,
+            "rms_cube_gradient_error": 3.322572342325537e-07,
+            "max_scaled_gradient_budget_ratio": 0.016873183236233918
+          },
+          "input_samples": {
+            "queries": 128,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 4.9210506728376844e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 4.9210506728376844e-08,
+            "max_abs_cube_gradient_error": 1.8172418085882214e-06,
+            "rms_cube_gradient_error": 4.7495551876298876e-07,
+            "max_scaled_gradient_budget_ratio": 0.008953717464459124
+          },
+          "cell_interiors": {
+            "queries": 64,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 4.912229997754318e-08,
+            "max_abs_centered_value_error": 1.4901161193847656e-07,
+            "rms_centered_value_error": 4.9675387714410525e-08,
+            "max_abs_cube_gradient_error": 7.788179181567045e-07,
+            "rms_cube_gradient_error": 2.541331325315157e-07,
+            "max_scaled_gradient_budget_ratio": 0.007078673871343417
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 3.757510780546201e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 3.8614338110951714e-08,
+            "max_abs_cube_gradient_error": 1.5576358358693199e-06,
+            "rms_cube_gradient_error": 2.7683652421227215e-07,
+            "max_scaled_gradient_budget_ratio": 0.006828970116374432
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 5.2916878743295364e-08,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 5.8566279529516416e-08,
+            "max_abs_cube_gradient_error": 8.599447844093167e-07,
+            "rms_cube_gradient_error": 2.0530456152575477e-07,
+            "max_scaled_gradient_budget_ratio": 0.009578863599159158
+          }
+        },
+        "iso_value": 0.49932870268821716,
+        "reference_iso_value": 0.49932870268821716,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            512
+          ],
+          "integration_cells": 512,
+          "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+          "timings_seconds": {
+            "samples": 0.014583711624145507,
+            "density": 0.015403583526611328,
+            "normal_field": 0.00955084800720215,
+            "tree": 0.007225632190704346,
+            "assembly_and_solve": 0.3875870361328125
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512
+          },
+          "measured_host_sync_seconds": 0.003559958189725876,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1777327060699463,
+              -1.095521092414856
+            ],
+            [
+              2.1777327060699463,
+              0.0,
+              0.0,
+              -1.0973303318023682
+            ],
+            [
+              0.0,
+              2.1777327060699463,
+              0.0,
+              -1.0903044939041138
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 3,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 3,
+            "kernel_depth": 1,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 3,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    },
+    {
+      "fixture": "solver-trace-default-double",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "solver-trace-default-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+          "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+            "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+        "reference_file_sha256": {
+          "oracle.txt": "3b561fd5d6c8504d9841cbee01e563112530e0be5946c0a558c712c2638c872a",
+          "oracle_instrumented.txt": "bff911dfe6f73120bbbb7723d54241e252b07bfa475cb84a1c38435b94507366",
+          "preprocess.txt": "3be9264a3a7c63c961a5d50e0d427c36d6c491413abb15ec2db95162aad9717f",
+          "stages.txt": "e90e9c924d934ca9b3f5bb1b43e78c60343898c65556704cfbbaab829b278cd4",
+          "splats.txt": "e8765fa0c22fcbb6cadbe8630872854d6b83afb6f3238c8c052b8b6030e583af",
+          "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
+          "operators.txt": "6951ae347c55bf2a9c9251ae97be1cef430d9a6bd9470ff47d1b763c2798c264",
+          "solve_trace.txt": "4bb5445848078dec7eb5f27c271297f2d0678fde827bf7ce20f1834a18bff0c7"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": null,
+        "precision": "double",
+        "parameters": {
+          "name": "solver-trace-default-double",
+          "dataset": null,
+          "input": null,
+          "max_points": null,
+          "shape": "sphere",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 128,
+          "seed": 2026,
+          "depth": 3,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 3,
+          "kernel_depth": 1,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 3,
+          "precision": "double",
+          "grid": 8,
+          "operators": true,
+          "topology": false,
+          "solver_trace": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.11313655227422714,
+          "oracle": 0.08538788184523582,
+          "oracle_instrumented": 0.1268262043595314
+        },
+        "grid": {
+          "resolution": 8,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            512
+          ],
+          "random_volume": [
+            512,
+            1536
+          ],
+          "input_samples": [
+            1536,
+            1664
+          ],
+          "cell_interiors": [
+            1664,
+            1728
+          ],
+          "cube_boundary": [
+            1728,
+            1920
+          ],
+          "far_from_samples": [
+            1920,
+            2048
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64
+          },
+          "refinement_interface_pairs": 0,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.26727274766695275
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "trace_replay": {
+        "fixture": "solver-trace-default-double",
+        "trace_sha256": "4bb5445848078dec7eb5f27c271297f2d0678fde827bf7ce20f1834a18bff0c7",
+        "precision": "double",
+        "instrumentation_max_abs_error": 0.0,
+        "replay": "bitwise exact serial input-precision arithmetic",
+        "gs_updates": 39,
+        "gs_phases": [
+          "prolong",
+          "restrict",
+          "slice"
+        ],
+        "cg_solves": 1,
+        "cg_stops": [
+          {
+            "reason": "tolerance",
+            "iterations": 6,
+            "residual_squared": 1.5713467510095926e-13,
+            "threshold_squared": 4.059225292592041e-12
+          }
+        ],
+        "levels": [
+          {
+            "depth": 2,
+            "phase": "prolongation",
+            "iterations": 3
+          },
+          {
+            "depth": 3,
+            "phase": "prolongation",
+            "iterations": 3
+          }
+        ]
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "d3955c51b72b63479c0b6eac2843cd8e22b8c5c03c96c3d87c528a9c3f7ece10",
+          "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+          "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
+          "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+        },
+        "fixture_provenance": {
+          "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+          "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+          "precision": "double",
+          "parameters": {
+            "name": "solver-trace-default-double",
+            "dataset": null,
+            "input": null,
+            "max_points": null,
+            "shape": "sphere",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 128,
+            "seed": 2026,
+            "depth": 3,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 3,
+            "kernel_depth": 1,
+            "scale": 1.1,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 0.001,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 3,
+            "precision": "double",
+            "grid": 8,
+            "operators": true,
+            "topology": false,
+            "solver_trace": true,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "3b561fd5d6c8504d9841cbee01e563112530e0be5946c0a558c712c2638c872a",
+            "oracle_instrumented.txt": "bff911dfe6f73120bbbb7723d54241e252b07bfa475cb84a1c38435b94507366",
+            "preprocess.txt": "3be9264a3a7c63c961a5d50e0d427c36d6c491413abb15ec2db95162aad9717f",
+            "stages.txt": "e90e9c924d934ca9b3f5bb1b43e78c60343898c65556704cfbbaab829b278cd4",
+            "splats.txt": "e8765fa0c22fcbb6cadbe8630872854d6b83afb6f3238c8c052b8b6030e583af",
+            "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
+            "operators.txt": "6951ae347c55bf2a9c9251ae97be1cef430d9a6bd9470ff47d1b763c2798c264",
+            "solve_trace.txt": "4bb5445848078dec7eb5f27c271297f2d0678fde827bf7ce20f1834a18bff0c7"
+          }
+        },
+        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+        "fixture": "solver-trace-default-double",
+        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+        "input_source": null,
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 512,
+              "active_count": 125,
+              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
+              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+            },
+            {
+              "depth": 3,
+              "support_count": 512,
+              "active_count": 512,
+              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
+              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 128,
+          "accepted": 128,
+          "aggregates": 91,
+          "rejected_by_status": {}
+        },
+        "complete_tree": null,
+        "device": "cuda:0",
+        "queries": 2048,
+        "coefficients": 672,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 6.661338147750939e-16,
+        "max_abs_centered_value_error": 6.661338147750939e-16,
+        "rms_value_error": 1.6798538309789532e-16,
+        "max_abs_cube_gradient_error": 5.329070518200751e-15,
+        "max_scaled_gradient_budget_ratio": 3.126854658925773e-08,
+        "max_unscaled_gradient_budget_ratio": 1.3260102044083293e-07,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 5.329070518200751e-15
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 2048,
+            "max_abs_value_error": 6.661338147750939e-16,
+            "rms_value_error": 1.6798538309789532e-16,
+            "max_abs_centered_value_error": 6.661338147750939e-16,
+            "rms_centered_value_error": 2.0126624050402596e-16,
+            "max_abs_cube_gradient_error": 5.329070518200751e-15,
+            "rms_cube_gradient_error": 8.567006465068781e-16,
+            "max_scaled_gradient_budget_ratio": 3.126854658925773e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 512,
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 1.6569731836371328e-16,
+            "max_abs_centered_value_error": 6.106226635438361e-16,
+            "rms_centered_value_error": 2.0167978987939517e-16,
+            "max_abs_cube_gradient_error": 4.884981308350689e-15,
+            "rms_cube_gradient_error": 8.557769001283949e-16,
+            "max_scaled_gradient_budget_ratio": 2.536803725487535e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 1.693096513888618e-16,
+            "max_abs_centered_value_error": 6.106226635438361e-16,
+            "rms_centered_value_error": 2.0302935586009e-16,
+            "max_abs_cube_gradient_error": 5.329070518200751e-15,
+            "rms_cube_gradient_error": 8.722739418236512e-16,
+            "max_scaled_gradient_budget_ratio": 3.126854658925773e-08
+          },
+          "input_samples": {
+            "queries": 128,
+            "max_abs_value_error": 3.3306690738754696e-16,
+            "rms_value_error": 1.0385185452638061e-16,
+            "max_abs_centered_value_error": 3.885780586188048e-16,
+            "rms_centered_value_error": 1.2907088757326182e-16,
+            "max_abs_cube_gradient_error": 4.884981308350689e-15,
+            "rms_cube_gradient_error": 1.052365865888605e-15,
+            "max_scaled_gradient_budget_ratio": 7.53113791675907e-09
+          },
+          "cell_interiors": {
+            "queries": 64,
+            "max_abs_value_error": 6.661338147750939e-16,
+            "rms_value_error": 1.8401974106137688e-16,
+            "max_abs_centered_value_error": 6.661338147750939e-16,
+            "rms_centered_value_error": 2.2041230194153869e-16,
+            "max_abs_cube_gradient_error": 2.4424906541753444e-15,
+            "rms_cube_gradient_error": 7.264503649576125e-16,
+            "max_scaled_gradient_budget_ratio": 9.930291989113693e-09
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 3.3306690738754696e-16,
+            "rms_value_error": 1.296084529740918e-16,
+            "max_abs_centered_value_error": 3.885780586188048e-16,
+            "rms_centered_value_error": 1.70862190298702e-16,
+            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
+            "rms_cube_gradient_error": 8.210002915397671e-16,
+            "max_scaled_gradient_budget_ratio": 1.909884183303648e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 6.661338147750939e-16,
+            "rms_value_error": 2.4380850356679024e-16,
+            "max_abs_centered_value_error": 6.661338147750939e-16,
+            "rms_centered_value_error": 2.663125423296093e-16,
+            "max_abs_cube_gradient_error": 2.275957200481571e-15,
+            "rms_cube_gradient_error": 5.867399045840107e-16,
+            "max_scaled_gradient_budget_ratio": 2.1856117408823762e-08
+          }
+        },
+        "iso_value": 0.4993286948251439,
+        "reference_iso_value": 0.49932869482514386,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            512
+          ],
+          "integration_cells": 512,
+          "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+          "timings_seconds": {
+            "samples": 0.015208992004394531,
+            "density": 0.016542528152465822,
+            "normal_field": 0.009896832466125488,
+            "tree": 0.007594111919403076,
+            "assembly_and_solve": 0.41067745971679687
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512
+          },
+          "measured_host_sync_seconds": 0.003756985068321228,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.177732816608759,
+              -1.095521178912658
+            ],
+            [
+              2.177732816608759,
+              0.0,
+              0.0,
+              -1.097330329404935
+            ],
+            [
+              0.0,
+              2.177732816608759,
+              0.0,
+              -1.0903046531953406
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 3,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 3,
+            "kernel_depth": 1,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 3,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    },
+    {
+      "fixture": "solver-trace-tight-float",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "solver-trace-tight-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+          "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+            "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+        "reference_file_sha256": {
+          "oracle.txt": "21def01ce3310529ae0da1688409aa7a9541c40787d9219a009425d3e6708022",
+          "oracle_instrumented.txt": "90e448d7b6bdaddf0506304de5e0975e31be0cc74023a4352073f091a1109234",
+          "preprocess.txt": "929c9e7fc0e73d77ab9b00799355272b9408a50726c2c1ddea36bfc30e22aec3",
+          "stages.txt": "591bf936a841e98c81867c7a9aa3eb7018bbc902381ed819691a7c779a2a8214",
+          "splats.txt": "a380e6b66465760e4790b0b54044d81cd3d9086c218f4a0923210e46b18eb3f7",
+          "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
+          "operators.txt": "340673fbc7640a2c18a5a3b5f0ea2797d14de166f4cc858791e11395ac38e878",
+          "solve_trace.txt": "15d0def2f8f84e7e6da6ba0b700a761492da01eb7ddb8f9b658e8681cf047de5"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": null,
+        "precision": "float",
+        "parameters": {
+          "name": "solver-trace-tight-float",
+          "dataset": null,
+          "input": null,
+          "max_points": null,
+          "shape": "sphere",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 128,
+          "seed": 2026,
+          "depth": 3,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 3,
+          "kernel_depth": 1,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 1e-08,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 3,
+          "precision": "float",
+          "grid": 8,
+          "operators": true,
+          "topology": false,
+          "solver_trace": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.11498447880148888,
+          "oracle": 0.07361656054854393,
+          "oracle_instrumented": 0.11496613919734955
+        },
+        "grid": {
+          "resolution": 8,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            512
+          ],
+          "random_volume": [
+            512,
+            1536
+          ],
+          "input_samples": [
+            1536,
+            1664
+          ],
+          "cell_interiors": [
+            1664,
+            1728
+          ],
+          "cube_boundary": [
+            1728,
+            1920
+          ],
+          "far_from_samples": [
+            1920,
+            2048
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64
+          },
+          "refinement_interface_pairs": 0,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.2672727317573193
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "trace_replay": {
+        "fixture": "solver-trace-tight-float",
+        "trace_sha256": "15d0def2f8f84e7e6da6ba0b700a761492da01eb7ddb8f9b658e8681cf047de5",
+        "precision": "float",
+        "instrumentation_max_abs_error": 0.0,
+        "replay": "bitwise exact serial input-precision arithmetic",
+        "gs_updates": 39,
+        "gs_phases": [
+          "prolong",
+          "restrict",
+          "slice"
+        ],
+        "cg_solves": 1,
+        "cg_stops": [
+          {
+            "reason": "limit",
+            "iterations": 8,
+            "residual_squared": 4.5234979775212545e-18,
+            "threshold_squared": 4.0592899001691144e-22
+          }
+        ],
+        "levels": [
+          {
+            "depth": 2,
+            "phase": "prolongation",
+            "iterations": 3
+          },
+          {
+            "depth": 3,
+            "phase": "prolongation",
+            "iterations": 3
+          }
+        ]
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "d3955c51b72b63479c0b6eac2843cd8e22b8c5c03c96c3d87c528a9c3f7ece10",
+          "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+          "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
+          "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+        },
+        "fixture_provenance": {
+          "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+          "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+          "precision": "float",
+          "parameters": {
+            "name": "solver-trace-tight-float",
+            "dataset": null,
+            "input": null,
+            "max_points": null,
+            "shape": "sphere",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 128,
+            "seed": 2026,
+            "depth": 3,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 3,
+            "kernel_depth": 1,
+            "scale": 1.1,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 1e-08,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 3,
+            "precision": "float",
+            "grid": 8,
+            "operators": true,
+            "topology": false,
+            "solver_trace": true,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "21def01ce3310529ae0da1688409aa7a9541c40787d9219a009425d3e6708022",
+            "oracle_instrumented.txt": "90e448d7b6bdaddf0506304de5e0975e31be0cc74023a4352073f091a1109234",
+            "preprocess.txt": "929c9e7fc0e73d77ab9b00799355272b9408a50726c2c1ddea36bfc30e22aec3",
+            "stages.txt": "591bf936a841e98c81867c7a9aa3eb7018bbc902381ed819691a7c779a2a8214",
+            "splats.txt": "a380e6b66465760e4790b0b54044d81cd3d9086c218f4a0923210e46b18eb3f7",
+            "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
+            "operators.txt": "340673fbc7640a2c18a5a3b5f0ea2797d14de166f4cc858791e11395ac38e878",
+            "solve_trace.txt": "15d0def2f8f84e7e6da6ba0b700a761492da01eb7ddb8f9b658e8681cf047de5"
+          }
+        },
+        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+        "fixture": "solver-trace-tight-float",
+        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+        "input_source": null,
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 512,
+              "active_count": 125,
+              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
+              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+            },
+            {
+              "depth": 3,
+              "support_count": 512,
+              "active_count": 512,
+              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
+              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 128,
+          "accepted": 128,
+          "aggregates": 91,
+          "rejected_by_status": {}
+        },
+        "complete_tree": null,
+        "device": "cuda:0",
+        "queries": 2048,
+        "coefficients": 672,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 2.384185791015625e-07,
+        "max_abs_centered_value_error": 2.682209014892578e-07,
+        "rms_value_error": 4.841163106912258e-08,
+        "max_abs_cube_gradient_error": 2.076847781751212e-06,
+        "max_scaled_gradient_budget_ratio": 0.016873183236233918,
+        "max_unscaled_gradient_budget_ratio": 0.07831412168139913,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 2.076847781751212e-06
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 2048,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 4.841163106912258e-08,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 4.954790161593841e-08,
+            "max_abs_cube_gradient_error": 2.076847781751212e-06,
+            "rms_cube_gradient_error": 3.2081211666211896e-07,
+            "max_scaled_gradient_budget_ratio": 0.016873183236233918
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 512,
+            "max_abs_value_error": 1.7881393432617188e-07,
+            "rms_value_error": 4.518270387150588e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 4.7226899661693987e-08,
+            "max_abs_cube_gradient_error": 1.5576358358693199e-06,
+            "rms_cube_gradient_error": 2.7478279963591514e-07,
+            "max_scaled_gradient_budget_ratio": 0.010248149017276527
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 5.06477899140543e-08,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 5.0956477106930306e-08,
+            "max_abs_cube_gradient_error": 2.076847781751212e-06,
+            "rms_cube_gradient_error": 3.365180716701e-07,
+            "max_scaled_gradient_budget_ratio": 0.016873183236233918
+          },
+          "input_samples": {
+            "queries": 128,
+            "max_abs_value_error": 1.7881393432617188e-07,
+            "rms_value_error": 5.141710393817075e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 5.141710393817075e-08,
+            "max_abs_cube_gradient_error": 2.076847781307123e-06,
+            "rms_cube_gradient_error": 5.02057223600619e-07,
+            "max_scaled_gradient_budget_ratio": 0.01074445903298761
+          },
+          "cell_interiors": {
+            "queries": 64,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 4.884784684309123e-08,
+            "max_abs_centered_value_error": 1.4901161193847656e-07,
+            "rms_centered_value_error": 4.919287803115046e-08,
+            "max_abs_cube_gradient_error": 1.038423890875606e-06,
+            "rms_cube_gradient_error": 2.63756704331943e-07,
+            "max_scaled_gradient_budget_ratio": 0.007021770349796069
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 3.72864179465823e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 3.822490193298471e-08,
+            "max_abs_cube_gradient_error": 1.2980298635945076e-06,
+            "rms_cube_gradient_error": 2.6972422168557086e-07,
+            "max_scaled_gradient_budget_ratio": 0.006259888917429438
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 5.375211967408002e-08,
+            "max_abs_centered_value_error": 2.682209014892578e-07,
+            "rms_centered_value_error": 5.950201088455521e-08,
+            "max_abs_cube_gradient_error": 7.382544847285566e-07,
+            "rms_cube_gradient_error": 2.068259892101124e-07,
+            "max_scaled_gradient_budget_ratio": 0.008902846321352773
+          }
+        },
+        "iso_value": 0.49932870268821716,
+        "reference_iso_value": 0.49932870268821716,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            512
+          ],
+          "integration_cells": 512,
+          "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+          "timings_seconds": {
+            "samples": 0.02152134323120117,
+            "density": 0.015306976318359375,
+            "normal_field": 0.009440704345703125,
+            "tree": 0.007288415908813476,
+            "assembly_and_solve": 0.3866431884765625
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512
+          },
+          "measured_host_sync_seconds": 0.0035681091248989105,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1777327060699463,
+              -1.095521092414856
+            ],
+            [
+              2.1777327060699463,
+              0.0,
+              0.0,
+              -1.0973303318023682
+            ],
+            [
+              0.0,
+              2.1777327060699463,
+              0.0,
+              -1.0903044939041138
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 3,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 3,
+            "kernel_depth": 1,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 3,
+            "base_v_cycles": 1,
+            "cg_accuracy": 1e-08
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    },
+    {
+      "fixture": "solver-trace-tight-double",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "solver-trace-tight-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+          "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+            "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-traces/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-traces/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-traces/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-traces/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+        "reference_file_sha256": {
+          "oracle.txt": "64595f6a8bb5df0db25fc315dfe972894a16393108fa0fe1fe4c9f74ea744149",
+          "oracle_instrumented.txt": "20a99dfa50d31446aa1e378ad257e6ee9bac714eac623d49f42e8f5cdcec6c5e",
+          "preprocess.txt": "3be9264a3a7c63c961a5d50e0d427c36d6c491413abb15ec2db95162aad9717f",
+          "stages.txt": "0250f41529de7344a6a99db028309a5909958676a5e5204f09381bc3583178e4",
+          "splats.txt": "e8765fa0c22fcbb6cadbe8630872854d6b83afb6f3238c8c052b8b6030e583af",
+          "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
+          "operators.txt": "6951ae347c55bf2a9c9251ae97be1cef430d9a6bd9470ff47d1b763c2798c264",
+          "solve_trace.txt": "41db55953f595843da11b319ac9e3bd649ad18abe1b7831f273532d6d7b05709"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": null,
+        "precision": "double",
+        "parameters": {
+          "name": "solver-trace-tight-double",
+          "dataset": null,
+          "input": null,
+          "max_points": null,
+          "shape": "sphere",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 128,
+          "seed": 2026,
+          "depth": 3,
+          "full_depth": 2,
+          "base_depth": 2,
+          "solve_depth": 3,
+          "kernel_depth": 1,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 1e-08,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 3,
+          "precision": "double",
+          "grid": 8,
+          "operators": true,
+          "topology": false,
+          "solver_trace": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.1292198933660984,
+          "oracle": 0.08716774359345436,
+          "oracle_instrumented": 0.1271451972424984
+        },
+        "grid": {
+          "resolution": 8,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            512
+          ],
+          "random_volume": [
+            512,
+            1536
+          ],
+          "input_samples": [
+            1536,
+            1664
+          ],
+          "cell_interiors": [
+            1664,
+            1728
+          ],
+          "cube_boundary": [
+            1728,
+            1920
+          ],
+          "far_from_samples": [
+            1920,
+            2048
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64
+          },
+          "refinement_interface_pairs": 0,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.26727274766695275
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "trace_replay": {
+        "fixture": "solver-trace-tight-double",
+        "trace_sha256": "41db55953f595843da11b319ac9e3bd649ad18abe1b7831f273532d6d7b05709",
+        "precision": "double",
+        "instrumentation_max_abs_error": 0.0,
+        "replay": "bitwise exact serial input-precision arithmetic",
+        "gs_updates": 39,
+        "gs_phases": [
+          "prolong",
+          "restrict",
+          "slice"
+        ],
+        "cg_solves": 1,
+        "cg_stops": [
+          {
+            "reason": "tolerance",
+            "iterations": 8,
+            "residual_squared": 1.117779544486865e-34,
+            "threshold_squared": 4.0592252925920416e-22
+          }
+        ],
+        "levels": [
+          {
+            "depth": 2,
+            "phase": "prolongation",
+            "iterations": 3
+          },
+          {
+            "depth": 3,
+            "phase": "prolongation",
+            "iterations": 3
+          }
+        ]
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "8bfd76151bf178606a49f775ba92c56229da3a3c",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "d3955c51b72b63479c0b6eac2843cd8e22b8c5c03c96c3d87c528a9c3f7ece10",
+          "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+          "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
+          "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+        },
+        "fixture_provenance": {
+          "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+          "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+          "precision": "double",
+          "parameters": {
+            "name": "solver-trace-tight-double",
+            "dataset": null,
+            "input": null,
+            "max_points": null,
+            "shape": "sphere",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 128,
+            "seed": 2026,
+            "depth": 3,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 3,
+            "kernel_depth": 1,
+            "scale": 1.1,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 1e-08,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 3,
+            "precision": "double",
+            "grid": 8,
+            "operators": true,
+            "topology": false,
+            "solver_trace": true,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "64595f6a8bb5df0db25fc315dfe972894a16393108fa0fe1fe4c9f74ea744149",
+            "oracle_instrumented.txt": "20a99dfa50d31446aa1e378ad257e6ee9bac714eac623d49f42e8f5cdcec6c5e",
+            "preprocess.txt": "3be9264a3a7c63c961a5d50e0d427c36d6c491413abb15ec2db95162aad9717f",
+            "stages.txt": "0250f41529de7344a6a99db028309a5909958676a5e5204f09381bc3583178e4",
+            "splats.txt": "e8765fa0c22fcbb6cadbe8630872854d6b83afb6f3238c8c052b8b6030e583af",
+            "inputs.txt": "b2ed50ab1a0ca5b8e904a44d1caf07c67a2d108f91f696d45b7849518ff77ab7",
+            "operators.txt": "6951ae347c55bf2a9c9251ae97be1cef430d9a6bd9470ff47d1b763c2798c264",
+            "solve_trace.txt": "41db55953f595843da11b319ac9e3bd649ad18abe1b7831f273532d6d7b05709"
+          }
+        },
+        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+        "fixture": "solver-trace-tight-double",
+        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+        "input_source": null,
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 512,
+              "active_count": 125,
+              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
+              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+            },
+            {
+              "depth": 3,
+              "support_count": 512,
+              "active_count": 512,
+              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
+              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 128,
+          "accepted": 128,
+          "aggregates": 91,
+          "rejected_by_status": {}
+        },
+        "complete_tree": null,
+        "device": "cuda:0",
+        "queries": 2048,
+        "coefficients": 672,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 6.661338147750939e-16,
+        "max_abs_centered_value_error": 8.881784197001252e-16,
+        "rms_value_error": 1.6809980851427127e-16,
+        "max_abs_cube_gradient_error": 5.218048215738236e-15,
+        "max_scaled_gradient_budget_ratio": 3.179071623094749e-08,
+        "max_unscaled_gradient_budget_ratio": 1.928742115477666e-07,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 5.218048215738236e-15
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 2048,
+            "max_abs_value_error": 6.661338147750939e-16,
+            "rms_value_error": 1.6809980851427127e-16,
+            "max_abs_centered_value_error": 8.881784197001252e-16,
+            "rms_centered_value_error": 3.0903284421063974e-16,
+            "max_abs_cube_gradient_error": 5.218048215738236e-15,
+            "rms_cube_gradient_error": 8.294840092558356e-16,
+            "max_scaled_gradient_budget_ratio": 3.179071623094749e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 512,
+            "max_abs_value_error": 4.996003610813204e-16,
+            "rms_value_error": 1.7388096235329547e-16,
+            "max_abs_centered_value_error": 6.661338147750939e-16,
+            "rms_centered_value_error": 3.1131641548909766e-16,
+            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
+            "rms_cube_gradient_error": 8.249173458600974e-16,
+            "max_scaled_gradient_budget_ratio": 2.70782420136865e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 6.661338147750939e-16,
+            "rms_value_error": 1.69737485713408e-16,
+            "max_abs_centered_value_error": 8.881784197001252e-16,
+            "rms_centered_value_error": 3.111592991105875e-16,
+            "max_abs_cube_gradient_error": 5.218048215738236e-15,
+            "rms_cube_gradient_error": 8.398201792522948e-16,
+            "max_scaled_gradient_budget_ratio": 2.4117686970134784e-08
+          },
+          "input_samples": {
+            "queries": 128,
+            "max_abs_value_error": 2.220446049250313e-16,
+            "rms_value_error": 9.139869328267027e-17,
+            "max_abs_centered_value_error": 3.885780586188048e-16,
+            "rms_centered_value_error": 2.1189205230146654e-16,
+            "max_abs_cube_gradient_error": 3.774758283725532e-15,
+            "rms_cube_gradient_error": 1.0236554089451876e-15,
+            "max_scaled_gradient_budget_ratio": 6.307137728103632e-09
+          },
+          "cell_interiors": {
+            "queries": 64,
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 1.8491696598605482e-16,
+            "max_abs_centered_value_error": 7.216449660063518e-16,
+            "rms_centered_value_error": 3.2723341043959784e-16,
+            "max_abs_cube_gradient_error": 2.6645352591003757e-15,
+            "rms_cube_gradient_error": 7.433804556201511e-16,
+            "max_scaled_gradient_budget_ratio": 1.3382779987232384e-08
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 3.3306690738754696e-16,
+            "rms_value_error": 1.3524657634332173e-16,
+            "max_abs_centered_value_error": 4.996003610813204e-16,
+            "rms_centered_value_error": 2.7182993249393443e-16,
+            "max_abs_cube_gradient_error": 3.524958103184872e-15,
+            "rms_cube_gradient_error": 7.747525763093773e-16,
+            "max_scaled_gradient_budget_ratio": 1.7187583852867003e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 4.440892098500626e-16,
+            "rms_value_error": 2.186493615976012e-16,
+            "max_abs_centered_value_error": 6.661338147750939e-16,
+            "rms_centered_value_error": 3.9561584983016536e-16,
+            "max_abs_cube_gradient_error": 2.6645352591003757e-15,
+            "rms_cube_gradient_error": 6.47936408169092e-16,
+            "max_scaled_gradient_budget_ratio": 3.179071623094749e-08
+          }
+        },
+        "iso_value": 0.499328694825148,
+        "reference_iso_value": 0.49932869482514786,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            512
+          ],
+          "integration_cells": 512,
+          "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+          "timings_seconds": {
+            "samples": 0.014337632179260254,
+            "density": 0.015453536033630371,
+            "normal_field": 0.00978991985321045,
+            "tree": 0.007303872108459473,
+            "assembly_and_solve": 0.37723641967773436
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "2": 64,
+            "3": 512
+          },
+          "measured_host_sync_seconds": 0.0035310573875904083,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.177732816608759,
+              -1.095521178912658
+            ],
+            [
+              2.177732816608759,
+              0.0,
+              0.0,
+              -1.097330329404935
+            ],
+            [
+              0.0,
+              2.177732816608759,
+              0.0,
+              -1.0903046531953406
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 3,
+            "full_depth": 2,
+            "base_depth": 2,
+            "solve_depth": 3,
+            "kernel_depth": 1,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 3,
+            "base_v_cycles": 1,
+            "cg_accuracy": 1e-08
           },
           "profile": "pinned cascadic degree-1 Neumann",
           "constant_mode": "reference solve without an added mean term"
