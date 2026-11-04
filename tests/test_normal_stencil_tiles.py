@@ -3,7 +3,14 @@ from types import SimpleNamespace
 import numpy as np
 import pytest
 import warp as wp
-from warp_psr.normal_stencils import assemble_normal_stencil, load_kernel, _integrals
+from warp_psr.normal_stencils import assemble_normal_stencil, load_kernel, parallel_load_kernel, _integrals
+
+
+@pytest.mark.parametrize('vector',[wp.vec4,wp.vec4d])
+def test_tile_module_preserves_floating_point_options(vector):
+    options=wp.get_module_options(parallel_load_kernel(vector).module)
+    assert options['fuse_fp'] is False
+    assert options['fast_math'] is False
 
 
 def keys(depth,xyz):

@@ -85,6 +85,7 @@ def parallel_load_kernel(vector):
         values = wp.tile_reshape(wp.tile(value), shape=(4, 32))
         sums = wp.tile_reshape(wp.tile_sum(values, axis=1), shape=(4,))
         wp.tile_store(out, sums, offset=group * 4)
+    wp.set_module_options({"fuse_fp": False}, module=load_parallel.module)
     return load_parallel
 
 
