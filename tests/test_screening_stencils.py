@@ -72,3 +72,26 @@ def test_clustered_point_matrix_and_load_against_fem(double, depth):
             np.testing.assert_allclose(csr(actual) @ x / scale, expected / scale, atol=atol, rtol=rtol)
             scale = np.max(np.abs(expected_load)) or 1
             np.testing.assert_allclose(load.numpy() / scale, expected_load / scale, atol=atol, rtol=rtol)
+
+
+@pytest.mark.cuda
+@pytest.mark.parametrize('double',[False,True])
+def test_point_load_survives_empty_trial_rows(double):
+    wp.init()
+    if not wp.is_cuda_available():
+        pytest.skip('CUDA unavailable')
+    dtype,vector,real=(wp.float64,wp.vec3d,np.float64) if double else (wp.float32,wp.vec3,np.float32)
+    xyz=np.array([[0,0,0],[1,1,1],[3,1,2]])
+    positions=np.array([[.02,.03,.04],[.31,.34,.28],[.7,.3,.55]],dtype=real)
+    weights=np.array([.3,1.7,2.1],dtype=real)
+    with wp.ScopedDevice('cuda'):
+        rows=keys(2,xyz)
+        columns=keys(2,np.empty((0,3),dtype=int))
+        matrix=assemble_level_stiffness(rows,columns,2)
+        points=SimpleNamespace(positions=wp.array(positions,dtype=vector),weights=wp.array(weights,dtype=dtype))
+        load=add_screening_stencil(matrix,rows,columns,points,2).numpy()
+    hats=np.maximum(real(1)-np.abs(positions[:,None,:]*real(4)-xyz.astype(real)[None,:,:]),real(0))
+    phi=hats[:,:,0]*hats[:,:,1]*hats[:,:,2]
+    expected=(phi*weights[:,None]).astype(np.float64).sum(axis=0)
+    np.testing.assert_allclose(load,expected,atol=1e-12 if double else 1e-6,rtol=1e-12 if double else 1e-6)
+    np.testing.assert_array_equal(matrix.offsets.numpy(),0)
