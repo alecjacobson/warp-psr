@@ -115,6 +115,16 @@ The [normal-load experiment](results/normal-load-experiment.json) preserves all
 samples, source revisions, profiles and isolation audits. Its experimental
 branch remains available; production keeps the existing normal-load kernel.
 
+Two further [normal-search experiments](results/normal-search-experiments.json)
+also failed to improve whole-reconstruction time. Contiguous z-key scans reduced
+normal kernels to 11.6 ms, but their A–B–B–A medians were 218/219/213/209 ms.
+Adding a GPU-built x/y row index measured 210/218/219/210 ms, with 12.8 ms of
+normal-load and index kernels including its fallback path. The baseline normal
+kernels take 13.2 ms. These candidates passed 389 and 413 tests respectively,
+plus the full eagle field and exact-tree gates. Both preserve the original
+summation order; neither was adopted. Their branches, samples and profiles
+remain available, including a current CPU profile whose durations include GPU waits.
+
 To profile a warmed reconstruction with Nsight Systems:
 
 ```sh
