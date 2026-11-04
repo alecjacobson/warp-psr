@@ -156,9 +156,10 @@ The [complete retained-tree checks](docs/results/tree-metadata.json) cover ghost
 flag metadata, parent/child identities, and padded roots. Optional
 [solver traces](docs/solver-traces.md) export every relaxation visit and CG stopping
 decision; independent serial replay checks each update bit for bit.
-Two Warp float64
-issues have tested upstream proposals: [built-in B-spline gradients](https://github.com/NVIDIA/warp/pull/2219)
-and [sparse-grid particle lookup](https://github.com/NVIDIA/warp/pull/2221).
+Three Warp float64
+issues have tested upstream proposals: [built-in B-spline gradients](https://github.com/NVIDIA/warp/pull/2219),
+[sparse-grid particle lookup](https://github.com/NVIDIA/warp/pull/2221), and
+[regular-grid particle lookup](https://github.com/NVIDIA/warp/pull/2233).
 The application uses public basis and explicit-coordinate quadrature interfaces
 and needs no Warp fork.
 
@@ -169,28 +170,28 @@ The C++ baseline runs on a Xeon Platinum 8362 host with a four-core CPU quota;
 OpenMP is explicitly limited to four threads. Both reference builds use `-O2`
 without fast-math. All rows use full depth 4 and density target 1.5.
 
-The depth-9 eagle is **21.6× faster than the four-thread CPU baseline**, and
-**10.8× faster than the original GPU implementation** with unchanged solve settings.
-Peak GPU pool use fell from **24.89 GiB to 2.32 GiB**.
+The depth-9 eagle is **22.7× faster than the four-thread CPU baseline**, and
+**11.4× faster than the original GPU implementation** with unchanged solve settings.
+Peak GPU pool use fell from **24.89 GiB to 2.34 GiB**.
 
 | SPSR input | Depth | Coefficients | Warp (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Horse · 100k | 8 | 362,534 | 0.08 | 1.01 | 0.61 | 0.24 |
-| Bunny · 362k | 8 | 1,175,586 | 0.13 | 3.27 | 1.99 | 0.84 |
-| Eagle · 797k | 8 | 832,634 | 0.11 | 2.36 | 1.33 | 0.63 |
-| Torso · 3.49m | 8 | 492,578 | 0.09 | 1.82 | 1.19 | 0.56 |
-| Eagle · 797k | 9 | 3,323,866 | 0.23 | 9.37 | 4.88 | 2.32 |
-| Torso · 1m subset | 9 | 2,051,674 | 0.20 | 6.41 | 3.20 | 1.52 |
+| Horse · 100k | 8 | 362,534 | 0.07 | 1.01 | 0.61 | 0.24 |
+| Bunny · 362k | 8 | 1,175,586 | 0.11 | 3.27 | 1.99 | 0.84 |
+| Eagle · 797k | 8 | 832,634 | 0.10 | 2.36 | 1.33 | 0.63 |
+| Torso · 3.49m | 8 | 492,578 | 0.08 | 1.82 | 1.19 | 0.56 |
+| Eagle · 797k | 9 | 3,323,866 | 0.22 | 9.37 | 4.88 | 2.34 |
+| Torso · 1m subset | 9 | 2,051,674 | 0.15 | 6.41 | 3.20 | 1.52 |
 
 These are solve timings: GPU medians include Python orchestration and exclude
 upload and queries; C++ timings exclude parsing, queries, export, and startup.
-Five warm runs measure the current depth-9 eagle; other rows use three. GPU memory
-is the process CUDA-pool high-water mark. The [full report](docs/results/public-scaling.json)
+Three measured runs follow the first invocation. GPU memory is the process
+CUDA-pool high-water mark. The [full report](docs/results/public-scaling.json)
 includes every run, per-stage timings, support counts, and environment limits.
-The depth-9 eagle timing includes brood compaction; other GPU rows retain the
-preceding parallel-isovalue revision. CPU timings retain their recorded provenance
-for the same inputs and unchanged reference build. Both depth-9 OpenMP cases were remeasured
-in isolation. See the [tree comparison](docs/results/broods-performance.json).
+All GPU rows were remeasured after the stiffness change. CPU timings retain their
+recorded provenance for the same inputs and unchanged reference build. Both
+depth-9 OpenMP cases were remeasured
+in isolation. See the [stiffness comparison](docs/results/stiffness-performance.json).
 
 The [performance guide](docs/performance.md) includes PSR, independent sample-count,
 density and depth sweeps, and the earlier torus optimization history. The
