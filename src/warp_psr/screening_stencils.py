@@ -11,7 +11,6 @@ wp.set_module_options({"fuse_fp": False})
 @lru_cache(None)
 def screening_kernel(dtype):
     vec3 = wp.types.vector(length=3, dtype=dtype)
-    row_values = wp.types.vector(length=27, dtype=wp.float64)
 
     @wp.kernel
     def bin_points(positions: wp.array(dtype=vec3), depth: int,
@@ -37,37 +36,47 @@ def screening_kernel(dtype):
             weights: wp.array(dtype=dtype), depth: int, trial_depth: int,
             offsets: wp.array(dtype=int), columns: wp.array(dtype=int),
             values: wp.array(dtype=wp.float64), load: wp.array(dtype=wp.float64)):
-        i = wp.tid()
+        i, local = wp.tid()
         c = coordinates(row_keys[i])
-        accumulated = row_values(wp.float64(0.0))
+        entry = offsets[i] + local
+        active = entry < offsets[i + 1]
+        q = wp.vec3i(0)
+        if active:
+            q = coordinates(col_keys[columns[entry]])
+        accumulated = wp.float64(0.0)
         rhs = wp.float64(0.0)
         # Bin actual aggregate positions: rounding can move a centroid across
         # its original tree-cell boundary, so a bin may contain several points.
         # A hat sees only the eight cells touching its vertex.
-        for k in range(8):
-            cell = c - wp.vec3i(k // 4, (k // 2) % 2, k % 2)
-            if wp.min(cell) >= 0 and wp.max(cell) < 1 << depth:
-                key = basis_key(depth, cell[0], cell[1], cell[2])
-                first = find_key(point_keys, key)
-                if first >= 0:
-                    j = first
-                    while j < point_keys.shape[0]:
-                        if point_keys[j] != key:
-                            break
-                        index = point_ids[j]
-                        p = vec3(positions[index])
-                        weight = dtype(weights[index])
-                        if weight != dtype(0.0):
-                            phi = hat(p, c, depth)
-                            rhs += wp.float64(phi * weight)
-                            for entry in range(offsets[i], offsets[i + 1]):
-                                q = coordinates(col_keys[columns[entry]])
-                                trial = hat(p, q, trial_depth)
-                                accumulated[entry - offsets[i]] += wp.float64(phi * trial * weight)
-                        j += 1
-        load[i] = rhs
-        for entry in range(offsets[i], offsets[i + 1]):
-            values[entry] += accumulated[entry - offsets[i]]
+        # Neighboring lanes accumulate neighboring entries, retaining the same
+        # sample order for every entry without a 27-double thread-local vector.
+        # Lane zero also produces the RHS when a trial row is empty.
+        if active or local == 0:
+            for k in range(8):
+                cell = c - wp.vec3i(k // 4, (k // 2) % 2, k % 2)
+                if wp.min(cell) >= 0 and wp.max(cell) < 1 << depth:
+                    key = basis_key(depth, cell[0], cell[1], cell[2])
+                    first = find_key(point_keys, key)
+                    if first >= 0:
+                        j = first
+                        while j < point_keys.shape[0]:
+                            if point_keys[j] != key:
+                                break
+                            index = point_ids[j]
+                            p = vec3(positions[index])
+                            weight = dtype(weights[index])
+                            if weight != dtype(0.0):
+                                phi = hat(p, c, depth)
+                                if local == 0:
+                                    rhs += wp.float64(phi * weight)
+                                if active:
+                                    trial = hat(p, q, trial_depth)
+                                    accumulated += wp.float64(phi * trial * weight)
+                            j += 1
+        if local == 0:
+            load[i] = rhs
+        if active:
+            values[entry] += accumulated
     return bin_points, add
 
 
@@ -95,7 +104,7 @@ def add_screening_stencil(matrix, row_keys, col_keys, points, depth, trial_depth
     if bins is None:
         bins = bin_constraints(points, depth)
     load = wp.empty(len(row_keys), dtype=wp.float64, device=device)
-    wp.launch(screening_kernel(points.weights.dtype)[1], len(row_keys),
+    wp.launch(screening_kernel(points.weights.dtype)[1], (len(row_keys), 27),
               inputs=[row_keys, col_keys, bins.keys, bins.ids, points.positions, points.weights,
                       depth, trial_depth, matrix.offsets, matrix.columns, matrix.values, load], device=device)
     return load
