@@ -123,7 +123,11 @@ def precision_kernels(dtype):
             if wp.length(point_div(normals[s], weights[s])) > dtype(0.0):
                 total += dw[s] * weights[s]
                 weight += weights[s]
-        out[0] = vec3(total[0] / weight, total[1] / weight, weight)
+        # Match ProjectiveData::value(): an empty weighted sum has value zero.
+        # Opposing normals can cancel in every accepted sample aggregate.
+        out[0] = vec3(dtype(0.0))
+        if weight > dtype(0.0):
+            out[0] = vec3(total[0] / weight, total[1] / weight, weight)
 
     return SimpleNamespace(
         _input_order=_input_order,

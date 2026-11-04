@@ -52,6 +52,9 @@ Use `dtype=wp.vec3d` for both input arrays to run the entire pipeline in float64
 including normalization, density, assembly, solving, and evaluation.
 Production reconstruction uses Warp arrays, kernels, FEM, and sparse algebra;
 NumPy, SciPy, and the C++ reference are used only by tests and visualization.
+Zero or invalid normals are omitted. If all accepted aggregate normals cancel,
+the field, its gradient, and the isovalue are zero,
+[matching the pinned reference](docs/results/cancelled-normals.json).
 
 ## Flagship: the eagle
 
