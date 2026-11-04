@@ -20,6 +20,7 @@ from .constraints import point_constraints
 from .spaces import make_level_space
 from .relaxation import row_schedule, relax_scheduled, relaxation_command, relax_sliced
 from .stiffness import assemble_level_stiffness
+from .transfer_stencils import assemble_prolongation
 from .screening_stencils import add_screening_stencil, bin_constraints
 from .integration import level_integration_grid
 
@@ -195,7 +196,9 @@ def padded_root_system(matrix, b, keys):
     return padded, rhs
 
 
-def prolongation(coarse_keys, fine_keys, depth, dtype=wp.float32):
+def prolongation(coarse_keys, fine_keys, depth, dtype=wp.float32, direct=True):
+    if direct:
+        return assemble_prolongation(coarse_keys, fine_keys, depth, dtype)
     device = fine_keys.device
     count = len(fine_keys) * 8
     rows, cols = (
