@@ -20,6 +20,7 @@ from .constraints import point_constraints
 from .spaces import make_level_space
 from .relaxation import row_schedule, relax_scheduled, relaxation_command, relax_sliced
 from .stiffness import assemble_level_stiffness
+from .screening_stencils import add_screening_stencil, bin_constraints
 from .integration import level_integration_grid
 
 wp.set_module_options({"fuse_fp": False})
@@ -321,6 +322,7 @@ def solve_levels(
     base_v_cycles=1,
     cg_accuracy=1e-3,
     stencil_stiffness=True,
+    stencil_screening=True,
 ):
     device = normals.records.keys.device
     dtype = density.scale.dtype
@@ -333,7 +335,7 @@ def solve_levels(
     diagnostics = []
     solver_sync = 0.0
     cumulative = None
-    operator_geometries = {finest: geometry}
+    operator_geometries = {finest: geometry} if geometry is not None else {}
     # The reference assembles normal constraints through reconstruction depth,
     # including fine contributions when the requested solve stops earlier.
     normal_loads = assemble_reference_normal_loads(
@@ -350,19 +352,28 @@ def solve_levels(
         if not len(keys[d]):
             break
         load = normal_loads[d]
-        if d not in operator_geometries:
-            operator_geometries[d] = level_integration_grid(tree, d, dtype=dtype)
-        operator_geometry = operator_geometries[d]
+        direct_points = screened and stencil_stiffness and stencil_screening and d > base_depth and d >= 4
+        needs_fem = d == base_depth or not stencil_stiffness or (screened and not direct_points)
+        operator_geometry = None
+        space = None
+        if needs_fem:
+            if d not in operator_geometries:
+                operator_geometries[d] = level_integration_grid(tree, d, dtype=dtype)
+            operator_geometry = operator_geometries[d]
+            space = make_level_space(operator_geometry, keys[d], d, d)
         operator_finest = d
-        space = make_level_space(operator_geometry, keys[d], d, d)
         # Double accumulation avoids a coarse row losing accuracy when its
         # integral spans many fine integration cells. Final reference matrices
         # and solve arithmetic use the input precision.
         A = (assemble_level_stiffness(keys[d], keys[d], d)
              if stencil_stiffness and d > base_depth
              else assemble_stiffness(space, device, accumulation_dtype=wp.float64))
-        points = point_constraints(density, normals, tree, d, point_weight, exact)
         if screened:
+            points = point_constraints(density, normals, tree, d, point_weight, exact)
+        if direct_points:
+            bins = bin_constraints(points, d)
+            point_load = add_screening_stencil(A, keys[d], keys[d], points, d, bins=bins)
+        elif screened:
             quadrature = point_quadrature(space, points.positions, points.weights)
             screen = assemble_screening(
                 space,
@@ -403,13 +414,14 @@ def solve_levels(
             solver_sync += sync
             cumulative = wp.clone(corrections[d])
         else:
-            coarse_space = make_level_space(
-                operator_geometry, keys[d - 1], d - 1, operator_finest
-            )
+            coarse_space = (make_level_space(operator_geometry, keys[d - 1], d - 1, operator_finest)
+                            if needs_fem else None)
             cross = (assemble_level_stiffness(keys[d], keys[d - 1], d, d - 1)
                      if stencil_stiffness else assemble_stiffness(
                          space, device, trial_space=coarse_space, accumulation_dtype=wp.float64))
-            if screened:
+            if direct_points:
+                add_screening_stencil(cross, keys[d], keys[d - 1], points, d, d - 1, bins=bins)
+            elif screened:
                 screen = assemble_screening(
                     space,
                     points.positions,
@@ -436,7 +448,7 @@ def solve_levels(
                 "rhs": b,
                 "normal_load": load,
                 "coefficients": corrections[d],
-                "operator_integration_cells": operator_geometry.cell_count(),
+                "operator_integration_cells": operator_geometry.cell_count() if operator_geometry is not None else 0,
             }
         )
     return corrections, diagnostics, solver_sync

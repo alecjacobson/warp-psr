@@ -56,8 +56,16 @@ def _neighbors(row_keys: wp.array(dtype=wp.int64), col_keys: wp.array(dtype=wp.i
 
 
 @wp.kernel
+def _integrals(depth: int, trial_depth: int, table: wp.array2d(dtype=wp.vec2d)):
+    i, k = wp.tid()
+    trial = (i >> (depth - trial_depth)) + k - 1
+    table[i, k] = hat_integrals(depth, i, trial_depth, trial)
+
+
+@wp.kernel
 def _fill(row_keys: wp.array(dtype=wp.int64), col_keys: wp.array(dtype=wp.int64),
           depth: int, trial_depth: int, candidates: wp.array2d(dtype=int),
+          table: wp.array2d(dtype=wp.vec2d),
           offsets: wp.array(dtype=int), columns: wp.array(dtype=int),
           values: wp.array(dtype=wp.float64)):
     i = wp.tid()
@@ -66,10 +74,9 @@ def _fill(row_keys: wp.array(dtype=wp.int64), col_keys: wp.array(dtype=wp.int64)
     for k in range(27):
         j = candidates[i, k]
         if j >= 0:
-            q = coordinates(col_keys[j])
-            x = hat_integrals(depth, c[0], trial_depth, q[0])
-            y = hat_integrals(depth, c[1], trial_depth, q[1])
-            z = hat_integrals(depth, c[2], trial_depth, q[2])
+            x = table[c[0], k // 9]
+            y = table[c[1], (k // 3) % 3]
+            z = table[c[2], k % 3]
             values[out] = x[1] * y[0] * z[0] + x[0] * y[1] * z[0] + x[0] * y[0] * z[1]
             columns[out] = j
             out += 1
@@ -91,6 +98,8 @@ def assemble_level_stiffness(row_keys, col_keys, depth, trial_depth=None):
     matrix.nnz = 27 * n
     matrix.columns = wp.empty(matrix.nnz, dtype=int, device=device)
     matrix.values = wp.empty(matrix.nnz, dtype=wp.float64, device=device)
-    wp.launch(_fill, n, inputs=[row_keys, col_keys, depth, trial_depth, candidates,
+    table = wp.empty(((1 << depth) + 1, 3), dtype=wp.vec2d, device=device)
+    wp.launch(_integrals, table.shape, inputs=[depth, trial_depth, table], device=device)
+    wp.launch(_fill, n, inputs=[row_keys, col_keys, depth, trial_depth, candidates, table,
                               matrix.offsets, matrix.columns, matrix.values], device=device)
     return matrix
