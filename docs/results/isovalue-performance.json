@@ -1,0 +1,5299 @@
+{
+  "scope": "Parallel terminal weighted mean with input-precision products and double partial sums; summation order changes, fixed acceptance budgets unchanged",
+  "comparison": {
+    "wavefront": {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d9-spsr",
+      "shape": "eagle",
+      "count": 796825,
+      "depth": 9,
+      "full_depth": 4,
+      "parameters": {
+        "name": "eagle-full-d9-spsr",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "source_revision": "24671dc97e3e97344cf852bf43773b61ad6d518b",
+      "source_dirty": false,
+      "execution_environment": {
+        "captured_utc": "2026-11-04T05:00:16.767302+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 22757406681,
+              "user_usec": 20998678378,
+              "system_usec": 1758728302,
+              "nr_periods": 339949,
+              "nr_throttled": 19880,
+              "throttled_usec": 46217331243
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 22757476687,
+              "user_usec": 20998691634,
+              "system_usec": 1758785053,
+              "nr_periods": 339969,
+              "nr_throttled": 20155,
+              "throttled_usec": 43629624662
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19097151834196,
+              "user_usec": 14731870779838,
+              "system_usec": 4365281054358,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52334328293186,
+              "user_usec": 35999825667865,
+              "system_usec": 16334502625321,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66896576432000,
+              "user_usec": 43514533028000,
+              "system_usec": 23382043404000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "execution_environment_after": {
+        "captured_utc": "2026-11-04T05:00:19.597801+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 22760237729,
+              "user_usec": 21000664011,
+              "system_usec": 1759573718,
+              "nr_periods": 339977,
+              "nr_throttled": 19880,
+              "throttled_usec": 46217331243
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 22760307684,
+              "user_usec": 21000677218,
+              "system_usec": 1759630465,
+              "nr_periods": 339997,
+              "nr_throttled": 20155,
+              "throttled_usec": 43629624662
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19097155640185,
+              "user_usec": 14731873630795,
+              "system_usec": 4365282009389,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52334345667179,
+              "user_usec": 35999836936980,
+              "system_usec": 16334508730199,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66896594732000,
+              "user_usec": 43514544112000,
+              "system_usec": 23382050620000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "gpu": "NVIDIA L40, 570.158.01",
+      "warp": "1.19.0",
+      "timing_scope": "GPU reconstruction, including Python orchestration; excludes input upload and queries",
+      "first_run_note": "First invocation in process; existing disk kernel cache may be reused. Not a clean-cache compilation measurement.",
+      "warm_median_seconds": 0.3032374195754528,
+      "runs": [
+        {
+          "iteration": 0,
+          "seconds": 0.6788599528372288,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.02164620780944824,
+              "density": 0.022502336502075195,
+              "normal_field": 0.021274335861206056,
+              "tree": 0.0499708480834961,
+              "assembly_and_solve": 0.49856747436523435
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.08866558223962784,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496069235,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 1,
+          "seconds": 0.3182591199874878,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0012720639705657958,
+              "density": 0.009478079795837402,
+              "normal_field": 0.013321663856506348,
+              "tree": 0.04593267059326172,
+              "assembly_and_solve": 0.19826258850097656
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.11454600840806961,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 2,
+          "seconds": 0.3032374195754528,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.001357632040977478,
+              "density": 0.0093787202835083,
+              "normal_field": 0.01331657600402832,
+              "tree": 0.04578460693359375,
+              "assembly_and_solve": 0.16524394226074218
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.11439082399010658,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 3,
+          "seconds": 0.28608447313308716,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0012665920257568359,
+              "density": 0.00946662425994873,
+              "normal_field": 0.013162688255310058,
+              "tree": 0.04592803192138672,
+              "assembly_and_solve": 0.1637164764404297
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.11464552581310272,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 4,
+          "seconds": 0.3063815273344517,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.001338207960128784,
+              "density": 0.009452351570129395,
+              "normal_field": 0.03226716613769531,
+              "tree": 0.049286209106445315,
+              "assembly_and_solve": 0.16411660766601563
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.10834155604243279,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 5,
+          "seconds": 0.29677776619791985,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0011595840454101563,
+              "density": 0.009358943939208985,
+              "normal_field": 0.01322652816772461,
+              "tree": 0.04562659072875976,
+              "assembly_and_solve": 0.17748204040527343
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.10676346346735954,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        }
+      ]
+    },
+    "isovalue": {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d9-spsr",
+      "shape": "eagle",
+      "count": 796825,
+      "depth": 9,
+      "full_depth": 4,
+      "parameters": {
+        "name": "eagle-full-d9-spsr",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+      "source_dirty": false,
+      "execution_environment": {
+        "captured_utc": "2026-11-04T05:00:23.390132+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 22764996225,
+              "user_usec": 21004814076,
+              "system_usec": 1760182148,
+              "nr_periods": 340015,
+              "nr_throttled": 19884,
+              "throttled_usec": 46236373066
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 22765066179,
+              "user_usec": 21004827284,
+              "system_usec": 1760238895,
+              "nr_periods": 340035,
+              "nr_throttled": 20159,
+              "throttled_usec": 43648502089
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19097160854538,
+              "user_usec": 14731878225476,
+              "system_usec": 4365282629061,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52334366202570,
+              "user_usec": 35999848224840,
+              "system_usec": 16334517977729,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66896618924000,
+              "user_usec": 43514557728000,
+              "system_usec": 23382061196000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "execution_environment_after": {
+        "captured_utc": "2026-11-04T05:00:26.056127+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 22767716641,
+              "user_usec": 21006724181,
+              "system_usec": 1760992460,
+              "nr_periods": 340042,
+              "nr_throttled": 19884,
+              "throttled_usec": 46236373066
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 22767786596,
+              "user_usec": 21006737388,
+              "system_usec": 1761049207,
+              "nr_periods": 340062,
+              "nr_throttled": 20159,
+              "throttled_usec": 43648502089
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19097164534036,
+              "user_usec": 14731880996988,
+              "system_usec": 4365283537048,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52334384866683,
+              "user_usec": 35999858797369,
+              "system_usec": 16334526069314,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66896640116000,
+              "user_usec": 43514569556000,
+              "system_usec": 23382070560000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "gpu": "NVIDIA L40, 570.158.01",
+      "warp": "1.19.0",
+      "timing_scope": "GPU reconstruction, including Python orchestration; excludes input upload and queries",
+      "first_run_note": "First invocation in process; existing disk kernel cache may be reused. Not a clean-cache compilation measurement.",
+      "warm_median_seconds": 0.27555734291672707,
+      "runs": [
+        {
+          "iteration": 0,
+          "seconds": 0.7560768537223339,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.012688480377197265,
+              "density": 0.024805824279785157,
+              "normal_field": 0.03578726577758789,
+              "tree": 0.049547264099121094,
+              "assembly_and_solve": 0.57905126953125
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.0876677893102169,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496069235,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 1,
+          "seconds": 0.29050323367118835,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0012127679586410522,
+              "density": 0.009400159835815429,
+              "normal_field": 0.013144736289978027,
+              "tree": 0.045521312713623044,
+              "assembly_and_solve": 0.16855958557128906
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.09937689080834389,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 2,
+          "seconds": 0.26890740543603897,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.001206015944480896,
+              "density": 0.0096943998336792,
+              "normal_field": 0.013244511604309082,
+              "tree": 0.045678783416748046,
+              "assembly_and_solve": 0.16368281555175782
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.09988066554069519,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 3,
+          "seconds": 0.269956361502409,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0012218879461288453,
+              "density": 0.009384608268737793,
+              "normal_field": 0.013100895881652832,
+              "tree": 0.04539884948730469,
+              "assembly_and_solve": 0.16426300048828124
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.09853768348693848,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 4,
+          "seconds": 0.2851318381726742,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0012058240175247192,
+              "density": 0.00939350414276123,
+              "normal_field": 0.013115167617797852,
+              "tree": 0.04572608184814453,
+              "assembly_and_solve": 0.16358662414550781
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.09990670159459114,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 5,
+          "seconds": 0.27555734291672707,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0012424639463424682,
+              "density": 0.00944035243988037,
+              "normal_field": 0.013247200012207031,
+              "tree": 0.04572585678100586,
+              "assembly_and_solve": 0.17044082641601563
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.09974734857678413,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        }
+      ]
+    }
+  },
+  "comparison_isolation": {
+    "isovalue-comparison-wavefront-0.context.json": [
+      {
+        "utc": "2026-11-04T05:00:14Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:14Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:15Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:16Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:17Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:18Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:19Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:20Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      }
+    ],
+    "isovalue-comparison-isovalue-0.context.json": [
+      {
+        "utc": "2026-11-04T05:00:20Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:21Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:22Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:23Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:24Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:25Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:26Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      },
+      {
+        "utc": "2026-11-04T05:00:27Z",
+        "foreign_gpu_processes": 0,
+        "foreign_cpu_processes": 0
+      }
+    ]
+  },
+  "final_eagle_benchmarks": {
+    "gpu": {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d9-spsr",
+      "shape": "eagle",
+      "count": 796825,
+      "depth": 9,
+      "full_depth": 4,
+      "parameters": {
+        "name": "eagle-full-d9-spsr",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+      "source_dirty": false,
+      "execution_environment": {
+        "captured_utc": "2026-11-04T05:14:22.628752+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 23596546705,
+              "user_usec": 21753226297,
+              "system_usec": 1843320407,
+              "nr_periods": 348375,
+              "nr_throttled": 20109,
+              "throttled_usec": 47116706901
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 23596616659,
+              "user_usec": 21753239505,
+              "system_usec": 1843377153,
+              "nr_periods": 348395,
+              "nr_throttled": 20385,
+              "throttled_usec": 44529311742
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19098315043177,
+              "user_usec": 14732911451190,
+              "system_usec": 4365403591987,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52337095988632,
+              "user_usec": 36001868299164,
+              "system_usec": 16335227689467,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66899842904000,
+              "user_usec": 43516791232000,
+              "system_usec": 23383051672000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "execution_environment_after": {
+        "captured_utc": "2026-11-04T05:14:24.472879+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 23598433222,
+              "user_usec": 21754526621,
+              "system_usec": 1843906600,
+              "nr_periods": 348393,
+              "nr_throttled": 20109,
+              "throttled_usec": 47116706901
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 23598503176,
+              "user_usec": 21754539829,
+              "system_usec": 1843963347,
+              "nr_periods": 348413,
+              "nr_throttled": 20385,
+              "throttled_usec": 44529311742
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19098317325697,
+              "user_usec": 14732913084472,
+              "system_usec": 4365404241224,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52337099232558,
+              "user_usec": 36001870438875,
+              "system_usec": 16335228793683,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66899848752000,
+              "user_usec": 43516794688000,
+              "system_usec": 23383054064000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "gpu": "NVIDIA L40, 570.158.01",
+      "warp": "1.19.0",
+      "timing_scope": "GPU reconstruction, including Python orchestration; excludes input upload and queries",
+      "first_run_note": "First invocation in process; existing disk kernel cache may be reused. Not a clean-cache compilation measurement.",
+      "warm_median_seconds": 0.2852819375693798,
+      "runs": [
+        {
+          "iteration": 0,
+          "seconds": 0.62667540833354,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.01371782398223877,
+              "density": 0.022857887268066406,
+              "normal_field": 0.020572511672973633,
+              "tree": 0.048554527282714845,
+              "assembly_and_solve": 0.4663848876953125
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.08845004066824913,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496069235,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 1,
+          "seconds": 0.2852819375693798,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.00118832004070282,
+              "density": 0.009431360244750976,
+              "normal_field": 0.01329423999786377,
+              "tree": 0.04580556869506836,
+              "assembly_and_solve": 0.1800839385986328
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.09978264197707176,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 2,
+          "seconds": 0.29329192265868187,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0012313599586486817,
+              "density": 0.009420160293579102,
+              "normal_field": 0.013281439781188965,
+              "tree": 0.04601340866088867,
+              "assembly_and_solve": 0.16294447326660155
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.09995048493146896,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        },
+        {
+          "iteration": 3,
+          "seconds": 0.2680294029414654,
+          "metadata": {
+            "precision": "float32",
+            "device": "cuda:0",
+            "basis_counts": [
+              8,
+              27,
+              125,
+              729,
+              4913,
+              18440,
+              68552,
+              264192,
+              914792,
+              2052088
+            ],
+            "integration_cells": 0,
+            "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+            "timings_seconds": {
+              "samples": 0.0012519359588623047,
+              "density": 0.009472864151000977,
+              "normal_field": 0.013129280090332032,
+              "tree": 0.04540630340576172,
+              "assembly_and_solve": 0.16270498657226562
+            },
+            "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+            "operator_integration_cells": {
+              "4": 4096,
+              "5": 0,
+              "6": 0,
+              "7": 0,
+              "8": 0,
+              "9": 0
+            },
+            "measured_host_sync_seconds": 0.09956476837396622,
+            "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+            "exact_interpolation_behavior": "level-clustered approximate constraints",
+            "cube_to_model": [
+              [
+                0.0,
+                0.0,
+                9.487554550170898,
+                -3.3637354373931885
+              ],
+              [
+                9.487554550170898,
+                0.0,
+                0.0,
+                -1.9807322025299072
+              ],
+              [
+                0.0,
+                9.487554550170898,
+                0.0,
+                -3.3755571842193604
+              ],
+              [
+                0.0,
+                0.0,
+                0.0,
+                1.0
+              ]
+            ],
+            "parameters": {
+              "depth": 9,
+              "full_depth": 4,
+              "base_depth": 4,
+              "solve_depth": 9,
+              "kernel_depth": 7,
+              "samples_per_node": 1.5,
+              "scale": 1.1,
+              "point_weight": 2.0,
+              "exact_interpolation": false,
+              "iters": 8,
+              "base_v_cycles": 1,
+              "cg_accuracy": 0.001
+            },
+            "profile": "pinned cascadic degree-1 Neumann",
+            "constant_mode": "reference solve without an added mean term"
+          },
+          "peak_device_pool_bytes": 2496849759,
+          "support_counts": [
+            64,
+            288,
+            680,
+            1952,
+            8328,
+            20056,
+            69152,
+            264192,
+            914792,
+            2052088
+          ]
+        }
+      ]
+    },
+    "serial": {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d9-spsr",
+      "shape": "eagle",
+      "count": 796825,
+      "parameters": {
+        "name": "eagle-full-d9-spsr",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "cpu": "Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz",
+      "parallelism": "ThreadPool::NONE (serial), matching the correctness fixtures",
+      "execution_environment": {
+        "captured_utc": "2026-11-04T03:22:08.275856+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 14071833189,
+              "user_usec": 13040524825,
+              "system_usec": 1031308363,
+              "nr_periods": 281633,
+              "nr_throttled": 14348,
+              "throttled_usec": 33668330483
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 14071903143,
+              "user_usec": 13040538150,
+              "system_usec": 1031364993,
+              "nr_periods": 281651,
+              "nr_throttled": 14587,
+              "throttled_usec": 31255081059
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19086920020102,
+              "user_usec": 14722612083681,
+              "system_usec": 4364307936420,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52317232685100,
+              "user_usec": 35986689447808,
+              "system_usec": 16330543237292,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66876679984000,
+              "user_usec": 43499998072000,
+              "system_usec": 23376681912000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "execution_environment_after": {
+        "captured_utc": "2026-11-04T03:22:50.599971+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 14114697891,
+              "user_usec": 13082578844,
+              "system_usec": 1032119047,
+              "nr_periods": 282056,
+              "nr_throttled": 14348,
+              "throttled_usec": 33668330483
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 14114767846,
+              "user_usec": 13082592170,
+              "system_usec": 1032175675,
+              "nr_periods": 282074,
+              "nr_throttled": 14587,
+              "throttled_usec": 31255081059
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19086968327049,
+              "user_usec": 14722658895656,
+              "system_usec": 4364309431392,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52317287454834,
+              "user_usec": 35986737769810,
+              "system_usec": 16330549685024,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66876746000000,
+              "user_usec": 43500052812000,
+              "system_usec": 23376693188000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "openmp_thread_limit": null,
+      "openmp_effective_threads": 0,
+      "configured_threads": 128,
+      "schedule": 1,
+      "chunk_size": 128,
+      "timing_scope": "Unchanged official Solver::Solve; includes normalization, tree, assembly, solve, and isovalue; excludes input parsing, queries, export, and process startup",
+      "comparison_limit": "Explicit library backend; input parsing, mesh extraction and CLI startup are excluded",
+      "source_revision": "09e2e3c0874a1e29e0adaa549d30ccf4cd735f07",
+      "source_dirty": false,
+      "build": {
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "commands": [
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/oracle"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DEXPORT_TREE",
+            "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-fopenmp",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/oracle_openmp"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-fopenmp",
+            "-DEXPORT_TREE",
+            "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented_openmp"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/basis.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/basis"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DFAST_COMPILE",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src/PoissonRecon.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/PoissonReconCLI"
+          ]
+        ],
+        "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      },
+      "warm_median_seconds": 9.367448234,
+      "runs": [
+        {
+          "iteration": 0,
+          "seconds": 9.415137329
+        },
+        {
+          "iteration": 1,
+          "seconds": 9.367448234
+        },
+        {
+          "iteration": 2,
+          "seconds": 9.469851795
+        },
+        {
+          "iteration": 3,
+          "seconds": 9.353126541
+        }
+      ]
+    },
+    "openmp": {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d9-spsr",
+      "shape": "eagle",
+      "count": 796825,
+      "parameters": {
+        "name": "eagle-full-d9-spsr",
+        "dataset": "eagle",
+        "input": null,
+        "max_points": null,
+        "shape": "eagle",
+        "input_scale": 1.0,
+        "translation": [
+          0.0,
+          0.0,
+          0.0
+        ],
+        "count": 796825,
+        "seed": 2026,
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "scale": 1.1,
+        "samples_per_node": 1.5,
+        "cg_accuracy": 0.001,
+        "base_v_cycles": 1,
+        "weight": 2.0,
+        "exact": false,
+        "iters": 8,
+        "precision": "float",
+        "grid": 24,
+        "operators": false,
+        "align_dir": 0,
+        "degree": 1,
+        "boundary": "Neumann",
+        "confidence": false
+      },
+      "cpu": "Intel(R) Xeon(R) Platinum 8362 CPU @ 2.80GHz",
+      "parallelism": "ThreadPool::OPEN_MP, compiled with -fopenmp; explicit OpenMP runtime thread limit",
+      "execution_environment": {
+        "captured_utc": "2026-11-04T04:01:03.862280+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 18088436054,
+              "user_usec": 16763351294,
+              "system_usec": 1325084760,
+              "nr_periods": 304893,
+              "nr_throttled": 18508,
+              "throttled_usec": 43489013183
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 18088506009,
+              "user_usec": 16763364726,
+              "system_usec": 1325141282,
+              "nr_periods": 304913,
+              "nr_throttled": 18773,
+              "throttled_usec": 40897553665
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19091346339013,
+              "user_usec": 14726664478533,
+              "system_usec": 4364681860480,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52323241108344,
+              "user_usec": 35991563815975,
+              "system_usec": 16331677292368,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66883665980000,
+              "user_usec": 43505376804000,
+              "system_usec": 23378289176000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "execution_environment_after": {
+        "captured_utc": "2026-11-04T04:01:28.700991+00:00",
+        "logical_cpus": 128,
+        "affinity_cpus": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5,
+          6,
+          7,
+          8,
+          9,
+          10,
+          11,
+          12,
+          13,
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          24,
+          25,
+          26,
+          27,
+          28,
+          29,
+          30,
+          31,
+          32,
+          33,
+          34,
+          35,
+          36,
+          37,
+          38,
+          39,
+          40,
+          41,
+          42,
+          43,
+          44,
+          45,
+          46,
+          47,
+          48,
+          49,
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58,
+          59,
+          60,
+          61,
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          72,
+          73,
+          74,
+          75,
+          76,
+          77,
+          78,
+          79,
+          80,
+          81,
+          82,
+          83,
+          84,
+          85,
+          86,
+          87,
+          88,
+          89,
+          90,
+          91,
+          92,
+          93,
+          94,
+          95,
+          96,
+          97,
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110,
+          111,
+          112,
+          113,
+          114,
+          115,
+          116,
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          127
+        ],
+        "visible_cgroup_quotas": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "cpu_max": "400000 100000",
+            "cpu_equivalents": 4.0
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          },
+          {
+            "group": "kubepods.slice",
+            "cpu_max": "max 100000",
+            "cpu_equivalents": null
+          }
+        ],
+        "minimum_visible_cpu_quota": 4.0,
+        "cgroup_cpu_counters": [
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+            "counters": {
+              "usage_usec": 18161256017,
+              "user_usec": 16830494770,
+              "system_usec": 1330761246,
+              "nr_periods": 305141,
+              "nr_throttled": 18561,
+              "throttled_usec": 43490465791
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+            "counters": {
+              "usage_usec": 18161325971,
+              "user_usec": 16830508059,
+              "system_usec": 1330817911,
+              "nr_periods": 305161,
+              "nr_throttled": 18841,
+              "throttled_usec": 40898983759
+            }
+          },
+          {
+            "group": "kubepods.slice/kubepods-burstable.slice",
+            "counters": {
+              "usage_usec": 19091422903272,
+              "user_usec": 14726734556342,
+              "system_usec": 4364688346929,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": "kubepods.slice",
+            "counters": {
+              "usage_usec": 52323446210026,
+              "user_usec": 35991681384671,
+              "system_usec": 16331764825355,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          },
+          {
+            "group": ".",
+            "counters": {
+              "usage_usec": 66883880180000,
+              "user_usec": 43505499488000,
+              "system_usec": 23378380692000,
+              "nr_periods": 0,
+              "nr_throttled": 0,
+              "throttled_usec": 0
+            }
+          }
+        ],
+        "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+      },
+      "openmp_thread_limit": 4,
+      "openmp_effective_threads": 4,
+      "configured_threads": 128,
+      "schedule": 1,
+      "chunk_size": 128,
+      "timing_scope": "Unchanged official Solver::Solve; includes normalization, tree, assembly, solve, and isovalue; excludes input parsing, queries, export, and process startup",
+      "comparison_limit": "Explicit library backend; input parsing, mesh extraction and CLI startup are excluded",
+      "source_revision": "b6c6988ad3a4c0bca1e830c2ec525b27215ed8ea",
+      "source_dirty": false,
+      "build": {
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "commands": [
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/oracle"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DEXPORT_TREE",
+            "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-fopenmp",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/oracle_openmp"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-fopenmp",
+            "-DEXPORT_TREE",
+            "-I/home/horde/projects/warp-psr-public-render/.build/instrumented",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/oracle.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/oracle_instrumented_openmp"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/reference/basis.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/basis"
+          ],
+          [
+            "g++",
+            "-std=c++17",
+            "-O2",
+            "-DNDEBUG",
+            "-pthread",
+            "-Wno-invalid-offsetof",
+            "-DFAST_COMPILE",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src",
+            "-I/home/horde/projects/warp-psr-public-render/.build/PoissonRecon",
+            "/home/horde/projects/warp-psr-public-render/.build/PoissonRecon/Src/PoissonRecon.cpp",
+            "-lz",
+            "-lpng",
+            "-ljpeg",
+            "-o",
+            "/home/horde/projects/warp-psr-public-render/.build/PoissonReconCLI"
+          ]
+        ],
+        "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+      },
+      "warm_median_seconds": 4.884265063,
+      "runs": [
+        {
+          "iteration": 0,
+          "seconds": 5.243309117
+        },
+        {
+          "iteration": 1,
+          "seconds": 4.884265063
+        },
+        {
+          "iteration": 2,
+          "seconds": 5.272178708
+        },
+        {
+          "iteration": 3,
+          "seconds": 4.656813253
+        }
+      ]
+    }
+  },
+  "profiling": {
+    "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+    "input_source": {
+      "source_file": "eagle.points.ply",
+      "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+      "original_count": 796825,
+      "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+      "ignored_properties": [
+        "red",
+        "green",
+        "blue",
+        "alpha"
+      ],
+      "selection": "all rows in original file order",
+      "dataset": "eagle",
+      "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+      "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+      "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+      "selected_count": 796825
+    },
+    "seed": 2026,
+    "fixture": "eagle-full-d9-spsr",
+    "shape": "eagle",
+    "parameters": {
+      "name": "eagle-full-d9-spsr",
+      "dataset": "eagle",
+      "input": null,
+      "max_points": null,
+      "shape": "eagle",
+      "input_scale": 1.0,
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "count": 796825,
+      "seed": 2026,
+      "depth": 9,
+      "full_depth": 4,
+      "base_depth": 4,
+      "solve_depth": 9,
+      "kernel_depth": 7,
+      "scale": 1.1,
+      "samples_per_node": 1.5,
+      "cg_accuracy": 0.001,
+      "base_v_cycles": 1,
+      "weight": 2.0,
+      "exact": false,
+      "iters": 8,
+      "precision": "float",
+      "grid": 24,
+      "operators": false,
+      "align_dir": 0,
+      "degree": 1,
+      "boundary": "Neumann",
+      "confidence": false
+    },
+    "mode": "nsight",
+    "warmups": 2,
+    "profiled_seconds": 0.3071230947971344,
+    "scope": "One warmed reconstruction including profiler overhead; use tools.benchmark for timings",
+    "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+    "production_source_sha256": {
+      "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+      "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+      "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+      "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+      "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+      "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+      "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+      "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+      "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+      "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+      "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+      "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+      "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+      "src/warp_psr/reconstruction.py": "ac685a33cbd8f15ec5d6472f4089ec881fdac6eede0521dccc923ca6eab15075",
+      "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+      "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+      "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+      "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
+      "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+      "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
+      "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+      "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+      "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+      "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+    },
+    "metadata": {
+      "precision": "float32",
+      "device": "cuda:0",
+      "basis_counts": [
+        8,
+        27,
+        125,
+        729,
+        4913,
+        18440,
+        68552,
+        264192,
+        914792,
+        2052088
+      ],
+      "integration_cells": 0,
+      "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+      "timings_seconds": {
+        "samples": 0.0015764800310134888,
+        "density": 0.01200592041015625,
+        "normal_field": 0.03391513442993164,
+        "tree": 0.04891414260864258,
+        "assembly_and_solve": 0.17515174865722657
+      },
+      "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+      "operator_integration_cells": {
+        "4": 4096,
+        "5": 0,
+        "6": 0,
+        "7": 0,
+        "8": 0,
+        "9": 0
+      },
+      "measured_host_sync_seconds": 0.09248744323849678,
+      "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+      "exact_interpolation_behavior": "level-clustered approximate constraints",
+      "cube_to_model": [
+        [
+          0.0,
+          0.0,
+          9.487554550170898,
+          -3.3637354373931885
+        ],
+        [
+          9.487554550170898,
+          0.0,
+          0.0,
+          -1.9807322025299072
+        ],
+        [
+          0.0,
+          9.487554550170898,
+          0.0,
+          -3.3755571842193604
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ],
+      "parameters": {
+        "depth": 9,
+        "full_depth": 4,
+        "base_depth": 4,
+        "solve_depth": 9,
+        "kernel_depth": 7,
+        "samples_per_node": 1.5,
+        "scale": 1.1,
+        "point_weight": 2.0,
+        "exact_interpolation": false,
+        "iters": 8,
+        "base_v_cycles": 1,
+        "cg_accuracy": 0.001
+      },
+      "profile": "pinned cascadic degree-1 Neumann",
+      "constant_mode": "reference solve without an added mean term"
+    },
+    "kernel_summary": [
+      {
+        "Time (%)": "22.5",
+        "Total Time (ns)": "32975072",
+        "Instances": "344",
+        "Avg (ns)": "95857.8",
+        "Med (ns)": "6832.0",
+        "Min (ns)": "4256",
+        "Max (ns)": "1833938",
+        "StdDev (ns)": "306939.0",
+        "Name": "void cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::DeviceRadixSortOnesweepKernel<cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::detail::radix::policy_hub<long, SortPayload<(int)4>, unsigned int>::Policy1000, (bool)0, long, SortPayload<(int)4>, unsigned int, int, int, cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::detail::identity_decomposer_t>(T7 *, T7 *, T5 *, const T5 *, T3 *, const T3 *, T4 *, const T4 *, T6, int, int, T8)"
+      },
+      {
+        "Time (%)": "16.9",
+        "Total Time (ns)": "24725395",
+        "Instances": "4268",
+        "Avg (ns)": "5793.2",
+        "Med (ns)": "6240.0",
+        "Min (ns)": "1152",
+        "Max (ns)": "13728",
+        "StdDev (ns)": "4345.6",
+        "Name": "graph_kernels__locals__wavefront_update_6a098e0d_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "12.6",
+        "Total Time (ns)": "18490419",
+        "Instances": "10",
+        "Avg (ns)": "1849041.9",
+        "Med (ns)": "688470.5",
+        "Min (ns)": "25312",
+        "Max (ns)": "6472831",
+        "StdDev (ns)": "2321277.3",
+        "Name": "_fill_0da033b1_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "9.6",
+        "Total Time (ns)": "14058697",
+        "Instances": "10",
+        "Avg (ns)": "1405869.7",
+        "Med (ns)": "512997.0",
+        "Min (ns)": "58785",
+        "Max (ns)": "4785839",
+        "StdDev (ns)": "1752439.6",
+        "Name": "screening_kernel__locals__add_54573c06_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "8.9",
+        "Total Time (ns)": "13119998",
+        "Instances": "5",
+        "Avg (ns)": "2623999.6",
+        "Med (ns)": "3351136.0",
+        "Min (ns)": "710087",
+        "Max (ns)": "4915440",
+        "StdDev (ns)": "1827423.0",
+        "Name": "load_kernel__locals__load_f53ff499_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "4.6",
+        "Total Time (ns)": "6704451",
+        "Instances": "65",
+        "Avg (ns)": "103145.4",
+        "Med (ns)": "9024.0",
+        "Min (ns)": "4768",
+        "Max (ns)": "528165",
+        "StdDev (ns)": "176911.5",
+        "Name": "void cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::DeviceRadixSortOnesweepKernel<cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::detail::radix::policy_hub<unsigned long, int, unsigned int>::Policy1000, (bool)0, unsigned long, int, unsigned int, int, int, cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::detail::identity_decomposer_t>(T7 *, T7 *, T5 *, const T5 *, T3 *, const T3 *, T4 *, const T4 *, T6, int, int, T8)"
+      },
+      {
+        "Time (%)": "3.3",
+        "Total Time (ns)": "4831152",
+        "Instances": "512",
+        "Avg (ns)": "9435.8",
+        "Med (ns)": "6752.0",
+        "Min (ns)": "3136",
+        "Max (ns)": "20961",
+        "StdDev (ns)": "6518.0",
+        "Name": "precision_kernels__locals___relax_52e23e6a_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "2.7",
+        "Total Time (ns)": "4016934",
+        "Instances": "10",
+        "Avg (ns)": "401693.4",
+        "Med (ns)": "189521.5",
+        "Min (ns)": "32544",
+        "Max (ns)": "1198924",
+        "StdDev (ns)": "456701.3",
+        "Name": "_neighbors_cc26a33b_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "2.5",
+        "Total Time (ns)": "3706308",
+        "Instances": "1",
+        "Avg (ns)": "3706308.0",
+        "Med (ns)": "3706308.0",
+        "Min (ns)": "3706308",
+        "Max (ns)": "3706308",
+        "StdDev (ns)": "0.0",
+        "Name": "precision_kernels__locals___average_tiled_aef1d762_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "1.9",
+        "Total Time (ns)": "2786811",
+        "Instances": "11",
+        "Avg (ns)": "253346.5",
+        "Med (ns)": "102433.0",
+        "Min (ns)": "2240",
+        "Max (ns)": "881640",
+        "StdDev (ns)": "343196.9",
+        "Name": "_array_cast_kernel_4e811d18_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "1.3",
+        "Total Time (ns)": "1845715",
+        "Instances": "21",
+        "Avg (ns)": "87891.2",
+        "Med (ns)": "4672.0",
+        "Min (ns)": "2016",
+        "Max (ns)": "1058858",
+        "StdDev (ns)": "249704.1",
+        "Name": "make_bsr_mv_kernel__locals__bsr_mv_kernel_186f9572_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "1.2",
+        "Total Time (ns)": "1756145",
+        "Instances": "52",
+        "Avg (ns)": "33772.0",
+        "Med (ns)": "1360.0",
+        "Min (ns)": "1120",
+        "Max (ns)": "748775",
+        "StdDev (ns)": "121576.6",
+        "Name": "_mark_683f08e4_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "1.1",
+        "Total Time (ns)": "1668686",
+        "Instances": "43",
+        "Avg (ns)": "38806.7",
+        "Med (ns)": "3936.0",
+        "Min (ns)": "3296",
+        "Max (ns)": "637094",
+        "StdDev (ns)": "115230.5",
+        "Name": "void cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::DeviceRadixSortHistogramKernel<cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::detail::radix::policy_hub<long, SortPayload<(int)4>, unsigned int>::Policy1000, (bool)0, long, unsigned int, cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::detail::identity_decomposer_t>(T4 *, const T3 *, T4, int, int, T5)"
+      },
+      {
+        "Time (%)": "1.0",
+        "Total Time (ns)": "1416942",
+        "Instances": "1",
+        "Avg (ns)": "1416942.0",
+        "Med (ns)": "1416942.0",
+        "Min (ns)": "1416942",
+        "Max (ns)": "1416942",
+        "StdDev (ns)": "0.0",
+        "Name": "precision_kernels__locals___splats_f8e3e040_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "0.8",
+        "Total Time (ns)": "1111371",
+        "Instances": "67",
+        "Avg (ns)": "16587.6",
+        "Med (ns)": "2464.0",
+        "Min (ns)": "1632",
+        "Max (ns)": "520581",
+        "StdDev (ns)": "68834.4",
+        "Name": "void cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::DeviceScanKernel<cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::detail::scan::policy_hub<int, int, int, unsigned int, cuda::std::__4::plus<void>>::Policy1000, <unnamed>::cub_strided_iterator<const int>, <unnamed>::cub_strided_iterator<int>, cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::ScanTileState<int, (bool)1>, cuda::std::__4::plus<void>, cub::CUB_200802_SM_520_600_610_700_750_800_860_890_900_1000_1200_1210::NullType, unsigned int, int, (bool)0>(T2, T3, T4, int, T5, T6, T7)"
+      }
+    ],
+    "isovalue_kernels": [
+      {
+        "Time (%)": "0.0",
+        "Total Time (ns)": "5728",
+        "Instances": "1",
+        "Avg (ns)": "5728.0",
+        "Med (ns)": "5728.0",
+        "Min (ns)": "5728",
+        "Max (ns)": "5728",
+        "StdDev (ns)": "0.0",
+        "Name": "precision_kernels__locals___isovalue_partials_693086d4_cuda_kernel_forward"
+      },
+      {
+        "Time (%)": "0.0",
+        "Total Time (ns)": "3328",
+        "Instances": "1",
+        "Avg (ns)": "3328.0",
+        "Med (ns)": "3328.0",
+        "Min (ns)": "3328",
+        "Max (ns)": "3328",
+        "StdDev (ns)": "0.0",
+        "Name": "precision_kernels__locals___isovalue_finish_486d140e_cuda_kernel_forward"
+      }
+    ]
+  },
+  "timing_isolation": {
+    "eagle-full-d8-density3": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:14:09Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:10Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:11Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:12Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:13Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:14Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "horse-full-d8-spsr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:11Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:12Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:13Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:14Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:15Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "bunny-full-d8-psr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:16Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:16Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:17Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:18Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:19Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:20Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "eagle-full-d9-spsr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:14:20Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:20Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:21Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:22Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:23Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:24Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:25Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "eagle-full-d8-psr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:26Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:26Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:27Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:28Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:29Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:30Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "torso-100000-d8": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:14:01Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:01Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:02Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:03Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:04Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "torso-1m-d9-spsr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:14:26Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:26Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:27Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:28Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:29Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:30Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:31Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "torso-1000000-d8": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:14:05Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:05Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:06Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:07Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:08Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:09Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "eagle-full-d8-spsr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:31Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:31Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:32Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:34Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:35Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:36Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "bunny-full-d8-spsr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:21Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:21Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:22Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:23Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:24Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:25Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "torso-full-d8-psr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:38Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:39Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:40Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:41Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:42Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:43Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:44Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:45Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:46Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:47Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "torso-full-d8-spsr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:48Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:49Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:50Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:51Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:52Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:53Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:54Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:55Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:56Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:57Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "torso-10000-d8": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:57Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:57Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:58Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:59Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:01Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "eagle-full-d8-density10": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:14:14Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:15Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:16Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:17Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:18Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:14:19Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    },
+    "horse-full-d8-psr": {
+      "isovalue-context-0.json": [
+        {
+          "utc": "2026-11-04T05:13:08Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:08Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:09Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:10Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        },
+        {
+          "utc": "2026-11-04T05:13:11Z",
+          "foreign_gpu_processes": 0,
+          "foreign_cpu_processes": 0
+        }
+      ]
+    }
+  },
+  "validation": {
+    "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+    "public_cases": 31,
+    "tests_passed": 308,
+    "skipped": 5,
+    "expected_failures": 1
+  }
+}
