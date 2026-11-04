@@ -45,8 +45,7 @@ in exports. Array order and the incidental node index are not compatibility keys
 The `transform` is cube-to-model in the reference's column-first indexing.
 
 Current omissions are tracked in issue #1: complete acceptance/aggregation IDs,
-ghost/parent/child metadata, solver traces, and
-threshold-sensitive input families. Float32 independent reconstruction passes the small and large
+ghost/parent/child metadata and solver traces. Float32 independent reconstruction passes the small and large
 field gates; see the [main README](../README.md) and committed reports. The
 float64 reference driver and Warp reconstruction both process float64 input
 throughout. Five end-to-end double fixtures meet the design's diagnostic budgets,
@@ -114,6 +113,18 @@ precision before later divisions and additions. The float32 path evaluates the
 logarithm internally in double and rounds its result to float32 at that point.
 This avoids CUDA `logf` approximation differences on the diagnostic sphere,
 whose raw depths and weights now match the reference bitwise (#44).
+
+`python -m tools.check_thresholds` constructs quantized triples immediately below,
+on, and above dyadic cell boundaries, alongside coincident, opposing, and zero
+normals. It also bisects the serial oracle's density decision to adjacent
+representable samples-per-node settings where a selected splat changes from
+depth 4 to depth 3. The final fixtures verify that transition independently.
+Both precisions compare aggregate keys and multiplicity, density, raw and integer
+splat depths, normal coefficients, exact support/active trees, and three fresh
+reconstructions per case. The reference's finalization can remove stored zero
+normal coefficients; differing records must be exactly zero before comparing
+the shared coefficients and final tree. The [report](../docs/results/thresholds.json)
+retains the oracle search, exact input/query/export hashes, and every acceptance run.
 
 Base-depth-zero profiles cover screening, PSR, the pinned exact mode, zero full
 depth, a solve stopping at the root, repeated root cycles, and reconstruction
