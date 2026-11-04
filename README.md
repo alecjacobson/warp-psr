@@ -153,8 +153,9 @@ acceptance runs per case. Run `python -m tools.check_thresholds` to reproduce th
 oracle search and all eight cases without changing the fixed numerical budgets.
 
 The [complete retained-tree checks](docs/results/tree-metadata.json) cover ghost and
-flag metadata, parent/child identities, and padded roots. Detailed solver traces
-remain open.
+flag metadata, parent/child identities, and padded roots. Optional
+[solver traces](docs/solver-traces.md) export every relaxation visit and CG stopping
+decision; independent serial replay checks each update bit for bit.
 Two Warp float64
 issues have tested upstream proposals: [built-in B-spline gradients](https://github.com/NVIDIA/warp/pull/2219)
 and [sparse-grid particle lookup](https://github.com/NVIDIA/warp/pull/2221).

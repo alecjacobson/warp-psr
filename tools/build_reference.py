@@ -5,8 +5,12 @@ import os
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 
 ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0,str(ROOT))
+from tools.instrument_solver import instrument
 BUILD = ROOT / ".build"
 PINS = json.loads((ROOT / "reference/pins.json").read_text())
 FLAGS = ["-std=c++17", "-O2", "-DNDEBUG", "-pthread", "-Wno-invalid offsetof".replace(" ", "-")]
@@ -97,6 +101,10 @@ def build():
         initialize_text = initialize_text.replace(original, replacement)
     initialize.write_text("#include <fstream>\n#include <iomanip>\n"+initialize_text)
     header.write_text("#include <fstream>\n#include <iomanip>\n" + text.replace(marker, hook + marker, 1))
+    instrument(instrumented)
+    solver_sources = ''.join((instrumented/name).read_text() for name in
+                             ['FEMTree.System.inl','SparseMatrixInterface.inl'])
+    solver_sources += (ROOT/'reference/solver_trace.h').read_text()
     commands = []
     for name, cpp, inc, extra in [
         ("oracle", "oracle.cpp", source / "Src", []),
@@ -109,7 +117,7 @@ def build():
         cpp_path = inc / cpp if name == "PoissonReconCLI" else ROOT / "reference" / cpp
         command = ["g++", *FLAGS, *extra, "-I"+str(inc), "-I"+str(source), str(cpp_path), "-lz", "-lpng", "-ljpeg", "-o", str(BUILD / name)]
         print("Building", name, flush=True)
-        digest = hashlib.sha256((str(command)+cpp_path.read_text()+header.read_text()+weighted.read_text()+initialize.read_text()).encode()).hexdigest()
+        digest = hashlib.sha256((str(command)+cpp_path.read_text()+header.read_text()+weighted.read_text()+initialize.read_text()+solver_sources).encode()).hexdigest()
         stamp = BUILD / (name + ".sha256")
         if not (BUILD/name).exists() or not stamp.exists() or stamp.read_text() != digest:
             subprocess.run(command, check=True)
