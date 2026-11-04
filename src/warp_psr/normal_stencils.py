@@ -54,6 +54,40 @@ def load_kernel(vector):
     return load
 
 
+@lru_cache(None)
+def parallel_load_kernel(vector):
+    @wp.kernel
+    def load_parallel(keys: wp.array(dtype=wp.int64), normal_keys: wp.array(dtype=wp.int64),
+                      normals: wp.array(dtype=vector), test_depth: int, normal_depth: int,
+                      first: int, width: int, table: wp.array2d(dtype=wp.vec2d),
+                      out: wp.array(dtype=wp.float64)):
+        group, row, lane = wp.tid()
+        i = group * 4 + row
+        value = wp.float64(0.0)
+        if i < keys.shape[0]:
+            c = coordinates(keys[i])
+            center = wp.vec3i(normal_center(c[0], test_depth, normal_depth),
+                              normal_center(c[1], test_depth, normal_depth),
+                              normal_center(c[2], test_depth, normal_depth))
+            for k in range(lane, width * width * width, 32):
+                x, y, z = k // (width * width), (k // width) % width, k % width
+                n = center + wp.vec3i(x + first, y + first, z + first)
+                if wp.min(n) >= 0 and wp.max(n) < 1 << normal_depth:
+                    j = find_key(normal_keys, basis_key(normal_depth, n[0], n[1], n[2]))
+                    if j >= 0:
+                        ix, iy, iz = table[c[0], x], table[c[1], y], table[c[2], z]
+                        normal = normals[j]
+                        value += wp.float64(normal[0]) * ix[1] * iy[0] * iz[0]
+                        value += wp.float64(normal[1]) * ix[0] * iy[1] * iz[0]
+                        value += wp.float64(normal[2]) * ix[0] * iy[0] * iz[1]
+        # Each warp visits one row's neighbors once. Four warps share a block;
+        # the double reduction changes summation order but not integrals.
+        values = wp.tile_reshape(wp.tile(value), shape=(4, 32))
+        sums = wp.tile_reshape(wp.tile_sum(values, axis=1), shape=(4,))
+        wp.tile_store(out, sums, offset=group * 4)
+    return load_parallel
+
+
 def assemble_normal_stencil(keys, records, test_depth, normal_depth):
     if abs(test_depth - normal_depth) > 1:
         raise ValueError("Normal stencils require adjacent levels")
@@ -64,7 +98,7 @@ def assemble_normal_stencil(keys, records, test_depth, normal_depth):
     width, first = (6, -3) if test_depth < normal_depth else (4, -2)
     table = wp.empty(((1 << test_depth) + 1, width), dtype=wp.vec2d, device=device)
     wp.launch(_integrals, table.shape, inputs=[test_depth, normal_depth, first, table], device=device)
-    wp.launch(load_kernel(records.values.dtype), len(keys),
+    wp.launch(parallel_load_kernel(records.values.dtype), ((len(keys) + 3) // 4, 4, 32),
               inputs=[keys, records.keys, records.values, test_depth, normal_depth,
-                      first, width, table, out], device=device)
+                      first, width, table, out], block_dim=128, device=device)
     return out
