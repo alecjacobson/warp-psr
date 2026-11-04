@@ -20,6 +20,7 @@ from .constraints import point_constraints
 from .spaces import make_level_space
 from .relaxation import row_schedule, relax_scheduled, relaxation_command, relax_sliced
 from .stiffness import assemble_level_stiffness
+from .transfer_stencils import assemble_prolongation
 from .screening_stencils import add_screening_stencil, bin_constraints
 from .integration import level_integration_grid
 
@@ -195,7 +196,9 @@ def padded_root_system(matrix, b, keys):
     return padded, rhs
 
 
-def prolongation(coarse_keys, fine_keys, depth, dtype=wp.float32):
+def prolongation(coarse_keys, fine_keys, depth, dtype=wp.float32, direct=True):
+    if direct:
+        return assemble_prolongation(coarse_keys, fine_keys, depth, dtype)
     device = fine_keys.device
     count = len(fine_keys) * 8
     rows, cols = (
@@ -395,7 +398,9 @@ def solve_levels(
             inputs=[load, point_load, b],
             device=device,
         )
-        A = sparse.bsr_copy(A, scalar_type=dtype)
+        # Assembly produces compact rows. Preserve their exact capacities while
+        # casting, instead of rebuilding the same topology through triplet sort.
+        A = sparse.bsr_copy(A, scalar_type=dtype, topology="padded")
         if d == base_depth:
             corrections[d], sync = regular_multigrid(
                 A,
@@ -431,7 +436,7 @@ def solve_levels(
                     quadrature=quadrature,
                 )
                 sparse.bsr_axpy(screen, cross)
-            cross = sparse.bsr_copy(cross, scalar_type=dtype)
+            cross = sparse.bsr_copy(cross, scalar_type=dtype, topology="padded")
             sparse.bsr_mv(cross, cumulative, b, alpha=-1.0, beta=1.0)
             # Pinned sliceBlockSize=1, degree=1, coarse-to-fine traversal.
             # Each diagonal wave updates increasing z, then moves its front -1.
