@@ -16,8 +16,7 @@ Both C++ builds use GCC 11.4, `-O2`, and no fast-math; the parallel build adds
 Makefile's `-O3 -ffast-math` release configuration.
 
 GPU medians use three warm reconstructions after the first invocation in a fresh
-process, except the current depth-9 eagle row, which uses five. Timings include
-Python orchestration and exclude input upload and queries.
+process. Timings include Python orchestration and exclude input upload and queries.
 The first invocation may reuse compiled kernels from disk. C++ medians use three
 subsequent fresh-process solves after an initial run; the timer brackets the
 unchanged `Solver::Solve`, excluding parsing, queries, exports, and process startup.
@@ -27,14 +26,14 @@ accuracy generation, and other benchmark jobs. The current timing sweep also
 monitors foreign CPU/GPU activity and retains interrupted attempts in the local
 audit.
 
-The depth-9 eagle now takes **0.226 s**, versus **4.884 s with four CPU threads**
-(21.60×), with a **2.32 GiB** peak pool. The
+The depth-9 eagle now takes **0.215 s**, versus **4.884 s with four CPU threads**
+(22.68×), with a **2.34 GiB** peak pool. The
 [direct screening comparison](results/screening-performance.json) measured
 0.854 s before and 0.490 s after eliminating fine-level FEM point assembly.
 The earlier [GPU pipeline comparison](results/gpu-pipeline-performance.json)
 measured 2.451 s for the original implementation and 0.860 s after its first
 optimization pass. All use the original 796,825 samples, depth 9, full depth 4
-and eight iterations. All 31 public accuracy cases pass on the final brood-union
+and eight iterations. All 31 public accuracy cases pass on the final coalesced-stiffness
 source without changing their tolerances.
 
 Direct prolongation CSR avoids transfer triplets and sorting; topology-preserving
@@ -55,9 +54,8 @@ seed expansion cut temporary storage. CUDA events measure stages without forcing
 the host to synchronize at every stage boundary; these stage durations include
 submission gaps and are not pure kernel timings.
 
-The depth-9 eagle GPU timing is fresh; other GPU rows retain the preceding
-parallel-isovalue revision. CPU timings preserve their individual provenance with
-identical inputs, parameters, CPU quota and reference builds. Both depth-9 OpenMP
+All GPU timings were refreshed after the stiffness change. CPU timings preserve
+their individual provenance with identical inputs, parameters, CPU quota and reference builds. Both depth-9 OpenMP
 cases were remeasured in isolation; the torso result replaces a previously
 excluded repeat that overlapped an unrelated compilation.
 
@@ -92,6 +90,22 @@ records the isolated five-run eagle comparison (270 ms before, 226 ms after), th
 profile and all 31 unchanged public acceptance gates. Sixteen structural cases
 cover sparse/signed layouts, zero normal seeds and depths through 15 in both precisions.
 
+Stiffness filling now assigns neighboring matrix entries to neighboring GPU
+threads. The neighbor search records each entry's row-local rank in one byte,
+so the fill writes compact CSR rows without scanning or sorting them again.
+The arithmetic for each entry is unchanged. Fill kernels take **3.59 ms**,
+down from 18.5 ms; the extra rank writes increase neighbor-search time from about
+4.0 to 6.1 ms. The [stiffness comparison](results/stiffness-performance.json)
+records the five-run whole-reconstruction comparison (220 ms before, 210 ms after),
+all 15 refreshed public GPU timings and all 31 fixed acceptance gates.
+
+Applying the same layout to screening was slower and was not adopted. The
+[screening layout experiment](results/screening-layout-experiment.json) measured
+227 ms versus 209 ms for its paired baseline; screening kernels increased from
+13.8 to 35.2 ms. That layout repeats the point-bin search for each matrix entry,
+consistent with the extra work outweighing more contiguous writes. Its source
+and measurements are retained on the experimental branch.
+
 To profile a warmed reconstruction with Nsight Systems:
 
 ```sh
@@ -108,14 +122,14 @@ Use an otherwise idle machine. `--mode cpu` records Python submission costs inst
 
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Horse PSR | 100,000 | 8 | 1.5 | 362,534 | 369,408 | 0.072 | 0.883 | 0.544 | 0.24 |
-| Horse SPSR | 100,000 | 8 | 1.5 | 362,534 | 369,408 | 0.080 | 1.014 | 0.606 | 0.24 |
-| Bunny PSR | 362,271 | 8 | 1.5 | 1,175,586 | 1,185,936 | 0.124 | 2.759 | 1.610 | 0.83 |
-| Bunny SPSR | 362,271 | 8 | 1.5 | 1,175,586 | 1,185,936 | 0.134 | 3.269 | 1.986 | 0.84 |
-| Eagle PSR | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.102 | 2.018 | 1.207 | 0.63 |
-| Eagle SPSR | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.113 | 2.361 | 1.327 | 0.63 |
-| Torso PSR | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.081 | 1.580 | 1.116 | 0.56 |
-| Torso SPSR | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.091 | 1.820 | 1.190 | 0.56 |
+| Horse PSR | 100,000 | 8 | 1.5 | 362,534 | 369,408 | 0.067 | 0.883 | 0.544 | 0.24 |
+| Horse SPSR | 100,000 | 8 | 1.5 | 362,534 | 369,408 | 0.072 | 1.014 | 0.606 | 0.24 |
+| Bunny PSR | 362,271 | 8 | 1.5 | 1,175,586 | 1,185,936 | 0.098 | 2.759 | 1.610 | 0.84 |
+| Bunny SPSR | 362,271 | 8 | 1.5 | 1,175,586 | 1,185,936 | 0.107 | 3.269 | 1.986 | 0.84 |
+| Eagle PSR | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.087 | 2.018 | 1.207 | 0.63 |
+| Eagle SPSR | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.095 | 2.361 | 1.327 | 0.63 |
+| Torso PSR | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.076 | 1.580 | 1.116 | 0.56 |
+| Torso SPSR | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.078 | 1.820 | 1.190 | 0.56 |
 
 ## Point count sweep for torso SPSR at depth 8
 
@@ -125,26 +139,26 @@ sample count changes; the depth and density settings remain fixed.
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | 10k subset | 10,000 | 8 | 1.5 | 139,850 | 145,696 | 0.068 | 0.452 | 0.349 | 0.09 |
-| 100k subset | 100,000 | 8 | 1.5 | 446,482 | 453,504 | 0.082 | 1.254 | 0.703 | 0.32 |
-| 1m subset | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.086 | 1.543 | 0.945 | 0.40 |
-| Full original | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.091 | 1.820 | 1.190 | 0.56 |
+| 100k subset | 100,000 | 8 | 1.5 | 446,482 | 453,504 | 0.076 | 1.254 | 0.703 | 0.32 |
+| 1m subset | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.077 | 1.543 | 0.945 | 0.40 |
+| Full original | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.078 | 1.820 | 1.190 | 0.56 |
 
 ## Density sweep for full eagle SPSR at depth 8
 
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Target 1.5 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.113 | 2.361 | 1.327 | 0.63 |
-| Target 3 | 796,825 | 8 | 3 | 832,378 | 839,776 | 0.106 | 2.377 | 1.319 | 0.63 |
-| Target 10 | 796,825 | 8 | 10 | 822,450 | 829,824 | 0.115 | 2.386 | 1.427 | 0.62 |
+| Target 1.5 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.095 | 2.361 | 1.327 | 0.63 |
+| Target 3 | 796,825 | 8 | 3 | 832,378 | 839,776 | 0.097 | 2.377 | 1.319 | 0.63 |
+| Target 10 | 796,825 | 8 | 10 | 822,450 | 829,824 | 0.092 | 2.386 | 1.427 | 0.63 |
 
 ## Depth sweep with identical points and density settings
 
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Eagle depth 8 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.113 | 2.361 | 1.327 | 0.63 |
-| Eagle depth 9 | 796,825 | 9 | 1.5 | 3,323,866 | 3,331,592 | 0.226 | 9.367 | 4.884 | 2.32 |
-| Torso 1m depth 8 | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.086 | 1.543 | 0.945 | 0.40 |
-| Torso 1m depth 9 | 1,000,000 | 9 | 1.5 | 2,051,674 | 2,059,232 | 0.201 | 6.414 | 3.200 | 1.52 |
+| Eagle depth 8 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.095 | 2.361 | 1.327 | 0.63 |
+| Eagle depth 9 | 796,825 | 9 | 1.5 | 3,323,866 | 3,331,592 | 0.215 | 9.367 | 4.884 | 2.34 |
+| Torso 1m depth 8 | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.077 | 1.543 | 0.945 | 0.40 |
+| Torso 1m depth 9 | 1,000,000 | 9 | 1.5 | 2,051,674 | 2,059,232 | 0.149 | 6.414 | 3.200 | 1.52 |
 
 ## Earlier torus experiments
 
