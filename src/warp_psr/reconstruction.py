@@ -60,8 +60,60 @@ def precision_kernels(dtype):
         if lane == 0:
             out[0] = dtype(total / weight)
 
+    @wp.func
+    def _weighted_value(value: dtype, weight: dtype):
+        # Preserve the input-precision product before double accumulation.
+        return wp.float64(value * weight)
+
+    @wp.func
+    def _double_weight(weight: dtype):
+        return wp.float64(weight)
+
+    @wp.func
+    def _weighted_mean(total: wp.float64, weight: wp.float64):
+        return dtype(total / weight)
+
+    @wp.kernel(module="unique")
+    def _isovalue_partials(values: wp.array(dtype=dtype), weights: wp.array(dtype=dtype),
+                           totals: wp.array(dtype=wp.float64), masses: wp.array(dtype=wp.float64)):
+        block = wp.tid()
+        v = wp.tile_load(values, shape=1024, offset=block * 1024)
+        w = wp.tile_load(weights, shape=1024, offset=block * 1024)
+        wp.tile_store(totals, wp.tile_sum(wp.tile_map(_weighted_value, v, w)), offset=block)
+        wp.tile_store(masses, wp.tile_sum(wp.tile_map(_double_weight, w)), offset=block)
+
+    @wp.kernel(module="unique")
+    def _isovalue_finish(totals: wp.array(dtype=wp.float64), masses: wp.array(dtype=wp.float64),
+                         out: wp.array(dtype=dtype)):
+        total = wp.tile_zeros(shape=1, dtype=wp.float64)
+        mass = wp.tile_zeros(shape=1, dtype=wp.float64)
+        for begin in range(0, totals.shape[0], 1024):
+            total += wp.tile_sum(wp.tile_load(totals, shape=1024, offset=begin))
+            mass += wp.tile_sum(wp.tile_load(masses, shape=1024, offset=begin))
+        wp.tile_store(out, wp.tile_map(_weighted_mean, total, mass))
+
     return SimpleNamespace(_centroids=_centroids, _isovalue=_isovalue,
-                           _isovalue_tiled=_isovalue_tiled)
+                           _isovalue_tiled=_isovalue_tiled,
+                           _isovalue_partials=_isovalue_partials,
+                           _isovalue_finish=_isovalue_finish)
+
+
+def _compute_isovalue(values, weights):
+    """Weighted mean with double partial sums and no host-side reduction."""
+    kernels = precision_kernels(values.dtype)
+    out = wp.empty(1, dtype=values.dtype, device=values.device)
+    if len(values) <= 1024:
+        wp.launch_tiled(kernels._isovalue_tiled, dim=1, inputs=[values, weights, out],
+                        block_dim=32, device=values.device)
+    else:
+        count = (len(values) + 1023) // 1024
+        totals = wp.empty(count, dtype=wp.float64, device=values.device)
+        masses = wp.empty_like(totals)
+        wp.launch_tiled(kernels._isovalue_partials, dim=count,
+                        inputs=[values, weights, totals, masses], block_dim=128, device=values.device)
+        wp.launch_tiled(kernels._isovalue_finish, dim=1, inputs=[totals, masses, out],
+                        block_dim=128, device=values.device)
+    return out
 
 
 @dataclass
@@ -222,8 +274,7 @@ def reconstruct(
             device=device,
         )
         value, _, _ = cube_field.evaluate(centroids)
-        iso = wp.empty(1, dtype=dtype, device=device)
-        wp.launch_tiled(kernels._isovalue_tiled, dim=1, inputs=[value, samples.weights, iso], block_dim=32, device=device)
+        iso = _compute_isovalue(value, samples.weights)
         transforms = wp.empty(2, dtype=mat44, device=device)
         wp.launch(
             transform_kernels(dtype).evaluation_transform,
