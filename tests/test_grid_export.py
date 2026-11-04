@@ -1,3 +1,7 @@
+"""Read-only oracle exports, including regular grids and solver traces."""
+import hashlib
+import json
+from tools.check_solver_trace import check
 import os
 from pathlib import Path
 import subprocess
@@ -30,3 +34,30 @@ def test_binary_grid_matches_ordinary_query_evaluation(tmp_path, precision):
     for key in ('q', 'iso', 'transform'):
         np.testing.assert_array_equal(before[key], after[key])
     np.testing.assert_array_equal(np.fromfile(tmp_path/'values.bin', dtype=dtype), before['q'][:, 0])
+
+
+@pytest.mark.reference
+@pytest.mark.parametrize('precision',['float','double'])
+@pytest.mark.parametrize('accuracy',['loose','default','tight'])
+def test_fresh_cpu_trace_neutrality_and_replay(tmp_path,precision,accuracy):
+    if not all((ROOT/'.build'/name).exists() for name in ['oracle','oracle_instrumented']):
+        pytest.skip('Build pinned reference executables')
+    scalar=np.float64 if precision=='double' else np.float32
+    p,n=points_for('sphere',128,2026)
+    np.savetxt(tmp_path/'input.pts',np.column_stack([p,n]).astype(scalar),fmt='%.17g')
+    np.savetxt(tmp_path/'queries.txt',p[:16]*.9,fmt='%.17g')
+    env={k:v for k,v in os.environ.items() if not k.startswith('WARP_PSR_')}
+    env['WARP_PSR_REFERENCE_PARALLELISM']='none'
+    for name in ['oracle','oracle_instrumented']:
+        if name=='oracle_instrumented':env['WARP_PSR_SOLVE_TRACE']=str(tmp_path/'solve_trace.txt')
+        subprocess.run([str(ROOT/'.build'/name),str(tmp_path/'input.pts'),str(tmp_path/'queries.txt'),
+                        str(tmp_path/(name+'.txt')),'3','2','2','0','3',precision,
+                        '2','3','1','1.1','1.5',{'loose':'1e-1','default':'1e-3','tight':'1e-8'}[accuracy],'1'],
+                       env=env,check=True,capture_output=True)
+    manifest={'precision':precision,'reference_parallelism':'ThreadPool::NONE (serial)',
+              'reference_file_sha256':{'solve_trace.txt':hashlib.sha256((tmp_path/'solve_trace.txt').read_bytes()).hexdigest()}}
+    (tmp_path/'manifest.json').write_text(json.dumps(manifest))
+    report=check(tmp_path)
+    assert report['gs_updates']>0
+    if accuracy=='tight':assert any(s['iterations'] for s in report['cg_stops'])
+    if accuracy=='loose':assert all(s['reason']=='initial' for s in report['cg_stops'])

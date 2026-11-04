@@ -96,6 +96,8 @@ def generate(args):
     environment={**os.environ, "WARP_PSR_ORACLE_DIR": str(out), "WARP_PSR_REFERENCE_PARALLELISM":"none"}
     topology = getattr(args, 'topology', False)
     environment.pop('WARP_PSR_TOPOLOGY', None)
+    environment.pop('WARP_PSR_SOLVE_TRACE', None)
+    solver_trace = getattr(args, 'solver_trace', False)
     if topology:
         environment['WARP_PSR_TOPOLOGY'] = str(out)
     # The pilot exports support cells used only to choose offline diagnostic
@@ -121,6 +123,8 @@ def generate(args):
         start = time.perf_counter()
         if args.operators:
             environment["WARP_PSR_OPERATORS"]=str(out)
+        if solver_trace and exe=='oracle_instrumented':
+            environment['WARP_PSR_SOLVE_TRACE']=str(out/'solve_trace.txt')
         subprocess.run([str(ROOT/".build"/exe), *command_args],env=environment, check=True)
         timings[exe] = time.perf_counter()-start
     baseline = read_output(out/"oracle.txt")
@@ -138,7 +142,8 @@ def generate(args):
         "input_sha256": checksum(out/"input.pts"), "queries_sha256": checksum(out/"queries.txt"),
         "reference_file_sha256": {name: checksum(out/name) for name in
                                   (*REFERENCE_FILES, "inputs.txt", *(("operators.txt",) if args.operators else ()),
-                                   *(("topology.txt",) if topology else ()))},
+                                   *(("topology.txt",) if topology else ()),
+                                   *(("solve_trace.txt",) if solver_trace else ()))},
         "input_order": "file order; seeded numpy Generator", "seed": args.seed,
         "input_source":source_metadata,
         "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",
@@ -183,4 +188,5 @@ if __name__ == "__main__":
     parser.add_argument("--grid", type=int, default=24)
     parser.add_argument("--operators", action="store_true", help="Export small explicit matrices and interpolation records")
     parser.add_argument("--topology", action="store_true", help="Export unique global node identities, flags and parent/child relationships")
+    parser.add_argument("--solver-trace", action="store_true", help="Export read-only per-update solve diagnostics (small fixtures only)")
     generate(parser.parse_args())

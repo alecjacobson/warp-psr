@@ -4,6 +4,9 @@
 #include <iostream>
 #include <memory>
 #include <chrono>
+#ifdef EXPORT_TREE
+#include "solver_trace.h"
+#endif
 #include "Reconstructors.h"
 using namespace PoissonRecon;
 constexpr unsigned Sig = FEMDegreeAndBType<1, BOUNDARY_NEUMANN>::Signature;
