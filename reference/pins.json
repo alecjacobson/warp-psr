@@ -2,5 +2,6 @@
   "fixture_format": 1,
   "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
   "warp_version": "1.19.0",
-  "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+  "warp_commit": "dca5011a3fd9857756ccd9824c637ca6f8b436d6",
+  "warp_tag_object": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
 }
