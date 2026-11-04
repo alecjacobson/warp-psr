@@ -94,6 +94,10 @@ def generate(args):
     command_args = [str(out/"input.pts"), str(out/"queries.txt"), "OUTPUT", *oracle_parameters(vars(args))]
     timings = {}
     environment={**os.environ, "WARP_PSR_ORACLE_DIR": str(out), "WARP_PSR_REFERENCE_PARALLELISM":"none"}
+    topology = getattr(args, 'topology', False)
+    environment.pop('WARP_PSR_TOPOLOGY', None)
+    if topology:
+        environment['WARP_PSR_TOPOLOGY'] = str(out)
     # The pilot exports support cells used only to choose offline diagnostic
     # queries. Both final drivers independently solve again on the full query set.
     command_args[2] = str(out/'pilot.txt')
@@ -133,7 +137,8 @@ def generate(args):
         "build": json.loads((ROOT/".build/build.json").read_text()),
         "input_sha256": checksum(out/"input.pts"), "queries_sha256": checksum(out/"queries.txt"),
         "reference_file_sha256": {name: checksum(out/name) for name in
-                                  (*REFERENCE_FILES, "inputs.txt", *(("operators.txt",) if args.operators else ()))},
+                                  (*REFERENCE_FILES, "inputs.txt", *(("operators.txt",) if args.operators else ()),
+                                   *(("topology.txt",) if topology else ()))},
         "input_order": "file order; seeded numpy Generator", "seed": args.seed,
         "input_source":source_metadata,
         "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",
@@ -177,4 +182,5 @@ if __name__ == "__main__":
     parser.add_argument("--precision", choices=["float","double"], default="float")
     parser.add_argument("--grid", type=int, default=24)
     parser.add_argument("--operators", action="store_true", help="Export small explicit matrices and interpolation records")
+    parser.add_argument("--topology", action="store_true", help="Export unique global node identities, flags and parent/child relationships")
     generate(parser.parse_args())

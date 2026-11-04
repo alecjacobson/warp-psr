@@ -1,0 +1,2338 @@
+{
+  "scope": "Full retained GPU hierarchy and unique reference padding identities",
+  "all_passed": true,
+  "profiles": [
+    {
+      "fixture": "topology-sphere-float",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "topology-sphere-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "78a378ed5655b80d35b4556961d9d51e88858250",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-tree/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-tree/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+        "reference_file_sha256": {
+          "oracle.txt": "0f91d7dbfc0bd0227ca6758fbdc5a931d76456c01d9f17b30db4bdf7503dd0c1",
+          "oracle_instrumented.txt": "d0bd2c324c2794fdee5b8c55aad5f5f428ae868750ba3cff27a9b810f02fa14a",
+          "preprocess.txt": "fcd410e05dfc157f9656a5ebc940ccd277ef32c0b12871384a62569e096be993",
+          "stages.txt": "ab1191b7aa4d3f480e908d3988f7de1fd52400a1fdb27c8a7615f02f2605f4a0",
+          "splats.txt": "0d35b67883e1a369877ed4fa7b9c3bd4ec29626fa5783acfb2e532f44f04dbc9",
+          "inputs.txt": "bd97936ba51c3aac65c7e5589372bda92968ce0e98ed1d048d33a6ea67d6d86d",
+          "topology.txt": "af10f5df7f875eec08dfc1ecce7ed090e199d46eba4dfb8a81a1d82981773fe7"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": null,
+        "precision": "float",
+        "parameters": {
+          "name": "topology-sphere-float",
+          "dataset": null,
+          "input": null,
+          "max_points": null,
+          "shape": "sphere",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 128,
+          "seed": 2026,
+          "depth": 4,
+          "full_depth": 1,
+          "base_depth": 1,
+          "solve_depth": 4,
+          "kernel_depth": 2,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "float",
+          "grid": 8,
+          "operators": false,
+          "topology": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.08396599441766739,
+          "oracle": 0.07589604705572128,
+          "oracle_instrumented": 0.08089614287018776
+        },
+        "grid": {
+          "resolution": 8,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            512
+          ],
+          "random_volume": [
+            512,
+            1536
+          ],
+          "input_samples": [
+            1536,
+            1664
+          ],
+          "cell_interiors": [
+            1664,
+            1728
+          ],
+          "cube_boundary": [
+            1728,
+            1920
+          ],
+          "far_from_samples": [
+            1920,
+            2048
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64
+          },
+          "refinement_interface_pairs": 0,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.2672727317573193
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "78a378ed5655b80d35b4556961d9d51e88858250",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "e45aefb0aab0a8a735fac90d8fc4181ec6441d58ea6e7f153b7e9f81ff37a2cf",
+          "src/warp_psr/relaxation.py": "784248b8b2dc8350ce17525c3f6d34546c31f50f8be7e23c03bdf115d4894360",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/solver.py": "6fa34b46cd88431a119da6a525fd6c8c472f80eabc935cb627c385fe5a3c7376",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "8672181cdc9254a8f5d05bd79a9768bd292674136f6237d951d505497a58c1ca",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+        },
+        "fixture_provenance": {
+          "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+          "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+          "precision": "float",
+          "parameters": {
+            "name": "topology-sphere-float",
+            "dataset": null,
+            "input": null,
+            "max_points": null,
+            "shape": "sphere",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 128,
+            "seed": 2026,
+            "depth": 4,
+            "full_depth": 1,
+            "base_depth": 1,
+            "solve_depth": 4,
+            "kernel_depth": 2,
+            "scale": 1.1,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 0.001,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 8,
+            "precision": "float",
+            "grid": 8,
+            "operators": false,
+            "topology": true,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "0f91d7dbfc0bd0227ca6758fbdc5a931d76456c01d9f17b30db4bdf7503dd0c1",
+            "oracle_instrumented.txt": "d0bd2c324c2794fdee5b8c55aad5f5f428ae868750ba3cff27a9b810f02fa14a",
+            "preprocess.txt": "fcd410e05dfc157f9656a5ebc940ccd277ef32c0b12871384a62569e096be993",
+            "stages.txt": "ab1191b7aa4d3f480e908d3988f7de1fd52400a1fdb27c8a7615f02f2605f4a0",
+            "splats.txt": "0d35b67883e1a369877ed4fa7b9c3bd4ec29626fa5783acfb2e532f44f04dbc9",
+            "inputs.txt": "bd97936ba51c3aac65c7e5589372bda92968ce0e98ed1d048d33a6ea67d6d86d",
+            "topology.txt": "af10f5df7f875eec08dfc1ecce7ed090e199d46eba4dfb8a81a1d82981773fe7"
+          }
+        },
+        "queries_sha256": "1bcac46c0f9559406603ce91dcec16c4e86d96d4eb61089c5a4a71bd6bbfaa5e",
+        "fixture": "topology-sphere-float",
+        "input_sha256": "bb0a2de9239a2a30d18648f7c0e38af062c391cd2500c1d3972d2b2dd6633baf",
+        "input_source": null,
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 512,
+              "active_count": 125,
+              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
+              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+            },
+            {
+              "depth": 3,
+              "support_count": 512,
+              "active_count": 512,
+              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
+              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
+            },
+            {
+              "depth": 4,
+              "support_count": 0,
+              "active_count": 0,
+              "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 128,
+          "accepted": 128,
+          "aggregates": 111,
+          "rejected_by_status": {}
+        },
+        "complete_tree": {
+          "exact_complete_keys_flags_and_links": true,
+          "depth_offset": 2,
+          "nodes": 2041,
+          "levels": [
+            {
+              "local_depth": -2,
+              "nodes": 1,
+              "ghosts": 1
+            },
+            {
+              "local_depth": -1,
+              "nodes": 8,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 0,
+              "nodes": 64,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 1,
+              "nodes": 216,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 2,
+              "nodes": 512,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 3,
+              "nodes": 512,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 4,
+              "nodes": 728,
+              "ghosts": 728
+            }
+          ]
+        },
+        "device": "cuda:0",
+        "queries": 2048,
+        "coefficients": 672,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 2.384185791015625e-07,
+        "max_abs_centered_value_error": 2.384185791015625e-07,
+        "rms_value_error": 5.152768867511672e-08,
+        "max_abs_cube_gradient_error": 1.8172418085882214e-06,
+        "max_scaled_gradient_budget_ratio": 0.018590733452130755,
+        "max_unscaled_gradient_budget_ratio": 0.08880053681861402,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 1.8172418085882214e-06
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 2048,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 5.152768867511672e-08,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "rms_centered_value_error": 5.186723938863093e-08,
+            "max_abs_cube_gradient_error": 1.8172418085882214e-06,
+            "rms_cube_gradient_error": 3.2176608211625943e-07,
+            "max_scaled_gradient_budget_ratio": 0.018590733452130755
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 512,
+            "max_abs_value_error": 1.7881393432617188e-07,
+            "rms_value_error": 4.5095875808449053e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 4.565618355513994e-08,
+            "max_abs_cube_gradient_error": 1.703664195523702e-06,
+            "rms_cube_gradient_error": 2.936170274063246e-07,
+            "max_scaled_gradient_budget_ratio": 0.018590733452130755
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 5.532018855866463e-08,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "rms_centered_value_error": 5.5509970134313964e-08,
+            "max_abs_cube_gradient_error": 1.8172418085882214e-06,
+            "rms_cube_gradient_error": 3.405351159472828e-07,
+            "max_scaled_gradient_budget_ratio": 0.01397112615292934
+          },
+          "input_samples": {
+            "queries": 128,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 5.398458520393609e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 5.398458520393609e-08,
+            "max_abs_cube_gradient_error": 1.2980298635945076e-06,
+            "rms_cube_gradient_error": 4.2836214665767133e-07,
+            "max_scaled_gradient_budget_ratio": 0.007883635991153866
+          },
+          "cell_interiors": {
+            "queries": 64,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 5.348419403791886e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 5.3232234576505564e-08,
+            "max_abs_cube_gradient_error": 7.788179179624155e-07,
+            "rms_cube_gradient_error": 2.551990362629273e-07,
+            "max_scaled_gradient_budget_ratio": 0.007803982405489643
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 3.338069371262031e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 3.49556268487802e-08,
+            "max_abs_cube_gradient_error": 1.2980298635945076e-06,
+            "rms_cube_gradient_error": 2.7232525765080903e-07,
+            "max_scaled_gradient_budget_ratio": 0.008350146750234341
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 6.203615100451145e-08,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "rms_centered_value_error": 6.237428216618596e-08,
+            "max_abs_cube_gradient_error": 8.76170157704248e-07,
+            "rms_cube_gradient_error": 2.3807237818322676e-07,
+            "max_scaled_gradient_budget_ratio": 0.009439344453560173
+          }
+        },
+        "iso_value": 0.4999195337295532,
+        "reference_iso_value": 0.4999195337295532,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            512,
+            0
+          ],
+          "integration_cells": 512,
+          "timings_seconds": {
+            "samples": 0.018160192489624024,
+            "density": 0.017601215362548828,
+            "normal_field": 0.009718367576599121,
+            "tree": 0.008413311958312988,
+            "integration_grid": 0.022100671768188477,
+            "assembly_and_solve": 0.4796991577148437
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "1": 8,
+            "2": 64,
+            "3": 512
+          },
+          "measured_host_sync_seconds": 0.003807511180639267,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.1777327060699463,
+              -1.095521092414856
+            ],
+            [
+              2.1777327060699463,
+              0.0,
+              0.0,
+              -1.0973303318023682
+            ],
+            [
+              0.0,
+              2.1777327060699463,
+              0.0,
+              -1.0903044939041138
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 4,
+            "full_depth": 1,
+            "base_depth": 1,
+            "solve_depth": 4,
+            "kernel_depth": 2,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    },
+    {
+      "fixture": "topology-sphere-double",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "topology-sphere-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "78a378ed5655b80d35b4556961d9d51e88858250",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-tree/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-tree/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+        "reference_file_sha256": {
+          "oracle.txt": "3832392b9bbd5d4364f285aef7749ff7f21a343ef9fa577958e6d65f76e85b70",
+          "oracle_instrumented.txt": "9453df80645eefb1da4ce630354478a64ba696025f09d66d3058e877179f5cf7",
+          "preprocess.txt": "af1e4198715a32ada91f399ac65f5a8d2949a906060e40c8b06b5f198c206245",
+          "stages.txt": "c8bf4963f19f494caa73fd0263ec23f1ddf51c9625a83ee492ecb54f838ae0d8",
+          "splats.txt": "b17aa8ab0159b11e2efbc2ce48612379aa456655b3d8682790cc61187ef96676",
+          "inputs.txt": "bd97936ba51c3aac65c7e5589372bda92968ce0e98ed1d048d33a6ea67d6d86d",
+          "topology.txt": "af10f5df7f875eec08dfc1ecce7ed090e199d46eba4dfb8a81a1d82981773fe7"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": null,
+        "precision": "double",
+        "parameters": {
+          "name": "topology-sphere-double",
+          "dataset": null,
+          "input": null,
+          "max_points": null,
+          "shape": "sphere",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 128,
+          "seed": 2026,
+          "depth": 4,
+          "full_depth": 1,
+          "base_depth": 1,
+          "solve_depth": 4,
+          "kernel_depth": 2,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "double",
+          "grid": 8,
+          "operators": false,
+          "topology": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.13077978417277336,
+          "oracle": 0.08620992302894592,
+          "oracle_instrumented": 0.09723976254463196
+        },
+        "grid": {
+          "resolution": 8,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            512
+          ],
+          "random_volume": [
+            512,
+            1536
+          ],
+          "input_samples": [
+            1536,
+            1664
+          ],
+          "cell_interiors": [
+            1664,
+            1728
+          ],
+          "cube_boundary": [
+            1728,
+            1920
+          ],
+          "far_from_samples": [
+            1920,
+            2048
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "3": 64
+          },
+          "refinement_interface_pairs": 0,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.26727274766695275
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "78a378ed5655b80d35b4556961d9d51e88858250",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "e45aefb0aab0a8a735fac90d8fc4181ec6441d58ea6e7f153b7e9f81ff37a2cf",
+          "src/warp_psr/relaxation.py": "784248b8b2dc8350ce17525c3f6d34546c31f50f8be7e23c03bdf115d4894360",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/solver.py": "6fa34b46cd88431a119da6a525fd6c8c472f80eabc935cb627c385fe5a3c7376",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "8672181cdc9254a8f5d05bd79a9768bd292674136f6237d951d505497a58c1ca",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+        },
+        "fixture_provenance": {
+          "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+          "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+          "precision": "double",
+          "parameters": {
+            "name": "topology-sphere-double",
+            "dataset": null,
+            "input": null,
+            "max_points": null,
+            "shape": "sphere",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 128,
+            "seed": 2026,
+            "depth": 4,
+            "full_depth": 1,
+            "base_depth": 1,
+            "solve_depth": 4,
+            "kernel_depth": 2,
+            "scale": 1.1,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 0.001,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 8,
+            "precision": "double",
+            "grid": 8,
+            "operators": false,
+            "topology": true,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "3832392b9bbd5d4364f285aef7749ff7f21a343ef9fa577958e6d65f76e85b70",
+            "oracle_instrumented.txt": "9453df80645eefb1da4ce630354478a64ba696025f09d66d3058e877179f5cf7",
+            "preprocess.txt": "af1e4198715a32ada91f399ac65f5a8d2949a906060e40c8b06b5f198c206245",
+            "stages.txt": "c8bf4963f19f494caa73fd0263ec23f1ddf51c9625a83ee492ecb54f838ae0d8",
+            "splats.txt": "b17aa8ab0159b11e2efbc2ce48612379aa456655b3d8682790cc61187ef96676",
+            "inputs.txt": "bd97936ba51c3aac65c7e5589372bda92968ce0e98ed1d048d33a6ea67d6d86d",
+            "topology.txt": "af10f5df7f875eec08dfc1ecce7ed090e199d46eba4dfb8a81a1d82981773fe7"
+          }
+        },
+        "queries_sha256": "9cbfbdb00c271ef0735afebcc4a9577b0242001f762ba425505211ee0a0b064f",
+        "fixture": "topology-sphere-double",
+        "input_sha256": "a129656ce63fbe6a57014181e5e5cf1965cafd66b7f54cdbc228398f4baa9b20",
+        "input_source": null,
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 512,
+              "active_count": 125,
+              "support_sha256": "a33a9a95686850ba730ba8c9b80b9d8e555d2fca770c0b3603a48df8ebde87d8",
+              "active_sha256": "158d085b25064d894d30b1e7379039ab2311ac0fc8c08194877347f176c53c6d"
+            },
+            {
+              "depth": 3,
+              "support_count": 512,
+              "active_count": 512,
+              "support_sha256": "f392f695bc5c5bd419eed67f9b4d1e9f206550e698aea7b2cd94db399bd30f50",
+              "active_sha256": "f78e7ef9a88bbba57a914e2e940320ec2800d94b05bfe2c0001ff05c7ef1571b"
+            },
+            {
+              "depth": 4,
+              "support_count": 0,
+              "active_count": 0,
+              "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 128,
+          "accepted": 128,
+          "aggregates": 111,
+          "rejected_by_status": {}
+        },
+        "complete_tree": {
+          "exact_complete_keys_flags_and_links": true,
+          "depth_offset": 2,
+          "nodes": 2041,
+          "levels": [
+            {
+              "local_depth": -2,
+              "nodes": 1,
+              "ghosts": 1
+            },
+            {
+              "local_depth": -1,
+              "nodes": 8,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 0,
+              "nodes": 64,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 1,
+              "nodes": 216,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 2,
+              "nodes": 512,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 3,
+              "nodes": 512,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 4,
+              "nodes": 728,
+              "ghosts": 728
+            }
+          ]
+        },
+        "device": "cuda:0",
+        "queries": 2048,
+        "coefficients": 672,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 4.85722573273506e-16,
+        "max_abs_centered_value_error": 4.440892098500626e-16,
+        "rms_value_error": 1.1880263730563872e-16,
+        "max_abs_cube_gradient_error": 3.9968028886505635e-15,
+        "max_scaled_gradient_budget_ratio": 3.875954310631621e-08,
+        "max_unscaled_gradient_budget_ratio": 2.155159333429567e-07,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "3": 3.9968028886505635e-15
+        },
+        "errors_by_depth": {
+          "3": {
+            "queries": 2048,
+            "max_abs_value_error": 4.85722573273506e-16,
+            "rms_value_error": 1.1880263730563872e-16,
+            "max_abs_centered_value_error": 4.440892098500626e-16,
+            "rms_centered_value_error": 1.1714843356412458e-16,
+            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
+            "rms_cube_gradient_error": 7.474743120661939e-16,
+            "max_scaled_gradient_budget_ratio": 3.875954310631621e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 512,
+            "max_abs_value_error": 4.579669976578771e-16,
+            "rms_value_error": 1.1607426127475833e-16,
+            "max_abs_centered_value_error": 4.440892098500626e-16,
+            "rms_centered_value_error": 1.1480672043438984e-16,
+            "max_abs_cube_gradient_error": 2.7755575615628914e-15,
+            "rms_cube_gradient_error": 7.019545970991453e-16,
+            "max_scaled_gradient_budget_ratio": 2.0437313383659702e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 4.440892098500626e-16,
+            "rms_value_error": 1.1885902265446454e-16,
+            "max_abs_centered_value_error": 3.885780586188048e-16,
+            "rms_centered_value_error": 1.168848388072506e-16,
+            "max_abs_cube_gradient_error": 3.552713678800501e-15,
+            "rms_cube_gradient_error": 7.571493491844172e-16,
+            "max_scaled_gradient_budget_ratio": 3.875954310631621e-08
+          },
+          "input_samples": {
+            "queries": 128,
+            "max_abs_value_error": 2.220446049250313e-16,
+            "rms_value_error": 1.0055412576335686e-16,
+            "max_abs_centered_value_error": 2.7755575615628914e-16,
+            "rms_centered_value_error": 9.257639144254436e-17,
+            "max_abs_cube_gradient_error": 2.886579864025407e-15,
+            "rms_cube_gradient_error": 9.787408265725765e-16,
+            "max_scaled_gradient_budget_ratio": 9.807221099741639e-09
+          },
+          "cell_interiors": {
+            "queries": 64,
+            "max_abs_value_error": 3.3306690738754696e-16,
+            "rms_value_error": 1.1529061489041522e-16,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "rms_centered_value_error": 1.1485913163110961e-16,
+            "max_abs_cube_gradient_error": 2.4980018054066022e-15,
+            "rms_cube_gradient_error": 6.782406456368688e-16,
+            "max_scaled_gradient_budget_ratio": 1.4760910138108313e-08
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 4.85722573273506e-16,
+            "rms_value_error": 1.233159432212946e-16,
+            "max_abs_centered_value_error": 4.440892098500626e-16,
+            "rms_centered_value_error": 1.1422861013434211e-16,
+            "max_abs_cube_gradient_error": 3.9968028886505635e-15,
+            "rms_cube_gradient_error": 7.248752281135647e-16,
+            "max_scaled_gradient_budget_ratio": 1.7933680303870407e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 4.440892098500626e-16,
+            "rms_value_error": 1.3908653245986238e-16,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "rms_centered_value_error": 1.510704135196192e-16,
+            "max_abs_cube_gradient_error": 2.9733160378242474e-15,
+            "rms_cube_gradient_error": 6.37352725786689e-16,
+            "max_scaled_gradient_budget_ratio": 2.734164378984334e-08
+          }
+        },
+        "iso_value": 0.4999195193933889,
+        "reference_iso_value": 0.49991951939338886,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            125,
+            512,
+            0
+          ],
+          "integration_cells": 512,
+          "timings_seconds": {
+            "samples": 0.015207039833068847,
+            "density": 0.019267839431762697,
+            "normal_field": 0.0102107515335083,
+            "tree": 0.008801471710205079,
+            "integration_grid": 0.026896095275878905,
+            "assembly_and_solve": 0.4858440551757813
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "1": 8,
+            "2": 64,
+            "3": 512
+          },
+          "measured_host_sync_seconds": 0.004057254642248154,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.177732816608759,
+              -1.095521178912658
+            ],
+            [
+              2.177732816608759,
+              0.0,
+              0.0,
+              -1.097330329404935
+            ],
+            [
+              0.0,
+              2.177732816608759,
+              0.0,
+              -1.0903046531953406
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 4,
+            "full_depth": 1,
+            "base_depth": 1,
+            "solve_depth": 4,
+            "kernel_depth": 2,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    },
+    {
+      "fixture": "topology-sparse-float",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "topology-sparse-float",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "78a378ed5655b80d35b4556961d9d51e88858250",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-tree/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-tree/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "8d1960d102c9df474917566f7425a0f6c04a403b6dd6260de8b84d6b49104d68",
+        "queries_sha256": "5192f24797467a412134ea8fdfe3e04efadb6603572a178aea11d11be5580046",
+        "reference_file_sha256": {
+          "oracle.txt": "74f3c936aefd9575691890ce55e8a1f621b4c385b4fd5d472d565d90025f240e",
+          "oracle_instrumented.txt": "a3863e58719da8dffca75d3417c6b997ad7906662a78d79cd984e380d298dfaf",
+          "preprocess.txt": "f159a0b674b81f7b358dc6f453f217d24096aad00aad7e2d8ccf6179152153ef",
+          "stages.txt": "43629c84f828599b90347aaa657583d6863e89957ccd64337885757f246d3c74",
+          "splats.txt": "c060198c9050b5d99407431e3629c3a133f43cf7e6aefd935dd68f771a567833",
+          "inputs.txt": "ed3059939c718f6155622a11ef7cc0587ceb328921cdd5bb13f315717e44b21a",
+          "topology.txt": "e051532fa6e24eb87fe1372924462b78714e2fd22ac3ef00f710564297de339d"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": null,
+        "precision": "float",
+        "parameters": {
+          "name": "topology-sparse-float",
+          "dataset": null,
+          "input": null,
+          "max_points": null,
+          "shape": "sphere",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 32,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 1,
+          "base_depth": 1,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "float",
+          "grid": 8,
+          "operators": false,
+          "topology": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.11930933222174644,
+          "oracle": 0.0710860937833786,
+          "oracle_instrumented": 0.0733092725276947
+        },
+        "grid": {
+          "resolution": 8,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            512
+          ],
+          "random_volume": [
+            512,
+            1536
+          ],
+          "input_samples": [
+            1536,
+            1568
+          ],
+          "cell_interiors": [
+            1568,
+            1632
+          ],
+          "cube_boundary": [
+            1632,
+            1824
+          ],
+          "far_from_samples": [
+            1824,
+            1952
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "2": 64
+          },
+          "refinement_interface_pairs": 0,
+          "boundary_distance_in_cube": 1e-05,
+          "far_from_samples_min_distance_in_cube": 0.3076983775322339
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "78a378ed5655b80d35b4556961d9d51e88858250",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "e45aefb0aab0a8a735fac90d8fc4181ec6441d58ea6e7f153b7e9f81ff37a2cf",
+          "src/warp_psr/relaxation.py": "784248b8b2dc8350ce17525c3f6d34546c31f50f8be7e23c03bdf115d4894360",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/solver.py": "6fa34b46cd88431a119da6a525fd6c8c472f80eabc935cb627c385fe5a3c7376",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "8672181cdc9254a8f5d05bd79a9768bd292674136f6237d951d505497a58c1ca",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+        },
+        "fixture_provenance": {
+          "input_sha256": "8d1960d102c9df474917566f7425a0f6c04a403b6dd6260de8b84d6b49104d68",
+          "queries_sha256": "5192f24797467a412134ea8fdfe3e04efadb6603572a178aea11d11be5580046",
+          "precision": "float",
+          "parameters": {
+            "name": "topology-sparse-float",
+            "dataset": null,
+            "input": null,
+            "max_points": null,
+            "shape": "sphere",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 32,
+            "seed": 2026,
+            "depth": 5,
+            "full_depth": 1,
+            "base_depth": 1,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "scale": 1.1,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 0.001,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 8,
+            "precision": "float",
+            "grid": 8,
+            "operators": false,
+            "topology": true,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "74f3c936aefd9575691890ce55e8a1f621b4c385b4fd5d472d565d90025f240e",
+            "oracle_instrumented.txt": "a3863e58719da8dffca75d3417c6b997ad7906662a78d79cd984e380d298dfaf",
+            "preprocess.txt": "f159a0b674b81f7b358dc6f453f217d24096aad00aad7e2d8ccf6179152153ef",
+            "stages.txt": "43629c84f828599b90347aaa657583d6863e89957ccd64337885757f246d3c74",
+            "splats.txt": "c060198c9050b5d99407431e3629c3a133f43cf7e6aefd935dd68f771a567833",
+            "inputs.txt": "ed3059939c718f6155622a11ef7cc0587ceb328921cdd5bb13f315717e44b21a",
+            "topology.txt": "e051532fa6e24eb87fe1372924462b78714e2fd22ac3ef00f710564297de339d"
+          }
+        },
+        "queries_sha256": "5192f24797467a412134ea8fdfe3e04efadb6603572a178aea11d11be5580046",
+        "fixture": "topology-sparse-float",
+        "input_sha256": "8d1960d102c9df474917566f7425a0f6c04a403b6dd6260de8b84d6b49104d68",
+        "input_source": null,
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 64,
+              "active_count": 64,
+              "support_sha256": "eccbd717b21aeb98391666f462425c4c2954e3313ea324a1b44ddbd36c3d169b",
+              "active_sha256": "73534abe46bcbb6e960b3c5ff1a3a59484a79967526a1a89f63bcc1473a636ec"
+            },
+            {
+              "depth": 3,
+              "support_count": 0,
+              "active_count": 0,
+              "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "depth": 4,
+              "support_count": 0,
+              "active_count": 0,
+              "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "depth": 5,
+              "support_count": 0,
+              "active_count": 0,
+              "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 32,
+          "accepted": 32,
+          "aggregates": 31,
+          "rejected_by_status": {}
+        },
+        "complete_tree": {
+          "exact_complete_keys_flags_and_links": true,
+          "depth_offset": 2,
+          "nodes": 1313,
+          "levels": [
+            {
+              "local_depth": -2,
+              "nodes": 1,
+              "ghosts": 1
+            },
+            {
+              "local_depth": -1,
+              "nodes": 8,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 0,
+              "nodes": 64,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 1,
+              "nodes": 216,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 2,
+              "nodes": 64,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 3,
+              "nodes": 504,
+              "ghosts": 504
+            },
+            {
+              "local_depth": 4,
+              "nodes": 224,
+              "ghosts": 224
+            },
+            {
+              "local_depth": 5,
+              "nodes": 232,
+              "ghosts": 232
+            }
+          ]
+        },
+        "device": "cuda:0",
+        "queries": 1952,
+        "coefficients": 99,
+        "field_tolerances": {
+          "absolute": 1e-05,
+          "relative": 0.0001
+        },
+        "max_abs_value_error": 2.384185791015625e-07,
+        "max_abs_centered_value_error": 2.384185791015625e-07,
+        "rms_value_error": 4.860929955079616e-08,
+        "max_abs_cube_gradient_error": 9.052293652445087e-07,
+        "max_scaled_gradient_budget_ratio": 0.009176568725996022,
+        "max_unscaled_gradient_budget_ratio": 0.024944126532952814,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "2": 9.052293652445087e-07
+        },
+        "errors_by_depth": {
+          "2": {
+            "queries": 1952,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 4.860929955079616e-08,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "rms_centered_value_error": 5.7958786357244074e-08,
+            "max_abs_cube_gradient_error": 9.052293652445087e-07,
+            "rms_cube_gradient_error": 1.5640645474152976e-07,
+            "max_scaled_gradient_budget_ratio": 0.009176568725996022
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 512,
+            "max_abs_value_error": 1.7881393432617188e-07,
+            "rms_value_error": 4.572025577960006e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 5.908579351589792e-08,
+            "max_abs_cube_gradient_error": 6.034862434223243e-07,
+            "rms_cube_gradient_error": 1.5802197290977518e-07,
+            "max_scaled_gradient_budget_ratio": 0.007593589624676409
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 1.7881393432617188e-07,
+            "rms_value_error": 5.1492959062677196e-08,
+            "max_abs_centered_value_error": 2.384185791015625e-07,
+            "rms_centered_value_error": 5.822814640529672e-08,
+            "max_abs_cube_gradient_error": 9.052293652445087e-07,
+            "rms_cube_gradient_error": 1.566670874685393e-07,
+            "max_scaled_gradient_budget_ratio": 0.007799246399707453
+          },
+          "input_samples": {
+            "queries": 32,
+            "max_abs_value_error": 8.940696716308594e-08,
+            "rms_value_error": 4.148307712994532e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 5.7228995471213816e-08,
+            "max_abs_cube_gradient_error": 4.2244037035121806e-07,
+            "rms_cube_gradient_error": 1.622673143789486e-07,
+            "max_scaled_gradient_budget_ratio": 0.003471479630451498
+          },
+          "cell_interiors": {
+            "queries": 64,
+            "max_abs_value_error": 1.1920928955078125e-07,
+            "rms_value_error": 4.0978193283081055e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 5.637387167819424e-08,
+            "max_abs_cube_gradient_error": 3.0174312182218443e-07,
+            "rms_cube_gradient_error": 1.1239845009065639e-07,
+            "max_scaled_gradient_budget_ratio": 0.003941314652546743
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 8.940696716308594e-08,
+            "rms_value_error": 3.3665303666705785e-08,
+            "max_abs_centered_value_error": 1.1920928955078125e-07,
+            "rms_centered_value_error": 5.194298072215912e-08,
+            "max_abs_cube_gradient_error": 6.034862434223243e-07,
+            "rms_cube_gradient_error": 1.4185857240999593e-07,
+            "max_scaled_gradient_budget_ratio": 0.009176568725996022
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 2.384185791015625e-07,
+            "rms_value_error": 5.907845320982376e-08,
+            "max_abs_centered_value_error": 1.7881393432617188e-07,
+            "rms_centered_value_error": 6.070051616728427e-08,
+            "max_abs_cube_gradient_error": 6.638348678533745e-07,
+            "rms_cube_gradient_error": 1.836705937748147e-07,
+            "max_scaled_gradient_budget_ratio": 0.0070483968735205954
+          }
+        },
+        "iso_value": 0.5019456148147583,
+        "reference_iso_value": 0.5019456744194031,
+        "metadata": {
+          "precision": "float32",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            64,
+            0,
+            0,
+            0
+          ],
+          "integration_cells": 64,
+          "timings_seconds": {
+            "samples": 0.015653887748718263,
+            "density": 0.017462560653686524,
+            "normal_field": 0.010066240310668946,
+            "tree": 0.006356448173522949,
+            "integration_grid": 0.020579647064208985,
+            "assembly_and_solve": 0.390956787109375
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "1": 8,
+            "2": 64
+          },
+          "measured_host_sync_seconds": 0.003504883497953415,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.024963855743408,
+              -0.9702919721603394
+            ],
+            [
+              2.024963855743408,
+              0.0,
+              0.0,
+              -1.0329312086105347
+            ],
+            [
+              0.0,
+              2.024963855743408,
+              0.0,
+              -1.0481538772583008
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 1,
+            "base_depth": 1,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    },
+    {
+      "fixture": "topology-sparse-double",
+      "manifest": {
+        "fixture_format": 2,
+        "name": "topology-sparse-double",
+        "pins": {
+          "fixture_format": 1,
+          "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+          "warp_version": "1.19.0",
+          "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+        },
+        "application_revision": "78a378ed5655b80d35b4556961d9d51e88858250",
+        "application_dirty": false,
+        "build": {
+          "pins": {
+            "fixture_format": 1,
+            "poissonrecon": "262b0f539d404057d1f36e1adc07fc9388678899",
+            "warp_version": "1.19.0",
+            "warp_commit": "06ce5ea6d5e29590706c7d3d48135ffdcc730912"
+          },
+          "commands": [
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-tree/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_instrumented"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-fopenmp",
+              "-DEXPORT_TREE",
+              "-I/home/horde/projects/warp-psr-tree/.build/instrumented",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/oracle.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/oracle_instrumented_openmp"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/reference/basis.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/basis"
+            ],
+            [
+              "g++",
+              "-std=c++17",
+              "-O2",
+              "-DNDEBUG",
+              "-pthread",
+              "-Wno-invalid-offsetof",
+              "-DFAST_COMPILE",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src",
+              "-I/home/horde/projects/warp-psr-tree/.build/PoissonRecon",
+              "/home/horde/projects/warp-psr-tree/.build/PoissonRecon/Src/PoissonRecon.cpp",
+              "-lz",
+              "-lpng",
+              "-ljpeg",
+              "-o",
+              "/home/horde/projects/warp-psr-tree/.build/PoissonReconCLI"
+            ]
+          ],
+          "compiler": "g++ (Ubuntu 11.4.0-1ubuntu1~22.04.3) 11.4.0"
+        },
+        "input_sha256": "71ae1b51e95e46670736b09ab8a9b61f9b077a8076a4a42870e5ead0cb8efc57",
+        "queries_sha256": "58b467d498003dc813e505fa68a429bb67b85457f3d94a5e4ec9b17bb6558071",
+        "reference_file_sha256": {
+          "oracle.txt": "267e2e11e8d6e0b0b203f8af996ac39850ab68610a69994629a17628f5d63353",
+          "oracle_instrumented.txt": "d2c9beaea1cc700927542df475b043460843d7ac75f50c171d0d3ac61d82bfce",
+          "preprocess.txt": "0cf687e34c105c410815c31153f81ea61b35c15aa153e8d6cbc0d948218f9060",
+          "stages.txt": "dba1dced7af19a30f3a0b7b15133a27805d50fe6ec82019e227d550edaa9655e",
+          "splats.txt": "374f239f2eddebdd1c6ef24456dd16af3cf30602c28442b478d16ec1b12729ae",
+          "inputs.txt": "ed3059939c718f6155622a11ef7cc0587ceb328921cdd5bb13f315717e44b21a",
+          "topology.txt": "e051532fa6e24eb87fe1372924462b78714e2fd22ac3ef00f710564297de339d"
+        },
+        "input_order": "file order; seeded numpy Generator",
+        "seed": 2026,
+        "input_source": null,
+        "precision": "double",
+        "parameters": {
+          "name": "topology-sparse-double",
+          "dataset": null,
+          "input": null,
+          "max_points": null,
+          "shape": "sphere",
+          "input_scale": 1.0,
+          "translation": [
+            0.0,
+            0.0,
+            0.0
+          ],
+          "count": 32,
+          "seed": 2026,
+          "depth": 5,
+          "full_depth": 1,
+          "base_depth": 1,
+          "solve_depth": 5,
+          "kernel_depth": 3,
+          "scale": 1.1,
+          "samples_per_node": 1.5,
+          "cg_accuracy": 0.001,
+          "base_v_cycles": 1,
+          "weight": 2.0,
+          "exact": false,
+          "iters": 8,
+          "precision": "double",
+          "grid": 8,
+          "operators": false,
+          "topology": true,
+          "align_dir": 0,
+          "degree": 1,
+          "boundary": "Neumann",
+          "confidence": false
+        },
+        "reference_parallelism": "ThreadPool::NONE (serial)",
+        "reference_thread_settings": {
+          "parallel_async": 0,
+          "threads": 128,
+          "schedule": 1,
+          "chunk_size": 128
+        },
+        "instrumentation_max_abs_error": 0.0,
+        "timings_seconds": {
+          "query_coverage_pilot": 0.1393730789422989,
+          "oracle": 0.08282060921192169,
+          "oracle_instrumented": 0.08554467186331749
+        },
+        "grid": {
+          "resolution": 8,
+          "cube_min": 0.001,
+          "cube_max": 0.999,
+          "order": "ij, z fastest"
+        },
+        "query_families": {
+          "visualization_grid": [
+            0,
+            512
+          ],
+          "random_volume": [
+            512,
+            1536
+          ],
+          "input_samples": [
+            1536,
+            1568
+          ],
+          "cell_interiors": [
+            1568,
+            1632
+          ],
+          "cube_boundary": [
+            1632,
+            1824
+          ],
+          "far_from_samples": [
+            1824,
+            1952
+          ]
+        },
+        "query_coverage": {
+          "cell_interiors_by_depth": {
+            "2": 64
+          },
+          "refinement_interface_pairs": 0,
+          "boundary_distance_in_cube": 1e-10,
+          "far_from_samples_min_distance_in_cube": 0.3076984034360167
+        },
+        "environment": {
+          "python": "3.10.12",
+          "numpy": "2.2.6",
+          "warp": "1.19.0",
+          "devices": [
+            "cpu",
+            "cuda:0"
+          ],
+          "gpu": "NVIDIA L40, 570.158.01, 49140 MiB"
+        },
+        "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison"
+      },
+      "reconstruction": {
+        "test": "Independent GPU reconstruction from oriented points",
+        "reconstruction_compatibility": true,
+        "source_revision": "78a378ed5655b80d35b4556961d9d51e88858250",
+        "source_dirty": false,
+        "production_source_sha256": {
+          "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+          "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+          "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+          "src/warp_psr/field.py": "0cd3469e269fdcdc9283b97ebebced61fe36beaf373d60e391b88d98a8742b4d",
+          "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+          "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+          "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+          "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+          "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+          "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+          "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+          "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+          "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+          "src/warp_psr/reconstruction.py": "e45aefb0aab0a8a735fac90d8fc4181ec6441d58ea6e7f153b7e9f81ff37a2cf",
+          "src/warp_psr/relaxation.py": "784248b8b2dc8350ce17525c3f6d34546c31f50f8be7e23c03bdf115d4894360",
+          "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+          "src/warp_psr/solver.py": "6fa34b46cd88431a119da6a525fd6c8c472f80eabc935cb627c385fe5a3c7376",
+          "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+          "src/warp_psr/stiffness.py": "8672181cdc9254a8f5d05bd79a9768bd292674136f6237d951d505497a58c1ca",
+          "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+        },
+        "fixture_provenance": {
+          "input_sha256": "71ae1b51e95e46670736b09ab8a9b61f9b077a8076a4a42870e5ead0cb8efc57",
+          "queries_sha256": "58b467d498003dc813e505fa68a429bb67b85457f3d94a5e4ec9b17bb6558071",
+          "precision": "double",
+          "parameters": {
+            "name": "topology-sparse-double",
+            "dataset": null,
+            "input": null,
+            "max_points": null,
+            "shape": "sphere",
+            "input_scale": 1.0,
+            "translation": [
+              0.0,
+              0.0,
+              0.0
+            ],
+            "count": 32,
+            "seed": 2026,
+            "depth": 5,
+            "full_depth": 1,
+            "base_depth": 1,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "scale": 1.1,
+            "samples_per_node": 1.5,
+            "cg_accuracy": 0.001,
+            "base_v_cycles": 1,
+            "weight": 2.0,
+            "exact": false,
+            "iters": 8,
+            "precision": "double",
+            "grid": 8,
+            "operators": false,
+            "topology": true,
+            "align_dir": 0,
+            "degree": 1,
+            "boundary": "Neumann",
+            "confidence": false
+          },
+          "reference_file_sha256": {
+            "oracle.txt": "267e2e11e8d6e0b0b203f8af996ac39850ab68610a69994629a17628f5d63353",
+            "oracle_instrumented.txt": "d2c9beaea1cc700927542df475b043460843d7ac75f50c171d0d3ac61d82bfce",
+            "preprocess.txt": "0cf687e34c105c410815c31153f81ea61b35c15aa153e8d6cbc0d948218f9060",
+            "stages.txt": "dba1dced7af19a30f3a0b7b15133a27805d50fe6ec82019e227d550edaa9655e",
+            "splats.txt": "374f239f2eddebdd1c6ef24456dd16af3cf30602c28442b478d16ec1b12729ae",
+            "inputs.txt": "ed3059939c718f6155622a11ef7cc0587ceb328921cdd5bb13f315717e44b21a",
+            "topology.txt": "e051532fa6e24eb87fe1372924462b78714e2fd22ac3ef00f710564297de339d"
+          }
+        },
+        "queries_sha256": "58b467d498003dc813e505fa68a429bb67b85457f3d94a5e4ec9b17bb6558071",
+        "fixture": "topology-sparse-double",
+        "input_sha256": "71ae1b51e95e46670736b09ab8a9b61f9b077a8076a4a42870e5ead0cb8efc57",
+        "input_source": null,
+        "tree": {
+          "exact_active_and_support_keys": true,
+          "levels": [
+            {
+              "depth": 0,
+              "support_count": 64,
+              "active_count": 8,
+              "support_sha256": "b39a9dd3de9f90893341ada93c866fec2aa36e6fffd68b51425fa4be7615ab05",
+              "active_sha256": "0f63fd4c6a1187a3417d9b91689e18637a69bad1fb2378e9ef120a49df3f6cca"
+            },
+            {
+              "depth": 1,
+              "support_count": 216,
+              "active_count": 27,
+              "support_sha256": "33cdc12d80f7746bd6815dafbadc36b0aba459627c7cdda65b7d6b13911fc361",
+              "active_sha256": "4c047621530bf10ab3e64948dc02074085ce0d14775e7a72e298df17a8305dd8"
+            },
+            {
+              "depth": 2,
+              "support_count": 64,
+              "active_count": 64,
+              "support_sha256": "eccbd717b21aeb98391666f462425c4c2954e3313ea324a1b44ddbd36c3d169b",
+              "active_sha256": "73534abe46bcbb6e960b3c5ff1a3a59484a79967526a1a89f63bcc1473a636ec"
+            },
+            {
+              "depth": 3,
+              "support_count": 0,
+              "active_count": 0,
+              "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "depth": 4,
+              "support_count": 0,
+              "active_count": 0,
+              "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            },
+            {
+              "depth": 5,
+              "support_count": 0,
+              "active_count": 0,
+              "support_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+              "active_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+            }
+          ]
+        },
+        "samples": {
+          "exact_input_status_and_membership": true,
+          "input_count": 32,
+          "accepted": 32,
+          "aggregates": 31,
+          "rejected_by_status": {}
+        },
+        "complete_tree": {
+          "exact_complete_keys_flags_and_links": true,
+          "depth_offset": 2,
+          "nodes": 1313,
+          "levels": [
+            {
+              "local_depth": -2,
+              "nodes": 1,
+              "ghosts": 1
+            },
+            {
+              "local_depth": -1,
+              "nodes": 8,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 0,
+              "nodes": 64,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 1,
+              "nodes": 216,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 2,
+              "nodes": 64,
+              "ghosts": 0
+            },
+            {
+              "local_depth": 3,
+              "nodes": 504,
+              "ghosts": 504
+            },
+            {
+              "local_depth": 4,
+              "nodes": 224,
+              "ghosts": 224
+            },
+            {
+              "local_depth": 5,
+              "nodes": 232,
+              "ghosts": 232
+            }
+          ]
+        },
+        "device": "cuda:0",
+        "queries": 1952,
+        "coefficients": 99,
+        "field_tolerances": {
+          "absolute": 1e-08,
+          "relative": 1e-06
+        },
+        "max_abs_value_error": 5.551115123125783e-16,
+        "max_abs_centered_value_error": 6.661338147750939e-16,
+        "rms_value_error": 1.0078934041401248e-16,
+        "max_abs_cube_gradient_error": 2.886579864025407e-15,
+        "max_scaled_gradient_budget_ratio": 1.959370881290905e-08,
+        "max_unscaled_gradient_budget_ratio": 5.021491865677349e-08,
+        "gradient_gate": "Design budget, scaled by canonical reference integration-cell width",
+        "gradient_errors_by_depth": {
+          "2": 2.886579864025407e-15
+        },
+        "errors_by_depth": {
+          "2": {
+            "queries": 1952,
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 1.0078934041401248e-16,
+            "max_abs_centered_value_error": 6.661338147750939e-16,
+            "rms_centered_value_error": 1.5879878218253798e-16,
+            "max_abs_cube_gradient_error": 2.886579864025407e-15,
+            "rms_cube_gradient_error": 4.04286335756722e-16,
+            "max_scaled_gradient_budget_ratio": 1.959370881290905e-08
+          }
+        },
+        "errors_by_query_family": {
+          "visualization_grid": {
+            "queries": 512,
+            "max_abs_value_error": 3.3306690738754696e-16,
+            "rms_value_error": 9.986343671875186e-17,
+            "max_abs_centered_value_error": 4.440892098500626e-16,
+            "rms_centered_value_error": 1.5477000253058165e-16,
+            "max_abs_cube_gradient_error": 1.3322676295501878e-15,
+            "rms_cube_gradient_error": 3.854662400873145e-16,
+            "max_scaled_gradient_budget_ratio": 1.959370881290905e-08
+          },
+          "random_volume": {
+            "queries": 1024,
+            "max_abs_value_error": 5.551115123125783e-16,
+            "rms_value_error": 1.0321240237922911e-16,
+            "max_abs_centered_value_error": 6.661338147750939e-16,
+            "rms_centered_value_error": 1.6120799355824532e-16,
+            "max_abs_cube_gradient_error": 1.9984014443252818e-15,
+            "rms_cube_gradient_error": 4.046855959399499e-16,
+            "max_scaled_gradient_budget_ratio": 1.3406677086718909e-08
+          },
+          "input_samples": {
+            "queries": 32,
+            "max_abs_value_error": 2.220446049250313e-16,
+            "rms_value_error": 8.993834424997155e-17,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "rms_centered_value_error": 1.4015878649856313e-16,
+            "max_abs_cube_gradient_error": 1.3322676295501878e-15,
+            "rms_cube_gradient_error": 4.3761415429029637e-16,
+            "max_scaled_gradient_budget_ratio": 2.6206117966405808e-09
+          },
+          "cell_interiors": {
+            "queries": 64,
+            "max_abs_value_error": 2.220446049250313e-16,
+            "rms_value_error": 9.309503074677274e-17,
+            "max_abs_centered_value_error": 3.3306690738754696e-16,
+            "rms_centered_value_error": 1.5515838457795457e-16,
+            "max_abs_cube_gradient_error": 8.881784197001252e-16,
+            "rms_cube_gradient_error": 3.0260070332717593e-16,
+            "max_scaled_gradient_budget_ratio": 6.910847411044722e-09
+          },
+          "cube_boundary": {
+            "queries": 192,
+            "max_abs_value_error": 2.220446049250313e-16,
+            "rms_value_error": 7.982241685567474e-17,
+            "max_abs_centered_value_error": 2.7755575615628914e-16,
+            "rms_centered_value_error": 1.2826009359230813e-16,
+            "max_abs_cube_gradient_error": 1.7763568394002505e-15,
+            "rms_cube_gradient_error": 3.7730879125691736e-16,
+            "max_scaled_gradient_budget_ratio": 1.0376275478896002e-08
+          },
+          "far_from_samples": {
+            "queries": 128,
+            "max_abs_value_error": 3.3306690738754696e-16,
+            "rms_value_error": 1.1785910963473693e-16,
+            "max_abs_centered_value_error": 4.440892098500626e-16,
+            "rms_centered_value_error": 1.9803219054634801e-16,
+            "max_abs_cube_gradient_error": 2.886579864025407e-15,
+            "rms_cube_gradient_error": 5.299718127032624e-16,
+            "max_scaled_gradient_budget_ratio": 1.779111332033286e-08
+          }
+        },
+        "iso_value": 0.5019456370862637,
+        "reference_iso_value": 0.5019456370862636,
+        "metadata": {
+          "precision": "float64",
+          "device": "cuda:0",
+          "basis_counts": [
+            8,
+            27,
+            64,
+            0,
+            0,
+            0
+          ],
+          "integration_cells": 64,
+          "timings_seconds": {
+            "samples": 0.016060543060302735,
+            "density": 0.017849279403686524,
+            "normal_field": 0.009852704048156738,
+            "tree": 0.00634991979598999,
+            "integration_grid": 0.021544704437255858,
+            "assembly_and_solve": 0.3671002197265625
+          },
+          "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+          "operator_integration_cells": {
+            "1": 8,
+            "2": 64
+          },
+          "measured_host_sync_seconds": 0.0035405978560447693,
+          "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+          "exact_interpolation_behavior": "level-clustered approximate constraints",
+          "cube_to_model": [
+            [
+              0.0,
+              0.0,
+              2.0249637510089107,
+              -0.9702918674198744
+            ],
+            [
+              2.0249637510089107,
+              0.0,
+              0.0,
+              -1.032931173794146
+            ],
+            [
+              0.0,
+              2.0249637510089107,
+              0.0,
+              -1.048153985000481
+            ],
+            [
+              0.0,
+              0.0,
+              0.0,
+              1.0
+            ]
+          ],
+          "parameters": {
+            "depth": 5,
+            "full_depth": 1,
+            "base_depth": 1,
+            "solve_depth": 5,
+            "kernel_depth": 3,
+            "samples_per_node": 1.5,
+            "scale": 1.1,
+            "point_weight": 2.0,
+            "exact_interpolation": false,
+            "iters": 8,
+            "base_v_cycles": 1,
+            "cg_accuracy": 0.001
+          },
+          "profile": "pinned cascadic degree-1 Neumann",
+          "constant_mode": "reference solve without an added mean term"
+        }
+      }
+    }
+  ]
+}

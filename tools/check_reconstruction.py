@@ -46,6 +46,13 @@ def check(directory,device='cuda:0'):
     input_report = None
     if 'inputs.txt' in manifest['reference_file_sha256']:
         input_report = check_samples(result.diagnostics['samples'], read_output(directory/'inputs.txt')['input'])
+    topology_report = None
+    if 'topology.txt' in manifest['reference_file_sha256']:
+        from warp_psr.tree_metadata import build_tree_metadata
+        from tools.check_tree_metadata import check_tree_metadata
+        diagnostic = result.diagnostics
+        complete = build_tree_metadata(diagnostic['tree'], diagnostic['samples'], diagnostic['density'], diagnostic['normals'])
+        topology_report = check_tree_metadata(complete, read_output(directory/'topology.txt')['topology'])
     normal=read_output(directory/'stages.txt')['normal']
     cube=queries@np.array(result.field.linear).reshape(3,3).T+result.field.translation
     widths=query_cell_widths(tree,normal,cube,p['depth'])
@@ -70,7 +77,7 @@ def check(directory,device='cuda:0'):
         "production_source_sha256":production_hashes(),
         "fixture_provenance":provenance,"queries_sha256":manifest['queries_sha256'],
         "fixture":manifest["name"],"input_sha256":manifest["input_sha256"],
-        "input_source":manifest.get("input_source"),"tree":tree_report,"samples":input_report,
+        "input_source":manifest.get("input_source"),"tree":tree_report,"samples":input_report,"complete_tree":topology_report,
         "device":device,"queries":len(queries),"coefficients":len(result.field.keys),
         "field_tolerances":{"absolute":atol,"relative":rtol},
         "max_abs_value_error":float(np.max(np.abs(error[:,0]))),
