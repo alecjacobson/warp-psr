@@ -168,9 +168,9 @@ The C++ baseline runs on a Xeon Platinum 8362 host with a four-core CPU quota;
 OpenMP is explicitly limited to four threads. Both reference builds use `-O2`
 without fast-math. All rows use full depth 4 and density target 1.5.
 
-The depth-9 eagle is **17.1× faster than the four-thread CPU baseline**, and
-**8.6× faster than the original GPU implementation** with unchanged solve settings.
-Peak GPU pool use fell from **24.89 GiB to 2.33 GiB**.
+The depth-9 eagle is **21.6× faster than the four-thread CPU baseline**, and
+**10.8× faster than the original GPU implementation** with unchanged solve settings.
+Peak GPU pool use fell from **24.89 GiB to 2.32 GiB**.
 
 | SPSR input | Depth | Coefficients | Warp (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: |
@@ -178,17 +178,18 @@ Peak GPU pool use fell from **24.89 GiB to 2.33 GiB**.
 | Bunny · 362k | 8 | 1,175,586 | 0.13 | 3.27 | 1.99 | 0.84 |
 | Eagle · 797k | 8 | 832,634 | 0.11 | 2.36 | 1.33 | 0.63 |
 | Torso · 3.49m | 8 | 492,578 | 0.09 | 1.82 | 1.19 | 0.56 |
-| Eagle · 797k | 9 | 3,323,866 | 0.29 | 9.37 | 4.88 | 2.33 |
+| Eagle · 797k | 9 | 3,323,866 | 0.23 | 9.37 | 4.88 | 2.32 |
 | Torso · 1m subset | 9 | 2,051,674 | 0.20 | 6.41 | 3.20 | 1.52 |
 
 These are solve timings: GPU medians include Python orchestration and exclude
 upload and queries; C++ timings exclude parsing, queries, export, and startup.
-Three measured runs follow the first invocation. GPU memory is the process
-CUDA-pool high-water mark. The [full report](docs/results/public-scaling.json)
+Five warm runs measure the current depth-9 eagle; other rows use three. GPU memory
+is the process CUDA-pool high-water mark. The [full report](docs/results/public-scaling.json)
 includes every run, per-stage timings, support counts, and environment limits.
-GPU timings are fresh; CPU timings retain their recorded provenance for the same
-inputs and unchanged reference build. Both depth-9 OpenMP cases were remeasured
-in isolation. See the [isovalue comparison](docs/results/isovalue-performance.json).
+The depth-9 eagle timing includes brood compaction; other GPU rows retain the
+preceding parallel-isovalue revision. CPU timings retain their recorded provenance
+for the same inputs and unchanged reference build. Both depth-9 OpenMP cases were remeasured
+in isolation. See the [tree comparison](docs/results/broods-performance.json).
 
 The [performance guide](docs/performance.md) includes PSR, independent sample-count,
 density and depth sweeps, and the earlier torus optimization history. The

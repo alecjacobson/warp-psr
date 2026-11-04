@@ -1,8 +1,8 @@
 {
-  "scope": "Public inputs after parallel double-precision isovalue reduction; fresh GPU timings with matched unchanged reference CPU measurements",
+  "scope": "Public inputs: fresh brood-union eagle timing; other GPU rows retain the preceding parallel-isovalue revision with recorded provenance",
   "suite": "scaling",
   "all_passed": true,
-  "benchmark_selection_note": "GPU timings use the current clean source with foreign-compute monitoring; serial/OpenMP timings retain their recorded revisions and environments. Reference build and effective parameters are unchanged. The torso depth-9 OpenMP measurement is a new isolated rerun replacing the excluded compilation-overlap repeat.",
+  "benchmark_selection_note": "The eagle depth-9 GPU row uses all five warm runs of a monitored clean-source comparison. Other GPU rows retain the preceding isovalue revision and their three warm runs. CPU inputs, parameters and reference builds are unchanged.",
   "profiles": [
     {
       "fixture": "horse-full-d8-psr",
@@ -36571,7 +36571,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -36596,7 +36596,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -36929,11 +36929,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.010980192184448243,
-            "density": 0.02380739212036133,
-            "normal_field": 0.02121062469482422,
-            "tree": 0.04924588775634765,
-            "assembly_and_solve": 0.522525390625
+            "samples": 0.011381248474121093,
+            "density": 0.02267670440673828,
+            "normal_field": 0.020458431243896485,
+            "tree": 0.015313088417053223,
+            "assembly_and_solve": 0.49869436645507814
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -36944,7 +36944,7 @@
             "8": 0,
             "9": 0
           },
-          "measured_host_sync_seconds": 0.08844640105962753,
+          "measured_host_sync_seconds": 0.06015622243285179,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -37052,10 +37052,10 @@
             "boundary": "Neumann",
             "confidence": false
           },
-          "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+          "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
           "source_dirty": false,
           "execution_environment": {
-            "captured_utc": "2026-11-04T05:14:22.628752+00:00",
+            "captured_utc": "2026-11-04T05:18:38.321476+00:00",
             "logical_cpus": 128,
             "affinity_cpus": [
               0,
@@ -37214,31 +37214,31 @@
               {
                 "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
                 "counters": {
-                  "usage_usec": 23596546705,
-                  "user_usec": 21753226297,
-                  "system_usec": 1843320407,
-                  "nr_periods": 348375,
-                  "nr_throttled": 20109,
-                  "throttled_usec": 47116706901
+                  "usage_usec": 23851735050,
+                  "user_usec": 21973807110,
+                  "system_usec": 1877927940,
+                  "nr_periods": 350922,
+                  "nr_throttled": 20171,
+                  "throttled_usec": 47370880596
                 }
               },
               {
                 "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
                 "counters": {
-                  "usage_usec": 23596616659,
-                  "user_usec": 21753239505,
-                  "system_usec": 1843377153,
-                  "nr_periods": 348395,
-                  "nr_throttled": 20385,
-                  "throttled_usec": 44529311742
+                  "usage_usec": 23851805004,
+                  "user_usec": 21973820310,
+                  "system_usec": 1877984694,
+                  "nr_periods": 350942,
+                  "nr_throttled": 20447,
+                  "throttled_usec": 44783124068
                 }
               },
               {
                 "group": "kubepods.slice/kubepods-burstable.slice",
                 "counters": {
-                  "usage_usec": 19098315043177,
-                  "user_usec": 14732911451190,
-                  "system_usec": 4365403591987,
+                  "usage_usec": 19098662429990,
+                  "user_usec": 14733204171732,
+                  "system_usec": 4365458258257,
                   "nr_periods": 0,
                   "nr_throttled": 0,
                   "throttled_usec": 0
@@ -37247,9 +37247,9 @@
               {
                 "group": "kubepods.slice",
                 "counters": {
-                  "usage_usec": 52337095988632,
-                  "user_usec": 36001868299164,
-                  "system_usec": 16335227689467,
+                  "usage_usec": 52337666827879,
+                  "user_usec": 36002307994329,
+                  "system_usec": 16335358833550,
                   "nr_periods": 0,
                   "nr_throttled": 0,
                   "throttled_usec": 0
@@ -37258,9 +37258,9 @@
               {
                 "group": ".",
                 "counters": {
-                  "usage_usec": 66899842904000,
-                  "user_usec": 43516791232000,
-                  "system_usec": 23383051672000,
+                  "usage_usec": 66900535232000,
+                  "user_usec": 43517294064000,
+                  "system_usec": 23383241168000,
                   "nr_periods": 0,
                   "nr_throttled": 0,
                   "throttled_usec": 0
@@ -37270,7 +37270,7 @@
             "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
           },
           "execution_environment_after": {
-            "captured_utc": "2026-11-04T05:14:24.472879+00:00",
+            "captured_utc": "2026-11-04T05:18:40.654204+00:00",
             "logical_cpus": 128,
             "affinity_cpus": [
               0,
@@ -37429,31 +37429,31 @@
               {
                 "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
                 "counters": {
-                  "usage_usec": 23598433222,
-                  "user_usec": 21754526621,
-                  "system_usec": 1843906600,
-                  "nr_periods": 348393,
-                  "nr_throttled": 20109,
-                  "throttled_usec": 47116706901
+                  "usage_usec": 23854081857,
+                  "user_usec": 21975390219,
+                  "system_usec": 1878691637,
+                  "nr_periods": 350945,
+                  "nr_throttled": 20171,
+                  "throttled_usec": 47370880596
                 }
               },
               {
                 "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
                 "counters": {
-                  "usage_usec": 23598503176,
-                  "user_usec": 21754539829,
-                  "system_usec": 1843963347,
-                  "nr_periods": 348413,
-                  "nr_throttled": 20385,
-                  "throttled_usec": 44529311742
+                  "usage_usec": 23854151811,
+                  "user_usec": 21975403419,
+                  "system_usec": 1878748391,
+                  "nr_periods": 350965,
+                  "nr_throttled": 20447,
+                  "throttled_usec": 44783124068
                 }
               },
               {
                 "group": "kubepods.slice/kubepods-burstable.slice",
                 "counters": {
-                  "usage_usec": 19098317325697,
-                  "user_usec": 14732913084472,
-                  "system_usec": 4365404241224,
+                  "usage_usec": 19098665906405,
+                  "user_usec": 14733206763824,
+                  "system_usec": 4365459142580,
                   "nr_periods": 0,
                   "nr_throttled": 0,
                   "throttled_usec": 0
@@ -37462,9 +37462,9 @@
               {
                 "group": "kubepods.slice",
                 "counters": {
-                  "usage_usec": 52337099232558,
-                  "user_usec": 36001870438875,
-                  "system_usec": 16335228793683,
+                  "usage_usec": 52337671930001,
+                  "user_usec": 36002311606123,
+                  "system_usec": 16335360323877,
                   "nr_periods": 0,
                   "nr_throttled": 0,
                   "throttled_usec": 0
@@ -37473,9 +37473,9 @@
               {
                 "group": ".",
                 "counters": {
-                  "usage_usec": 66899848752000,
-                  "user_usec": 43516794688000,
-                  "system_usec": 23383054064000,
+                  "usage_usec": 66900540820000,
+                  "user_usec": 43517297840000,
+                  "system_usec": 23383242980000,
                   "nr_periods": 0,
                   "nr_throttled": 0,
                   "throttled_usec": 0
@@ -37488,11 +37488,11 @@
           "warp": "1.19.0",
           "timing_scope": "GPU reconstruction, including Python orchestration; excludes input upload and queries",
           "first_run_note": "First invocation in process; existing disk kernel cache may be reused. Not a clean-cache compilation measurement.",
-          "warm_median_seconds": 0.2852819375693798,
+          "warm_median_seconds": 0.22608594968914986,
           "runs": [
             {
               "iteration": 0,
-              "seconds": 0.62667540833354,
+              "seconds": 0.5732705667614937,
               "metadata": {
                 "precision": "float32",
                 "device": "cuda:0",
@@ -37511,11 +37511,11 @@
                 "integration_cells": 0,
                 "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
                 "timings_seconds": {
-                  "samples": 0.01371782398223877,
-                  "density": 0.022857887268066406,
-                  "normal_field": 0.020572511672973633,
-                  "tree": 0.048554527282714845,
-                  "assembly_and_solve": 0.4663848876953125
+                  "samples": 0.021181024551391602,
+                  "density": 0.023,
+                  "normal_field": 0.02051043128967285,
+                  "tree": 0.015238880157470703,
+                  "assembly_and_solve": 0.43861898803710936
                 },
                 "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
                 "operator_integration_cells": {
@@ -37526,7 +37526,7 @@
                   "8": 0,
                   "9": 0
                 },
-                "measured_host_sync_seconds": 0.08845004066824913,
+                "measured_host_sync_seconds": 0.059977296739816666,
                 "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
                 "exact_interpolation_behavior": "level-clustered approximate constraints",
                 "cube_to_model": [
@@ -37572,7 +37572,7 @@
                 "profile": "pinned cascadic degree-1 Neumann",
                 "constant_mode": "reference solve without an added mean term"
               },
-              "peak_device_pool_bytes": 2496069235,
+              "peak_device_pool_bytes": 2486037107,
               "support_counts": [
                 64,
                 288,
@@ -37588,7 +37588,7 @@
             },
             {
               "iteration": 1,
-              "seconds": 0.2852819375693798,
+              "seconds": 0.24222861230373383,
               "metadata": {
                 "precision": "float32",
                 "device": "cuda:0",
@@ -37607,11 +37607,11 @@
                 "integration_cells": 0,
                 "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
                 "timings_seconds": {
-                  "samples": 0.00118832004070282,
-                  "density": 0.009431360244750976,
-                  "normal_field": 0.01329423999786377,
-                  "tree": 0.04580556869506836,
-                  "assembly_and_solve": 0.1800839385986328
+                  "samples": 0.002031615972518921,
+                  "density": 0.01020963191986084,
+                  "normal_field": 0.015288127899169921,
+                  "tree": 0.01202995204925537,
+                  "assembly_and_solve": 0.1654346923828125
                 },
                 "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
                 "operator_integration_cells": {
@@ -37622,7 +37622,7 @@
                   "8": 0,
                   "9": 0
                 },
-                "measured_host_sync_seconds": 0.09978264197707176,
+                "measured_host_sync_seconds": 0.07088835164904594,
                 "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
                 "exact_interpolation_behavior": "level-clustered approximate constraints",
                 "cube_to_model": [
@@ -37668,7 +37668,7 @@
                 "profile": "pinned cascadic degree-1 Neumann",
                 "constant_mode": "reference solve without an added mean term"
               },
-              "peak_device_pool_bytes": 2496849759,
+              "peak_device_pool_bytes": 2486817631,
               "support_counts": [
                 64,
                 288,
@@ -37684,7 +37684,7 @@
             },
             {
               "iteration": 2,
-              "seconds": 0.29329192265868187,
+              "seconds": 0.2206658348441124,
               "metadata": {
                 "precision": "float32",
                 "device": "cuda:0",
@@ -37703,11 +37703,11 @@
                 "integration_cells": 0,
                 "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
                 "timings_seconds": {
-                  "samples": 0.0012313599586486817,
-                  "density": 0.009420160293579102,
-                  "normal_field": 0.013281439781188965,
-                  "tree": 0.04601340866088867,
-                  "assembly_and_solve": 0.16294447326660155
+                  "samples": 0.0013057279586791992,
+                  "density": 0.009474495887756347,
+                  "normal_field": 0.013232416152954101,
+                  "tree": 0.012895423889160157,
+                  "assembly_and_solve": 0.1458389434814453
                 },
                 "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
                 "operator_integration_cells": {
@@ -37718,7 +37718,7 @@
                   "8": 0,
                   "9": 0
                 },
-                "measured_host_sync_seconds": 0.09995048493146896,
+                "measured_host_sync_seconds": 0.07080434262752533,
                 "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
                 "exact_interpolation_behavior": "level-clustered approximate constraints",
                 "cube_to_model": [
@@ -37764,7 +37764,7 @@
                 "profile": "pinned cascadic degree-1 Neumann",
                 "constant_mode": "reference solve without an added mean term"
               },
-              "peak_device_pool_bytes": 2496849759,
+              "peak_device_pool_bytes": 2486817631,
               "support_counts": [
                 64,
                 288,
@@ -37780,7 +37780,7 @@
             },
             {
               "iteration": 3,
-              "seconds": 0.2680294029414654,
+              "seconds": 0.22217105701565742,
               "metadata": {
                 "precision": "float32",
                 "device": "cuda:0",
@@ -37799,11 +37799,11 @@
                 "integration_cells": 0,
                 "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
                 "timings_seconds": {
-                  "samples": 0.0012519359588623047,
-                  "density": 0.009472864151000977,
-                  "normal_field": 0.013129280090332032,
-                  "tree": 0.04540630340576172,
-                  "assembly_and_solve": 0.16270498657226562
+                  "samples": 0.0013351360559463502,
+                  "density": 0.010989343643188477,
+                  "normal_field": 0.013567423820495606,
+                  "tree": 0.01197379207611084,
+                  "assembly_and_solve": 0.146834716796875
                 },
                 "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
                 "operator_integration_cells": {
@@ -37814,7 +37814,7 @@
                   "8": 0,
                   "9": 0
                 },
-                "measured_host_sync_seconds": 0.09956476837396622,
+                "measured_host_sync_seconds": 0.07050569728016853,
                 "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
                 "exact_interpolation_behavior": "level-clustered approximate constraints",
                 "cube_to_model": [
@@ -37860,7 +37860,199 @@
                 "profile": "pinned cascadic degree-1 Neumann",
                 "constant_mode": "reference solve without an added mean term"
               },
-              "peak_device_pool_bytes": 2496849759,
+              "peak_device_pool_bytes": 2486817631,
+              "support_counts": [
+                64,
+                288,
+                680,
+                1952,
+                8328,
+                20056,
+                69152,
+                264192,
+                914792,
+                2052088
+              ]
+            },
+            {
+              "iteration": 4,
+              "seconds": 0.24594439193606377,
+              "metadata": {
+                "precision": "float32",
+                "device": "cuda:0",
+                "basis_counts": [
+                  8,
+                  27,
+                  125,
+                  729,
+                  4913,
+                  18440,
+                  68552,
+                  264192,
+                  914792,
+                  2052088
+                ],
+                "integration_cells": 0,
+                "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+                "timings_seconds": {
+                  "samples": 0.0013110400438308715,
+                  "density": 0.009877023696899414,
+                  "normal_field": 0.013253024101257324,
+                  "tree": 0.01177187156677246,
+                  "assembly_and_solve": 0.1727340545654297
+                },
+                "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+                "operator_integration_cells": {
+                  "4": 4096,
+                  "5": 0,
+                  "6": 0,
+                  "7": 0,
+                  "8": 0,
+                  "9": 0
+                },
+                "measured_host_sync_seconds": 0.051365096122026443,
+                "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+                "exact_interpolation_behavior": "level-clustered approximate constraints",
+                "cube_to_model": [
+                  [
+                    0.0,
+                    0.0,
+                    9.487554550170898,
+                    -3.3637354373931885
+                  ],
+                  [
+                    9.487554550170898,
+                    0.0,
+                    0.0,
+                    -1.9807322025299072
+                  ],
+                  [
+                    0.0,
+                    9.487554550170898,
+                    0.0,
+                    -3.3755571842193604
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ],
+                "parameters": {
+                  "depth": 9,
+                  "full_depth": 4,
+                  "base_depth": 4,
+                  "solve_depth": 9,
+                  "kernel_depth": 7,
+                  "samples_per_node": 1.5,
+                  "scale": 1.1,
+                  "point_weight": 2.0,
+                  "exact_interpolation": false,
+                  "iters": 8,
+                  "base_v_cycles": 1,
+                  "cg_accuracy": 0.001
+                },
+                "profile": "pinned cascadic degree-1 Neumann",
+                "constant_mode": "reference solve without an added mean term"
+              },
+              "peak_device_pool_bytes": 2486817631,
+              "support_counts": [
+                64,
+                288,
+                680,
+                1952,
+                8328,
+                20056,
+                69152,
+                264192,
+                914792,
+                2052088
+              ]
+            },
+            {
+              "iteration": 5,
+              "seconds": 0.22608594968914986,
+              "metadata": {
+                "precision": "float32",
+                "device": "cuda:0",
+                "basis_counts": [
+                  8,
+                  27,
+                  125,
+                  729,
+                  4913,
+                  18440,
+                  68552,
+                  264192,
+                  914792,
+                  2052088
+                ],
+                "integration_cells": 0,
+                "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
+                "timings_seconds": {
+                  "samples": 0.0012137919664382934,
+                  "density": 0.010192480087280274,
+                  "normal_field": 0.013267200469970703,
+                  "tree": 0.011686271667480468,
+                  "assembly_and_solve": 0.15284934997558594
+                },
+                "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
+                "operator_integration_cells": {
+                  "4": 4096,
+                  "5": 0,
+                  "6": 0,
+                  "7": 0,
+                  "8": 0,
+                  "9": 0
+                },
+                "measured_host_sync_seconds": 0.07096435129642487,
+                "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
+                "exact_interpolation_behavior": "level-clustered approximate constraints",
+                "cube_to_model": [
+                  [
+                    0.0,
+                    0.0,
+                    9.487554550170898,
+                    -3.3637354373931885
+                  ],
+                  [
+                    9.487554550170898,
+                    0.0,
+                    0.0,
+                    -1.9807322025299072
+                  ],
+                  [
+                    0.0,
+                    9.487554550170898,
+                    0.0,
+                    -3.3755571842193604
+                  ],
+                  [
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                  ]
+                ],
+                "parameters": {
+                  "depth": 9,
+                  "full_depth": 4,
+                  "base_depth": 4,
+                  "solve_depth": 9,
+                  "kernel_depth": 7,
+                  "samples_per_node": 1.5,
+                  "scale": 1.1,
+                  "point_weight": 2.0,
+                  "exact_interpolation": false,
+                  "iters": 8,
+                  "base_v_cycles": 1,
+                  "cg_accuracy": 0.001
+                },
+                "profile": "pinned cascadic degree-1 Neumann",
+                "constant_mode": "reference solve without an added mean term"
+              },
+              "peak_device_pool_bytes": 2486817631,
               "support_counts": [
                 64,
                 288,
