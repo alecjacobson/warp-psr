@@ -56,7 +56,7 @@ def load_kernel(vector):
 
 @lru_cache(None)
 def parallel_load_kernel(vector):
-    @wp.kernel
+    @wp.kernel(module="unique")
     def load_parallel(keys: wp.array(dtype=wp.int64), normal_keys: wp.array(dtype=wp.int64),
                       normals: wp.array(dtype=vector), test_depth: int, normal_depth: int,
                       first: int, width: int, table: wp.array2d(dtype=wp.vec2d),
