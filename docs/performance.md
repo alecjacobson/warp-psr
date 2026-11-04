@@ -22,17 +22,23 @@ subsequent fresh-process solves after an initial run; the timer brackets the
 unchanged `Solver::Solve`, excluding parsing, queries, exports, and process startup.
 Memory is the GPU process CUDA-pool high-water mark, including temporaries, not a
 measurement of every CUDA allocation. Timing runs were isolated from rendering,
-accuracy generation, and other benchmark jobs.
+accuracy generation, and other benchmark jobs. One bunny SPSR batch had warm
+times of 0.344, 0.486 and 0.225 s; it was replaced by a repeat monitored for
+foreign compute activity. The initial batch remains in the CSR report.
 
-The depth-9 eagle now takes **0.491 s**, versus **4.884 s with four CPU threads**
-(9.96×), with a **3.97 GiB** peak pool. The
+The depth-9 eagle now takes **0.391 s**, versus **4.884 s with four CPU threads**
+(12.51×), with a **2.33 GiB** peak pool. The
 [direct screening comparison](results/screening-performance.json) measured
 0.854 s before and 0.490 s after eliminating fine-level FEM point assembly.
 The earlier [GPU pipeline comparison](results/gpu-pipeline-performance.json)
 measured 2.451 s for the original implementation and 0.860 s after its first
 optimization pass. All use the original 796,825 samples, depth 9, full depth 4
-and eight iterations. All 31 public accuracy cases pass on the final screening
+and eight iterations. All 31 public accuracy cases pass on the final CSR
 source without changing their tolerances.
+
+Direct prolongation CSR avoids transfer triplets and sorting; topology-preserving
+precision casts avoid rebuilding existing sparse rows. The
+[CSR comparison](results/csr-performance.json) records the fresh timings and profile.
 
 Exact degree-one stiffness stencils and direct point screening avoid global FEM
 triplet sorting. Constraint positions are binned on the GPU, allowing multiple
@@ -52,13 +58,13 @@ identical inputs, parameters, CPU quota and reference builds. Both depth-9 OpenM
 cases were remeasured in isolation; the torso result replaces a previously
 excluded repeat that overlapped an unrelated compilation.
 
-A clean warmed Nsight trace of direct screening attributes 130.7 ms to 31,904
-ordered relaxation graph kernels, 41.9 ms to unsigned-key radix sorting and
-33.0 ms to signed-key radix sorting. Direct point screening costs 14.0 ms.
-These are summed kernel durations from a profiled run, not wall-clock benchmarks.
-A separate device-only row-sizing experiment measured 0.499 s versus 0.490 s
-and was not adopted. Remaining relaxation work is tracked in
-[#64](https://github.com/alecjacobson/warp-psr/issues/64).
+A clean warmed Nsight trace after the CSR changes attributes 130.5 ms to 31,904
+ordered relaxation graph kernels, 6.6 ms to unsigned-key radix sorting (down from
+41.9 ms before the CSR changes), and 32.5 ms to signed-key radix sorting.
+Direct point screening costs 14.1 ms. These are summed kernel durations from a
+profiled run, not wall-clock benchmarks. A second device-only row-sizing
+experiment measured 0.401 s versus 0.398 s and was not adopted. Remaining
+relaxation work is tracked in [#64](https://github.com/alecjacobson/warp-psr/issues/64).
 
 To profile a warmed reconstruction with Nsight Systems:
 
@@ -76,14 +82,14 @@ Use an otherwise idle machine. `--mode cpu` records Python submission costs inst
 
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Horse PSR | 100,000 | 8 | 1.5 | 362,534 | 369,408 | 0.125 | 0.883 | 0.544 | 0.38 |
-| Horse SPSR | 100,000 | 8 | 1.5 | 362,534 | 369,408 | 0.130 | 1.014 | 0.606 | 0.38 |
-| Bunny PSR | 362,271 | 8 | 1.5 | 1,175,586 | 1,185,936 | 0.243 | 2.759 | 1.610 | 1.42 |
-| Bunny SPSR | 362,271 | 8 | 1.5 | 1,175,586 | 1,185,936 | 0.264 | 3.269 | 1.986 | 1.43 |
-| Eagle PSR | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.178 | 2.018 | 1.207 | 1.05 |
-| Eagle SPSR | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.179 | 2.361 | 1.327 | 1.05 |
-| Torso PSR | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.137 | 1.580 | 1.116 | 0.82 |
-| Torso SPSR | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.144 | 1.820 | 1.190 | 0.82 |
+| Horse PSR | 100,000 | 8 | 1.5 | 362,534 | 369,408 | 0.123 | 0.883 | 0.544 | 0.24 |
+| Horse SPSR | 100,000 | 8 | 1.5 | 362,534 | 369,408 | 0.129 | 1.014 | 0.606 | 0.24 |
+| Bunny PSR | 362,271 | 8 | 1.5 | 1,175,586 | 1,185,936 | 0.218 | 2.759 | 1.610 | 0.83 |
+| Bunny SPSR | 362,271 | 8 | 1.5 | 1,175,586 | 1,185,936 | 0.220 | 3.269 | 1.986 | 0.84 |
+| Eagle PSR | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.165 | 2.018 | 1.207 | 0.63 |
+| Eagle SPSR | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.160 | 2.361 | 1.327 | 0.63 |
+| Torso PSR | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.129 | 1.580 | 1.116 | 0.56 |
+| Torso SPSR | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.128 | 1.820 | 1.190 | 0.56 |
 
 ## Point count sweep for torso SPSR at depth 8
 
@@ -92,27 +98,27 @@ sample count changes; the depth and density settings remain fixed.
 
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| 10k subset | 10,000 | 8 | 1.5 | 139,850 | 145,696 | 0.101 | 0.452 | 0.349 | 0.14 |
-| 100k subset | 100,000 | 8 | 1.5 | 446,482 | 453,504 | 0.136 | 1.254 | 0.703 | 0.54 |
-| 1m subset | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.151 | 1.543 | 0.945 | 0.65 |
-| Full original | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.144 | 1.820 | 1.190 | 0.82 |
+| 10k subset | 10,000 | 8 | 1.5 | 139,850 | 145,696 | 0.098 | 0.452 | 0.349 | 0.09 |
+| 100k subset | 100,000 | 8 | 1.5 | 446,482 | 453,504 | 0.126 | 1.254 | 0.703 | 0.32 |
+| 1m subset | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.126 | 1.543 | 0.945 | 0.40 |
+| Full original | 3,488,432 | 8 | 1.5 | 492,578 | 499,680 | 0.128 | 1.820 | 1.190 | 0.56 |
 
 ## Density sweep for full eagle SPSR at depth 8
 
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Target 1.5 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.179 | 2.361 | 1.327 | 1.05 |
-| Target 3 | 796,825 | 8 | 3 | 832,378 | 839,776 | 0.185 | 2.377 | 1.319 | 1.05 |
-| Target 10 | 796,825 | 8 | 10 | 822,450 | 829,824 | 0.184 | 2.386 | 1.427 | 1.04 |
+| Target 1.5 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.160 | 2.361 | 1.327 | 0.63 |
+| Target 3 | 796,825 | 8 | 3 | 832,378 | 839,776 | 0.158 | 2.377 | 1.319 | 0.63 |
+| Target 10 | 796,825 | 8 | 10 | 822,450 | 829,824 | 0.160 | 2.386 | 1.427 | 0.62 |
 
 ## Depth sweep with identical points and density settings
 
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
-| Eagle depth 8 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.179 | 2.361 | 1.327 | 1.05 |
-| Eagle depth 9 | 796,825 | 9 | 1.5 | 3,323,866 | 3,331,592 | 0.491 | 9.367 | 4.884 | 3.97 |
-| Torso 1m depth 8 | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.151 | 1.543 | 0.945 | 0.65 |
-| Torso 1m depth 9 | 1,000,000 | 9 | 1.5 | 2,051,674 | 2,059,232 | 0.343 | 6.414 | 3.200 | 2.60 |
+| Eagle depth 8 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.160 | 2.361 | 1.327 | 0.63 |
+| Eagle depth 9 | 796,825 | 9 | 1.5 | 3,323,866 | 3,331,592 | 0.391 | 9.367 | 4.884 | 2.33 |
+| Torso 1m depth 8 | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.126 | 1.543 | 0.945 | 0.40 |
+| Torso 1m depth 9 | 1,000,000 | 9 | 1.5 | 2,051,674 | 2,059,232 | 0.289 | 6.414 | 3.200 | 1.52 |
 
 ## Earlier torus experiments
 
