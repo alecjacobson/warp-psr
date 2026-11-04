@@ -1,4 +1,4 @@
-"""Explicit float64 coordinates for the application's covering adaptive grid.
+"""Explicit float64 containing-cell coordinates for sparse and adaptive grids.
 
 Warp 1.19's general Nanogrid nearest-cell lookup mixes distance precisions
 (issue #31). These interior constraints need only a containing-cell lookup.
@@ -6,6 +6,7 @@ Feed the result through PicQuadrature's public (cell, coordinates) constructor.
 """
 
 import warp as wp
+import warp.fem as fem
 
 
 @wp.kernel
@@ -39,10 +40,12 @@ def locate_constraints(geometry, positions):
     cells = wp.empty(len(positions), dtype=int, device=positions.device)
     coordinates = wp.empty(len(positions), dtype=wp.vec3d, device=positions.device)
     args = geometry.cell_arg_value(positions.device)
+    levels = (args.cell_level if isinstance(geometry, fem.AdaptiveNanogrid)
+              else wp.zeros(geometry.cell_count(), dtype=wp.uint8, device=positions.device))
     wp.launch(
         _locate,
         len(positions),
-        inputs=[positions, geometry.cell_grid.id, args.cell_level, cells, coordinates],
+        inputs=[positions, geometry.cell_grid.id, levels, cells, coordinates],
         device=positions.device,
     )
     return cells, coordinates

@@ -55,7 +55,7 @@ def point_quadrature(space, positions, effective_weights):
     domain = fem.Cells(space.geometry)
     coordinates = positions
     if space.geometry.scalar_type == wp.float64 and isinstance(
-        space.geometry, fem.AdaptiveNanogrid
+        space.geometry, (fem.AdaptiveNanogrid, fem.Nanogrid)
     ):
         coordinates = locate_constraints(space.geometry, positions)
     quadrature = fem.PicQuadrature(domain, coordinates, measures=effective_weights)

@@ -97,7 +97,7 @@ def test_ordered_loads_preserve_fem_with_random_normal_coefficients():
             for d in range(1, 5)
         ]
         expected = assemble_reference_normal_loads(
-            tree, grid, normals, 4, 0, transfers, ordered_root=False
+            tree, grid, normals, 4, 0, transfers, ordered_root=False, stencil_loads=False
         )
         actual = ordered_normal_loads(tree, normals, 4)
         for a, e in zip(actual, expected):

@@ -89,10 +89,14 @@ def build_tree(normals,depth,full_depth,base_depth=None):
     device=normals.records.keys.device
     levels=[None]*(depth+1)
     basis=[None]*(depth+1)
-    count=len(normals.records.keys)
     sync=0.0
     requests=None
     for d in range(depth,-1,-1):
+        # Finer normal broods are already represented by `parents` below.
+        # Only seed this level's records instead of projecting every finer
+        # normal and sorting the same ancestor broods again at every depth.
+        records=normals.levels[d] if normals.levels is not None else normals.records
+        count=len(records.keys)
         # Current correctness path emits neighborhoods from unique parent nodes,
         # so temporary storage is O(active nodes * fixed stencil), never dense D.
         radius=2
@@ -119,7 +123,7 @@ def build_tree(normals,depth,full_depth,base_depth=None):
         np=8*len(parents.keys)
         total=count*8+nc+ns+np
         keys=wp.empty(2*total,dtype=wp.int64,device=device)
-        wp.launch(_seeds,(count,8),inputs=[normals.records.keys,normals.records.values,d,keys],device=device)
+        wp.launch(_seeds,(count,8),inputs=[records.keys,records.values,d,keys],device=device)
         if nc:
             wp.launch(_coarse,nc,inputs=[d,coarse_count,-2,count*8,keys],device=device)
         if ns:

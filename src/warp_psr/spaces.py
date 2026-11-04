@@ -68,12 +68,14 @@ class LevelTopology(SpaceTopology):
         self.arg.origins = wp.empty(count, dtype=wp.vec3, device=device)
         self.arg.scales = wp.empty(count, dtype=float, device=device)
         geo_arg = geometry.cell_arg_value(device)
+        cell_level = (geo_arg.cell_level if isinstance(geometry, fem.AdaptiveNanogrid)
+                      else wp.zeros(count, dtype=wp.uint8, device=device))
         wp.launch(
             _connect,
             count,
             inputs=[
                 geo_arg.cell_ijk,
-                geo_arg.cell_level,
+                cell_level,
                 keys,
                 depth,
                 finest,

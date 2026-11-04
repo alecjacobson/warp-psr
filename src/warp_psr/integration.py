@@ -107,3 +107,36 @@ def integration_grid(tree,normals,depth,dtype=wp.float32):
     wp.launch(_reorder,count,inputs=[xyz,levels,volume.id,reordered],device=device)
     coarsest=min(d for d,keys in enumerate(leaves) if len(keys))
     return fem.AdaptiveNanogrid(volume,cell_level=reordered,level_count=depth-coarsest+1,temporary_store=None,scalar_type=dtype)
+
+
+@wp.kernel
+def _level_cells(keys: wp.array(dtype=wp.int64), depth: int,
+                 xyz: wp.array(dtype=wp.vec3i), mask: wp.array(dtype=int)):
+    i, k = wp.tid()
+    c = coordinates(keys[i]) - wp.vec3i(k & 1, (k >> 1) & 1, (k >> 2) & 1)
+    xyz[i * 8 + k] = c
+    mask[i * 8 + k] = int(wp.min(c) >= 0 and wp.max(c) < 1 << depth)
+
+
+def level_integration_grid(tree, depth, dtype=wp.float32):
+    """Sparse cells touching the level's hats, for its remaining FEM forms.
+
+    Normal and stiffness stencils integrate analytically. Point forms need only
+    this level's support cells, not a covering multilevel partition of the cube.
+    The original adaptive partition remains available for verification.
+    """
+    basis = tree.basis[depth].keys
+    if not len(basis):
+        # Sparse inputs may stop refining before the requested maximum depth.
+        # Keep a valid covering grid for that empty terminal level.
+        return integration_grid(tree, None, depth, dtype=dtype)
+    device = basis.device
+    xyz = wp.empty(8 * len(basis), dtype=wp.vec3i, device=device)
+    mask = wp.empty(len(xyz), dtype=int, device=device)
+    wp.launch(_level_cells, (len(basis), 8), inputs=[basis, depth, xyz, mask], device=device)
+    h = 1.0 / (1 << depth)
+    # NanoVDB already deduplicates voxels. Pass candidates and their validity
+    # mask directly instead of sorting/compacting the same cells beforehand.
+    volume = wp.Volume.allocate_by_voxels(xyz, voxel_size=h, translation=(h/2,h/2,h/2),
+                                         point_mask=mask, device=device)
+    return fem.Nanogrid(volume, temporary_store=None, scalar_type=dtype)

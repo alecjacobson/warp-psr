@@ -1,4 +1,6 @@
-"""Reference multilevel normal constraints assembled with public Warp FEM forms.
+"""Reference multilevel normal constraints with verified tensor-product stencils.
+
+The public Warp FEM quadrature route remains available via stencil_loads=False.
 
 Coarse normal coefficients are prolonged only onto existing tree functions.
 The pinned reference uses the degree-one test-space transfer for these degree-two
@@ -17,6 +19,7 @@ from .keyed import coordinates
 from .normal_field import cache_normal_quadrature, assemble_normal_load
 from .spaces import make_level_space
 from .integration import integration_grid
+from .normal_stencils import assemble_normal_stencil
 
 wp.set_module_options({"fuse_fp": False})
 
@@ -70,6 +73,7 @@ def assemble_reference_normal_loads(
     operator_geometries=None,
     level_partitions=True,
     ordered_root=True,
+    stencil_loads=True,
 ):
     device = normals.records.keys.device
     dtype = (
@@ -107,7 +111,11 @@ def assemble_reference_normal_loads(
         own = SimpleNamespace(records=records, average=normals.average)
         has_cumulative = has_cumulative or bool(len(records.keys))
         # The reference begins normal splatting at base_depth.
-        if d >= base_depth and len(records.keys):
+        if d >= base_depth and stencil_loads:
+            same[d] = assemble_normal_stencil(tree.basis[d].keys, records, d, d)
+            if d > base_depth:
+                from_child[d - 1] = assemble_normal_stencil(tree.basis[d - 1].keys, records, d - 1, d)
+        elif d >= base_depth and len(records.keys):
             grid, resolution = geometry, finest
             if level_partitions and d < finest:
                 grid, resolution = integration_grid(tree, normals, d, dtype=dtype), d
@@ -150,17 +158,20 @@ def assemble_reference_normal_loads(
                     average=normals.average,
                 )
                 grid, resolution = geometry, finest
-                if level_partitions:
+                if stencil_loads:
+                    from_parent[d + 1] = assemble_normal_stencil(tree.basis[d + 1].keys, field.records, d + 1, d)
+                elif level_partitions:
                     if d + 1 not in operator_geometries:
                         operator_geometries[d + 1] = integration_grid(
                             tree, None, d + 1, dtype=dtype
                         )
                     grid, resolution = operator_geometries[d + 1], d + 1
-                cache = cache_normal_quadrature(grid, field, d, first_depth=d)
-                from_parent[d + 1] = assemble_normal_load(
-                    space(grid, d + 1, resolution), field, d, cache=cache
-                )
-                del cache
+                if not stencil_loads:
+                    cache = cache_normal_quadrature(grid, field, d, first_depth=d)
+                    from_parent[d + 1] = assemble_normal_load(
+                        space(grid, d + 1, resolution), field, d, cache=cache
+                    )
+                    del cache
                 del grid
             previous_keys, previous = keys, cumulative
     finer = wp.zeros_like(same[max_depth])

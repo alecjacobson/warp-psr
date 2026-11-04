@@ -129,11 +129,46 @@ def precision_kernels(dtype):
         if weight > dtype(0.0):
             out[0] = vec3(total[0] / weight, total[1] / weight, weight)
 
+    @wp.kernel
+    def _average_contributions(
+        normals: wp.array(dtype=vec3),
+        weights: wp.array(dtype=dtype),
+        dw: wp.array(dtype=vec2),
+        order: wp.array(dtype=int),
+        contributions: wp.array(dtype=vec3),
+    ):
+        i = wp.tid()
+        s = order[i]
+        value = vec3(dtype(0.0))
+        if wp.length(point_div(normals[s], weights[s])) > dtype(0.0):
+            product = dw[s] * weights[s]
+            value = vec3(product[0], product[1], weights[s])
+        contributions[i] = value
+
+    @wp.kernel(module="unique")
+    def _average_tiled(contributions: wp.array(dtype=vec3), out: wp.array(dtype=vec3)):
+        block, lane = wp.tid()
+        total = vec3(dtype(0.0))
+        # Cooperative loads hide memory latency; additions retain the exact
+        # serial input order and precision of ProjectiveData accumulation.
+        for begin in range(0, contributions.shape[0], 128):
+            tile = wp.tile_load(contributions, shape=128, offset=begin)
+            for j in range(wp.min(128, contributions.shape[0] - begin)):
+                value = wp.tile_extract(tile, j)
+                if value[2] > dtype(0.0):
+                    total += value
+        if lane == 0:
+            out[0] = vec3(dtype(0.0))
+            if total[2] > dtype(0.0):
+                out[0] = vec3(total[0] / total[2], total[1] / total[2], total[2])
+
     return SimpleNamespace(
         _input_order=_input_order,
         _splats=_splats,
         _negative=_negative,
         _average=_average,
+        _average_contributions=_average_contributions,
+        _average_tiled=_average_tiled,
     )
 
 
@@ -184,18 +219,12 @@ def build_normal_field(samples, density, minimum, maximum):
         kernels._negative, len(records.keys), inputs=[records.values], device=device
     )
     average = wp.empty(1, dtype=samples.positions.dtype, device=device)
-    wp.launch(
-        kernels._average,
-        1,
-        inputs=[
-            samples.normal_sums,
-            samples.weights,
-            density.depths_and_weights,
-            order,
-            average,
-        ],
-        device=device,
-    )
+    contributions = wp.empty(n, dtype=samples.positions.dtype, device=device)
+    wp.launch(kernels._average_contributions, n,
+              inputs=[samples.normal_sums, samples.weights,
+                      density.depths_and_weights, order, contributions], device=device)
+    wp.launch_tiled(kernels._average_tiled, dim=1,
+                    inputs=[contributions, average], block_dim=32, device=device)
     offsets = wp.empty(maximum + 2, dtype=int, device=device)
     wp.launch(
         _depth_offsets, maximum + 2, inputs=[records.keys, offsets], device=device
