@@ -37,7 +37,7 @@ def root_solver(method):
         return operator
 
     def solve(operator, b, x, **kwargs):
-        matrix = matrices.pop(id(operator), None)
+        matrix = matrices.get(id(operator))
         if matrix is None or matrix.shape != (8, 8):
             raise ValueError('This experiment requires the ordinary eight-row root')
         record = {'rows': matrix.shape[0], 'method': method}
