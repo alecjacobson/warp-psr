@@ -16,7 +16,8 @@ Both C++ builds use GCC 11.4, `-O2`, and no fast-math; the parallel build adds
 Makefile's `-O3 -ffast-math` release configuration.
 
 GPU medians use three warm reconstructions after the first invocation in a fresh
-process. Timings include Python orchestration and exclude input upload and queries.
+process, except the current depth-9 eagle row, which uses five. Timings include
+Python orchestration and exclude input upload and queries.
 The first invocation may reuse compiled kernels from disk. C++ medians use three
 subsequent fresh-process solves after an initial run; the timer brackets the
 unchanged `Solver::Solve`, excluding parsing, queries, exports, and process startup.
@@ -26,14 +27,14 @@ accuracy generation, and other benchmark jobs. The current timing sweep also
 monitors foreign CPU/GPU activity and retains interrupted attempts in the local
 audit.
 
-The depth-9 eagle now takes **0.285 s**, versus **4.884 s with four CPU threads**
-(17.12×), with a **2.33 GiB** peak pool. The
+The depth-9 eagle now takes **0.226 s**, versus **4.884 s with four CPU threads**
+(21.60×), with a **2.32 GiB** peak pool. The
 [direct screening comparison](results/screening-performance.json) measured
 0.854 s before and 0.490 s after eliminating fine-level FEM point assembly.
 The earlier [GPU pipeline comparison](results/gpu-pipeline-performance.json)
 measured 2.451 s for the original implementation and 0.860 s after its first
 optimization pass. All use the original 796,825 samples, depth 9, full depth 4
-and eight iterations. All 31 public accuracy cases pass on the final parallel-reduction
+and eight iterations. All 31 public accuracy cases pass on the final brood-union
 source without changing their tolerances.
 
 Direct prolongation CSR avoids transfer triplets and sorting; topology-preserving
@@ -54,7 +55,8 @@ seed expansion cut temporary storage. CUDA events measure stages without forcing
 the host to synchronize at every stage boundary; these stage durations include
 submission gaps and are not pure kernel timings.
 
-All GPU timings are fresh. CPU timings preserve their individual provenance with
+The depth-9 eagle GPU timing is fresh; other GPU rows retain the preceding
+parallel-isovalue revision. CPU timings preserve their individual provenance with
 identical inputs, parameters, CPU quota and reference builds. Both depth-9 OpenMP
 cases were remeasured in isolation; the torso result replaces a previously
 excluded repeat that overlapped an unrelated compilation.
@@ -78,6 +80,17 @@ The [isovalue comparison](results/isovalue-performance.json) includes a fresh
 five-run eagle comparison (303 ms before, 276 ms after), all public timings,
 validation and the isolation audit. The [relaxation comparison](results/wavefront-performance.json)
 retains the preceding launch-count measurements.
+
+Tree neighborhoods now deduplicate complete broods before expanding their eight
+children. Sorted parent prefix ranges place children directly in lexicographic
+order; active field keys are compacted in that same order. The next coarse level
+reuses the already unique parents. This eliminates duplicate-child sort traffic,
+the parent sort and the active-key sort without changing any support or active key.
+Signed-key radix-sort onesweep kernels now total **8.51 ms**, versus 32.7 ms
+in the preceding wavefront profile. The [tree comparison](results/broods-performance.json)
+records the isolated five-run eagle comparison (270 ms before, 226 ms after), the
+profile and all 31 unchanged public acceptance gates. Sixteen structural cases
+cover sparse/signed layouts, zero normal seeds and depths through 15 in both precisions.
 
 To profile a warmed reconstruction with Nsight Systems:
 
@@ -129,7 +142,7 @@ sample count changes; the depth and density settings remain fixed.
 | Case | Points | Depth | Density target | Active coefficients | Support nodes | GPU (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
 | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | Eagle depth 8 | 796,825 | 8 | 1.5 | 832,634 | 840,032 | 0.113 | 2.361 | 1.327 | 0.63 |
-| Eagle depth 9 | 796,825 | 9 | 1.5 | 3,323,866 | 3,331,592 | 0.285 | 9.367 | 4.884 | 2.33 |
+| Eagle depth 9 | 796,825 | 9 | 1.5 | 3,323,866 | 3,331,592 | 0.226 | 9.367 | 4.884 | 2.32 |
 | Torso 1m depth 8 | 1,000,000 | 8 | 1.5 | 479,386 | 486,472 | 0.086 | 1.543 | 0.945 | 0.40 |
 | Torso 1m depth 9 | 1,000,000 | 9 | 1.5 | 2,051,674 | 2,059,232 | 0.201 | 6.414 | 3.200 | 1.52 |
 

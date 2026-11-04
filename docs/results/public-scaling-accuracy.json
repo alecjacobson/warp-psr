@@ -1,5 +1,5 @@
 {
-  "scope": "Fixed public-cloud gates after parallel double-precision isovalue reduction",
+  "scope": "Fixed public-cloud gates after brood-level tree union and sorted child expansion",
   "suite": "scaling",
   "all_passed": true,
   "profiles": [
@@ -268,7 +268,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -293,7 +293,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -602,11 +602,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.013058719635009765,
-            "density": 0.022312032699584962,
-            "normal_field": 0.01106054401397705,
-            "tree": 0.02075484848022461,
-            "assembly_and_solve": 0.30124139404296874
+            "samples": 0.02344156837463379,
+            "density": 0.02220751953125,
+            "normal_field": 0.010279999732971192,
+            "tree": 0.012631967544555664,
+            "assembly_and_solve": 0.30366494750976564
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -616,7 +616,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.008120737969875336,
+          "measured_host_sync_seconds": 0.006781615316867828,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -929,7 +929,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -954,7 +954,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -1263,11 +1263,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.014140383720397949,
-            "density": 0.02218720054626465,
-            "normal_field": 0.009666943550109863,
-            "tree": 0.0168287353515625,
-            "assembly_and_solve": 0.3924939880371094
+            "samples": 0.012736639976501464,
+            "density": 0.021309728622436522,
+            "normal_field": 0.009657343864440919,
+            "tree": 0.012407744407653808,
+            "assembly_and_solve": 0.378865478515625
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -1277,7 +1277,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.008927147835493088,
+          "measured_host_sync_seconds": 0.007085878401994705,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -1590,7 +1590,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -1615,7 +1615,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -1924,11 +1924,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.013870688438415527,
-            "density": 0.02210153579711914,
-            "normal_field": 0.014171648025512695,
-            "tree": 0.026303775787353517,
-            "assembly_and_solve": 0.3120339050292969
+            "samples": 0.013160127639770508,
+            "density": 0.0217890567779541,
+            "normal_field": 0.013843968391418457,
+            "tree": 0.012465855598449708,
+            "assembly_and_solve": 0.3123760070800781
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -1938,7 +1938,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.02891293168067932,
+          "measured_host_sync_seconds": 0.017828166484832764,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -2251,7 +2251,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -2276,7 +2276,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -2585,11 +2585,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.011513216018676758,
-            "density": 0.02181020736694336,
-            "normal_field": 0.016288799285888673,
-            "tree": 0.024618400573730468,
-            "assembly_and_solve": 0.4617667236328125
+            "samples": 0.0126693115234375,
+            "density": 0.02183184051513672,
+            "normal_field": 0.013604543685913085,
+            "tree": 0.01410313606262207,
+            "assembly_and_solve": 0.3959311828613281
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -2599,7 +2599,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.025814611464738846,
+          "measured_host_sync_seconds": 0.02405397593975067,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -2917,7 +2917,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -2942,7 +2942,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -3256,11 +3256,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.01324617576599121,
-            "density": 0.021117792129516602,
-            "normal_field": 0.012173407554626465,
-            "tree": 0.02083072090148926,
-            "assembly_and_solve": 0.31012213134765626
+            "samples": 0.01355180835723877,
+            "density": 0.020905344009399415,
+            "normal_field": 0.012053824424743653,
+            "tree": 0.012153568267822266,
+            "assembly_and_solve": 0.291959228515625
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -3270,7 +3270,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.019438795745372772,
+          "measured_host_sync_seconds": 0.013746365904808044,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -3588,7 +3588,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -3613,7 +3613,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -3927,11 +3927,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.013203424453735351,
-            "density": 0.02199648094177246,
-            "normal_field": 0.01250592041015625,
-            "tree": 0.021475711822509767,
-            "assembly_and_solve": 0.44118002319335936
+            "samples": 0.01363424015045166,
+            "density": 0.022132415771484375,
+            "normal_field": 0.01273862361907959,
+            "tree": 0.013392767906188964,
+            "assembly_and_solve": 0.4003946533203125
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -3941,7 +3941,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.022411219775676727,
+          "measured_host_sync_seconds": 0.016460828483104706,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -4254,7 +4254,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -4279,7 +4279,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -4588,11 +4588,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.016191808700561524,
-            "density": 0.021501951217651367,
-            "normal_field": 0.011620991706848145,
-            "tree": 0.018014080047607423,
-            "assembly_and_solve": 0.2897912292480469
+            "samples": 0.018082880020141603,
+            "density": 0.02189763259887695,
+            "normal_field": 0.012231455802917481,
+            "tree": 0.012724191665649413,
+            "assembly_and_solve": 0.29091549682617185
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -4602,7 +4602,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.012515123933553696,
+          "measured_host_sync_seconds": 0.008002225309610367,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -4915,7 +4915,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -4940,7 +4940,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -5249,11 +5249,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.016368703842163088,
-            "density": 0.02151580810546875,
-            "normal_field": 0.01174995231628418,
-            "tree": 0.018119808197021484,
-            "assembly_and_solve": 0.38683453369140625
+            "samples": 0.017326656341552733,
+            "density": 0.022146175384521485,
+            "normal_field": 0.012201536178588867,
+            "tree": 0.01297379207611084,
+            "assembly_and_solve": 0.4135255126953125
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -5263,7 +5263,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.012240041047334671,
+          "measured_host_sync_seconds": 0.011074338108301163,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -5578,7 +5578,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -5603,7 +5603,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -5914,11 +5914,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.013689536094665528,
-            "density": 0.021248735427856446,
-            "normal_field": 0.008927935600280762,
-            "tree": 0.018289791107177735,
-            "assembly_and_solve": 0.3957265930175781
+            "samples": 0.015061023712158204,
+            "density": 0.021423744201660155,
+            "normal_field": 0.009117312431335449,
+            "tree": 0.013896800041198731,
+            "assembly_and_solve": 0.3799091186523437
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -5928,7 +5928,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.005760859698057175,
+          "measured_host_sync_seconds": 0.003637593239545822,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -6243,7 +6243,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -6268,7 +6268,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -6579,11 +6579,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.01600636863708496,
-            "density": 0.02173091125488281,
-            "normal_field": 0.010347040176391601,
-            "tree": 0.017566495895385743,
-            "assembly_and_solve": 0.3999176025390625
+            "samples": 0.014778112411499024,
+            "density": 0.021618560791015626,
+            "normal_field": 0.009967807769775391,
+            "tree": 0.012377856254577636,
+            "assembly_and_solve": 0.37449591064453125
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -6593,7 +6593,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.01088525727391243,
+          "measured_host_sync_seconds": 0.008425150066614151,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -6908,7 +6908,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -6933,7 +6933,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -7244,11 +7244,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.013047007560729981,
-            "density": 0.021663551330566407,
-            "normal_field": 0.01144707202911377,
-            "tree": 0.017801536560058593,
-            "assembly_and_solve": 0.3983703308105469
+            "samples": 0.011554335594177246,
+            "density": 0.02102012825012207,
+            "normal_field": 0.010869183540344239,
+            "tree": 0.01243734359741211,
+            "assembly_and_solve": 0.4864951171875
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -7258,7 +7258,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.008562576025724411,
+          "measured_host_sync_seconds": 0.01013941690325737,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -7576,7 +7576,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -7601,7 +7601,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -7915,11 +7915,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.011549152374267579,
-            "density": 0.021218591690063477,
-            "normal_field": 0.012240096092224121,
-            "tree": 0.021124799728393553,
-            "assembly_and_solve": 0.3988868408203125
+            "samples": 0.011631744384765625,
+            "density": 0.021389919281005858,
+            "normal_field": 0.012222304344177246,
+            "tree": 0.012604127883911133,
+            "assembly_and_solve": 0.390200927734375
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -7929,7 +7929,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.017289694398641586,
+          "measured_host_sync_seconds": 0.016351353377103806,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -8247,7 +8247,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -8272,7 +8272,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -8586,11 +8586,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.014467647552490234,
-            "density": 0.024458560943603515,
-            "normal_field": 0.017539072036743163,
-            "tree": 0.02720342445373535,
-            "assembly_and_solve": 0.4288648681640625
+            "samples": 0.013127455711364746,
+            "density": 0.021454240798950194,
+            "normal_field": 0.012444191932678223,
+            "tree": 0.012520928382873536,
+            "assembly_and_solve": 0.4629670715332031
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -8600,7 +8600,7 @@
             "7": 0,
             "8": 0
           },
-          "measured_host_sync_seconds": 0.01971086487174034,
+          "measured_host_sync_seconds": 0.01613389328122139,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -8919,7 +8919,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -8944,7 +8944,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -9277,11 +9277,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.010980192184448243,
-            "density": 0.02380739212036133,
-            "normal_field": 0.02121062469482422,
-            "tree": 0.04924588775634765,
-            "assembly_and_solve": 0.522525390625
+            "samples": 0.011381248474121093,
+            "density": 0.02267670440673828,
+            "normal_field": 0.020458431243896485,
+            "tree": 0.015313088417053223,
+            "assembly_and_solve": 0.49869436645507814
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -9292,7 +9292,7 @@
             "8": 0,
             "9": 0
           },
-          "measured_host_sync_seconds": 0.08844640105962753,
+          "measured_host_sync_seconds": 0.06015622243285179,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [
@@ -9608,7 +9608,7 @@
       "reconstruction": {
         "test": "Independent GPU reconstruction from oriented points",
         "reconstruction_compatibility": true,
-        "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+        "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
         "source_dirty": false,
         "production_source_sha256": {
           "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -9633,7 +9633,7 @@
           "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
           "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
           "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-          "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+          "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
           "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
         },
         "fixture_provenance": {
@@ -9963,11 +9963,11 @@
           "integration_cells": 0,
           "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
           "timings_seconds": {
-            "samples": 0.012769023895263671,
-            "density": 0.022608512878417968,
-            "normal_field": 0.019413824081420897,
-            "tree": 0.035244384765625,
-            "assembly_and_solve": 0.5292099609375
+            "samples": 0.014200703620910644,
+            "density": 0.02383180809020996,
+            "normal_field": 0.019780607223510743,
+            "tree": 0.014386495590209962,
+            "assembly_and_solve": 0.47248455810546874
           },
           "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
           "operator_integration_cells": {
@@ -9978,7 +9978,7 @@
             "8": 0,
             "9": 0
           },
-          "measured_host_sync_seconds": 0.05505932494997978,
+          "measured_host_sync_seconds": 0.03861800208687782,
           "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
           "exact_interpolation_behavior": "level-clustered approximate constraints",
           "cube_to_model": [

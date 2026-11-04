@@ -1,7 +1,7 @@
 {
   "test": "Independent GPU reconstruction from oriented points",
   "reconstruction_compatibility": true,
-  "source_revision": "c807d37f47ae6e65d542f6d4d7892abefc053720",
+  "source_revision": "af4919efd341be54a96fb1d5c6cc1b8c7c499efd",
   "source_dirty": false,
   "production_source_sha256": {
     "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
@@ -26,7 +26,7 @@
     "src/warp_psr/stiffness.py": "01d72e9d71efbbe4c8bb02129b12a99e80315438a0d02cde24b40aad92fc8df1",
     "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
     "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
-    "src/warp_psr/tree.py": "ad8634b0d69477875ddc359b93a06820902172e1deb249295f0176a0a08a0254",
+    "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
     "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
   },
   "fixture_provenance": {
@@ -359,11 +359,11 @@
     "integration_cells": 0,
     "integration_scope": "Materialized FEM cells; analytic stencils do not allocate an integration grid",
     "timings_seconds": {
-      "samples": 0.010980192184448243,
-      "density": 0.02380739212036133,
-      "normal_field": 0.02121062469482422,
-      "tree": 0.04924588775634765,
-      "assembly_and_solve": 0.522525390625
+      "samples": 0.011381248474121093,
+      "density": 0.02267670440673828,
+      "normal_field": 0.020458431243896485,
+      "tree": 0.015313088417053223,
+      "assembly_and_solve": 0.49869436645507814
     },
     "stage_timing_scope": "CUDA stream elapsed time, including submission gaps; no stage-boundary synchronization",
     "operator_integration_cells": {
@@ -374,7 +374,7 @@
       "8": 0,
       "9": 0
     },
-    "measured_host_sync_seconds": 0.08844640105962753,
+    "measured_host_sync_seconds": 0.06015622243285179,
     "sync_measurement_scope": "sample/density/normal/tree count reads, solver row counts and CG residual checks, final metadata; excludes Warp-internal synchronization",
     "exact_interpolation_behavior": "level-clustered approximate constraints",
     "cube_to_model": [
