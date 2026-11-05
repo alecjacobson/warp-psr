@@ -115,3 +115,68 @@ with individual first/warm runs and peak device-pool usage. It refuses foreign
 GPU compute workloads and profiles field evaluation and MC separately after
 timing. Input upload, bounds preparation, and validation/downloads are excluded.
 The published reconstruction-only 0.215-second result is not a mesh timing.
+
+### Full eagle measurements
+
+The 796,825-point eagle uses the published depth-9, full-depth-4, eight-iteration
+reconstruction on L40 with Warp 1.19.0+cu12. Each row uses a fresh process and five
+warm runs after the first invocation. The complete per-run evidence is in the
+[mesh report](results/gpu-meshing-performance.json).
+
+| Extraction grid | Backend | Field-to-mesh | Reconstruction + mesh | Peak device pool |
+| --- | --- | ---: | ---: | ---: |
+| 512³ nodes | Dense Warp MC | 277.7 ms | 488.1 ms | 7.568 GiB |
+| 512³ nodes | Sparse Warp MC | 95.6 ms | 309.6 ms | 2.344 GiB |
+| 1024³ nodes | Sparse Warp MC | 785.2 ms | 1,009.8 ms | 2.392 GiB |
+
+Sparse field-to-mesh is 2.91× faster than dense at 512³. These wall times include
+field evaluation, selection, allocation, and extraction. Separately instrumented
+CUDA elapsed times are 91.0 ms for field evaluation and 2.75 ms for sparse MC;
+they include submission gaps and exclude query generation/centering and final
+coordinate mapping. The sparse 512³ run evaluates 147,593,240 points, retaining
+656,131 cells and producing 656,754 vertices and 1,312,404 triangles. At 1024³ it
+retains 2,648,227 cells and produces 2,649,395 vertices and 5,296,568 triangles.
+
+The matched-grid check verifies every crossing cell, every retained corner value,
+unique sorted cell indices, raw vertex/triangle counts, and oriented geometric
+triangles. Dense/sparse maximum vertex displacement is 1.284e-6 model units.
+For the triangle comparison only, near-coincident positions are grouped within
+2e-6; raw mesh indices and counts remain unchanged. The CPU Lewiner extractor
+has a different ambiguity policy: it produces 656,752 vertices and 1,312,392
+triangles, with maximum bidirectional nearest-vertex displacement 1.493e-6.
+Its recorded 1.568-second warm extraction excludes field evaluation and transfer.
+All three meshes have 1,110 boundary edges, all on the extraction box, and no
+edges shared by more than two faces. The raw float32 meshes contain 16 zero-area
+triangles for dense Warp, 30 for sparse Warp, and 22 for CPU Lewiner; endpoint
+rounding can collapse these tiny triangles differently. Extraction preserves
+them rather than performing an implicit cleanup.
+
+All three 512³ meshes have centered-field residual RMS about 0.01174 and maximum
+about 0.14594 when evaluated in the reconstructed field. These are grid/linear
+interpolation errors, not the reconstruction's reference-field error. The
+1024³ sparse mesh reduces the RMS to about 0.002883 and maximum to about 0.06091.
+The [coverage report](results/gpu-meshing-validation.json) records the measurements
+and raw mesh edge incidence, including threshold degeneracies.
+
+All [31 public reconstruction gates](results/gpu-meshing-public.json) pass with
+unchanged tolerances and the original input/query hashes. The local suite and
+restored-fixture rerun total 387 passing tests and one expected upstream failure.
+Fresh-process A–B–B–A reconstruction-only checks use five warm runs per process:
+
+| Case | Baseline A | Candidate B | Candidate B | Baseline A |
+| --- | ---: | ---: | ---: | ---: |
+| Sphere | 45.46 ms | 45.88 ms | 43.18 ms | 44.39 ms |
+| Torus | 48.94 ms | 50.30 ms | 48.90 ms | 48.88 ms |
+| Eagle | 208.21 ms | 218.17 ms | 203.93 ms | 223.39 ms |
+
+The timings show no reproducible slowdown; device-pool peaks are byte-identical
+for each case. The baseline's production source is identical to pre-mesh main.
+Individual runs and environment data are included in the mesh report.
+
+Reproduce the geometric and CPU comparison after installing the visualization
+dependencies:
+
+```sh
+python -m tools.check_meshing --fixture .build/fixtures/eagle-full-d9-spsr \
+  --resolution 512 --output .build/eagle-mesh-validation.json
+```
