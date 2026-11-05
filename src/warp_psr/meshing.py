@@ -13,6 +13,7 @@ import warp as wp
 from warp.geometry import (IsoSurfaceMarchingCubes, sparse_marching_cubes,
                            sparse_marching_cubes_from_cells)
 from warp.utils import array_scan
+from .field import LevelField
 
 # Match Warp geometry's grid-position arithmetic, including fused operations.
 wp.set_module_options({"fuse_fp": True})
@@ -277,17 +278,25 @@ def extract_mesh(reconstruction, *, resolution, bounds, iso_value=None, differen
 
     Warp MC currently takes float32 fields. Float64 inputs fail explicitly.
     An optional one-element device ``iso_value`` array retains threshold gradients.
-    Differentiation is currently supported for a directly specified LevelField
-    without cumulative coefficients. It differentiates its tracked coefficients
-    and optional isovalue, with its transform fixed. The reconstruction solver's
-    input-point backward pass is tracked separately in issue #76.
+    With differentiable=True, a result from reconstruct_differentiable retains
+    gradients through mesh vertices to input positions, normals and isovalue.
+    Use the same tape as reconstruction. A direct LevelField without cumulative
+    coefficients also supports tracked coefficients and an optional isovalue.
+    Cell selection, bounds, connectivity and topology remain fixed.
     """
     field = getattr(reconstruction, 'field', reconstruction)
+    full_backward = not isinstance(field, LevelField)
+    if full_backward:
+        from .field_adjoint import DifferentiableField
+        if not isinstance(field, DifferentiableField):
+            raise TypeError('expected a LevelField or differentiable reconstruction field')
+        if not differentiable:
+            raise ValueError('a differentiable reconstruction requires differentiable=True for meshing')
     if field.coefficients.dtype != wp.float32:
         raise ValueError('Warp mesh extraction currently requires float32 fields')
-    if differentiable and (field.cumulative is not None or not field.coefficients.requires_grad):
+    if differentiable and not full_backward and (field.cumulative is not None or not field.coefficients.requires_grad):
         raise ValueError('differentiable meshing requires a direct LevelField with tracked coefficients; '
-                         'the reconstruction backward pass is not yet supported (#76)')
+                         'use reconstruct_differentiable for the reconstruction backward pass')
     device = field.coefficients.device
     if 'device' in options and wp.get_device(options['device']) != device:
         raise ValueError('mesh device must match the field device')
@@ -306,7 +315,10 @@ def extract_mesh(reconstruction, *, resolution, bounds, iso_value=None, differen
         iso = wp.full(1, float(iso_value), dtype=wp.float32, device=device)
 
     def sample(points):
-        values, _, _ = field.evaluate(points, requires_grad=differentiable)
+        if full_backward:
+            values, _, _ = field.evaluate(points)
+        else:
+            values, _, _ = field.evaluate(points, requires_grad=differentiable)
         out = wp.empty_like(values, requires_grad=differentiable)
         wp.launch(_center, len(values), inputs=[values, iso, out], device=device)
         return out

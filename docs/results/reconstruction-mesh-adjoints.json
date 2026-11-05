@@ -1,0 +1,1268 @@
+{
+  "dense": {
+    "input": {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d9-spsr",
+      "shape": "eagle"
+    },
+    "parameters": {
+      "name": "eagle-full-d9-spsr",
+      "dataset": "eagle",
+      "input": null,
+      "max_points": null,
+      "shape": "eagle",
+      "input_scale": 1.0,
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "count": 796825,
+      "seed": 2026,
+      "depth": 9,
+      "full_depth": 4,
+      "base_depth": 4,
+      "solve_depth": 9,
+      "kernel_depth": 7,
+      "scale": 1.1,
+      "samples_per_node": 1.5,
+      "cg_accuracy": 0.001,
+      "base_v_cycles": 1,
+      "weight": 2.0,
+      "exact": false,
+      "iters": 8,
+      "precision": "float",
+      "grid": 24,
+      "operators": false,
+      "align_dir": 0,
+      "degree": 1,
+      "boundary": "Neumann",
+      "confidence": false
+    },
+    "count": 796825,
+    "bounds": [
+      [
+        -3.354248040899327,
+        -1.971244542868922,
+        -3.366069584121638
+      ],
+      [
+        6.1143314001712294,
+        7.497334898201634,
+        6.1025098569489185
+      ]
+    ],
+    "backend": "dense",
+    "resolution": 512,
+    "runs": [
+      {
+        "iteration": 0,
+        "reconstruction_seconds": 0.5969025529921055,
+        "field_to_mesh_seconds": 0.17402752861380577,
+        "full_backward_seconds": 5.899103261530399,
+        "points_to_mesh_seconds": 0.7709300816059113,
+        "forward_and_backward_seconds": 6.670033343136311,
+        "peak_pool_bytes": 24740442536,
+        "mesh": {
+          "backend": "dense",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "field_evaluations": 134217728,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.01233187465080679,
+          "normals": 0.00016378538125189258
+        },
+        "uniform_normal_scale_derivative": 2.5778425598304496e-12,
+        "gpu_processes_before": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 488 MiB"
+        ],
+        "gpu_processes_after": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20606 MiB"
+        ]
+      },
+      {
+        "iteration": 1,
+        "reconstruction_seconds": 0.2006787434220314,
+        "field_to_mesh_seconds": 0.17585806548595428,
+        "full_backward_seconds": 5.649619087576866,
+        "points_to_mesh_seconds": 0.3765368089079857,
+        "forward_and_backward_seconds": 6.026155896484852,
+        "peak_pool_bytes": 24740458552,
+        "mesh": {
+          "backend": "dense",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "field_evaluations": 134217728,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012330923197162773,
+          "normals": 0.00016378538258298076
+        },
+        "uniform_normal_scale_derivative": -1.438528985049196e-13,
+        "gpu_processes_before": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20606 MiB"
+        ],
+        "gpu_processes_after": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ]
+      },
+      {
+        "iteration": 2,
+        "reconstruction_seconds": 0.22238804027438164,
+        "field_to_mesh_seconds": 0.12851203978061676,
+        "full_backward_seconds": 5.649112794548273,
+        "points_to_mesh_seconds": 0.3509000800549984,
+        "forward_and_backward_seconds": 6.0000128746032715,
+        "peak_pool_bytes": 24740458552,
+        "mesh": {
+          "backend": "dense",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "field_evaluations": 134217728,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012331171408502562,
+          "normals": 0.00016378537613450901
+        },
+        "uniform_normal_scale_derivative": 5.0298464698093354e-12,
+        "gpu_processes_before": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ],
+        "gpu_processes_after": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ]
+      },
+      {
+        "iteration": 3,
+        "reconstruction_seconds": 0.2129019983112812,
+        "field_to_mesh_seconds": 0.12075434997677803,
+        "full_backward_seconds": 5.648913502693176,
+        "points_to_mesh_seconds": 0.33365634828805923,
+        "forward_and_backward_seconds": 5.9825698509812355,
+        "peak_pool_bytes": 24740458552,
+        "mesh": {
+          "backend": "dense",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "field_evaluations": 134217728,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012331917797940527,
+          "normals": 0.00016378538045631674
+        },
+        "uniform_normal_scale_derivative": -6.989607011375264e-12,
+        "gpu_processes_before": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ],
+        "gpu_processes_after": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ]
+      },
+      {
+        "iteration": 4,
+        "reconstruction_seconds": 0.2113151252269745,
+        "field_to_mesh_seconds": 0.1190907470881939,
+        "full_backward_seconds": 5.645864751189947,
+        "points_to_mesh_seconds": 0.3304058723151684,
+        "forward_and_backward_seconds": 5.9762706235051155,
+        "peak_pool_bytes": 24740458552,
+        "mesh": {
+          "backend": "dense",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "field_evaluations": 134217728,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012331338957002459,
+          "normals": 0.00016378538229994057
+        },
+        "uniform_normal_scale_derivative": -1.1736638368901706e-12,
+        "gpu_processes_before": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ],
+        "gpu_processes_after": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ]
+      },
+      {
+        "iteration": 5,
+        "reconstruction_seconds": 0.19984373077750206,
+        "field_to_mesh_seconds": 0.12525194138288498,
+        "full_backward_seconds": 5.645607706159353,
+        "points_to_mesh_seconds": 0.32509567216038704,
+        "forward_and_backward_seconds": 5.97070337831974,
+        "peak_pool_bytes": 24740458552,
+        "mesh": {
+          "backend": "dense",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "field_evaluations": 134217728,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012332096094712062,
+          "normals": 0.00016378537845212435
+        },
+        "uniform_normal_scale_derivative": -9.590985438848585e-12,
+        "gpu_processes_before": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ],
+        "gpu_processes_after": [
+          "729418, /home/horde/projects/warp-psr/.venv/bin/python, 20574 MiB"
+        ]
+      }
+    ],
+    "warm_medians": {
+      "reconstruction_seconds": 0.2113151252269745,
+      "field_to_mesh_seconds": 0.12525194138288498,
+      "full_backward_seconds": 5.648913502693176,
+      "points_to_mesh_seconds": 0.33365634828805923,
+      "forward_and_backward_seconds": 5.9825698509812355
+    },
+    "profile_device_elapsed_seconds": {
+      "field_evaluation_forward": 0.08964704132080079,
+      "marching_cubes_forward": 0.026900415420532228,
+      "reconstruction_backward": 0.4045010681152344,
+      "full_backward": 5.55903173828125,
+      "mesh_and_field_backward": 5.154530670166016
+    },
+    "source_revision": "ea46fe411223397849df5106e86f01894beb7f75",
+    "source_dirty": false,
+    "production_source_sha256": {
+      "src/warp_psr/__init__.py": "98d6a882847878428f300fc0f88ab639a0662431fb38c9ebd24a540a29ad171c",
+      "src/warp_psr/assembly_adjoint.py": "bcbe7d9feddac5327f37cc93936564ff099a3897983c6f16457ab609a2113d28",
+      "src/warp_psr/cascadic_adjoint.py": "3a8d99d80816056f3f52771aa3300503fe189916ce66247f45a86244d7661d85",
+      "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+      "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+      "src/warp_psr/field.py": "54d00fc4ad8cd79ef068b5300ac2cec2b667423177775531f73d219d87400be6",
+      "src/warp_psr/field_adjoint.py": "adeed10ff9ebc76e502823295eadd9e7ec8c39b15cd59374ab6d8f93629a2df7",
+      "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+      "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+      "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+      "src/warp_psr/meshing.py": "e62fa8d821b56c1675c93bd345bd71c21bb5e4f2e090599433be0de9ca2cd36d",
+      "src/warp_psr/multigrid_adjoint.py": "c5842b6f9bdcc484fc269ec656c4f9ba6f6dc91b1d553fe6bf3fa0c1b2eceb47",
+      "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+      "src/warp_psr/normal_load_adjoint.py": "8550df28322a5d56297bd826e9107966f44e4c035437ded47272c641a390ae46",
+      "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+      "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+      "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+      "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+      "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+      "src/warp_psr/reconstruction.py": "ac685a33cbd8f15ec5d6472f4089ec881fdac6eede0521dccc923ca6eab15075",
+      "src/warp_psr/reconstruction_adjoint.py": "fc6e4408ffd7d5f8615312a6e179f62b8a4171bee9a58c168136d8802199dd81",
+      "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+      "src/warp_psr/relaxation_adjoint.py": "ce5c9e30de6a6df053c4c325ce4b3897a825038cf007a11fc49887661db55421",
+      "src/warp_psr/sample_adjoint.py": "4d805fce62d04b0cbf0322eef2f8a9e2bb46bb90e99401993df669bbf0233911",
+      "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+      "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+      "src/warp_psr/solver.py": "1e888adaa06f045bc3b2ff8351bd2521dee9b040a6d49c2b8fc4dcb34ecd4906",
+      "src/warp_psr/solver_adjoint.py": "c3d6780c51b4f82041492235d3e5d9eb98bbf57a2594bc747330b4afad5fbd4f",
+      "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+      "src/warp_psr/splat_adjoint.py": "5ef1a6708305eded3bcadc492850730a4ede25b2486b56bd89c941f086eb6b88",
+      "src/warp_psr/stiffness.py": "51327ae8942fe159cf759da991a0ad277ed16e5f7ddb84ee70665ff915121425",
+      "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+      "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+      "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
+      "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+    },
+    "warp": "1.19.0",
+    "environment": {
+      "captured_utc": "2026-11-05T12:02:30.337123+00:00",
+      "logical_cpus": 128,
+      "affinity_cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127
+      ],
+      "visible_cgroup_quotas": [
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+          "cpu_max": "400000 100000",
+          "cpu_equivalents": 4.0
+        },
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+          "cpu_max": "400000 100000",
+          "cpu_equivalents": 4.0
+        },
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice",
+          "cpu_max": "max 100000",
+          "cpu_equivalents": null
+        },
+        {
+          "group": "kubepods.slice",
+          "cpu_max": "max 100000",
+          "cpu_equivalents": null
+        }
+      ],
+      "minimum_visible_cpu_quota": 4.0,
+      "cgroup_cpu_counters": [
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+          "counters": {
+            "usage_usec": 70912468947,
+            "user_usec": 65358584921,
+            "system_usec": 5553884025,
+            "nr_periods": 1083216,
+            "nr_throttled": 75359,
+            "throttled_usec": 184046462479
+          }
+        },
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+          "counters": {
+            "usage_usec": 70912538901,
+            "user_usec": 65358598179,
+            "system_usec": 5553940721,
+            "nr_periods": 1083232,
+            "nr_throttled": 75750,
+            "throttled_usec": 176533507187
+          }
+        },
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice",
+          "counters": {
+            "usage_usec": 19174209154328,
+            "user_usec": 14799974504784,
+            "system_usec": 4374234649544,
+            "nr_periods": 0,
+            "nr_throttled": 0,
+            "throttled_usec": 0
+          }
+        },
+        {
+          "group": "kubepods.slice",
+          "counters": {
+            "usage_usec": 52526893801423,
+            "user_usec": 36136153426882,
+            "system_usec": 16390740374540,
+            "nr_periods": 0,
+            "nr_throttled": 0,
+            "throttled_usec": 0
+          }
+        },
+        {
+          "group": ".",
+          "counters": {
+            "usage_usec": 67142309344000,
+            "user_usec": 43679731396000,
+            "system_usec": 23462577948000,
+            "nr_periods": 0,
+            "nr_throttled": 0,
+            "throttled_usec": 0
+          }
+        }
+      ],
+      "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+    },
+    "gpu": "NVIDIA L40, 570.158.01",
+    "loss": "Mean vertex dot (1, 0.3, -0.2); connectivity and bounds held fixed.",
+    "scope": "Isolated wall time with GPU completion. Upload, bounds/seed preparation and validation excluded. Full backward includes MC, field and reconstruction to input points/normals. Peak pool includes retained tapes and excludes native CUDA graph storage.",
+    "profile_scope": "Separate invocation: CUDA stream elapsed time includes host submission gaps. Mesh/field backward is total minus the reconstruction callback; includes cumulative coefficient and transform VJPs. Forward field time excludes query generation/centering; MC excludes selection and coordinate mapping.",
+    "first_call": "First process invocation may reuse disk kernel cache."
+  },
+  "sparse": {
+    "input": {
+      "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+      "input_source": {
+        "source_file": "eagle.points.ply",
+        "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+        "original_count": 796825,
+        "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+        "ignored_properties": [
+          "red",
+          "green",
+          "blue",
+          "alpha"
+        ],
+        "selection": "all rows in original file order",
+        "dataset": "eagle",
+        "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+        "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+        "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+        "selected_count": 796825
+      },
+      "seed": 2026,
+      "fixture": "eagle-full-d9-spsr",
+      "shape": "eagle"
+    },
+    "parameters": {
+      "name": "eagle-full-d9-spsr",
+      "dataset": "eagle",
+      "input": null,
+      "max_points": null,
+      "shape": "eagle",
+      "input_scale": 1.0,
+      "translation": [
+        0.0,
+        0.0,
+        0.0
+      ],
+      "count": 796825,
+      "seed": 2026,
+      "depth": 9,
+      "full_depth": 4,
+      "base_depth": 4,
+      "solve_depth": 9,
+      "kernel_depth": 7,
+      "scale": 1.1,
+      "samples_per_node": 1.5,
+      "cg_accuracy": 0.001,
+      "base_v_cycles": 1,
+      "weight": 2.0,
+      "exact": false,
+      "iters": 8,
+      "precision": "float",
+      "grid": 24,
+      "operators": false,
+      "align_dir": 0,
+      "degree": 1,
+      "boundary": "Neumann",
+      "confidence": false
+    },
+    "count": 796825,
+    "bounds": [
+      [
+        -3.354248040899327,
+        -1.971244542868922,
+        -3.366069584121638
+      ],
+      [
+        6.1143314001712294,
+        7.497334898201634,
+        6.1025098569489185
+      ]
+    ],
+    "backend": "sparse",
+    "resolution": 512,
+    "runs": [
+      {
+        "iteration": 0,
+        "reconstruction_seconds": 0.5669747665524483,
+        "field_to_mesh_seconds": 0.1981220506131649,
+        "full_backward_seconds": 6.4591409377753735,
+        "points_to_mesh_seconds": 0.7650968171656132,
+        "forward_and_backward_seconds": 7.224237754940987,
+        "peak_pool_bytes": 20526840950,
+        "mesh": {
+          "backend": "sparse",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "retained_cells": 656131,
+          "slab_size": 16,
+          "selection_bytes": 50037312,
+          "peak_slab_nodes": 4456448,
+          "field_evaluations": 147593240,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012330441085748666,
+          "normals": 0.00016378539333031396
+        },
+        "uniform_normal_scale_derivative": -4.285320810792541e-12,
+        "gpu_processes_before": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 488 MiB"
+        ],
+        "gpu_processes_after": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16446 MiB"
+        ]
+      },
+      {
+        "iteration": 1,
+        "reconstruction_seconds": 0.19900239259004593,
+        "field_to_mesh_seconds": 0.10700716823339462,
+        "full_backward_seconds": 6.230374310165644,
+        "points_to_mesh_seconds": 0.30600956082344055,
+        "forward_and_backward_seconds": 6.536383870989084,
+        "peak_pool_bytes": 20526856966,
+        "mesh": {
+          "backend": "sparse",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "retained_cells": 656131,
+          "slab_size": 16,
+          "selection_bytes": 50037312,
+          "peak_slab_nodes": 4456448,
+          "field_evaluations": 147593240,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012331610918001513,
+          "normals": 0.00016378538661517846
+        },
+        "uniform_normal_scale_derivative": 2.7979407448037173e-13,
+        "gpu_processes_before": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16446 MiB"
+        ],
+        "gpu_processes_after": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ]
+      },
+      {
+        "iteration": 2,
+        "reconstruction_seconds": 0.2220025695860386,
+        "field_to_mesh_seconds": 0.10552102699875832,
+        "full_backward_seconds": 6.232514411211014,
+        "points_to_mesh_seconds": 0.3275235965847969,
+        "forward_and_backward_seconds": 6.560038007795811,
+        "peak_pool_bytes": 20526856966,
+        "mesh": {
+          "backend": "sparse",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "retained_cells": 656131,
+          "slab_size": 16,
+          "selection_bytes": 50037312,
+          "peak_slab_nodes": 4456448,
+          "field_evaluations": 147593240,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012331639199076403,
+          "normals": 0.00016378538815890872
+        },
+        "uniform_normal_scale_derivative": 2.222762451651159e-12,
+        "gpu_processes_before": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ],
+        "gpu_processes_after": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ]
+      },
+      {
+        "iteration": 3,
+        "reconstruction_seconds": 0.20258866250514984,
+        "field_to_mesh_seconds": 0.10824522748589516,
+        "full_backward_seconds": 6.231087107211351,
+        "points_to_mesh_seconds": 0.310833889991045,
+        "forward_and_backward_seconds": 6.541920997202396,
+        "peak_pool_bytes": 20526856966,
+        "mesh": {
+          "backend": "sparse",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "retained_cells": 656131,
+          "slab_size": 16,
+          "selection_bytes": 50037312,
+          "peak_slab_nodes": 4456448,
+          "field_evaluations": 147593240,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012331894325131291,
+          "normals": 0.0001637853913694066
+        },
+        "uniform_normal_scale_derivative": 1.1087471674045963e-12,
+        "gpu_processes_before": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ],
+        "gpu_processes_after": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ]
+      },
+      {
+        "iteration": 4,
+        "reconstruction_seconds": 0.2075406312942505,
+        "field_to_mesh_seconds": 0.10648813471198082,
+        "full_backward_seconds": 6.230483062565327,
+        "points_to_mesh_seconds": 0.3140287660062313,
+        "forward_and_backward_seconds": 6.544511828571558,
+        "peak_pool_bytes": 20526856966,
+        "mesh": {
+          "backend": "sparse",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "retained_cells": 656131,
+          "slab_size": 16,
+          "selection_bytes": 50037312,
+          "peak_slab_nodes": 4456448,
+          "field_evaluations": 147593240,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012334728973604483,
+          "normals": 0.0001637853905663207
+        },
+        "uniform_normal_scale_derivative": -1.053939641287633e-12,
+        "gpu_processes_before": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ],
+        "gpu_processes_after": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ]
+      },
+      {
+        "iteration": 5,
+        "reconstruction_seconds": 0.1994798742234707,
+        "field_to_mesh_seconds": 0.10439853742718697,
+        "full_backward_seconds": 6.232539776712656,
+        "points_to_mesh_seconds": 0.30387841165065765,
+        "forward_and_backward_seconds": 6.536418188363314,
+        "peak_pool_bytes": 20526856966,
+        "mesh": {
+          "backend": "sparse",
+          "resolution": [
+            512,
+            512,
+            512
+          ],
+          "bounds": [
+            [
+              -3.354248046875,
+              -1.9712445735931396,
+              -3.3660695552825928
+            ],
+            [
+              6.114331245422363,
+              7.497334957122803,
+              6.10250997543335
+            ]
+          ],
+          "precision": "float32",
+          "cell_selection": "fixed for backward",
+          "retained_cells": 656131,
+          "slab_size": 16,
+          "selection_bytes": 50037312,
+          "peak_slab_nodes": 4456448,
+          "field_evaluations": 147593240,
+          "vertices": 656754,
+          "triangles": 1312404
+        },
+        "gradient_norms": {
+          "positions": 0.012331875996446962,
+          "normals": 0.00016378538969842693
+        },
+        "uniform_normal_scale_derivative": 1.2724967413446287e-12,
+        "gpu_processes_before": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ],
+        "gpu_processes_after": [
+          "729136, /home/horde/projects/warp-psr/.venv/bin/python, 16382 MiB"
+        ]
+      }
+    ],
+    "warm_medians": {
+      "reconstruction_seconds": 0.20258866250514984,
+      "field_to_mesh_seconds": 0.10648813471198082,
+      "full_backward_seconds": 6.231087107211351,
+      "points_to_mesh_seconds": 0.310833889991045,
+      "forward_and_backward_seconds": 6.541920997202396
+    },
+    "profile_device_elapsed_seconds": {
+      "field_evaluation_forward": 0.09402051234245302,
+      "marching_cubes_forward": 0.003336159944534302,
+      "reconstruction_backward": 0.4361860656738281,
+      "full_backward": 6.16914111328125,
+      "mesh_and_field_backward": 5.732955047607422
+    },
+    "source_revision": "ea46fe411223397849df5106e86f01894beb7f75",
+    "source_dirty": false,
+    "production_source_sha256": {
+      "src/warp_psr/__init__.py": "98d6a882847878428f300fc0f88ab639a0662431fb38c9ebd24a540a29ad171c",
+      "src/warp_psr/assembly_adjoint.py": "bcbe7d9feddac5327f37cc93936564ff099a3897983c6f16457ab609a2113d28",
+      "src/warp_psr/cascadic_adjoint.py": "3a8d99d80816056f3f52771aa3300503fe189916ce66247f45a86244d7661d85",
+      "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+      "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+      "src/warp_psr/field.py": "54d00fc4ad8cd79ef068b5300ac2cec2b667423177775531f73d219d87400be6",
+      "src/warp_psr/field_adjoint.py": "adeed10ff9ebc76e502823295eadd9e7ec8c39b15cd59374ab6d8f93629a2df7",
+      "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+      "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+      "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+      "src/warp_psr/meshing.py": "e62fa8d821b56c1675c93bd345bd71c21bb5e4f2e090599433be0de9ca2cd36d",
+      "src/warp_psr/multigrid_adjoint.py": "c5842b6f9bdcc484fc269ec656c4f9ba6f6dc91b1d553fe6bf3fa0c1b2eceb47",
+      "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+      "src/warp_psr/normal_load_adjoint.py": "8550df28322a5d56297bd826e9107966f44e4c035437ded47272c641a390ae46",
+      "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+      "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+      "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+      "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+      "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+      "src/warp_psr/reconstruction.py": "ac685a33cbd8f15ec5d6472f4089ec881fdac6eede0521dccc923ca6eab15075",
+      "src/warp_psr/reconstruction_adjoint.py": "fc6e4408ffd7d5f8615312a6e179f62b8a4171bee9a58c168136d8802199dd81",
+      "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+      "src/warp_psr/relaxation_adjoint.py": "ce5c9e30de6a6df053c4c325ce4b3897a825038cf007a11fc49887661db55421",
+      "src/warp_psr/sample_adjoint.py": "4d805fce62d04b0cbf0322eef2f8a9e2bb46bb90e99401993df669bbf0233911",
+      "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+      "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+      "src/warp_psr/solver.py": "1e888adaa06f045bc3b2ff8351bd2521dee9b040a6d49c2b8fc4dcb34ecd4906",
+      "src/warp_psr/solver_adjoint.py": "c3d6780c51b4f82041492235d3e5d9eb98bbf57a2594bc747330b4afad5fbd4f",
+      "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+      "src/warp_psr/splat_adjoint.py": "5ef1a6708305eded3bcadc492850730a4ede25b2486b56bd89c941f086eb6b88",
+      "src/warp_psr/stiffness.py": "51327ae8942fe159cf759da991a0ad277ed16e5f7ddb84ee70665ff915121425",
+      "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+      "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+      "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
+      "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+    },
+    "warp": "1.19.0",
+    "environment": {
+      "captured_utc": "2026-11-05T12:01:22.232950+00:00",
+      "logical_cpus": 128,
+      "affinity_cpus": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        55,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        70,
+        71,
+        72,
+        73,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        85,
+        86,
+        87,
+        88,
+        89,
+        90,
+        91,
+        92,
+        93,
+        94,
+        95,
+        96,
+        97,
+        98,
+        99,
+        100,
+        101,
+        102,
+        103,
+        104,
+        105,
+        106,
+        107,
+        108,
+        109,
+        110,
+        111,
+        112,
+        113,
+        114,
+        115,
+        116,
+        117,
+        118,
+        119,
+        120,
+        121,
+        122,
+        123,
+        124,
+        125,
+        126,
+        127
+      ],
+      "visible_cgroup_quotas": [
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+          "cpu_max": "400000 100000",
+          "cpu_equivalents": 4.0
+        },
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+          "cpu_max": "400000 100000",
+          "cpu_equivalents": 4.0
+        },
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice",
+          "cpu_max": "max 100000",
+          "cpu_equivalents": null
+        },
+        {
+          "group": "kubepods.slice",
+          "cpu_max": "max 100000",
+          "cpu_equivalents": null
+        }
+      ],
+      "minimum_visible_cpu_quota": 4.0,
+      "cgroup_cpu_counters": [
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+          "counters": {
+            "usage_usec": 70853299426,
+            "user_usec": 65304753424,
+            "system_usec": 5548546002,
+            "nr_periods": 1082542,
+            "nr_throttled": 75340,
+            "throttled_usec": 183971069835
+          }
+        },
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+          "counters": {
+            "usage_usec": 70853371971,
+            "user_usec": 65304765192,
+            "system_usec": 5548606779,
+            "nr_periods": 1082558,
+            "nr_throttled": 75731,
+            "throttled_usec": 176458507949
+          }
+        },
+        {
+          "group": "kubepods.slice/kubepods-burstable.slice",
+          "counters": {
+            "usage_usec": 19174136668059,
+            "user_usec": 14799909130365,
+            "system_usec": 4374227537693,
+            "nr_periods": 0,
+            "nr_throttled": 0,
+            "throttled_usec": 0
+          }
+        },
+        {
+          "group": "kubepods.slice",
+          "counters": {
+            "usage_usec": 52526667471615,
+            "user_usec": 36136009843388,
+            "system_usec": 16390657628226,
+            "nr_periods": 0,
+            "nr_throttled": 0,
+            "throttled_usec": 0
+          }
+        },
+        {
+          "group": ".",
+          "counters": {
+            "usage_usec": 67142043780000,
+            "user_usec": 43679565256000,
+            "system_usec": 23462478524000,
+            "nr_periods": 0,
+            "nr_throttled": 0,
+            "throttled_usec": 0
+          }
+        }
+      ],
+      "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+    },
+    "gpu": "NVIDIA L40, 570.158.01",
+    "loss": "Mean vertex dot (1, 0.3, -0.2); connectivity and bounds held fixed.",
+    "scope": "Isolated wall time with GPU completion. Upload, bounds/seed preparation and validation excluded. Full backward includes MC, field and reconstruction to input points/normals. Peak pool includes retained tapes and excludes native CUDA graph storage.",
+    "profile_scope": "Separate invocation: CUDA stream elapsed time includes host submission gaps. Mesh/field backward is total minus the reconstruction callback; includes cumulative coefficient and transform VJPs. Forward field time excludes query generation/centering; MC excludes selection and coordinate mapping.",
+    "first_call": "First process invocation may reuse disk kernel cache."
+  }
+}

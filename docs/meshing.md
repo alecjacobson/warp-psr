@@ -76,19 +76,20 @@ need earlier invocations during backward. Streaming selection can retain extra
 callback intermediates when a tape is active. Forward-only callbacks should
 allocate untracked arrays.
 
-`extract_mesh(..., differentiable=True)` currently supports a directly specified
+`extract_mesh(..., differentiable=True)` also supports a directly specified
 `LevelField` with tracked coefficients and no cumulative coefficients; its
 transform stays fixed. A one-element tracked float32 `iso_value` device array is
 subtracted before extraction at zero, retaining threshold gradients.
-`LevelField.evaluate(..., requires_grad=True)` also tracks output values and
+For these non-cumulative fields, `LevelField.evaluate(..., requires_grad=True)` tracks output values and
 spatial gradients with respect to tracked array inputs.
 
-**This does not yet differentiate reconstruction from input points.** Current
-`Reconstruction` objects explicitly reject differentiable meshing. The assembly,
-solver, and transform backward path remains
-[issue #76](https://github.com/alecjacobson/warp-psr/issues/76); chaining it to mesh
-vertices remains part of [issue #77](https://github.com/alecjacobson/warp-psr/issues/77).
-No converged-system adjoint is silently substituted for the finite-iteration solve.
+Results from `reconstruct_differentiable` retain the finite reconstruction
+backward pass. Use `extract_mesh(..., differentiable=True)` on the same tape to
+propagate dense/sparse MC vertex losses to input positions and normals; see the
+[reconstruction example and contract](differentiability.md). Ordinary
+`Reconstruction` objects still reject differentiable meshing because their
+forward did not retain that connection. No converged-system adjoint is
+substituted for the finite-iteration solve.
 
 Warp MC consumes float32 corner values and returns float32 vertices. Float64
 reconstruction fields are rejected instead of silently rounding or detaching
@@ -179,4 +180,38 @@ dependencies:
 ```sh
 python -m tools.check_meshing --fixture .build/fixtures/eagle-full-d9-spsr \
   --resolution 512 --output .build/eagle-mesh-validation.json
+```
+
+## Complete mesh-loss backward measurements
+
+The optional reconstruction backward path is also measured on the full eagle
+at 512³, using the mean vertex dot product with `(1, 0.3, -0.2)` as a loss.
+Each backend runs in a separate isolated process with five warm repetitions;
+the [per-run report](results/reconstruction-mesh-adjoints.json) includes first
+invocations, source hashes, counts, and separate event profiles. Upload, bounds
+preparation, loss-seed preparation and validation are excluded from wall times.
+
+| Backend | Reconstruction | Field-to-mesh | Full backward | Forward + backward | Peak pool |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Dense | 211.3 ms | 125.3 ms | 5.649 s | 5.983 s | 23.041 GiB |
+| Sparse | 202.6 ms | 106.5 ms | 6.231 s | 6.542 s | 19.117 GiB |
+
+Both produce 656,754 vertices and 1,312,404 triangles, with finite input-position
+and normal gradients and the expected zero normal-magnitude derivative.
+These timings include the complete mesh-to-input backward path and are separate
+from the reconstruction-only backward timings. Peak pool includes retained tapes
+and excludes native CUDA graph storage.
+
+Sparse classification currently retains all slab callback intermediates when
+recording gradients, even though crossing selection is fixed. Its separate event
+profile spends 5.733 s in mesh/field backward and 0.436 s in reconstruction
+backward. Dense spends 5.155 s and 0.405 s respectively. Stream event timings
+include host submission gaps; forward sampling and MC profiles are also in the
+report. Avoiding classification retention and zero-VJP traversal is tracked in
+[#84](https://github.com/alecjacobson/warp-psr/issues/84). The forward-only sparse
+memory/time advantages above do not apply to this initial tracked implementation.
+
+```sh
+python -m tools.benchmark_mesh_adjoint --fixture .build/fixtures/eagle-full-d9-spsr \
+  --resolution 512 --backend sparse --repeats 5 --output .build/eagle-mesh-backward.json
 ```

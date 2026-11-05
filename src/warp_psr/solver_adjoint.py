@@ -35,6 +35,28 @@ def precision_kernels(dtype):
         out[i] = v
 
     @wp.kernel(module='unique')
+    def tiled_matvec(offsets: wp.array(dtype=int), counts: wp.array(dtype=int), columns: wp.array(dtype=int),
+                     values: wp.array(dtype=dtype), x: wp.array(dtype=dtype), y: wp.array(dtype=dtype),
+                     alpha: dtype, beta: dtype, out: wp.array(dtype=dtype)):
+        row, lane = wp.tid()
+        if beta == dtype(0):
+            total = wp.tile_zeros(shape=(1,), dtype=dtype)
+        else:
+            total = beta * wp.tile_load(y, 1, row)
+        if alpha != dtype(0):
+            begin = offsets[row]
+            count = offsets[row + 1] - begin
+            if counts.shape[0]:
+                count = counts[row]
+            lane_sum = dtype(0)
+            for column in range(lane, count, 64):
+                entry = begin + column
+                lane_sum += values[entry] * x[columns[entry]]
+            lane_sum *= alpha
+            total += wp.tile_sum(wp.tile(lane_sum))
+        wp.tile_store(out, total, row)
+
+    @wp.kernel(module='unique')
     def dot(a: wp.array(dtype=dtype), b: wp.array(dtype=dtype), out: wp.array(dtype=dtype)):
         column, block, lane = wp.tid()
         av = wp.tile_load(a, shape=512)
@@ -77,16 +99,16 @@ def precision_kernels(dtype):
             out[i] = y[i] + alpha * mean
 
     wp.set_module_options({'fuse_fp': False}, module=add_mean.module)
-    return SimpleNamespace(copy=copy, matvec=matvec, dot=dot, tolerance=tolerance, step=step,
+    return SimpleNamespace(copy=copy, matvec=matvec, tiled_matvec=tiled_matvec, dot=dot, tolerance=tolerance, step=step,
                            direction=direction, add_mean=add_mean)
 
 
 def functional_spmv(matrix, x, y=None, *, alpha=1.0, beta=0.0):
     """Scalar CSR ``alpha*A*x + beta*y`` with immutable inputs and a new output.
 
-    Uses the serial-per-row arithmetic of Warp's non-tiled BSR product. This is
-    the reconstruction stencil path, not the tiled long-row algorithm. CSR
-    topology is fixed; tracked matrix values, x and y receive gradients.
+    Matches Warp's serial or 64-lane tiled reduction using its nnz-capacity
+    heuristic. Coarse Galerkin capacity can select tiles even when actual rows
+    are short. CSR topology is fixed; tracked values, x and y receive gradients.
     """
     dtype, device = x.dtype, x.device
     if (dtype not in (wp.float32, wp.float64) or matrix.values.dtype != dtype
@@ -102,9 +124,11 @@ def functional_spmv(matrix, x, y=None, *, alpha=1.0, beta=0.0):
     if counts is None:
         counts = wp.empty(0, dtype=int, device=device)
     out = wp.empty(matrix.nrow, dtype=dtype, device=device, requires_grad=True)
-    wp.launch(precision_kernels(dtype).matvec, len(out),
-              inputs=[matrix.offsets, counts, matrix.columns, matrix.values, x, y, dtype(alpha), dtype(beta), out],
-              device=device)
+    inputs = [matrix.offsets, counts, matrix.columns, matrix.values, x, y, dtype(alpha), dtype(beta), out]
+    if device.is_cuda and matrix.nnz > 128 * matrix.nrow:
+        wp.launch(precision_kernels(dtype).tiled_matvec, (matrix.nrow, 64), inputs=inputs, block_dim=64, device=device)
+    else:
+        wp.launch(precision_kernels(dtype).matvec, len(out), inputs=inputs, device=device)
     return out
 
 
