@@ -3,9 +3,8 @@ from dataclasses import dataclass
 from functools import lru_cache
 from types import SimpleNamespace
 import warp as wp
-from .field import LevelField, basis_key, find_key, cumulative_coefficients, reference_evaluation_kernel
+from .field import LevelField, basis_key, find_key, reference_evaluation_kernel
 from .keyed import coordinates
-from .reconstruction import _compute_isovalue
 
 wp.set_module_options({'fuse_fp': False})
 
@@ -197,6 +196,14 @@ class DifferentiableField:
     iso_value: wp.array
     tape: wp.Tape
     ready: object = None
+
+    @property
+    def coefficients(self):
+        return self.cube.coefficients
+
+    @property
+    def cumulative(self):
+        return self.cube.cumulative
 
     def evaluate(self, queries, *, centered=False):
         dtype, device = self.cube.coefficients.dtype, self.cube.coefficients.device

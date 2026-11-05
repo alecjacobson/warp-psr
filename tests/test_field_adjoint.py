@@ -78,3 +78,11 @@ def test_weighted_isovalue_vjp(device,dtype,count):
         array.assign(original)
         np.testing.assert_allclose(np.sum(g.astype(float)*direction),(losses[0]-losses[1])/(2*eps),
             rtol=1e-3 if dtype==wp.float32 else 1e-7,atol=1e-5 if dtype==wp.float32 else 1e-9)
+
+
+def test_legacy_cumulative_field_tracking_fails_explicitly():
+    field=LevelField(wp.array([0],dtype=wp.int64,device='cpu'),
+        wp.ones(1,dtype=wp.float32,device='cpu',requires_grad=True),
+        (1.,0.,0.,0.,1.,0.,0.,0.,1.),(0.,0.,0.),0,0.,wp.ones(1,dtype=wp.float32,device='cpu',requires_grad=True))
+    with pytest.raises(ValueError,match='cumulative.*reconstruct_differentiable'):
+        field.evaluate(wp.array([[.2,.3,.4]],dtype=wp.vec3,device='cpu'),requires_grad=True)

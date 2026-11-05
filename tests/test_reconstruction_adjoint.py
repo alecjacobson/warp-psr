@@ -2,13 +2,26 @@
 import numpy as np
 import pytest
 import warp as wp
-from warp_psr import reconstruct
-from warp_psr.reconstruction_adjoint import reconstruct_differentiable
+from warp_psr import reconstruct, reconstruct_differentiable
 from test_sample_adjoint import inputs
+
+
+def solver_branches(result):
+    from warp_psr.cascadic_adjoint import prepare_solve, replay_solve
+    prepared=prepare_solve(result)
+    with wp.Tape() as tape:
+        _,trace=replay_solve(prepared,result.diagnostics['density'],result.diagnostics['normals'],tape=tape)
+    return [(item['iterations'],item['outer_skip']) for item in trace]
 
 
 def fixed_assignments(reference, current):
     a,b=reference.diagnostics,current.diagnostics
+    for reducer in [np.argmin,np.argmax]:
+        np.testing.assert_array_equal(reducer(a['samples'].positions.numpy(),axis=0),
+                                      reducer(b['samples'].positions.numpy(),axis=0))
+    if not hasattr(reference,'_test_branches'):
+        reference._test_branches=solver_branches(reference)
+    assert reference._test_branches==solver_branches(current)
     for key in ['input_group_indices','input_status','input_order','group_offsets']:
         np.testing.assert_array_equal(getattr(a['samples'],key).numpy(),getattr(b['samples'],key).numpy())
     for key in ['basis','levels']:
@@ -112,3 +125,41 @@ def test_api_guard_and_cross_stream_backward():
         wp.synchronize_stream(back)
     assert np.isfinite(p.grad.numpy()).all() and np.linalg.norm(p.grad.numpy())>0
     assert np.isfinite(n.grad.numpy()).all() and np.linalg.norm(n.grad.numpy())>0
+
+
+@pytest.mark.cuda
+@pytest.mark.parametrize('case',['cancelled','omitted_nan','positions_only'])
+def test_degenerate_and_single_input_gradients(case):
+    wp.init()
+    if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
+    p,n=inputs('cuda:0',wp.vec3d,jitter=.01)
+    if case=='cancelled':
+        pos=p.numpy()[::3];normal=n.numpy()[::3]
+        p=wp.array(np.repeat(pos,2,axis=0),dtype=wp.vec3d,device=p.device,requires_grad=True)
+        paired=np.empty((2*len(normal),3));paired[::2]=normal;paired[1::2]=-normal
+        n=wp.array(paired,dtype=wp.vec3d,device=p.device,requires_grad=True)
+    elif case=='omitted_nan':
+        data=n.numpy();data[0]=np.nan;n.assign(data)
+    else:
+        n.requires_grad=False
+    tape=wp.Tape();result=reconstruct_differentiable(p,n,tape=tape,depth=3,full_depth=1,iters=2)
+    query=wp.array([[.1,.1,.1]],dtype=wp.vec3d,device=p.device)
+    with tape:value,_,_=result.evaluate(query,centered=True)
+    tape.backward(grads={value:wp.ones(1,dtype=wp.float64,device=p.device)})
+    assert np.isfinite(p.grad.numpy()).all()
+    if n.requires_grad:assert np.isfinite(n.grad.numpy()).all()
+    if case=='cancelled':
+        np.testing.assert_array_equal(value.numpy(),[0.])
+        np.testing.assert_array_equal(p.grad.numpy(),np.zeros(p.shape+(3,)))
+        np.testing.assert_array_equal(n.grad.numpy(),np.zeros(n.shape+(3,)))
+    elif case=='omitted_nan':
+        np.testing.assert_array_equal(n.grad.numpy()[0],np.zeros(3))
+    else:
+        assert n.grad is None
+    with pytest.raises(ValueError,match='constant scalar'):
+        reconstruct_differentiable(p,n,tape=wp.Tape(),point_weight=wp.ones(1,dtype=wp.float64,device=p.device,requires_grad=True))
+
+
+def test_default_import_keeps_adjoint_modules_lazy():
+    import subprocess,sys
+    subprocess.run([sys.executable,'-c',"import sys,warp_psr; assert 'warp_psr.reconstruction_adjoint' not in sys.modules; assert 'warp_psr.field_adjoint' not in sys.modules"],check=True)

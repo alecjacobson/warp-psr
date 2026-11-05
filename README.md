@@ -49,8 +49,9 @@ print(result.iso_value)  # The reconstructed surface is value == iso_value.
 Use `point_weight=0.0` for PSR. `gradients` are in input coordinates; out-of-domain
 queries produce NaN and a false validity mask. Optional [GPU mesh extraction](docs/meshing.md)
 provides Warp dense and sparse marching cubes without adding work to reconstruction.
-Experimental [finite solver adjoints](docs/differentiability.md) support tracked
-assembled systems; gradients from reconstruction to input points remain in progress.
+Opt-in [reconstruction differentiation](docs/differentiability.md) propagates
+field and mesh vertex losses to input points and normals through the finite
+solver, with discrete assignments fixed.
 Use `dtype=wp.vec3d` for both input arrays to run the entire pipeline in float64,
 including normalization, density, assembly, solving, and evaluation.
 Production reconstruction uses Warp arrays, kernels, FEM, and sparse algebra;

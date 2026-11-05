@@ -76,19 +76,20 @@ need earlier invocations during backward. Streaming selection can retain extra
 callback intermediates when a tape is active. Forward-only callbacks should
 allocate untracked arrays.
 
-`extract_mesh(..., differentiable=True)` currently supports a directly specified
+`extract_mesh(..., differentiable=True)` also supports a directly specified
 `LevelField` with tracked coefficients and no cumulative coefficients; its
 transform stays fixed. A one-element tracked float32 `iso_value` device array is
 subtracted before extraction at zero, retaining threshold gradients.
-`LevelField.evaluate(..., requires_grad=True)` also tracks output values and
+For these non-cumulative fields, `LevelField.evaluate(..., requires_grad=True)` tracks output values and
 spatial gradients with respect to tracked array inputs.
 
-**This does not yet differentiate reconstruction from input points.** Current
-`Reconstruction` objects explicitly reject differentiable meshing. The assembly,
-solver, and transform backward path remains
-[issue #76](https://github.com/alecjacobson/warp-psr/issues/76); chaining it to mesh
-vertices remains part of [issue #77](https://github.com/alecjacobson/warp-psr/issues/77).
-No converged-system adjoint is silently substituted for the finite-iteration solve.
+Results from `reconstruct_differentiable` retain the finite reconstruction
+backward pass. Use `extract_mesh(..., differentiable=True)` on the same tape to
+propagate dense/sparse MC vertex losses to input positions and normals; see the
+[reconstruction example and contract](differentiability.md). Ordinary
+`Reconstruction` objects still reject differentiable meshing because their
+forward did not retain that connection. No converged-system adjoint is
+substituted for the finite-iteration solve.
 
 Warp MC consumes float32 corner values and returns float32 vertices. Float64
 reconstruction fields are rejected instead of silently rounding or detaching

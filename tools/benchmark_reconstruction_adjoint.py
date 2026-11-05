@@ -40,9 +40,9 @@ def benchmark(args):
         forward=time.perf_counter()-begin
         forward_pool=wp.get_mempool_used_mem_current(device)
         if tracked:
-            with tape:values,_,valid=result.evaluate(queries,centered=True)
+            with tape:values,spatial,valid=result.evaluate(queries,centered=True)
         else:
-            values,_,valid=result.evaluate(queries)
+            values,spatial,valid=result.evaluate(queries)
         wp.synchronize_device(device)
         backward=None
         if tracked:
@@ -55,10 +55,17 @@ def benchmark(args):
         if tracked:
             gp,gn=positions.grad.numpy(),normals.grad.numpy()
             if not np.isfinite(gp).all() or not np.isfinite(gn).all():raise AssertionError('nonfinite reconstruction gradient')
+            translation_actual=gp.astype(float).sum(axis=0)
+            translation_expected=-spatial.numpy().astype(float).mean(axis=0)
+            normal_scale=float(np.sum(gn.astype(float)*n))
+            np.testing.assert_allclose(translation_actual,translation_expected,rtol=1e-3,atol=5e-5)
+            np.testing.assert_allclose(normal_scale,0.,atol=1e-6)
+            record['invariants']={'translation_actual':translation_actual.tolist(),'translation_expected':translation_expected.tolist(),
+                                  'uniform_normal_scale_derivative':normal_scale}
             record['gradient_norms']={'positions':float(np.linalg.norm(gp.astype(float))),
                                       'normals':float(np.linalg.norm(gn.astype(float)))}
         records.append(record);print(json.dumps(record),flush=True)
-        del result,tape,values,valid
+        del result,tape,values,spatial,valid
     report={'mode':args.mode,'input':provenance,'count':len(positions),'parameters':parameters,'runs':records,
         'warm_forward_median':statistics.median(r['forward_seconds'] for r in records[1:]),
         'warm_backward_median':statistics.median(r['backward_seconds'] for r in records[1:]) if tracked else None,

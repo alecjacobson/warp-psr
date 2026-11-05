@@ -2,8 +2,7 @@
 import numpy as np
 import pytest
 import warp as wp
-from warp_psr import reconstruct
-from warp_psr.reconstruction_adjoint import reconstruct_differentiable
+from warp_psr import reconstruct, reconstruct_differentiable
 from warp_psr.meshing import extract_isosurface, extract_mesh
 from test_sample_adjoint import inputs
 from test_reconstruction_adjoint import fixed_assignments
@@ -19,7 +18,7 @@ def test_mesh_vertex_loss_to_inputs(backend):
     mesh_options=dict(resolution=9,bounds=((-1.2,-1.2,-1.2),(1.2,1.2,1.2)),backend=backend)
     tape=wp.Tape();result=reconstruct_differentiable(p,n,tape=tape,**options)
     with tape:
-        mesh=extract_isosurface(lambda q:result.evaluate(q,centered=True)[0],device=p.device,**mesh_options)
+        mesh=extract_mesh(result,differentiable=True,**mesh_options)
     reference=reconstruct(p,n,**options)
     expected=extract_mesh(reference,**mesh_options)
     assert len(mesh.vertices)>0

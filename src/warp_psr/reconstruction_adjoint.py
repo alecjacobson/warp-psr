@@ -1,7 +1,7 @@
 """Opt-in reconstruction VJP using checkpointed, finite-algorithm replay.
 
-Internal integration API while end-to-end validation and performance gates are
-in progress. The default public reconstruction implementation is untouched.
+The public entry point is imported lazily. The default reconstruction
+implementation is untouched.
 """
 from dataclasses import dataclass, replace
 import warp as wp
@@ -76,6 +76,9 @@ def reconstruct_differentiable(positions, normals, *, tape, **options):
             pass
     except RuntimeError as error:
         raise ValueError('call reconstruct_differentiable outside any with tape block') from error
+    for name, value in options.items():
+        if isinstance(value, wp.array):
+            raise ValueError(f'{name} must be a constant scalar; only positions and normals support gradients')
     primal = reconstruct(positions, normals, **options)
     parameters, data = primal.metadata['parameters'], primal.diagnostics
     sample, density, normal = data['samples'], data['density'], data['normals']
@@ -92,6 +95,11 @@ def reconstruct_differentiable(positions, normals, *, tape, **options):
     def backward():
         if device.is_capturing:
             raise ValueError("reconstruction backward cannot run inside CUDA graph capture")
+        try:
+            with wp.Tape():
+                pass
+        except RuntimeError as error:
+            raise ValueError('reconstruction supports first-order backward only, outside any recording tape') from error
         wp.get_stream(device).wait_event(ready)
         # Isovalue and direct field losses meet at the coefficient checkpoint.
         c = _tracked(primal.field.coefficients)
@@ -169,5 +177,5 @@ def reconstruct_differentiable(positions, normals, *, tape, **options):
     metadata = dict(primal.metadata)
     metadata['differentiability'] = {'mode':'finite_algorithm_fixed_assignments', 'inputs':['positions','normals'],
         'constant_options':['point_weight','scale','samples_per_node','cg_accuracy','depths','iterations'],
-        'first_order_only':True, 'status':'integration under validation'}
+        'first_order_only':True}
     return DifferentiableReconstruction(field, metadata, data)

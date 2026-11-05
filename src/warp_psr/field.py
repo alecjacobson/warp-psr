@@ -114,7 +114,11 @@ class LevelField:
         ``requires_grad=True`` tracks the returned values and spatial gradients
         for differentiation with respect to tracked input arrays. This does not
         add a backward pass to reconstruction, or track the host transform.
+        Cumulative reference fields require reconstruct_differentiable; their
+        legacy automatic reverse pass does not preserve every contribution.
         """
+        if requires_grad and self.cumulative is not None:
+            raise ValueError('tracked cumulative fields require reconstruct_differentiable')
         dtype = self.coefficients.dtype
         vec = wp.types.vector(length=3, dtype=dtype)
         if not wp.types.types_equal(queries.dtype, vec) or queries.device != self.coefficients.device:
