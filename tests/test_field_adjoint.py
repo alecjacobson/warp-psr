@@ -1,6 +1,7 @@
 """Device transform, cumulative and isovalue VJPs with primal parity."""
 import numpy as np
 import pytest
+import weakref
 import warp as wp
 from warp_psr.field import LevelField, cumulative_coefficients
 from warp_psr.field_adjoint import (DifferentiableField, cube_field, record_cumulative_vjp, record_isovalue_vjp)
@@ -50,6 +51,11 @@ def test_device_field_and_cumulative_vjp(device, dtype):
     sg[len(q)//3:2*len(q)//3] = 0
     sv[2*len(q)//3:] = 0
     sg[2*len(q)//3:] = 0
+    # The tape owns array primals, not the wrapper that itself owns the tape.
+    # Releasing the field must not create a cycle retaining a full mesh grid.
+    field_ref = weakref.ref(field)
+    del field
+    assert field_ref() is None
     tape.backward(grads={value:wp.array(sv,dtype=dtype,device=device),gradient:wp.array(sg,dtype=vector,device=device)})
     for array in [coefficients,normalization,q]:
         original,g=array.numpy().copy(),array.grad.numpy().copy()

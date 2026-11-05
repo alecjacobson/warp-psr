@@ -287,6 +287,7 @@ class DifferentiableField:
         if self.ready is not None:
             wp.get_stream(device).wait_event(self.ready)
         kernels = precision_kernels(dtype)
+        transforms = self.transforms
         local = wp.empty_like(queries, requires_grad=requires_grad)
         wp.launch(kernels.to_cube, len(queries), inputs=[queries, self.transforms, local], device=device,
                   record_tape=False)
@@ -296,7 +297,7 @@ class DifferentiableField:
             grad_transforms = self.transforms.grad if self.transforms.requires_grad else empty_matrix
             def query_backward():
                 wp.launch(kernels.to_cube_backward, len(queries),
-                          inputs=[queries, self.transforms, local.grad,
+                          inputs=[queries, transforms, local.grad,
                                   queries.grad if queries.requires_grad else empty_vector, grad_transforms],
                           device=device, record_tape=False)
             self.tape.record_func(query_backward, [local] +
@@ -308,7 +309,7 @@ class DifferentiableField:
         if requires_grad:
             def gradient_backward():
                 wp.launch(kernels.to_model_gradient_backward, len(queries),
-                          inputs=[gradients, self.transforms, model_gradients.grad, gradients.grad, grad_transforms],
+                          inputs=[gradients, transforms, model_gradients.grad, gradients.grad, grad_transforms],
                           device=device, record_tape=False)
             self.tape.record_func(gradient_backward, [gradients, model_gradients] +
                                   ([self.transforms] if self.transforms.requires_grad else []))
