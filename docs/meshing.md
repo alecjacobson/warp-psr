@@ -191,34 +191,64 @@ python -m tools.check_meshing --fixture .build/fixtures/eagle-full-d9-spsr \
   --resolution 512 --output .build/eagle-mesh-validation.json
 ```
 
-## Initial complete mesh-loss backward measurements
+## Complete mesh-loss backward measurements
 
-The optional reconstruction backward path is also measured on the full eagle
-at 512³, using the mean vertex dot product with `(1, 0.3, -0.2)` as a loss.
-Each backend runs in a separate isolated process with five warm repetitions;
-the [per-run report](results/reconstruction-mesh-adjoints.json) includes first
-invocations, source hashes, counts, and separate event profiles. Upload, bounds
-preparation, loss-seed preparation and validation are excluded from wall times.
+The full eagle is measured with a loss equal to the mean vertex dot product with
+`(1, 0.3, -0.2)`. Each backend/resolution uses a separate isolated process with
+five warm repetitions after the first invocation. Input upload, bounds and loss
+seed preparation, and validation are excluded. Full backward includes MC, field
+and reconstruction gradients to input positions/normals. Peak pool includes the
+retained tape and excludes native CUDA graph storage.
 
-| Backend | Reconstruction | Field-to-mesh | Full backward | Forward + backward | Peak pool |
+The [performance report](results/mesh-backward-performance.json) contains every
+run and a separate profile of sampling, MC, mesh/field backward and reconstruction
+backward. The initial costs in [PR #83's report](results/reconstruction-mesh-adjoints.json)
+are retained for comparison:
+
+| 512³ backend | Initial backward | Current backward | Speedup | Initial peak | Current peak |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Dense | 211.3 ms | 125.3 ms | 5.649 s | 5.983 s | 23.041 GiB |
-| Sparse | 202.6 ms | 106.5 ms | 6.231 s | 6.542 s | 19.117 GiB |
+| Dense | 5.649 s | 0.561 s | 10.08× | 23.041 GiB | 23.041 GiB |
+| Sparse | 6.231 s | 0.518 s | 12.02× | 19.117 GiB | 5.860 GiB |
 
-Both produce 656,754 vertices and 1,312,404 triangles, with finite input-position
-and normal gradients and the expected zero normal-magnitude derivative.
-These timings include the complete mesh-to-input backward path and are separate
-from the reconstruction-only backward timings. Peak pool includes retained tapes
-and excludes native CUDA graph storage.
+Sparse classification now uses untracked slabs and retains only the corner
+samples needed for interpolation. The reverse passes skip exactly zero incoming
+gradients before basis traversal and shared transform/isovalue atomic additions.
+Nonzero spatial-gradient seeds retain their Hessian contributions. Callbacks own
+array primals without retaining the field wrapper in a tape reference cycle.
+This addresses [#84](https://github.com/alecjacobson/warp-psr/issues/84).
 
-The initial implementation in PR #83 retains all slab callback intermediates when
-recording gradients, even though crossing selection is fixed. Its separate event
-profile spends 5.733 s in mesh/field backward and 0.436 s in reconstruction
-backward. Dense spends 5.155 s and 0.405 s respectively. Stream event timings
-include host submission gaps; forward sampling and MC profiles are also in the
-report. Avoiding classification retention and zero-VJP traversal is tracked in
-[#84](https://github.com/alecjacobson/warp-psr/issues/84). The forward-only sparse
-memory/time advantages above do not apply to this initial tracked implementation.
+| Grid / backend | Reconstruction | Field-to-mesh | Full backward | Forward + backward | Peak pool |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 512³ dense | 202.6 ms | 126.3 ms | 0.561 s | 0.902 s | 23.041 GiB |
+| 512³ sparse | 208.9 ms | 99.7 ms | 0.518 s | 0.839 s | 5.860 GiB |
+| 1024³ sparse | 208.3 ms | 809.9 ms | 0.569 s | 1.587 s | 8.443 GiB |
+
+The 512³ outputs have 656,754 vertices and 1,312,404 triangles; 1024³ sparse has
+2,649,395 vertices and 5,296,568 triangles. These are complete tracked execution
+costs, separate from the forward-only measurements above and from reconstruction-
+only backward timings. The 1024³ tracked sparse case is measured directly; no
+performance claim is made for an unmeasured dense 1024³ backward run.
+
+The [validation report](results/mesh-backward-validation.json) records 660 passing
+tests, six CPU parameterization skips and one expected upstream failure. All 31
+public comparisons retain exact default, tracked and untracked-classification
+field results against archived reference-validated outputs; accuracy budgets are
+unchanged. Full-eagle 512³ tracked and forward-only vertices and indices are
+bitwise equal for each backend. Derivative tests cover value and spatial-gradient
+losses, explicit tracked isovalues, empty meshes, repeated tapes and streams.
+Every enabled benchmark checks finite gradients and the normal-scale invariant.
+
+Forward-only sparse 512³ uses A–B–B–A ordering (A: PR #83, B: this implementation):
+
+| Phase | A₀ | B₀ | B₁ | A₁ |
+| --- | ---: | ---: | ---: | ---: |
+| Reconstruction | 208.7 ms | 226.3 ms | 206.7 ms | 230.4 ms |
+| Field-to-mesh | 94.2 ms | 95.7 ms | 95.9 ms | 94.4 ms |
+| Combined | 305.6 ms | 314.7 ms | 304.0 ms | 324.8 ms |
+
+Default peak pool is byte-identical across all four processes (2.344 GiB).
+The individual timings and first invocations are retained; these are measured
+results on L40, not portable CI performance thresholds.
 
 ```sh
 python -m tools.benchmark_mesh_adjoint --fixture .build/fixtures/eagle-full-d9-spsr \
