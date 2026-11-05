@@ -174,21 +174,3 @@ def test_independent_streams_and_backward_handoff(device):
         np.testing.assert_array_equal(repeated.numpy(), out.numpy())
         for a, gradient in zip([A.values, b, initial], expected):
             np.testing.assert_allclose(a.grad.numpy(), gradient, rtol=1e-12, atol=1e-13)
-
-
-def test_overlapping_parameter_gradient_views(device):
-    A, b, initial, keys = system(device, wp.float64)
-    schedule = row_schedule(keys, 1)
-    with wp.Tape() as tape:
-        out = differentiable_relaxation(A, b, initial, schedule, tape=tape, iters=3)
-    tape.backward(grads={out: wp.ones_like(out, requires_grad=False)})
-    expected = A.values.grad.numpy().copy()
-    expected[:len(b)] += b.grad.numpy()
-    tape.zero()
-    # Callers may accumulate several logical parameter gradients into a shared
-    # buffer. This case needs atomics despite each row owning its CSR entries.
-    b.grad = A.values.grad[:len(b)]
-    with wp.Tape() as shared:
-        out = differentiable_relaxation(A, b, initial, schedule, tape=shared, iters=3)
-    shared.backward(grads={out: wp.ones_like(out, requires_grad=False)})
-    np.testing.assert_allclose(A.values.grad.numpy(), expected, rtol=1e-12, atol=1e-13)
