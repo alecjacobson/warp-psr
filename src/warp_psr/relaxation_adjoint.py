@@ -5,8 +5,9 @@ for issue #76, not an end-to-end reconstruction backward implementation.
 """
 from functools import lru_cache
 from types import SimpleNamespace
+import threading
 import warp as wp
-from .relaxation import wavefront_groups
+from .relaxation import wavefront_groups, SlicedGraph
 
 wp.set_module_options({'fuse_fp': False})
 
@@ -25,68 +26,134 @@ def precision_kernels(dtype):
         i = wp.tid()
         wp.atomic_add(dst, i, src[i])
 
+    @wp.func
+    def forward_row(i: int, visit: int, offsets: wp.array(dtype=int), columns: wp.array(dtype=int),
+                    values: wp.array(dtype=dtype), b: wp.array(dtype=dtype), x: wp.array(dtype=dtype),
+                    history: wp.array2d(dtype=pair)):
+        r = b[i]
+        diagonal = dtype(0)
+        for k in range(offsets[i], offsets[i + 1]):
+            col = columns[k]
+            r -= x[col] * values[k]
+            if col == i:
+                diagonal = values[k]
+        # Store the old component and the actual rounded residual. Rewinding
+        # each independent group reconstructs all its input neighbor values.
+        history[visit, i] = pair(x[i], r)
+        if diagonal != dtype(0):
+            x[i] += r * (dtype(1) / diagonal)
+
+    @wp.func
+    def reverse_row(i: int, visit: int, offsets: wp.array(dtype=int), columns: wp.array(dtype=int),
+                    values: wp.array(dtype=dtype), x: wp.array(dtype=dtype), history: wp.array2d(dtype=pair),
+                    adj_x: wp.array(dtype=dtype), adj_b: wp.array(dtype=dtype), adj_values: wp.array(dtype=dtype)):
+        diagonal = dtype(0)
+        diagonal_index = int(-1)
+        for k in range(offsets[i], offsets[i + 1]):
+            if columns[k] == i:
+                diagonal = values[k]
+                diagonal_index = k
+        old = history[visit, i]
+        x[i] = old[0]
+        if diagonal != dtype(0):
+            seed = adj_x[i]
+            inv = dtype(1) / diagonal
+            adj_r = seed * inv
+            if adj_b.shape[0] != 0:
+                wp.atomic_add(adj_b, i, adj_r)
+            # Keep both contributions from the actual update expression:
+            # x_i + (b_i - sum_j A_ij*x_j) * (1/A_ii).
+            # This is the iteration derivative, not an implicit solve.
+            if adj_values.shape[0] != 0:
+                wp.atomic_add(adj_values, diagonal_index, -(seed * old[1]) / (diagonal * diagonal))
+            for k in range(offsets[i], offsets[i + 1]):
+                col = columns[k]
+                if adj_values.shape[0] != 0:
+                    wp.atomic_add(adj_values, k, -adj_r * x[col])
+                wp.atomic_add(adj_x, col, -adj_r * values[k])
+
     @wp.kernel
     def forward(rows: wp.array(dtype=int), group_offsets: wp.array(dtype=int), first_group: int, first_visit: int,
-                group_stride: int,
-                offsets: wp.array(dtype=int), columns: wp.array(dtype=int), values: wp.array(dtype=dtype),
+                group_stride: int, offsets: wp.array(dtype=int), columns: wp.array(dtype=int), values: wp.array(dtype=dtype),
                 b: wp.array(dtype=dtype), x: wp.array(dtype=dtype), history: wp.array2d(dtype=pair)):
         batch, row = wp.tid()
         group = first_group + batch * group_stride
-        visit = first_visit + batch
         j = group_offsets[group] + row
         if j < group_offsets[group + 1]:
-            i = rows[j]
-            r = b[i]
-            diagonal = dtype(0)
-            for k in range(offsets[i], offsets[i + 1]):
-                col = columns[k]
-                r -= x[col] * values[k]
-                if col == i:
-                    diagonal = values[k]
-            # Store the old component and the actual rounded residual. Rewinding
-            # each independent group reconstructs all its input neighbor values.
-            history[visit, i] = pair(x[i], r)
-            if diagonal != dtype(0):
-                x[i] += r * (dtype(1) / diagonal)
+            forward_row(rows[j], first_visit + batch, offsets, columns, values, b, x, history)
 
     @wp.kernel
     def reverse(rows: wp.array(dtype=int), group_offsets: wp.array(dtype=int), first_group: int, first_visit: int,
-                group_stride: int,
-                offsets: wp.array(dtype=int), columns: wp.array(dtype=int), values: wp.array(dtype=dtype),
+                group_stride: int, offsets: wp.array(dtype=int), columns: wp.array(dtype=int), values: wp.array(dtype=dtype),
                 x: wp.array(dtype=dtype), history: wp.array2d(dtype=pair), adj_x: wp.array(dtype=dtype),
                 adj_b: wp.array(dtype=dtype), adj_values: wp.array(dtype=dtype)):
         batch, row = wp.tid()
         group = first_group + batch * group_stride
-        visit = first_visit + batch
         j = group_offsets[group] + row
         if j < group_offsets[group + 1]:
-            i = rows[j]
-            diagonal = dtype(0)
-            diagonal_index = int(-1)
-            for k in range(offsets[i], offsets[i + 1]):
-                if columns[k] == i:
-                    diagonal = values[k]
-                    diagonal_index = k
-            old = history[visit, i]
-            x[i] = old[0]
-            if diagonal != dtype(0):
-                seed = adj_x[i]
-                inv = dtype(1) / diagonal
-                adj_r = seed * inv
-                if adj_b.shape[0] != 0:
-                    wp.atomic_add(adj_b, i, adj_r)
-                # Keep both contributions from the actual update expression:
-                # x_i + (b_i - sum_j A_ij*x_j) * (1/A_ii).
-                # This is the iteration derivative, not an implicit solve.
-                if adj_values.shape[0] != 0:
-                    wp.atomic_add(adj_values, diagonal_index, -(seed * old[1]) / (diagonal * diagonal))
-                for k in range(offsets[i], offsets[i + 1]):
-                    col = columns[k]
-                    if adj_values.shape[0] != 0:
-                        wp.atomic_add(adj_values, k, -adj_r * x[col])
-                    wp.atomic_add(adj_x, col, -adj_r * values[k])
+            reverse_row(rows[j], first_visit + batch, offsets, columns, values, x, history, adj_x, adj_b, adj_values)
 
-    return SimpleNamespace(copy=copy, add=add, forward=forward, reverse=reverse)
+    state_type = wp.struct(type(f'RelaxationAdjointState_{dtype.__name__}', (), {'__annotations__': {
+        'rows': wp.array(dtype=int), 'group_offsets': wp.array(dtype=int),
+        'offsets': wp.array(dtype=int), 'columns': wp.array(dtype=int), 'values': wp.array(dtype=dtype),
+        'b': wp.array(dtype=dtype), 'x': wp.array(dtype=dtype), 'history': wp.array2d(dtype=pair),
+        'adj_x': wp.array(dtype=dtype), 'adj_b': wp.array(dtype=dtype), 'adj_values': wp.array(dtype=dtype)}}))
+
+    @wp.kernel
+    def bind(state: state_type, descriptor: wp.array(dtype=state_type)):
+        descriptor[0] = state
+
+    @wp.kernel
+    def graph_forward(descriptor: wp.array(dtype=state_type), first_group: int, first_visit: int, stride: int):
+        batch, row = wp.tid()
+        state = descriptor[0]
+        group = first_group + batch * stride
+        j = state.group_offsets[group] + row
+        if j < state.group_offsets[group + 1]:
+            forward_row(state.rows[j], first_visit + batch, state.offsets, state.columns,
+                        state.values, state.b, state.x, state.history)
+
+    @wp.kernel
+    def graph_reverse(descriptor: wp.array(dtype=state_type), first_group: int, first_visit: int, stride: int):
+        batch, row = wp.tid()
+        state = descriptor[0]
+        group = first_group + batch * stride
+        j = state.group_offsets[group] + row
+        if j < state.group_offsets[group + 1]:
+            reverse_row(state.rows[j], first_visit + batch, state.offsets, state.columns,
+                        state.values, state.x, state.history, state.adj_x, state.adj_b, state.adj_values)
+
+    return SimpleNamespace(copy=copy, add=add, forward=forward, reverse=reverse,
+                           state_type=state_type, bind=bind, graph_forward=graph_forward, graph_reverse=graph_reverse)
+
+
+@lru_cache(maxsize=32)
+def _cached_graph(dtype, device, stream, program, capacity, reverse):
+    kernels = precision_kernels(dtype)
+    descriptor = wp.empty(1, dtype=kernels.state_type, device=device)
+    kernel = kernels.graph_reverse if reverse else kernels.graph_forward
+    command = wp.launch(kernel, (1, capacity), inputs=[descriptor, 0, 0, 0],
+                        device=device, record_cmd=True, record_tape=False)
+    wp.launch(kernels.bind, 1, inputs=[kernels.state_type(), descriptor],
+              device=device, record_cmd=True, record_tape=False)
+    with wp.ScopedCapture(device=device) as capture:
+        for group, visit, count, stride in (reversed(program) if reverse else program):
+            command.set_dim((count, capacity))
+            command.set_param_at_index(1, group)
+            command.set_param_at_index(2, visit)
+            command.set_param_at_index(3, stride)
+            command.launch()
+    return SlicedGraph(descriptor, capture.graph, wp.get_stream(device), threading.Lock())
+
+
+def _launch_graph(dtype, device, program, maximum, state, reverse=False):
+    capacity = 1 << max(0, maximum - 1).bit_length()
+    cached = _cached_graph(dtype, str(device), wp.get_stream(device).cuda_stream,
+                           tuple(program), capacity, reverse)
+    with cached.lock:
+        wp.launch(precision_kernels(dtype).bind, 1, inputs=[state, cached.descriptor],
+                  device=device, record_tape=False)
+        wp.capture_launch(cached.graph)
 
 
 def differentiable_relaxation(matrix, b, initial, schedule, *, tape, iters,
@@ -153,10 +220,17 @@ def differentiable_relaxation(matrix, b, initial, schedule, *, tape, iters,
     wp.launch(kernels.copy, len(b), inputs=[initial, output], device=device, record_tape=False)
     schedule_arrays = [schedule.rows, schedule.offsets]
     matrix_arrays = [matrix.offsets, matrix.columns, matrix.values]
-    for group, visit, count, stride in program:
-        wp.launch(kernels.forward, (count, schedule.maximum),
-                  inputs=[*schedule_arrays, group, visit, stride, *matrix_arrays, b, output, history],
-                  device=device, record_tape=False)
+    state = kernels.state_type()
+    state.rows, state.group_offsets = schedule_arrays
+    state.offsets, state.columns, state.values = matrix_arrays
+    state.b, state.x, state.history = b, output, history
+    if device.is_cuda and program:
+        _launch_graph(b.dtype, device, program, schedule.maximum, state)
+    else:
+        for group, visit, count, stride in program:
+            wp.launch(kernels.forward, (count, schedule.maximum),
+                      inputs=[*schedule_arrays, group, visit, stride, *matrix_arrays, b, output, history],
+                      device=device, record_tape=False)
     event = None
     if device.is_cuda:
         event = wp.Event(device)
@@ -171,10 +245,18 @@ def differentiable_relaxation(matrix, b, initial, schedule, *, tape, iters,
             empty = wp.empty(0, dtype=b.dtype, device=device)
             adj_b = b.grad if b.requires_grad else empty
             adj_values = matrix.values.grad if matrix.values.requires_grad else empty
-            for group, visit, count, stride in reversed(program):
-                wp.launch(kernels.reverse, (count, schedule.maximum),
-                          inputs=[*schedule_arrays, group, visit, stride, *matrix_arrays, work, history,
-                                  adjoint, adj_b, adj_values], device=device, record_tape=False)
+            reverse_state = kernels.state_type()
+            reverse_state.rows, reverse_state.group_offsets = schedule_arrays
+            reverse_state.offsets, reverse_state.columns, reverse_state.values = matrix_arrays
+            reverse_state.x, reverse_state.history = work, history
+            reverse_state.adj_x, reverse_state.adj_b, reverse_state.adj_values = adjoint, adj_b, adj_values
+            if device.is_cuda and program:
+                _launch_graph(b.dtype, device, program, schedule.maximum, reverse_state, reverse=True)
+            else:
+                for group, visit, count, stride in reversed(program):
+                    wp.launch(kernels.reverse, (count, schedule.maximum),
+                              inputs=[*schedule_arrays, group, visit, stride, *matrix_arrays, work, history,
+                                      adjoint, adj_b, adj_values], device=device, record_tape=False)
             if initial.requires_grad:
                 wp.launch(kernels.add, len(initial), inputs=[adjoint, initial.grad], device=device, record_tape=False)
 

@@ -52,6 +52,10 @@ outputs must remain unchanged until backward completes; each call owns its
 history. `tape.zero()` permits another backward with a new seed. Independent
 tapes and inputs can use independent streams, and backward can run on a stream
 other than forward. Shared gradient buffers must not have concurrent backwards.
+Both CUDA directions use bounded, per-stream graph caches. A descriptor binds
+fresh arrays before each launch; it does not retain a particular solve's buffers.
+First use captures the schedule, and eviction waits for that stream's outstanding
+work before releasing its descriptor. CPU execution uses the same row updates.
 
 External CUDA graph capture and higher-order derivatives are unsupported. This
 separate module is not imported by forward-only reconstruction and adds no
