@@ -1,0 +1,111 @@
+{
+  "production_source_sha256": {
+    "src/warp_psr/__init__.py": "ce3031b313c809edda236c320b4dadd00113644a95e623d819fac21ac1cba0bd",
+    "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+    "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+    "src/warp_psr/field.py": "5107f3c0baa394c46e2fb93104efa197a29807a2a786d273d47a033362dd05fd",
+    "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+    "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+    "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+    "src/warp_psr/meshing.py": "e726380acb9f5210107995773ee818e09ec2ecc50927fe3e7c5383ef1e5cb5f4",
+    "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+    "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+    "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+    "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+    "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+    "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+    "src/warp_psr/reconstruction.py": "ac685a33cbd8f15ec5d6472f4089ec881fdac6eede0521dccc923ca6eab15075",
+    "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+    "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+    "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+    "src/warp_psr/solver.py": "95d18107d1508f1e066b8c17f7c03969e18fa7d20927605804374e9fdc9fed6d",
+    "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+    "src/warp_psr/stiffness.py": "51327ae8942fe159cf759da991a0ad277ed16e5f7ddb84ee70665ff915121425",
+    "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+    "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+    "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
+    "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+  },
+  "input": {
+    "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+    "input_source": {
+      "source_file": "eagle.points.ply",
+      "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+      "original_count": 796825,
+      "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+      "ignored_properties": [
+        "red",
+        "green",
+        "blue",
+        "alpha"
+      ],
+      "selection": "all rows in original file order",
+      "dataset": "eagle",
+      "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+      "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+      "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+      "selected_count": 796825
+    },
+    "seed": 2026,
+    "fixture": "eagle-full-d9-spsr",
+    "shape": "eagle"
+  },
+  "resolution": 512,
+  "dense_crossing_cells": 656131,
+  "sparse_cells": 656131,
+  "sparse_cells_unique_and_sorted": true,
+  "mismatched_corner_values": 0,
+  "all_crossing_cells_and_values_match": true,
+  "vertices": 656754,
+  "triangles": 1312404,
+  "max_vertex_distance": 1.2839233415447482e-06,
+  "close_reference_vertex_pairs": 76,
+  "geometry_comparison_tolerance": 2e-06,
+  "oriented_geometric_triangles_match": true,
+  "geometry_note": "Near-coincident float32 reference positions merged only for oriented geometric triangle comparison; raw counts unchanged. Exact cell coverage and all corner values checked independently.",
+  "dense_vertex_field_residual": {
+    "max": 0.14593109488487244,
+    "rms": 0.011735568526902227
+  },
+  "sparse_vertex_field_residual": {
+    "max": 0.14594405889511108,
+    "rms": 0.011735560075649088
+  },
+  "dense_topology": {
+    "boundary_edges": 1110,
+    "boundary_edges_away_from_box": 0,
+    "edges_with_more_than_two_faces": 0,
+    "zero_area_triangles": 16
+  },
+  "sparse_topology": {
+    "boundary_edges": 1110,
+    "boundary_edges_away_from_box": 0,
+    "edges_with_more_than_two_faces": 0,
+    "zero_area_triangles": 30
+  },
+  "cpu_skimage": {
+    "topology": {
+      "boundary_edges": 1110,
+      "boundary_edges_away_from_box": 0,
+      "edges_with_more_than_two_faces": 0,
+      "zero_area_triangles": 22
+    },
+    "vertex_field_residual": {
+      "max": 0.14593955874443054,
+      "rms": 0.011735665616864146
+    },
+    "runs_seconds": [
+      1.5927924439311028,
+      1.5681894794106483,
+      1.6556777767837048,
+      1.553998913615942
+    ],
+    "warm_median_seconds": 1.5681894794106483,
+    "scope": "CPU extraction only, from the same centered scalar grid; sampling and GPU-to-host transfer excluded.",
+    "vertices": 656752,
+    "triangles": 1312392,
+    "cpu_to_warp_max_vertex_distance": 1.4920784177897217e-06,
+    "warp_to_cpu_max_vertex_distance": 1.4920784177897217e-06,
+    "ambiguity_policy": "scikit-image Lewiner; triangle counts/order need not equal Warp MC"
+  }
+}

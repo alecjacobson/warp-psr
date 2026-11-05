@@ -104,13 +104,16 @@ class LevelField:
         if self.keys.shape != self.coefficients.shape:
             raise ValueError("One key per coefficient is required")
 
-    def evaluate(self, queries):
+    def evaluate(self, queries, *, requires_grad=False):
         """Return values, model-space gradients and validity mask; outside = NaN.
 
         Inputs must share the field device and precision. Direct level summation
         uses left derivatives at knots. Reconstruction fields carry cumulative
         coefficients and reproduce the pinned reference's neighbor/polynomial
         convention, including its boundary nudges (issue #20).
+        ``requires_grad=True`` tracks the returned values and spatial gradients
+        for differentiation with respect to tracked input arrays. This does not
+        add a backward pass to reconstruction, or track the host transform.
         """
         dtype = self.coefficients.dtype
         vec = wp.types.vector(length=3, dtype=dtype)
@@ -119,8 +122,8 @@ class LevelField:
         if self.keys.device != queries.device:
             raise ValueError("Keys and coefficients must share the query device")
         mat = wp.types.matrix(shape=(3, 3), dtype=dtype)
-        values = wp.empty(queries.shape[0], dtype=dtype, device=queries.device)
-        gradients = wp.empty(queries.shape[0], dtype=vec, device=queries.device)
+        values = wp.empty(queries.shape[0], dtype=dtype, device=queries.device, requires_grad=requires_grad)
+        gradients = wp.empty(queries.shape[0], dtype=vec, device=queries.device, requires_grad=requires_grad)
         valid = wp.empty(queries.shape[0], dtype=wp.int32, device=queries.device)
         kernel=evaluation_kernel(dtype)
         inputs=[self.keys,self.coefficients]
