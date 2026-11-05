@@ -78,7 +78,8 @@ def test_mesh_external_isovalue_vjp(backend):
     tape.backward(grads={mesh.vertices:wp.array(seed,dtype=wp.vec3,device=p.device)})
     actual=float(iso.grad.numpy()[0])
     primal=reconstruct(p,n,depth=3,full_depth=1,samples_per_node=.05,iters=2)
-    losses=[];eps=1e-4
+    # Larger threshold steps change MC cases for this field; preserve connectivity.
+    losses=[];eps=1e-5
     for sign in [1,-1]:
         candidate=extract_mesh(primal,iso_value=threshold+sign*eps,**options)
         np.testing.assert_array_equal(candidate.indices.numpy(),mesh.indices.numpy())
