@@ -179,8 +179,8 @@ checks, while retaining distinct arrays for each iteration. Its backward uses
 Warp's tape with the stopping branches fixed. The optional root mean operator
 includes all 64 padded rows when supplied that matrix. It does not implement the
 reconstruction solver's outer pre-CG skip test. The scalar CSR product matches
-Warp's non-tiled row reduction; it does not promise the arithmetic of the optional
-tiled long-row algorithm. Both helpers leave input values unchanged. Tolerances,
+Warp's serial or 64-lane tiled reduction, including the capacity-based selection
+heuristic that can select tiles for short coarse Galerkin rows. Both helpers leave input values unchanged. Tolerances,
 scalar product multipliers, and matrix topology are fixed parameters.
 
 ## Measurements and validation

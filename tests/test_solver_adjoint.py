@@ -125,3 +125,38 @@ def test_padded_root_constant_mode(device):
         perturbed, _ = finite_root_cg(matrix, rhs, initial, maxiter=3, tol=1e-3, add_dc_term=True)
         losses.append(perturbed.numpy() @ seed)
     np.testing.assert_allclose(gradient @ direction, (losses[0] - losses[1]) / 2e-5, rtol=1e-7, atol=1e-9)
+
+
+@pytest.mark.parametrize('dtype', [wp.float32, wp.float64])
+@pytest.mark.parametrize('capacity_only', [False, True])
+def test_tiled_spmv_forward_and_vjp(device, dtype, capacity_only):
+    n = 8 if capacity_only else 133
+    matrix, x, _ = system(device, dtype, n=n)
+    if capacity_only:
+        capacity = 200*n
+        values = np.full(capacity,1e20)
+        values[:n*n] = matrix.values.numpy()
+        columns = np.full(capacity,2147483647,dtype=np.int32)
+        columns[:n*n] = matrix.columns.numpy()
+        matrix.values = wp.array(values,dtype=dtype,device=device,requires_grad=True)
+        matrix.columns = wp.array(columns,dtype=int,device=device)
+        matrix.nnz = capacity
+    # Public Warp chooses 64-lane tiles on CUDA above 128 entries/row.
+    reference = wp.clone(x, requires_grad=False)
+    sparse.bsr_mv(matrix, reference, reference, alpha=-.4, beta=.7)
+    with wp.Tape() as tape:
+        out = functional_spmv(matrix, x, x, alpha=-.4, beta=.7)
+    np.testing.assert_array_equal(out.numpy(), reference.numpy())
+    rng = np.random.default_rng(529)
+    seed = rng.normal(size=len(x))
+    tape.backward(grads={out:wp.array(seed,dtype=dtype,device=device)})
+    a = matrix.values.numpy()[:n*n].reshape(n,n).astype(float)
+    expected_x = -.4*(a.T@seed)+.7*seed
+    expected_a = -.4*seed[:,None]*x.numpy().astype(float)[None,:]
+    np.testing.assert_allclose(x.grad.numpy(),expected_x,rtol=2e-5 if dtype==wp.float32 else 1e-12,
+                               atol=1e-4 if dtype==wp.float32 else 1e-12)
+    np.testing.assert_allclose(matrix.values.grad.numpy()[:n*n].reshape(n,n),expected_a,
+                               rtol=1e-6 if dtype==wp.float32 else 1e-12,atol=1e-7 if dtype==wp.float32 else 1e-12)
+
+    if capacity_only:
+        np.testing.assert_array_equal(matrix.values.grad.numpy()[n*n:],np.zeros(matrix.nnz-n*n))
