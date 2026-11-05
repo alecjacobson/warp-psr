@@ -115,7 +115,12 @@ def _ordered(tree, normals, max_depth):
     return result
 
 
-def replay_normal_loads(tree, normals, max_depth, base_depth, transfers):
+def prepare_normal_restrictions(transfers):
+    """Build constant double restrictions before entering any replay tape."""
+    return [sparse.bsr_transposed(sparse.bsr_copy(p, scalar_type=wp.float64)) for p in transfers]
+
+
+def replay_normal_loads(tree, normals, max_depth, base_depth, transfers, *, restrictions):
     """Keep primal accumulation order, with immutable intermediates for backward.
 
     Supports the production stencil route, including the special ordered f32
@@ -152,7 +157,5 @@ def replay_normal_loads(tree, normals, max_depth, base_depth, transfers):
             load = _sum(load, parent[d])
         loads[d] = load
         if d > base_depth:
-            transfer = sparse.bsr_copy(transfers[d - 1], scalar_type=wp.float64)
-            restriction = sparse.bsr_transposed(transfer)
-            finer = functional_spmv(restriction, finer, child[d - 1], beta=1)
+            finer = functional_spmv(restrictions[d - 1], finer, child[d - 1], beta=1)
     return loads

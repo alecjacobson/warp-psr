@@ -5,7 +5,7 @@ import pytest
 import warp as wp
 from warp_psr.keyed import Records
 from warp_psr.normal_loads import assemble_reference_normal_loads
-from warp_psr.normal_load_adjoint import replay_normal_loads
+from warp_psr.normal_load_adjoint import replay_normal_loads, prepare_normal_restrictions
 from warp_psr.solver import prolongation
 from test_sample_adjoint import device
 
@@ -49,8 +49,9 @@ def fixture(device, dtype, adaptive):
 def test_multilevel_forward_and_normal_vjp(device, dtype, base, adaptive):
     tree, normals, transfers = fixture(device, dtype, adaptive)
     expected = assemble_reference_normal_loads(tree, None, normals, 3, base, transfers)
+    restrictions = prepare_normal_restrictions(transfers)
     with wp.Tape() as tape:
-        actual = replay_normal_loads(tree, normals, 3, base, transfers)
+        actual = replay_normal_loads(tree, normals, 3, base, transfers, restrictions=restrictions)
     for a, e in zip(actual[base:], expected[base:]):
         np.testing.assert_array_equal(a.numpy(), e.numpy())
     rng = np.random.default_rng(129)

@@ -13,7 +13,7 @@ from .relaxation import row_schedule
 from .relaxation_adjoint import differentiable_relaxation
 from .solver_adjoint import functional_spmv
 from .multigrid_adjoint import prepare_hierarchy, finite_multigrid
-from .normal_load_adjoint import replay_normal_loads
+from .normal_load_adjoint import replay_normal_loads, prepare_normal_restrictions
 from .assembly_adjoint import replay_constraints, record_screening_vjp
 
 
@@ -69,7 +69,8 @@ def prepare_solve(result):
     hierarchy = prepare_hierarchy(levels[0].matrix, keys[:base + 1], transfers[:base],
                                   add_dc_term=base == 0 and options['point_weight'] == 0)
     return SimpleNamespace(options=options, tree=tree, keys=keys, transfers=transfers,
-                           levels=levels, hierarchy=hierarchy, screened=screened)
+                           levels=levels, hierarchy=hierarchy, screened=screened,
+                           normal_restrictions=prepare_normal_restrictions(transfers))
 
 
 def replay_solve(prepared, density, normals, *, tape):
@@ -77,7 +78,8 @@ def replay_solve(prepared, density, normals, *, tape):
     options, keys = prepared.options, prepared.keys
     dtype, device = density.scale.dtype, normals.average.device
     base = options['base_depth']
-    normal_loads = replay_normal_loads(prepared.tree, normals, len(keys) - 1, base, prepared.transfers)
+    normal_loads = replay_normal_loads(prepared.tree, normals, len(keys) - 1, base, prepared.transfers,
+                                       restrictions=prepared.normal_restrictions)
     corrections = [wp.zeros(len(k), dtype=dtype, device=device, requires_grad=True) for k in keys]
     cumulative, trace = None, None
     for level in prepared.levels:
