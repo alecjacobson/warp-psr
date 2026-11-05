@@ -160,7 +160,7 @@ def differentiable_relaxation(matrix, b, initial, schedule, *, tape, iters,
     event = None
     if device.is_cuda:
         event = wp.Event(device)
-        wp.record_event(event, stream=wp.get_stream(device))
+        wp.get_stream(device).record_event(event)
 
     def backward():
         with wp.ScopedDevice(device):

@@ -59,7 +59,18 @@ buffers, launches, or tape operations to that path.
 
 ## Work still required
 
-This helper alone does not differentiate multigrid, the conditional root CG,
+`warp_psr.solver_adjoint` also provides functional scalar CSR products and
+`finite_root_cg` for the small root system (at most 64 rows). The CG implementation
+uses the pinned solver's dot-reduction layout, update arithmetic, and convergence
+checks, while retaining distinct arrays for each iteration. Its backward uses
+Warp's tape with the stopping branches fixed. The optional root mean operator
+includes all 64 padded rows when supplied that matrix. It does not implement the
+reconstruction solver's outer pre-CG skip test. The scalar CSR product matches
+Warp's non-tiled row reduction; it does not promise the arithmetic of the optional
+tiled long-row algorithm. Both helpers leave input values unchanged. Tolerances,
+scalar product multipliers, and matrix topology are fixed parameters.
+
+These helpers alone do not differentiate multigrid, the outer conditional solve,
 assembly, normalization, grouping, density/normal splats, the computed isovalue,
 or the transformation of evaluated queries. The full mode must preserve the
 chosen discrete assignments for backward and validate directional derivatives
