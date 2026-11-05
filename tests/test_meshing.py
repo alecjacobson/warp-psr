@@ -222,6 +222,13 @@ def test_all_256_cases_and_exact_threshold_policy(device):
     for backend in ('dense', 'sparse'):
         mesh = extract_isosurface(sample, backend=backend, **settings)
         assert len(mesh.indices) == len(mesh.vertices) == 0
+    # A threshold endpoint can represent three different crossing grid edges.
+    # Keep Warp's coincident edge vertices and degenerate triangle explicitly.
+    corners.assign(np.array([0., -1., -1., -1., -1., -1., -1., -1.], dtype=np.float32))
+    for backend in ('dense', 'sparse'):
+        mesh = extract_isosurface(sample, backend=backend, **settings)
+        assert len(mesh.indices) == len(mesh.vertices) == 3
+        np.testing.assert_array_equal(mesh.vertices.numpy(), np.zeros((3, 3)))
 
 
 def test_actual_reconstruction_dense_sparse_parity():

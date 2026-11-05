@@ -20,6 +20,10 @@ Warp's fixed MC table determines ambiguous cases and winding; faces point toward
 increasing centered field values. Both endpoints of an edge exactly on the
 threshold are classified nonnegative. A grid entirely equal to the threshold
 produces an empty mesh. Features smaller than grid cells may remain unresolved.
+An exact-threshold endpoint can produce coincident vertices belonging to distinct
+grid edges and zero-area triangles. The API preserves Warp's output; it does not
+weld vertices or remove triangles. The gradient contract excludes these case
+transitions.
 
 ## Backends and coverage
 
