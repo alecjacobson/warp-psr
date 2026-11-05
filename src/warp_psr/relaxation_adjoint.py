@@ -46,7 +46,8 @@ def precision_kernels(dtype):
     @wp.func
     def reverse_row(i: int, visit: int, offsets: wp.array(dtype=int), columns: wp.array(dtype=int),
                     values: wp.array(dtype=dtype), x: wp.array(dtype=dtype), history: wp.array2d(dtype=pair),
-                    adj_x: wp.array(dtype=dtype), adj_b: wp.array(dtype=dtype), adj_values: wp.array(dtype=dtype)):
+                    adj_x: wp.array(dtype=dtype), adj_b: wp.array(dtype=dtype), adj_values: wp.array(dtype=dtype),
+                    atomic_parameters: int):
         diagonal = dtype(0)
         diagonal_index = int(-1)
         for k in range(offsets[i], offsets[i + 1]):
@@ -60,16 +61,26 @@ def precision_kernels(dtype):
             inv = dtype(1) / diagonal
             adj_r = seed * inv
             if adj_b.shape[0] != 0:
-                wp.atomic_add(adj_b, i, adj_r)
+                if atomic_parameters:
+                    wp.atomic_add(adj_b, i, adj_r)
+                else:
+                    adj_b[i] += adj_r
             # Keep both contributions from the actual update expression:
             # x_i + (b_i - sum_j A_ij*x_j) * (1/A_ii).
             # This is the iteration derivative, not an implicit solve.
             if adj_values.shape[0] != 0:
-                wp.atomic_add(adj_values, diagonal_index, -(seed * old[1]) / (diagonal * diagonal))
+                contribution = -(seed * old[1]) / (diagonal * diagonal)
+                if atomic_parameters:
+                    wp.atomic_add(adj_values, diagonal_index, contribution)
+                else:
+                    adj_values[diagonal_index] += contribution
             for k in range(offsets[i], offsets[i + 1]):
                 col = columns[k]
                 if adj_values.shape[0] != 0:
-                    wp.atomic_add(adj_values, k, -adj_r * x[col])
+                    if atomic_parameters:
+                        wp.atomic_add(adj_values, k, -adj_r * x[col])
+                    else:
+                        adj_values[k] -= adj_r * x[col]
                 wp.atomic_add(adj_x, col, -adj_r * values[k])
 
     @wp.kernel
@@ -86,18 +97,20 @@ def precision_kernels(dtype):
     def reverse(rows: wp.array(dtype=int), group_offsets: wp.array(dtype=int), first_group: int, first_visit: int,
                 group_stride: int, offsets: wp.array(dtype=int), columns: wp.array(dtype=int), values: wp.array(dtype=dtype),
                 x: wp.array(dtype=dtype), history: wp.array2d(dtype=pair), adj_x: wp.array(dtype=dtype),
-                adj_b: wp.array(dtype=dtype), adj_values: wp.array(dtype=dtype)):
+                adj_b: wp.array(dtype=dtype), adj_values: wp.array(dtype=dtype), atomic_parameters: int):
         batch, row = wp.tid()
         group = first_group + batch * group_stride
         j = group_offsets[group] + row
         if j < group_offsets[group + 1]:
-            reverse_row(rows[j], first_visit + batch, offsets, columns, values, x, history, adj_x, adj_b, adj_values)
+            reverse_row(rows[j], first_visit + batch, offsets, columns, values, x, history,
+                        adj_x, adj_b, adj_values, atomic_parameters)
 
     state_type = wp.struct(type(f'RelaxationAdjointState_{dtype.__name__}', (), {'__annotations__': {
         'rows': wp.array(dtype=int), 'group_offsets': wp.array(dtype=int),
         'offsets': wp.array(dtype=int), 'columns': wp.array(dtype=int), 'values': wp.array(dtype=dtype),
         'b': wp.array(dtype=dtype), 'x': wp.array(dtype=dtype), 'history': wp.array2d(dtype=pair),
-        'adj_x': wp.array(dtype=dtype), 'adj_b': wp.array(dtype=dtype), 'adj_values': wp.array(dtype=dtype)}}))
+        'adj_x': wp.array(dtype=dtype), 'adj_b': wp.array(dtype=dtype), 'adj_values': wp.array(dtype=dtype),
+        'atomic_parameters': int}}))
 
     @wp.kernel
     def bind(state: state_type, descriptor: wp.array(dtype=state_type)):
@@ -121,7 +134,8 @@ def precision_kernels(dtype):
         j = state.group_offsets[group] + row
         if j < state.group_offsets[group + 1]:
             reverse_row(state.rows[j], first_visit + batch, state.offsets, state.columns,
-                        state.values, state.x, state.history, state.adj_x, state.adj_b, state.adj_values)
+                        state.values, state.x, state.history, state.adj_x, state.adj_b, state.adj_values,
+                        state.atomic_parameters)
 
     return SimpleNamespace(copy=copy, add=add, forward=forward, reverse=reverse,
                            state_type=state_type, bind=bind, graph_forward=graph_forward, graph_reverse=graph_reverse)
@@ -245,18 +259,26 @@ def differentiable_relaxation(matrix, b, initial, schedule, *, tape, iters,
             empty = wp.empty(0, dtype=b.dtype, device=device)
             adj_b = b.grad if b.requires_grad else empty
             adj_values = matrix.values.grad if matrix.values.requires_grad else empty
+            # Each CSR row exclusively owns its matrix/RHS gradient entries.
+            # Only unusual overlapping parameter-gradient views need atomics;
+            # neighbor solution adjoints still require them in every case.
+            scalar_bytes = 8 if b.dtype == wp.float64 else 4
+            overlap = (len(adj_b) and len(adj_values)
+                       and adj_b.ptr < adj_values.ptr + len(adj_values) * scalar_bytes
+                       and adj_values.ptr < adj_b.ptr + len(adj_b) * scalar_bytes)
             reverse_state = kernels.state_type()
             reverse_state.rows, reverse_state.group_offsets = schedule_arrays
             reverse_state.offsets, reverse_state.columns, reverse_state.values = matrix_arrays
             reverse_state.x, reverse_state.history = work, history
             reverse_state.adj_x, reverse_state.adj_b, reverse_state.adj_values = adjoint, adj_b, adj_values
+            reverse_state.atomic_parameters = int(bool(overlap))
             if device.is_cuda and program:
                 _launch_graph(b.dtype, device, program, schedule.maximum, reverse_state, reverse=True)
             else:
                 for group, visit, count, stride in reversed(program):
                     wp.launch(kernels.reverse, (count, schedule.maximum),
                               inputs=[*schedule_arrays, group, visit, stride, *matrix_arrays, work, history,
-                                      adjoint, adj_b, adj_values], device=device, record_tape=False)
+                                      adjoint, adj_b, adj_values, int(bool(overlap))], device=device, record_tape=False)
             if initial.requires_grad:
                 wp.launch(kernels.add, len(initial), inputs=[adjoint, initial.grad], device=device, record_tape=False)
 
