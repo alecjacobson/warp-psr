@@ -61,7 +61,7 @@ External CUDA graph capture and higher-order derivatives are unsupported. This
 separate module is not imported by forward-only reconstruction and adds no
 buffers, launches, or tape operations to that path.
 
-## Work still required
+## Functional products and root CG
 
 `warp_psr.solver_adjoint` also provides functional scalar CSR products and
 `finite_root_cg` for the small root system (at most 64 rows). The CG implementation
@@ -73,6 +73,51 @@ reconstruction solver's outer pre-CG skip test. The scalar CSR product matches
 Warp's non-tiled row reduction; it does not promise the arithmetic of the optional
 tiled long-row algorithm. Both helpers leave input values unchanged. Tolerances,
 scalar product multipliers, and matrix topology are fixed parameters.
+
+## Measurements and validation
+
+The [per-run report](results/finite-solver-adjoints.json) records five isolated
+warm repetitions on L40. These measure **one finest cascadic level**, with the
+matrix, RHS, and initial state all tracked in the enabled mode. They exclude
+reconstruction, row scheduling, tracking setup, validation, and gradient reset.
+
+| System | Rows | Existing forward | Tracked forward | Backward | Saved history |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Sphere, depth 4 | 3,168 | 0.956 ms | 1.318 ms | 3.124 ms | 0.193 MiB |
+| Eagle, depth 9 | 2,052,088 | 12.505 ms | 16.729 ms | 50.210 ms | 125.25 MiB |
+
+Both tracked forwards are bitwise equal to the production level solution on
+every run. Cached graphs reduce eagle tracked-forward time from 78.5 ms to
+16.7 ms and backward from 84.2 ms to 50.2 ms. The first eagle graph calls take
+63.8 ms forward and 86.8 ms backward; the first sphere forward also compiles
+kernels and takes 1.50 seconds. Tracking setup, first calls, all warm samples,
+retained allocations, and pool high-water marks are recorded separately.
+
+The eagle retains 1,537,425,667 pool bytes after the tracked forward versus
+1,159,840,243 for the existing forward, including their resident systems. The
+saved history is one part of that increase; input/output gradient buffers also
+consume memory. The 2,516,547,663-byte peak in both processes includes prior
+fixture reconstruction and is not an isolated backward peak. Native graph
+storage is outside the pool metric. No full reconstruction-backward timing or
+memory claim follows from these component measurements.
+
+Tests cover matrix/RHS/initial-state directional derivatives, both precisions
+on CPU/CUDA, zero diagonals, skipped and truncated CG, the 64-row root mean,
+larger sliced groups, fresh buffers, overlapping gradient views, repeated tapes,
+and independent streams. The full suite plus restored reference checks and the
+two new alias cases totals 518 passing tests, one CPU skip for the CUDA stream
+test, and one expected upstream failure. All forward pipeline files are
+byte-identical to meshing main; importing reconstruction does not import either
+adjoint module. The existing 31 public gates and reconstruction timing evidence
+therefore remain applicable to the unchanged default path.
+
+```sh
+python -m tools.benchmark_relaxation_adjoint \
+  --fixture .build/fixtures/eagle-full-d9-spsr --mode differentiable \
+  --repeats 5 --output .build/eagle-finite-relaxation.json
+```
+
+## Work still required
 
 These helpers alone do not differentiate multigrid, the outer conditional solve,
 assembly, normalization, grouping, density/normal splats, the computed isovalue,
