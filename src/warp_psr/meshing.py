@@ -138,6 +138,8 @@ def _grid(resolution, bounds):
         raise ValueError('bounds must be finite with lower < upper on every axis')
     if math.prod(n - 1 for n in shape) > 2**31 - 1:
         raise ValueError('extraction cell count exceeds int32 indexing')
+    if math.prod(shape) > 2**31 - 1:
+        raise ValueError('grid node count exceeds int32 sampling indices')
     lower, upper = wp.vec3(*lo), wp.vec3(*hi)
     # Match Warp MC's float32 bounds/spacing arithmetic.
     step = wp.cw_div(upper - lower, wp.vec3(*(n - 1 for n in shape)))

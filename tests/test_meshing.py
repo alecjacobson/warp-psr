@@ -188,7 +188,8 @@ def test_unsupported_precision_and_reconstruction_gradients_rejected(device):
         extract_mesh(direct_field(device), differentiable=True, **settings)
 
 
-@pytest.mark.parametrize('resolution', [True, 1, (2, 3), (2, 2, 3.5), (2, 2, True), (3000, 3000, 3000)])
+@pytest.mark.parametrize('resolution', [True, 1, (2, 3), (2, 2, 3.5), (2, 2, True),
+                                       (3000, 3000, 3000), (2, 2, 2**30)])
 def test_bad_grid_rejected_before_sampling(resolution):
     with pytest.raises(ValueError):
         extract_isosurface(lambda _: pytest.fail('must validate before sampling'), resolution=resolution,
