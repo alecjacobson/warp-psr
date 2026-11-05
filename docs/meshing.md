@@ -246,7 +246,19 @@ Forward-only sparse 512³ uses A–B–B–A ordering (A: PR #83, B: this implem
 | Field-to-mesh | 94.2 ms | 95.7 ms | 95.9 ms | 94.4 ms |
 | Combined | 305.6 ms | 314.7 ms | 304.0 ms | 324.8 ms |
 
-Default peak pool is byte-identical across all four processes (2.344 GiB).
+A second order-balanced round checks the small first-round timing difference:
+
+| Phase | A₀ | B₀ | B₁ | A₁ |
+| --- | ---: | ---: | ---: | ---: |
+| Reconstruction | 218.4 ms | 205.0 ms | 219.7 ms | 206.6 ms |
+| Field-to-mesh | 97.4 ms | 96.8 ms | 89.2 ms | 96.7 ms |
+| Combined | 315.9 ms | 304.3 ms | 311.4 ms | 303.1 ms |
+
+The first round has a roughly 1.6 ms higher candidate meshing median; the second
+has similar or lower candidate timings. The two rounds show no consistent
+forward-only slowdown. All observations are retained.
+
+Default peak pool is byte-identical across all eight processes (2.344 GiB).
 The individual timings and first invocations are retained; these are measured
 results on L40, not portable CI performance thresholds.
 
