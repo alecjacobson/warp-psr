@@ -150,7 +150,7 @@ def _grid(resolution, bounds):
 
 
 def extract_isosurface(field, *, resolution, bounds, backend='sparse', device=None,
-                       slab_size=16, lipschitz_bound=None):
+                       slab_size=16, lipschitz_bound=None, classification_field=None):
     """Extract the zero set of a batched GPU callback ``field(points) -> values``.
 
     ``points`` are float32 ``wp.vec3`` model positions; returned values must be
@@ -169,9 +169,16 @@ def extract_isosurface(field, *, resolution, bounds, backend='sparse', device=No
     Callbacks must be deterministic and must not mutate shared output buffers:
     backward needs each invocation's values. GPU count reads inside Warp's
     extractors remain; this wrapper never downloads field values or meshes.
+
+    For ``sparse``, an optional ``classification_field`` callback can evaluate
+    the same values without recording gradients for fixed cell selection.
+    Only retained corners use ``field`` in that case. The classification callback
+    must agree with ``field`` at every grid node; a surrogate can omit crossings.
     """
     if backend not in ('dense', 'sparse', 'lipschitz'):
         raise ValueError('backend must be dense, sparse, or lipschitz')
+    if classification_field is not None and backend != 'sparse':
+        raise ValueError('classification_field is only used by the sparse backend')
     shape, lower, upper, step = _grid(resolution, bounds)
     if not isinstance(slab_size, int) or isinstance(slab_size, bool) or slab_size < 1:
         raise ValueError('slab_size must be a positive integer')
@@ -183,9 +190,10 @@ def extract_isosurface(field, *, resolution, bounds, backend='sparse', device=No
     device = wp.get_device(device)
     samples = 0
 
-    def sample(points):
+    def sample(points, *, classification=False):
         nonlocal samples
-        values = field(points)
+        callback = classification_field if classification and classification_field is not None else field
+        values = callback(points)
         if (not isinstance(values, wp.array) or values.dtype != wp.float32
                 or values.shape != (len(points),) or values.device != device or not values.is_contiguous):
             raise ValueError('field must return contiguous float32 values, one per point, on the query device')
@@ -238,7 +246,7 @@ def extract_isosurface(field, *, resolution, bounds, backend='sparse', device=No
                 points = wp.empty((width + 1) * ny * nz, dtype=wp.vec3, device=device)
                 wp.launch(_grid_points, len(points), inputs=[ny, nz, start, lower, upper, step, points], device=device,
                           record_tape=False)
-                values = sample(points)
+                values = sample(points, classification=True)
                 tracked = tracked or values.requires_grad
                 wp.launch(_mark_cells, width * (ny - 1) * (nz - 1),
                           inputs=[values, ny, nz, start, mask, status], device=device, record_tape=False)
@@ -323,4 +331,14 @@ def extract_mesh(reconstruction, *, resolution, bounds, iso_value=None, differen
         wp.launch(_center, len(values), inputs=[values, iso, out], device=device)
         return out
 
-    return extract_isosurface(sample, resolution=resolution, bounds=bounds, **options)
+    if full_backward and options.get('backend', 'sparse') == 'sparse':
+        def classify(points):
+            values, _, _ = field.evaluate(points, requires_grad=False)
+            out = wp.empty_like(values, requires_grad=False)
+            wp.launch(_center, len(values), inputs=[values, iso, out], device=device, record_tape=False)
+            return out
+        options.setdefault('classification_field', classify)
+    mesh = extract_isosurface(sample, resolution=resolution, bounds=bounds, **options)
+    if differentiable and not len(mesh.vertices):
+        mesh.vertices.requires_grad = True
+    return mesh

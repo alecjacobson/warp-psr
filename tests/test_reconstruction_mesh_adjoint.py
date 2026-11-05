@@ -9,8 +9,8 @@ from test_reconstruction_adjoint import fixed_assignments
 
 
 @pytest.mark.cuda
-@pytest.mark.parametrize('backend',['dense','sparse'])
-def test_mesh_vertex_loss_to_inputs(backend):
+@pytest.mark.parametrize('backend,extra',[('dense',{}),('sparse',{}),('sparse',{'classification_field':None})])
+def test_mesh_vertex_loss_to_inputs(backend,extra):
     wp.init()
     if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
     p,n=inputs('cuda:0',wp.vec3,jitter=.01)
@@ -18,7 +18,7 @@ def test_mesh_vertex_loss_to_inputs(backend):
     mesh_options=dict(resolution=9,bounds=((-1.2,-1.2,-1.2),(1.2,1.2,1.2)),backend=backend)
     tape=wp.Tape();result=reconstruct_differentiable(p,n,tape=tape,**options)
     with tape:
-        mesh=extract_mesh(result,differentiable=True,**mesh_options)
+        mesh=extract_mesh(result,differentiable=True,**mesh_options,**extra)
     reference=reconstruct(p,n,**options)
     expected=extract_mesh(reference,**mesh_options)
     assert len(mesh.vertices)>0
@@ -41,3 +41,21 @@ def test_mesh_vertex_loss_to_inputs(backend):
         array.assign(original)
         assert np.isfinite(gradient).all()
         np.testing.assert_allclose(np.sum(gradient.astype(float)*direction),(losses[0]-losses[1])/(2*eps),rtol=3e-2,atol=2e-3)
+
+
+@pytest.mark.cuda
+def test_empty_sparse_mesh_backward():
+    wp.init()
+    if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
+    p,n=inputs('cuda:0',wp.vec3,jitter=.01)
+    tape=wp.Tape();result=reconstruct_differentiable(p,n,tape=tape,depth=3,full_depth=1,iters=2)
+    iso=wp.full(1,1e6,dtype=wp.float32,device=p.device,requires_grad=True)
+    with tape:
+        mesh=extract_mesh(result,differentiable=True,iso_value=iso,resolution=9,
+                          bounds=((-1.2,-1.2,-1.2),(1.2,1.2,1.2)),backend='sparse')
+    assert not len(mesh.vertices) and mesh.vertices.requires_grad
+    for _ in range(2):
+        tape.backward(grads={mesh.vertices:wp.empty(0,dtype=wp.vec3,device=p.device)})
+        for array in (p,n,iso):
+            np.testing.assert_array_equal(array.grad.numpy(),np.zeros_like(array.numpy()))
+        tape.zero()

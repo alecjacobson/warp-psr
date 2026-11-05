@@ -76,6 +76,15 @@ need earlier invocations during backward. Streaming selection can retain extra
 callback intermediates when a tape is active. Forward-only callbacks should
 allocate untracked arrays.
 
+For `backend="sparse"`, `classification_field` can supply the same scalar values
+without recording gradients; only retained corners then call the tracked `field`
+callback. Both callbacks must agree at every sampled grid node. Classification
+uses the existing finite-value/coverage checks and remains a fixed decision.
+`extract_mesh` supplies this untracked classifier automatically for differentiable
+reconstruction results, using the same device transforms and isovalue. No tape
+state is suspended or modified. `classification_field=None` explicitly retains
+the generic single-callback behavior.
+
 `extract_mesh(..., differentiable=True)` also supports a directly specified
 `LevelField` with tracked coefficients and no cumulative coefficients; its
 transform stays fixed. A one-element tracked float32 `iso_value` device array is
@@ -182,7 +191,7 @@ python -m tools.check_meshing --fixture .build/fixtures/eagle-full-d9-spsr \
   --resolution 512 --output .build/eagle-mesh-validation.json
 ```
 
-## Complete mesh-loss backward measurements
+## Initial complete mesh-loss backward measurements
 
 The optional reconstruction backward path is also measured on the full eagle
 at 512³, using the mean vertex dot product with `(1, 0.3, -0.2)` as a loss.
@@ -202,7 +211,7 @@ These timings include the complete mesh-to-input backward path and are separate
 from the reconstruction-only backward timings. Peak pool includes retained tapes
 and excludes native CUDA graph storage.
 
-Sparse classification currently retains all slab callback intermediates when
+The initial implementation in PR #83 retains all slab callback intermediates when
 recording gradients, even though crossing selection is fixed. Its separate event
 profile spends 5.733 s in mesh/field backward and 0.436 s in reconstruction
 backward. Dense spends 5.155 s and 0.405 s respectively. Stream event timings

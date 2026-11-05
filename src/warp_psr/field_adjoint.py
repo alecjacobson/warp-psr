@@ -41,6 +41,9 @@ def precision_kernels(dtype):
                           grad_coefficients: wp.array(dtype=dtype), grad_cumulative: wp.array(dtype=dtype),
                           grad_queries: wp.array(dtype=vec3)):
         i = wp.tid()
+        gv, gg = grad_value[i], grad_spatial[i]
+        if gv == dtype(0) and gg[0] == dtype(0) and gg[1] == dtype(0) and gg[2] == dtype(0):
+            return
         original = queries[i]
         p = vec3(original)
         ok = wp.isfinite(p[0]) and wp.isfinite(p[1]) and wp.isfinite(p[2]) and wp.min(p) >= dtype(0) and wp.max(p) <= dtype(1)
@@ -60,7 +63,6 @@ def precision_kernels(dtype):
                 elif p[axis] == dtype(1):
                     p[axis] = dtype(1.0-1e-6)
             qp = vec3(dtype(0))
-            gv, gg = grad_value[i], grad_spatial[i]
             for d in range(wp.max(leaf-1,0),wp.min(leaf+1,depth)+1):
                 n = 1 << d
                 t = p*dtype(n)
@@ -175,8 +177,8 @@ def evaluate_cube(field, queries, *, tape):
     dtype, device = field.coefficients.dtype, queries.device
     vector = wp.vec3d if dtype == wp.float64 else wp.vec3
     matrix = wp.mat33d if dtype == wp.float64 else wp.mat33
-    values = wp.empty(len(queries),dtype=dtype,device=device,requires_grad=True)
-    gradients = wp.empty_like(queries,requires_grad=True)
+    values = wp.empty(len(queries),dtype=dtype,device=device,requires_grad=tape is not None)
+    gradients = wp.empty_like(queries,requires_grad=tape is not None)
     valid = wp.empty(len(queries),dtype=int,device=device)
     wp.launch(reference_evaluation_kernel(dtype),len(queries),
               inputs=[field.keys,field.coefficients,field.cumulative,queries,matrix(1,0,0,0,1,0,0,0,1),vector(0),field.depth,
@@ -185,7 +187,8 @@ def evaluate_cube(field, queries, *, tape):
         wp.launch(precision_kernels(dtype).evaluate_backward,len(queries),
                   inputs=[field.keys,field.coefficients,field.cumulative,queries,field.depth,values.grad,gradients.grad,
                           field.coefficients.grad,field.cumulative.grad,queries.grad],device=device,record_tape=False)
-    tape.record_func(backward,[field.coefficients,field.cumulative,queries,values,gradients])
+    if tape is not None:
+        tape.record_func(backward,[field.coefficients,field.cumulative,queries,values,gradients])
     return values,gradients,valid
 
 
@@ -205,7 +208,13 @@ class DifferentiableField:
     def cumulative(self):
         return self.cube.cumulative
 
-    def evaluate(self, queries, *, centered=False):
+    def evaluate(self, queries, *, centered=False, requires_grad=True):
+        """Evaluate with device transforms; opt out of recording for fixed selection.
+
+        ``requires_grad=False`` returns untracked values/spatial gradients and
+        records no operations, even inside the reconstruction tape. This is for
+        discrete classification, not for differentiable losses.
+        """
         dtype, device = self.cube.coefficients.dtype, self.cube.coefficients.device
         vector = wp.vec3d if dtype == wp.float64 else wp.vec3
         if queries.dtype != vector or queries.device != device:
@@ -213,13 +222,16 @@ class DifferentiableField:
         if self.ready is not None:
             wp.get_stream(device).wait_event(self.ready)
         kernels = precision_kernels(dtype)
-        local = wp.empty_like(queries, requires_grad=True)
-        wp.launch(kernels.to_cube, len(queries), inputs=[queries, self.transforms, local], device=device)
-        values, gradients, valid = evaluate_cube(self.cube, local, tape=self.tape)
-        model_gradients = wp.empty_like(gradients, requires_grad=True)
-        wp.launch(kernels.to_model_gradient, len(queries), inputs=[gradients, self.transforms, model_gradients], device=device)
+        local = wp.empty_like(queries, requires_grad=requires_grad)
+        wp.launch(kernels.to_cube, len(queries), inputs=[queries, self.transforms, local], device=device,
+                  record_tape=requires_grad)
+        values, gradients, valid = evaluate_cube(self.cube, local, tape=self.tape if requires_grad else None)
+        model_gradients = wp.empty_like(gradients, requires_grad=requires_grad)
+        wp.launch(kernels.to_model_gradient, len(queries), inputs=[gradients, self.transforms, model_gradients], device=device,
+                  record_tape=requires_grad)
         if centered:
-            centered_values = wp.empty_like(values, requires_grad=True)
-            wp.launch(kernels.center, len(values), inputs=[values, self.iso_value, centered_values], device=device)
+            centered_values = wp.empty_like(values, requires_grad=requires_grad)
+            wp.launch(kernels.center, len(values), inputs=[values, self.iso_value, centered_values], device=device,
+                      record_tape=requires_grad)
             values = centered_values
         return values, model_gradients, valid
