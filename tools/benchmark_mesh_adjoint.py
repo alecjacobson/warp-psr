@@ -87,7 +87,7 @@ def benchmark(args):
             meshing.IsoSurfaceMarchingCubes.extract = dense_descriptor
         if not len(mesh.vertices):
             raise AssertionError('benchmark requires a nonempty mesh')
-        seed = wp.full(len(mesh.vertices), wp.vec3(1., .3, -.2) / len(mesh.vertices),
+        seed = wp.full(len(mesh.vertices), wp.vec3(1., .3, -.2) / float(len(mesh.vertices)),
                        dtype=wp.vec3, device=device)
         wp.synchronize_device(device)
         backward_function = instrument(tape.backward, 'full_backward') if profiled else tape.backward
