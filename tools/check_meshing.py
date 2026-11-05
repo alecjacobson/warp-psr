@@ -39,6 +39,23 @@ def canon(indices):
     return f[np.lexsort(f.T[::-1])]
 
 
+def topology(vertices, indices, bounds, tolerance):
+    faces = indices.reshape(-1, 3)
+    edges = np.concatenate([faces[:, [0, 1]], faces[:, [1, 2]], faces[:, [2, 0]]])
+    edges.sort(axis=1)
+    edges, counts = np.unique(edges, axis=0, return_counts=True)
+    boundary = vertices[edges[counts == 1]]
+    on_box = np.zeros(len(boundary), dtype=bool)
+    for corner in bounds:
+        on_box |= np.any(np.all(np.abs(boundary - corner) <= tolerance, axis=1), axis=1)
+    triangles = vertices[faces]
+    area = np.linalg.norm(np.cross(triangles[:, 1] - triangles[:, 0], triangles[:, 2] - triangles[:, 0]), axis=1)
+    return {'boundary_edges': int(np.count_nonzero(counts == 1)),
+            'boundary_edges_away_from_box': int(np.count_nonzero(~on_box)),
+            'edges_with_more_than_two_faces': int(np.count_nonzero(counts > 2)),
+            'zero_area_triangles': int(np.count_nonzero(area == 0))}
+
+
 def check(args):
     resolution=args.resolution
     p,n,params,provenance=benchmark_input(args)
@@ -108,6 +125,8 @@ def check(args):
             return {'max':float(np.abs(r).max(initial=0)),'rms':float(np.sqrt(np.mean(r*r))) if len(r) else 0.0}
         report['dense_vertex_field_residual']=residual(va)
         report['sparse_vertex_field_residual']=residual(vb)
+        report['dense_topology']=topology(va,fa,bounds,args.geometry_tolerance)
+        report['sparse_topology']=topology(vb,fb,bounds,args.geometry_tolerance)
         grid=capture['grid'].numpy()
 
     # CPU extraction has no simultaneous GPU validation/benchmark workload. The
@@ -119,7 +138,8 @@ def check(args):
         runs.append(time.perf_counter()-start)
     cv+=np.asarray(bounds[0])
     forward=cKDTree(va).query(cv)[0];reverse=cKDTree(cv).query(va)[0]
-    report['cpu_skimage']={'vertex_field_residual':residual(cv),'runs_seconds':runs,'warm_median_seconds':float(np.median(runs[1:])),
+    report['cpu_skimage']={'topology':topology(cv,cf,bounds,args.geometry_tolerance),
+                          'vertex_field_residual':residual(cv),'runs_seconds':runs,'warm_median_seconds':float(np.median(runs[1:])),
                           'scope':'CPU extraction only, from the same centered scalar grid; sampling and GPU-to-host transfer excluded.',
                           'vertices':len(cv),'triangles':len(cf),
                           'cpu_to_warp_max_vertex_distance':float(forward.max()),
