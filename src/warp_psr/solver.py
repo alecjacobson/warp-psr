@@ -45,6 +45,12 @@ def root_matrix_rows(
     for j in range(offsets[i], offsets[i + 1]):
         rows[j] = root_row(keys[i])
         cols[j] = root_row(keys[columns[j]])
+    # Warp's nnz is an upper bound until explicitly synchronized. The final
+    # row owns unused capacity, which triplet assembly must ignore.
+    if i == keys.shape[0] - 1:
+        for j in range(offsets[keys.shape[0]], rows.shape[0]):
+            rows[j] = -1
+            cols[j] = -1
 
 
 @lru_cache(None)
