@@ -90,8 +90,10 @@ selection, connectivity and topology are fixed. This is not a derivative of
 appearing/disappearing triangles. The sparse classifier retains all dense-grid
 crossings without a signed-distance assumption. An optional `lipschitz` backend
 requires a caller-proven bound, as described in [meshing](meshing.md).
-Tracked meshing retains callback intermediates, including classification slabs;
-its memory/time costs differ from forward-only sparse extraction. Reconstruction
+Tracked meshing retains interpolation callback intermediates. The built-in
+sparse path evaluates fixed classification slabs without recording them, then
+tracks retained corner samples. Dense grids still retain full-grid intermediates;
+enabled memory/time costs differ from forward-only extraction. Reconstruction
 benchmark timings exclude meshing.
 
 ## Validation and reconstruction measurements

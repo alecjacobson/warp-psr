@@ -1,6 +1,7 @@
 """Device transform, cumulative and isovalue VJPs with primal parity."""
 import numpy as np
 import pytest
+import weakref
 import warp as wp
 from warp_psr.field import LevelField, cumulative_coefficients
 from warp_psr.field_adjoint import (DifferentiableField, cube_field, record_cumulative_vjp, record_isovalue_vjp)
@@ -30,6 +31,12 @@ def test_device_field_and_cumulative_vjp(device, dtype):
         wp.launch(precision_kernels(dtype).evaluation_transform,1,inputs=[normalization,transforms],device=device)
         field = DifferentiableField(cube_field(k,coefficients,cumulative,2),transforms,wp.zeros(1,dtype=dtype,device=device),tape)
         value,gradient,valid=field.evaluate(q)
+        recorded = len(tape.launches)
+        untracked = field.evaluate(q, requires_grad=False)
+        assert len(tape.launches) == recorded
+    for actual, expected in zip(untracked, (value, gradient, valid)):
+        assert not actual.requires_grad
+        np.testing.assert_array_equal(actual.numpy(), expected.numpy())
     t=transforms.numpy()[1]
     original_cells=np.floor((q.numpy()@t[:3,:3].T+t[:3,3])*4)
     reference=LevelField(k,coefficients,tuple(t[:3,:3].ravel()),tuple(t[:3,3]),2,0,cumulative)
@@ -38,6 +45,17 @@ def test_device_field_and_cumulative_vjp(device, dtype):
     np.testing.assert_array_equal(gradient.numpy(),rg.numpy())
     np.testing.assert_array_equal(valid.numpy(),rvalid.numpy())
     sv,sg=rng.normal(size=len(q)),rng.normal(size=(len(q),3))*.1
+    # Include pure spatial-gradient, pure value, and exactly zero loss seeds.
+    # A zero-value shortcut must retain the mixed Hessian contribution.
+    sv[:len(q)//3] = 0
+    sg[len(q)//3:2*len(q)//3] = 0
+    sv[2*len(q)//3:] = 0
+    sg[2*len(q)//3:] = 0
+    # The tape owns array primals, not the wrapper that itself owns the tape.
+    # Releasing the field must not create a cycle retaining a full mesh grid.
+    field_ref = weakref.ref(field)
+    del field
+    assert field_ref() is None
     tape.backward(grads={value:wp.array(sv,dtype=dtype,device=device),gradient:wp.array(sg,dtype=vector,device=device)})
     for array in [coefficients,normalization,q]:
         original,g=array.numpy().copy(),array.grad.numpy().copy()
