@@ -9,7 +9,6 @@ import time
 import numpy as np
 import warp as wp
 from warp_psr import reconstruct
-from warp_psr.reconstruction_adjoint import reconstruct_differentiable
 from tools.benchmark_input import benchmark_input, reconstruction_parameters
 from tools.benchmark_meshing import gpu_processes
 from tools.cpu_environment import cpu_environment
@@ -23,6 +22,8 @@ def benchmark(args):
     vector=wp.vec3d if parameters['precision']=='double' else wp.vec3
     scalar=wp.float64 if vector==wp.vec3d else wp.float32
     tracked=args.mode=='differentiable'
+    if tracked:
+        from warp_psr import reconstruct_differentiable
     queries=wp.array(p[np.linspace(0,len(p)-1,min(32,len(p)),dtype=int)],dtype=vector,device=device)
     positions=wp.array(p,dtype=vector,device=device,requires_grad=tracked)
     normals=wp.array(n,dtype=vector,device=device,requires_grad=tracked)
