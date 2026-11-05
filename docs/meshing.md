@@ -181,3 +181,37 @@ dependencies:
 python -m tools.check_meshing --fixture .build/fixtures/eagle-full-d9-spsr \
   --resolution 512 --output .build/eagle-mesh-validation.json
 ```
+
+## Complete mesh-loss backward measurements
+
+The optional reconstruction backward path is also measured on the full eagle
+at 512³, using the mean vertex dot product with `(1, 0.3, -0.2)` as a loss.
+Each backend runs in a separate isolated process with five warm repetitions;
+the [per-run report](results/reconstruction-mesh-adjoints.json) includes first
+invocations, source hashes, counts, and separate event profiles. Upload, bounds
+preparation, loss-seed preparation and validation are excluded from wall times.
+
+| Backend | Reconstruction | Field-to-mesh | Full backward | Forward + backward | Peak pool |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Dense | 211.3 ms | 125.3 ms | 5.649 s | 5.983 s | 23.041 GiB |
+| Sparse | 202.6 ms | 106.5 ms | 6.231 s | 6.542 s | 19.117 GiB |
+
+Both produce 656,754 vertices and 1,312,404 triangles, with finite input-position
+and normal gradients and the expected zero normal-magnitude derivative.
+These timings include the complete mesh-to-input backward path and are separate
+from the reconstruction-only backward timings. Peak pool includes retained tapes
+and excludes native CUDA graph storage.
+
+Sparse classification currently retains all slab callback intermediates when
+recording gradients, even though crossing selection is fixed. Its separate event
+profile spends 5.733 s in mesh/field backward and 0.436 s in reconstruction
+backward. Dense spends 5.155 s and 0.405 s respectively. Stream event timings
+include host submission gaps; forward sampling and MC profiles are also in the
+report. Avoiding classification retention and zero-VJP traversal is tracked in
+[#84](https://github.com/alecjacobson/warp-psr/issues/84). The forward-only sparse
+memory/time advantages above do not apply to this initial tracked implementation.
+
+```sh
+python -m tools.benchmark_mesh_adjoint --fixture .build/fixtures/eagle-full-d9-spsr \
+  --resolution 512 --backend sparse --repeats 5 --output .build/eagle-mesh-backward.json
+```
