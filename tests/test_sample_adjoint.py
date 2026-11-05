@@ -14,10 +14,10 @@ def device(request):
     return request.param
 
 
-def inputs(device, dtype):
+def inputs(device, dtype, jitter=1e-3):
     rng = np.random.default_rng(71)
     centers = np.array([[.1,.2,.3],[.8,1.5,.2],[-.7,-.6,-.2],[-.3,.7,.7],[.3,-1.7,0],[.5,.8,-.8]])
-    p = np.repeat(centers,3,axis=0) + rng.normal(size=(18,3))*1e-3
+    p = np.repeat(centers,3,axis=0) + rng.normal(size=(18,3))*jitter
     n = rng.normal(size=p.shape)
     return wp.array(p,dtype=dtype,device=device,requires_grad=True), wp.array(n,dtype=dtype,device=device,requires_grad=True)
 
@@ -25,16 +25,27 @@ def inputs(device, dtype):
 def frozen_layout(p, n):
     if p.device.is_cuda:
         return prepare_samples(p,n,depth=3)
-    # CPU derivative tests use a fixed six-group layout. CUDA additionally
-    # compares all continuous outputs and finite differences to public grouping.
+    # Construct the same geometric grouping on CPU for derivative tests. Keys
+    # must reflect normalized point positions when replaying downstream splats.
     dtype = wp.float64 if p.dtype == wp.vec3d else wp.float32
     arr = lambda a,t: wp.array(a,dtype=t,device=p.device)
-    return SampleGroups(arr(range(6),wp.int64),wp.zeros(6,dtype=p.dtype,device=p.device),
-        wp.zeros(6,dtype=p.dtype,device=p.device),wp.full(6,3,dtype=dtype,device=p.device),
-        wp.zeros(5,dtype=dtype,device=p.device),p,n,arr(range(0,18,3),int),0.0,
-        input_status=wp.zeros(18,dtype=int,device=p.device),
-        input_group_indices=arr(np.arange(18)//3,int),input_order=arr(range(18),int),
-        group_offsets=arr(range(0,19,3),int))
+    data=p.numpy();scalar=data.dtype.type
+    low,high=data.min(axis=0),data.max(axis=0)
+    width=scalar(np.max(high-low)*scalar(1.1));inv=scalar(1.0/float(width))
+    origin=(high+low)/scalar(2)-width/scalar(2)
+    normalized=data[:,[1,2,0]]*inv-origin[[1,2,0]]*inv
+    cell=np.maximum(0,np.ceil(normalized*scalar(8)).astype(np.int64)-1)
+    keys=(3<<48)|(cell[:,0]<<32)|(cell[:,1]<<16)|cell[:,2]
+    order=np.argsort(keys,kind='stable');sorted_keys=keys[order]
+    starts=np.r_[0,np.flatnonzero(np.diff(sorted_keys))+1]
+    offsets=np.r_[starts,len(data)];count=len(starts)
+    groups=np.empty(len(data),dtype=int)
+    groups[order]=np.repeat(np.arange(count),np.diff(offsets))
+    return SampleGroups(arr(sorted_keys[starts],wp.int64),wp.zeros(count,dtype=p.dtype,device=p.device),
+        wp.zeros(count,dtype=p.dtype,device=p.device),arr(np.diff(offsets),dtype),
+        wp.zeros(5,dtype=dtype,device=p.device),p,n,arr(order[starts],int),0.0,
+        input_status=wp.zeros(len(data),dtype=int,device=p.device),
+        input_group_indices=arr(groups,int),input_order=arr(order,int),group_offsets=arr(offsets,int))
 
 
 @pytest.mark.parametrize('dtype',[wp.vec3,wp.vec3d])
