@@ -109,11 +109,42 @@ rounding noise from changed bins; float64 checks retain tight derivative budgets
 The 31 public datasets reproduce archived, reference-validated field values and
 spatial gradients bit for bit in both default and differentiable modes, with
 identical isovalues and exact reference tree hashes. The original accuracy
-budgets are unchanged. Detailed performance reports will accompany the final
-validation of this change; initial full-eagle measurements are approximately
-0.234 s enabled forward, 0.532 s backward, and 5.01 GiB process peak pool memory
-on L40, excluding input upload, query evaluation and meshing. These are initial
-measurements, not portable thresholds.
+budgets are unchanged. The [validation report](results/reconstruction-adjoints-validation.json) records
+**656 passing tests, six CPU parameterization skips and one expected upstream
+failure**, all 31 public comparisons, and exact finite solver replay on six
+profiles including the full eagle and float64 cases.
+
+The [per-run performance report](results/reconstruction-adjoints-performance.json)
+contains five isolated warm repeats per process on L40, after the first call.
+It times reconstruction forward and full checkpointed backward separately;
+input upload, 32-query field evaluation, validation and meshing are excluded.
+
+| Case | Points | Enabled forward | Backward | Peak pool |
+| --- | ---: | ---: | ---: | ---: |
+| Sphere | 512 | 46.196 ms | 44.557 ms | 0.009 GiB |
+| Torus | 8,192 | 50.252 ms | 72.040 ms | 0.083 GiB |
+| Eagle | 796,825 | 205.573 ms | 490.102 ms | 5.010 GiB |
+
+Default forward uses A–B–B–A process ordering (A: main before this change,
+B: this implementation with differentiation disabled):
+
+| Case | A₀ | B₀ | B₁ | A₁ |
+| --- | ---: | ---: | ---: | ---: |
+| Sphere | 44.000 ms | 46.713 ms | 47.043 ms | 47.299 ms |
+| Torus | 49.222 ms | 49.685 ms | 49.373 ms | 51.556 ms |
+| Eagle | 210.744 ms | 208.392 ms | 211.266 ms | 205.670 ms |
+
+Two order-balanced rounds show no consistent default latency regression; both
+rounds' individual runs are retained. Default peak pool bytes are identical
+across all A/B processes for each case. Differences of a few milliseconds
+between enabled/default medians are process variation, not an enabled-mode
+speedup. The eagle's default peak remains 2.344 GiB; enabled backward reaches
+5.010 GiB. Its first process invocation takes 0.588 s forward
+and 0.735 s backward and may reuse the disk kernel cache.
+Pool peaks include resident inputs/checkpoints and exclude native CUDA graph
+storage. Every enabled run checks global translation and normal-scale gradient
+invariants in addition to finite gradients. These measurements are not portable
+CI timing thresholds.
 
 ## Finite ordered relaxation
 
