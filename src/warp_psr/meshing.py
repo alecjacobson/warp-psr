@@ -324,7 +324,9 @@ def extract_mesh(reconstruction, *, resolution, bounds, iso_value=None, differen
 
     def sample(points):
         if full_backward:
+            from .field_adjoint import center_values
             values, _, _ = field.evaluate(points)
+            return center_values(values, iso, tape=field.tape)
         else:
             values, _, _ = field.evaluate(points, requires_grad=differentiable)
         out = wp.empty_like(values, requires_grad=differentiable)

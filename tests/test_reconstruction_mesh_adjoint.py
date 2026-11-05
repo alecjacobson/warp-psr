@@ -59,3 +59,28 @@ def test_empty_sparse_mesh_backward():
         for array in (p,n,iso):
             np.testing.assert_array_equal(array.grad.numpy(),np.zeros_like(array.numpy()))
         tape.zero()
+
+
+@pytest.mark.cuda
+@pytest.mark.parametrize('backend',['dense','sparse'])
+def test_mesh_external_isovalue_vjp(backend):
+    wp.init()
+    if not wp.is_cuda_available():pytest.skip('CUDA unavailable')
+    p,n=inputs('cuda:0',wp.vec3,jitter=.01)
+    tape=wp.Tape();result=reconstruct_differentiable(p,n,tape=tape,depth=3,full_depth=1,
+                                                    samples_per_node=.05,iters=2)
+    threshold=float(result.iso_value.numpy()[0])
+    iso=wp.array([threshold],dtype=wp.float32,device=p.device,requires_grad=True)
+    options=dict(resolution=9,bounds=((-1.2,-1.2,-1.2),(1.2,1.2,1.2)),backend=backend)
+    with tape:
+        mesh=extract_mesh(result,differentiable=True,iso_value=iso,**options)
+    seed=np.random.default_rng(832).normal(size=(len(mesh.vertices),3))/len(mesh.vertices)
+    tape.backward(grads={mesh.vertices:wp.array(seed,dtype=wp.vec3,device=p.device)})
+    actual=float(iso.grad.numpy()[0])
+    primal=reconstruct(p,n,depth=3,full_depth=1,samples_per_node=.05,iters=2)
+    losses=[];eps=1e-4
+    for sign in [1,-1]:
+        candidate=extract_mesh(primal,iso_value=threshold+sign*eps,**options)
+        np.testing.assert_array_equal(candidate.indices.numpy(),mesh.indices.numpy())
+        losses.append(float(np.sum(candidate.vertices.numpy().astype(float)*seed)))
+    np.testing.assert_allclose(actual,(losses[0]-losses[1])/(2*eps),rtol=2e-2,atol=1e-4)
