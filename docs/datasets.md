@@ -179,3 +179,21 @@ all diagnostic query families. Passing these checks establishes compatibility
 with the pinned PSR/SPSR implementation; it does not assert that defective input
 produces a high-quality or correctly oriented surface. Large generated fixtures
 and raw sources stay in ignored persistent storage.
+
+The opt-in differentiable path can also be checked on any accepted fixture:
+
+```sh
+python -m tools.check_differentiable_fixture .build/fixtures/drill-full-d7-psr-double --output .build/drill-adjoint.json
+```
+
+This checker requires current C++ compatibility acceptance and matching hashes
+for input, queries, reference exports and production sources. It compares fresh
+default/tracked values, spatial gradients, coefficients, cumulative coefficients,
+valid masks and isovalue exactly on every query. It then backpropagates a centered
+mean field loss at 32 recorded random-volume queries, requiring finite point and
+normal gradients, translation equivariance, and zero derivative under uniform
+normal scaling. Spatial derivatives are multiplied by the input extent to make
+the translation check dimensionless. These invariants complement the existing
+finite-difference tests; they are not a new large-input gradient oracle or a test
+of changing tree/mesh topology. The checker also accepts a `.tar.gz` containing a
+single fixture's regular files, and validates it while streaming without unpacking.
