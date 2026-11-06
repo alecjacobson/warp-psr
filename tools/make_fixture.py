@@ -64,11 +64,11 @@ def oracle_parameters(p):
         str(p[key]) for key in ('base_depth','solve_depth','kernel_depth','scale','samples_per_node','cg_accuracy','base_v_cycles')]
 
 
-def generate(args):
+def generate(args, *, output_directory=None):
     if args.base_depth is None:args.base_depth=args.full_depth
     if args.solve_depth is None:args.solve_depth=args.depth
     if args.kernel_depth is None:args.kernel_depth=max(args.depth-2,0)
-    out = ROOT / ".build/fixtures" / args.name
+    out = Path(output_directory) if output_directory is not None else ROOT / ".build/fixtures" / args.name
     out.mkdir(parents=True, exist_ok=True)
     source_metadata=None
     if args.dataset or args.input:
@@ -196,4 +196,8 @@ if __name__ == "__main__":
     parser.add_argument("--operators", action="store_true", help="Export small explicit matrices and interpolation records")
     parser.add_argument("--topology", action="store_true", help="Export unique global node identities, flags and parent/child relationships")
     parser.add_argument("--solver-trace", action="store_true", help="Export read-only per-update solve diagnostics (small fixtures only)")
-    generate(parser.parse_args())
+    parser.add_argument("--output-directory",type=Path,help="Override the generated fixture directory; source/build paths are unchanged")
+    args=parser.parse_args()
+    output_directory=args.output_directory
+    del args.output_directory
+    generate(args,output_directory=output_directory)
