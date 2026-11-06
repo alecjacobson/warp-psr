@@ -11,13 +11,19 @@ from tools.make_fixture import ROOT, points_for, read_output
 
 
 @pytest.mark.reference
-def test_fixture_and_openmp_checks_support_explicit_scratch_directories(tmp_path):
+def test_fixture_and_openmp_checks_support_explicit_scratch_directories(tmp_path, monkeypatch):
     from argparse import Namespace
     from tools.make_fixture import generate
     from tools.fixture_provenance import verify_fixture
     from tools.check_openmp import main as check_openmp
     if not all((ROOT/'.build'/name).exists() for name in ('oracle', 'oracle_instrumented', 'oracle_instrumented_openmp')):
         pytest.skip('Build the pinned reference first')
+    check_output = subprocess.check_output
+    def without_nvidia_smi(command, *args, **kwargs):
+        if command[0] == 'nvidia-smi':
+            raise FileNotFoundError('No GPU inventory utility on this host')
+        return check_output(command, *args, **kwargs)
+    monkeypatch.setattr(subprocess, 'check_output', without_nvidia_smi)
     args = Namespace(name='sphere', dataset=None, input=None, max_points=None, shape='sphere',
                      input_scale=1., translation=[0.,0.,0.], count=64, seed=2026, variant='none',
                      depth=3, full_depth=2, base_depth=None, solve_depth=None, kernel_depth=None,
@@ -27,6 +33,7 @@ def test_fixture_and_openmp_checks_support_explicit_scratch_directories(tmp_path
     directory = tmp_path/'fixtures'/'sphere'
     generate(args, output_directory=directory)
     identity = verify_fixture(directory)
+    assert json.loads((directory/'manifest.json').read_text())['environment']['gpu'] is None
     assert identity['parameters']['base_depth'] == 2
     assert 'output_directory' not in identity['parameters']
     report = tmp_path/'openmp.json'

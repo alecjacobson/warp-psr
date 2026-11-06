@@ -138,6 +138,11 @@ def generate(args, *, output_directory=None):
         np.testing.assert_array_equal(baseline[key], instrumented[key])
     wp.init()
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    try:
+        gpu_description = subprocess.check_output(["nvidia-smi", "--query-gpu=name,driver_version,memory.total",
+                                                   "--format=csv,noheader"], text=True, stderr=subprocess.DEVNULL).strip()
+    except (OSError, subprocess.CalledProcessError):
+        gpu_description = None  # Reference generation also runs on CPU-only hosts.
     def checksum(path):
         return hashlib.sha256(path.read_bytes()).hexdigest()
     manifest = {
@@ -159,7 +164,7 @@ def generate(args, *, output_directory=None):
         "query_families":ranges, "query_coverage":coverage,
         "environment": {"python": platform.python_version(), "numpy": np.__version__, "warp": wp.__version__,
                         "devices": [str(d) for d in wp.get_devices()],
-                        "gpu": subprocess.check_output(["nvidia-smi","--query-gpu=name,driver_version,memory.total","--format=csv,noheader"],text=True).strip()},
+                        "gpu": gpu_description},
         "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison",
     }
     (out/"manifest.json").write_text(json.dumps(manifest, indent=2)+"\n")
