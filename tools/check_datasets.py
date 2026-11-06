@@ -9,6 +9,8 @@ from tools.fixture_provenance import require_acceptance
 
 
 def cases(suite):
+    if suite not in ('smoke','scaling','extended','stress','all'):
+        raise ValueError(f'Unknown dataset suite: {suite}')
     entries = []
     if suite in ('smoke', 'all'):
         for dataset in ('horse', 'bunny', 'eagle', 'torso'):
@@ -29,6 +31,26 @@ def cases(suite):
                             ['--depth', '8', '--full-depth', '4', '--samples-per-node', str(target)]))
         entries.append(('eagle-full-d9-spsr', 'eagle', ['--depth', '9', '--full-depth', '4']))
         entries.append(('torso-1m-d9-spsr', 'torso', ['--max-points', '1000000', '--depth', '9', '--full-depth', '4']))
+    if suite in ('extended','all'):
+        for dataset in ('drill','armadillo','dragon','buddha'):
+            for precision in ('float','double'):
+                for method,weight in (('psr',0),('spsr',2)):
+                    subset=[] if dataset=='drill' else ['--max-points','10000']
+                    size='full' if dataset=='drill' else '10k'
+                    entries.append((f'{dataset}-{size}-d7-{method}-{precision}',dataset,
+                                    [*subset,'--depth','7','--full-depth','3','--precision',precision,'--weight',str(weight)]))
+            for method,weight in (('psr',0),('spsr',2)):
+                subset=[] if dataset=='drill' else ['--max-points','100000']
+                size='full' if dataset=='drill' else '100k'
+                entries.append((f'{dataset}-{size}-d8-{method}',dataset,
+                                [*subset,'--depth','8','--full-depth','4','--weight',str(weight)]))
+    if suite in ('stress','all'):
+        for variant in ('position-noise','normal-noise','missing-cap','outliers'):
+            for precision in ('float','double'):
+                for method,weight in (('psr',0),('spsr',2)):
+                    entries.append((f'armadillo-10k-{variant}-d7-{method}-{precision}','armadillo',
+                                    ['--max-points','10000','--variant',variant,'--depth','7','--full-depth','3',
+                                     '--precision',precision,'--weight',str(weight)]))
     return entries
 
 
@@ -39,6 +61,9 @@ def main(args):
         entries = [entry for entry in entries if entry[0] in names]
         if names != {entry[0] for entry in entries}:
             raise ValueError('Unknown case name for the selected suite')
+    if getattr(args,'list',False):
+        for name,dataset,options in entries:print(name,dataset,' '.join(options))
+        return 0
     reports = []
     for name, dataset, options in entries:
         directory = ROOT/'.build/fixtures'/name
@@ -46,11 +71,11 @@ def main(args):
         if args.benchmark_only:
             manifest=json.loads((directory/'manifest.json').read_text())
             require_acceptance(directory)
-            expected={'dataset':dataset,'grid':24,'seed':2026,'precision':'float','weight':2.,'samples_per_node':1.5}
+            expected={'dataset':dataset,'grid':24,'seed':2026,'precision':'float','weight':2.,'samples_per_node':1.5,'variant':'none'}
             for option,value in zip(options[::2],options[1::2]):
                 key=option[2:].replace('-','_')
                 expected[key]=type(manifest['parameters'][key])(value)
-            if any(manifest['parameters'][key] != value for key,value in expected.items()):
+            if any(manifest['parameters'].get(key,'none' if key=='variant' else None) != value for key,value in expected.items()):
                 raise ValueError(f'{name}: fixture parameters differ from the selected case')
         commands = [[sys.executable, 'tools/make_fixture.py', '--name', name, '--dataset', dataset, '--grid', '24', *options],
                     [sys.executable, '-m', 'tools.check_reconstruction', str(directory)]]
@@ -82,7 +107,7 @@ def main(args):
                 hashes = {item['input_sha256'] for item in entry['benchmarks'].values()}
                 assert hashes == {entry['manifest']['input_sha256']}
         reports.append(entry)
-        report = {'scope': 'Public datasets from the pinned PoissonRecon README; fields, exact active/support keys, optional matched timing',
+        report = {'scope': 'Pinned PoissonRecon oriented clouds and Stanford mesh-derived/controlled-defect inputs; fields, exact active/support keys, optional matched timing',
                   'suite': args.suite, 'all_passed': all(r['passed'] for r in reports), 'profiles': reports}
         args.output.parent.mkdir(parents=True, exist_ok=True)
         args.output.write_text(json.dumps(report, indent=2)+'\n')
@@ -92,7 +117,8 @@ def main(args):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument('--suite', choices=['smoke', 'scaling', 'all'], default='smoke')
+    parser.add_argument('--suite', choices=['smoke', 'scaling', 'extended', 'stress', 'all'], default='smoke')
+    parser.add_argument('--list',action='store_true',help='List named cases and settings without downloading or reconstructing')
     parser.add_argument('--case', action='append', help='Run only named cases (repeatable)')
     parser.add_argument('--benchmark', action='store_true', help='Fresh-process GPU, serial C++, quota-aware OpenMP C++ timing for each passing case')
     parser.add_argument('--benchmark-only',action='store_true',help='Time existing passing fixtures after verifying production source hashes and case settings')

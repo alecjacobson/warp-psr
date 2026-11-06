@@ -26,7 +26,7 @@ def benchmark_input(args):
         parameters = manifest['parameters']
         dtype = np.float64 if manifest['precision'] == 'double' else np.float32
         data = np.loadtxt(path, ndmin=2).astype(dtype)
-        provenance = {key: manifest[key] for key in ('input_sha256', 'input_source', 'seed') if key in manifest}
+        provenance = {key: manifest[key] for key in ('input_sha256', 'input_source', 'input_variant', 'seed') if key in manifest}
         provenance.update(fixture=manifest['name'], shape=parameters['shape'])
         return data[:, :3], data[:, 3:], parameters, provenance
     p, n = points_for('torus', args.count, 2026)
