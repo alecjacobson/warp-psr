@@ -1,6 +1,6 @@
 # Public point-cloud experiments
 
-The dataset catalog comes from the [pinned PoissonRecon examples](https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md#usage-examples-with-sample-data).
+The original oriented-cloud catalog comes from the [pinned PoissonRecon examples](https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md#usage-examples-with-sample-data).
 Raw files are downloaded into ignored `.build/datasets/`, verified against
 SHA-256 checksums in `tools/datasets.py`, and never bundled into this repository.
 
@@ -197,3 +197,14 @@ the translation check dimensionless. These invariants complement the existing
 finite-difference tests; they are not a new large-input gradient oracle or a test
 of changing tree/mesh topology. The checker also accepts a `.tar.gz` containing a
 single fixture's regular files, and validates it while streaming without unpacking.
+
+All **40 additional cases pass** fresh pinned-C++ comparisons and the tracked
+forward/input-gradient invariant checks on an NVIDIA L40 with Warp 1.19.0+cu12.
+The [per-case reference results](results/expanded-datasets.json) contain complete
+manifests, exact-key hashes, query-family errors, normal/variant provenance and
+verified fixture-archive hashes. The [differentiable-path results](results/expanded-datasets-adjoints.json)
+record every tested loss query, invariant result and tolerance, and gradient norm.
+The production implementation is byte-identical to main revision `1862608`; the
+original 31 case definitions remain unchanged. Generation timings in these
+reports are provenance only, since correctness jobs overlapped; this expansion
+does not report new performance measurements.

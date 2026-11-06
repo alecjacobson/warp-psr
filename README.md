@@ -8,7 +8,8 @@ and evaluates implicit values and gradients.
 The float32 and float64 degree-1 implementations match the pinned official output on
 sphere, sparse, and torus fixtures, including PSR and both interpolation modes.
 Public-cloud checks also cover horse, Stanford bunny, eagle, and torso scans in
-both precisions; see the [dataset experiments](docs/datasets.md).
+both precisions. The [71-case dataset catalog](docs/datasets.md) adds mesh-derived
+drill, armadillo, dragon and Happy Buddha inputs, plus controlled input defects.
 [Explicit parameter checks](docs/results/profiles.json) also vary base/solve/kernel
 depths, density, scale, screening, and solver controls.
 Broader profiles and performance work are tracked in
@@ -107,6 +108,13 @@ sweeps, and depth-9 eagle and million-point torso reconstructions. Across these
 cases the maximum field error is **4.71e-6**, and scaled gradient errors stay below
 **15.9% of the design budget**. The [dataset guide](docs/datasets.md) describes
 matched benchmarks, source checksums, and reproducible subsets.
+
+The [40 additional cases](docs/results/expanded-datasets.json) cover four more
+geometries and deterministic position noise, normal noise, missing regions and
+outliers, with both PSR/SPSR and both precisions. All pass the same fixed C++
+compatibility budgets. Their [differentiable-path checks](docs/results/expanded-datasets-adjoints.json)
+also pass exact tracked/default forward comparisons and input-gradient invariants.
+Run them with `--suite extended` and `--suite stress`; `--suite all` selects all 71.
 
 ## Supported profile and known limits
 
