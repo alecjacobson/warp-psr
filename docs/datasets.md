@@ -1,6 +1,6 @@
 # Public point-cloud experiments
 
-The dataset catalog comes from the [pinned PoissonRecon examples](https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md#usage-examples-with-sample-data).
+The original oriented-cloud catalog comes from the [pinned PoissonRecon examples](https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md#usage-examples-with-sample-data).
 Raw files are downloaded into ignored `.build/datasets/`, verified against
 SHA-256 checksums in `tools/datasets.py`, and never bundled into this repository.
 
@@ -115,3 +115,96 @@ uses a common camera and lighting, and applies no mesh smoothing, decimation, or
 trimming. Its adjacent volume slice shows absolute field error; its reported
 maximum is over the entire grid, including empty space. The render's JSON sidecar
 records field hashes, grid bounds, errors, extraction sizes, camera, and versions.
+
+## Additional geometry and controlled input defects
+
+The expanded catalog adds the Stanford drill, armadillo, dragon and Happy Buddha
+reconstructions from the [Stanford 3D Scanning Repository](https://graphics.stanford.edu/data/3Dscanrep/).
+These are **mesh-derived inputs**, distinct from the four oriented clouds above.
+Stanford cautions that reconstructed meshes suppress acquisition defects; these
+cases therefore expand geometry coverage, rather than representing untouched
+scanner measurements. Source attribution and dataset terms remain with Stanford;
+the code license does not replace the data's terms. Raw files are not bundled.
+
+| Pinned mesh | Vertices | Triangles | Input feature |
+| --- | ---: | ---: | --- |
+| Drill | 1,961 | 3,855 | Thin, elongated geometry |
+| Armadillo | 172,974 | 345,944 | Detailed articulated geometry |
+| Dragon | 437,645 | 871,414 | Detailed geometry and holes |
+| Happy Buddha | 543,652 | 1,087,716 | Detailed geometry and small connections |
+
+Counts describe the actual checksum-pinned archive members, not every historical
+version of those models. Archive and extracted-file SHA-256 checksums are pinned
+in `tools/datasets.py`. Only the named member is extracted. Vertex normals are
+derived from source triangle winding: float64 area-weighted sums traverse corner
+0/1/2 and then stored face order, followed by unit normalization. Zero sums remain
+zero. No welding, reorientation, resampling, or vertex removal is performed.
+Normals are computed on the complete source mesh before selecting a subset.
+The manifest records degenerate triangles, zero normals, ignored attributes,
+original counts, selected-index hashes, and the derivation algorithm.
+
+The `extended` suite contains 24 cases. Each model runs PSR/SPSR in float32 and
+float64 at depth 7 with full depth 3, using 10,000 selected vertices (all 1,961 for
+the drill). Each also runs both methods at depth 8/full depth 4 in float32 using
+100,000 vertices (again the complete drill). Subsets preserve source order.
+
+The `stress` suite adds 16 cases: four variants of the same 10,000-vertex armadillo
+subset, each tested with PSR/SPSR and float32/float64 at depth 7/full depth 3:
+
+| Variant | Precisely defined change |
+| --- | --- |
+| `position-noise` | Independent Gaussian position noise, standard deviation 0.002 of the selected input's bounding-box diagonal; normals unchanged |
+| `normal-noise` | Add independent Gaussian components with standard deviation 0.15 to unit normals, then renormalize; zero normals stay zero |
+| `missing-cap` | Keep points at or below the 85th percentile of source z; retained rows preserve source order |
+| `outliers` | Append 1% additional points uniformly in the bounding box padded by 10% per axis, with independent random unit normals |
+
+These are controlled defects, not simulated scanner ground truth. They occur
+after source subsetting and before optional input scale/translation. The variant
+uses a separate RNG seeded with `--seed + 1009`; its algorithm version, seed,
+parameters, retained-index hash where applicable, and before/after counts are
+recorded in `input_variant`. The `10k` stress-case names denote the base subset;
+actual final counts are recorded explicitly. Source files remain unchanged.
+
+```sh
+python -m tools.datasets drill armadillo dragon buddha
+python -m tools.check_datasets --suite extended --list
+python -m tools.check_datasets --suite extended --output .build/extended.json
+python -m tools.check_datasets --suite stress --output .build/stress.json
+```
+
+The existing 16 smoke and 15 scaling configurations are unchanged. `--suite all`
+selects all 71 named configurations. New cases use fresh independent C++ solves
+and the existing fixed field, gradient, isovalue and exact-key budgets, including
+all diagnostic query families. Passing these checks establishes compatibility
+with the pinned PSR/SPSR implementation; it does not assert that defective input
+produces a high-quality or correctly oriented surface. Large generated fixtures
+and raw sources stay in ignored persistent storage.
+
+The opt-in differentiable path can also be checked on any accepted fixture:
+
+```sh
+python -m tools.check_differentiable_fixture .build/fixtures/drill-full-d7-psr-double --output .build/drill-adjoint.json
+```
+
+This checker requires current C++ compatibility acceptance and matching hashes
+for input, queries, reference exports and production sources. It compares fresh
+default/tracked values, spatial gradients, coefficients, cumulative coefficients,
+valid masks and isovalue exactly on every query. It then backpropagates a centered
+mean field loss at 32 recorded random-volume queries, requiring finite point and
+normal gradients, translation equivariance, and zero derivative under uniform
+normal scaling. Spatial derivatives are multiplied by the input extent to make
+the translation check dimensionless. These invariants complement the existing
+finite-difference tests; they are not a new large-input gradient oracle or a test
+of changing tree/mesh topology. The checker also accepts a `.tar.gz` containing a
+single fixture's regular files, and validates it while streaming without unpacking.
+
+All **40 additional cases pass** fresh pinned-C++ comparisons and the tracked
+forward/input-gradient invariant checks on an NVIDIA L40 with Warp 1.19.0+cu12.
+The [per-case reference results](results/expanded-datasets.json) contain complete
+manifests, exact-key hashes, query-family errors, normal/variant provenance and
+verified fixture-archive hashes. The [differentiable-path results](results/expanded-datasets-adjoints.json)
+record every tested loss query, invariant result and tolerance, and gradient norm.
+The production implementation is byte-identical to main revision `1862608`; the
+original 31 case definitions remain unchanged. Generation timings in these
+reports are provenance only, since correctness jobs overlapped; this expansion
+does not report new performance measurements.

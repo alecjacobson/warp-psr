@@ -17,6 +17,7 @@ if str(ROOT) not in sys.path:
 from reference.queries import coverage_queries
 from tools.datasets import DATASETS, download, load_input
 from tools.fixture_provenance import REFERENCE_FILES
+from tools.point_variants import VARIANTS, apply_variant
 
 
 def read_output(path):
@@ -77,6 +78,10 @@ def generate(args):
         args.shape=args.dataset or 'external'
     else:
         p,n = points_for(args.shape, args.count, args.seed)
+    variant_metadata=None
+    if getattr(args,'variant','none')!='none':
+        p,n,variant_metadata=apply_variant(p,n,args.variant,seed=args.seed+1009)
+        args.count=len(p)
     p = p*args.input_scale + np.asarray(args.translation)
     dtype = np.float32 if args.precision == "float" else np.float64
     p,n = p.astype(dtype), n.astype(dtype)
@@ -146,6 +151,7 @@ def generate(args):
                                    *(("solve_trace.txt",) if solver_trace else ()))},
         "input_order": "file order; seeded numpy Generator", "seed": args.seed,
         "input_source":source_metadata,
+        "input_variant":variant_metadata,
         "precision": args.precision, "parameters": {**vars(args), "align_dir": 0, "degree": 1, "boundary": "Neumann", "confidence": False}, "reference_parallelism": "ThreadPool::NONE (serial)",
         "reference_thread_settings": {key:int(baseline[key][0,0]) for key in ("parallel_async","threads","schedule","chunk_size")},
         "instrumentation_max_abs_error": 0.0, "timings_seconds": timings,
@@ -172,6 +178,7 @@ if __name__ == "__main__":
     parser.add_argument("--translation",type=float,nargs=3,default=[0.,0.,0.])
     parser.add_argument("--count", type=int, default=512)
     parser.add_argument("--seed", type=int, default=2026)
+    parser.add_argument("--variant", choices=VARIANTS, default='none', help='Deterministic offline defect before scale/translation')
     parser.add_argument("--depth", type=int, default=4)
     parser.add_argument("--full-depth", type=int, default=2)
     parser.add_argument("--base-depth", type=int)
