@@ -206,5 +206,11 @@ verified fixture-archive hashes. The [differentiable-path results](results/expan
 record every tested loss query, invariant result and tolerance, and gradient norm.
 The production implementation is byte-identical to main revision `1862608`; the
 original 31 case definitions remain unchanged. Generation timings in these
-reports are provenance only, since correctness jobs overlapped; this expansion
-does not report new performance measurements.
+reports are provenance only, since correctness jobs overlapped. Separate
+[isolated measurements](results/expanded-datasets-performance.json) now cover all
+24 added-geometry configurations, with [four-thread acceptance](results/expanded-datasets-openmp.json).
+The [eight-dataset depth-9 matrix](performance.md#eight-datasets-at-depths-8-and-9)
+adds fresh PSR/SPSR accuracy and timing comparisons on the exact depth-8 inputs,
+including the complete 3,488,432-point torso. It is a separate experiment and
+does not alter the 71 named catalog cases. The 16 controlled-defect configurations
+have accuracy and adjoint checks but no performance claims.

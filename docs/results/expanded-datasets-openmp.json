@@ -1,0 +1,657 @@
+{
+  "scope": "One fresh four-thread OpenMP check per timed case, using the existing fixed field/centered/gradient/isovalue budgets and exact tree-key/transform checks against archived serial acceptance. Performed after all timing runs; this does not measure OpenMP repeatability.",
+  "complete": true,
+  "all_passed": true,
+  "profiles": [
+    {
+      "fixture": "drill-full-d7-psr-float",
+      "input_sha256": "5a057391b8535f5a134e659eef2d24ee0eec4919938cc16b561511dce69fb6ae",
+      "queries_sha256": "e6273b0837bdb367745f96d38d468ef16c3c5e8e1129b5687433a7f6714c8611",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.01782119385916138,
+          "centered_value": 0.014282387713581682,
+          "scaled_gradient": 0.008796464787870531,
+          "isovalue": 0.002567927426159536
+        },
+        "max_abs_value_error": 2.682209014892578e-07,
+        "rms_value_error": 1.1032407415973802e-07,
+        "max_abs_centered_value_error": 1.7881393432617188e-07,
+        "max_abs_cube_gradient_error": 2.1173658751649782e-05,
+        "isovalue_error": 1.1920928955078125e-07
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "39f876f777234616da8807f70f180688bc7e0df597a1ce8d4dd2f16245b4e472",
+      "compressed_output_sha256": "4d0addfe2d7ac8f7fdf8ff339e5abc5ffdaa19bf7b4e4b5295ec173c67b7996a",
+      "passed": true
+    },
+    {
+      "fixture": "drill-full-d7-spsr-float",
+      "input_sha256": "5a057391b8535f5a134e659eef2d24ee0eec4919938cc16b561511dce69fb6ae",
+      "queries_sha256": "e6273b0837bdb367745f96d38d468ef16c3c5e8e1129b5687433a7f6714c8611",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.004837094607938003,
+          "centered_value": 0.01188021229464162,
+          "scaled_gradient": 0.011022832104762204,
+          "isovalue": 0.0
+        },
+        "max_abs_value_error": 1.341104507446289e-07,
+        "rms_value_error": 5.801189789534884e-08,
+        "max_abs_centered_value_error": 1.341104507446289e-07,
+        "max_abs_cube_gradient_error": 2.823154500219971e-05,
+        "isovalue_error": 0.0
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "980c27ca2694e851afbb795a74a3e723e0d7ef473fb026c5b320f8efb29b2ace",
+      "compressed_output_sha256": "534a06a33f15101e8221a02e2cc5ae5542339ff84fb962e20647d08f2daac450",
+      "passed": true
+    },
+    {
+      "fixture": "drill-full-d7-psr-double",
+      "input_sha256": "65678a510e0cee85ed901150f834e96e73cbe9af0f5083ad415ed770f982b04a",
+      "queries_sha256": "c9ee8b8e0a1b11737e7289a88e68727f8c3c02f2fc4ba4607609fe5b0b20cc9b",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 1.60702801181327e-08,
+          "centered_value": 5.4894063265023505e-08,
+          "scaled_gradient": 2.1297926276033942e-08,
+          "isovalue": 7.416828506883694e-10
+        },
+        "max_abs_value_error": 3.885780586188048e-16,
+        "rms_value_error": 1.334642935304113e-16,
+        "max_abs_centered_value_error": 6.661338147750939e-16,
+        "max_abs_cube_gradient_error": 4.263256414560601e-14,
+        "isovalue_error": 2.7755575615628914e-16
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "f46bb5d25804d89a96601b7208e7b040837e41afc30ae483fd4a6d4be6f6c14d",
+      "compressed_output_sha256": "98aecdd20f39d77ebab82388957b531ca80a01807366a6ff356ad79414cc42cb",
+      "passed": true
+    },
+    {
+      "fixture": "drill-full-d7-spsr-double",
+      "input_sha256": "65678a510e0cee85ed901150f834e96e73cbe9af0f5083ad415ed770f982b04a",
+      "queries_sha256": "c9ee8b8e0a1b11737e7289a88e68727f8c3c02f2fc4ba4607609fe5b0b20cc9b",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 1.0609149817736517e-09,
+          "centered_value": 6.503689734080462e-08,
+          "scaled_gradient": 1.3600885608724349e-08,
+          "isovalue": 8.581425245419146e-10
+        },
+        "max_abs_value_error": 3.3306690738754696e-16,
+        "rms_value_error": 6.674512745449356e-17,
+        "max_abs_centered_value_error": 6.661338147750939e-16,
+        "max_abs_cube_gradient_error": 4.263256414560601e-14,
+        "isovalue_error": 4.440892098500626e-16
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "6fdba8a1effc863d9237c64e7ad19aa6fa4e63d70d43b39d5e3d2073227a8061",
+      "compressed_output_sha256": "1f1734b9c5c2f9a62bfd5773416c5721a19bdd9296183946e33ea286d57e1d53",
+      "passed": true
+    },
+    {
+      "fixture": "drill-full-d8-psr",
+      "input_sha256": "5a057391b8535f5a134e659eef2d24ee0eec4919938cc16b561511dce69fb6ae",
+      "queries_sha256": "e33b271431ef48fcfa66d5eaa4da57c98711d6914862e7760b039e0da2f1ea00",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.015998926191958,
+          "centered_value": 0.014538750014102587,
+          "scaled_gradient": 0.01024659124404624,
+          "isovalue": 0.0023474708513370655
+        },
+        "max_abs_value_error": 2.682209014892578e-07,
+        "rms_value_error": 1.2530366396199188e-07,
+        "max_abs_centered_value_error": 1.7881393432617188e-07,
+        "max_abs_cube_gradient_error": 2.4702601876924746e-05,
+        "isovalue_error": 1.1920928955078125e-07
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "90a690ad909d3f87b779133e07eb9c1209a1b03485300de854b79e5dd0c847cd",
+      "compressed_output_sha256": "c04fcd8016df19fdbf1e7c6c90d42a88525f7b10319e2efa3a50d74ba9a6637a",
+      "passed": true
+    },
+    {
+      "fixture": "drill-full-d8-spsr",
+      "input_sha256": "5a057391b8535f5a134e659eef2d24ee0eec4919938cc16b561511dce69fb6ae",
+      "queries_sha256": "e33b271431ef48fcfa66d5eaa4da57c98711d6914862e7760b039e0da2f1ea00",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.003592592482419756,
+          "centered_value": 0.016591841150155277,
+          "scaled_gradient": 0.012689000777738378,
+          "isovalue": 0.0
+        },
+        "max_abs_value_error": 1.7881393432617188e-07,
+        "rms_value_error": 3.3509105220548774e-08,
+        "max_abs_centered_value_error": 1.7881393432617188e-07,
+        "max_abs_cube_gradient_error": 2.823154500219971e-05,
+        "isovalue_error": 0.0
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "0d4af7c9bc8484ecb6151693ef8ed6b9021d7894d90690d69e0822f2a17a9c88",
+      "compressed_output_sha256": "b22f8b434c3341d67c004f327e0ae8d28774c2b26f8d5cf51bb0f08219edbb3b",
+      "passed": true
+    },
+    {
+      "fixture": "armadillo-10k-d7-psr-float",
+      "input_sha256": "ce2ec3a2c4dab60e73fec2ed2d2692bf27482dc8a4e68f60e8c63bd393851338",
+      "queries_sha256": "b9948eaa6d8f6d50aba94f82f25f60139570e573069ed696db7c755a0b8e3d66",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.09432824760534413,
+          "centered_value": 0.019724137230487538,
+          "scaled_gradient": 0.01566644573519501,
+          "isovalue": 0.018499815276154845
+        },
+        "max_abs_value_error": 1.1324882507324219e-06,
+        "rms_value_error": 8.863784892597251e-07,
+        "max_abs_centered_value_error": 3.2782554626464844e-07,
+        "max_abs_cube_gradient_error": 2.971272806462366e-05,
+        "isovalue_error": 8.642673492431641e-07
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "6fd6057e27c01bf513111591c7acc2c92538c8477a8305907255924cfeed632a",
+      "compressed_output_sha256": "902c0de3bb7f746488c6118dae1a7fff037981176463ab66637df8fba20829c8",
+      "passed": true
+    },
+    {
+      "fixture": "armadillo-10k-d7-spsr-float",
+      "input_sha256": "ce2ec3a2c4dab60e73fec2ed2d2692bf27482dc8a4e68f60e8c63bd393851338",
+      "queries_sha256": "b9948eaa6d8f6d50aba94f82f25f60139570e573069ed696db7c755a0b8e3d66",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.008021172662679878,
+          "centered_value": 0.02537408248586435,
+          "scaled_gradient": 0.026477132745787207,
+          "isovalue": 0.0
+        },
+        "max_abs_value_error": 2.980232238769531e-07,
+        "rms_value_error": 3.8994527127144063e-08,
+        "max_abs_centered_value_error": 2.980232238769531e-07,
+        "max_abs_cube_gradient_error": 3.698615628877633e-05,
+        "isovalue_error": 0.0
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "5ad11616021addd24df43c4744f874d9d7758b596b42edd1341ed6043ba2bf69",
+      "compressed_output_sha256": "fa226a01d9ae6be13ff3b09944b2583949a2b3f0afaf8300277fe967f540d669",
+      "passed": true
+    },
+    {
+      "fixture": "armadillo-10k-d7-psr-double",
+      "input_sha256": "e107dcb14353efda6cbaaf00b7a370cabfeb2e242d5d133fe409752a9a60d908",
+      "queries_sha256": "5bb48f208163a8a72eb38ef6bd8a329c5089dd9185c1d7db49d352434e9eabbb",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 1.3345501756443492e-07,
+          "centered_value": 1.3742668236945072e-07,
+          "scaled_gradient": 2.53579719440509e-08,
+          "isovalue": 5.887007178460514e-09
+        },
+        "max_abs_value_error": 1.887379141862766e-15,
+        "rms_value_error": 1.163056036823933e-15,
+        "max_abs_centered_value_error": 1.5543122344752192e-15,
+        "max_abs_cube_gradient_error": 5.684341886080802e-14,
+        "isovalue_error": 2.220446049250313e-15
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "678536b710b3fff543da9fc1b6d2d7999cfcd254c17e30cde7d7327c17e61994",
+      "compressed_output_sha256": "a9d5255958e7f0d246e6d1417a0d4bdf274b0d058eddba4f3a5d0319e62d0a0d",
+      "passed": true
+    },
+    {
+      "fixture": "armadillo-10k-d7-spsr-double",
+      "input_sha256": "e107dcb14353efda6cbaaf00b7a370cabfeb2e242d5d133fe409752a9a60d908",
+      "queries_sha256": "5bb48f208163a8a72eb38ef6bd8a329c5089dd9185c1d7db49d352434e9eabbb",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 6.103453388980967e-09,
+          "centered_value": 2.475957827699693e-07,
+          "scaled_gradient": 2.7810702388889483e-08,
+          "isovalue": 4.52440370515511e-09
+        },
+        "max_abs_value_error": 6.661338147750939e-16,
+        "rms_value_error": 1.169595961125904e-16,
+        "max_abs_centered_value_error": 2.7755575615628914e-15,
+        "max_abs_cube_gradient_error": 8.526512829121202e-14,
+        "isovalue_error": 2.3314683517128287e-15
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "5b86185985c3dfdc86be072f71b78caba99123d6b6b2604b4147b4814489b62d",
+      "compressed_output_sha256": "5a5ad037f4aa62abb69ebb58c7654b92c87f749b96f0460e6f28401c726a4fe0",
+      "passed": true
+    },
+    {
+      "fixture": "armadillo-100k-d8-psr",
+      "input_sha256": "b7eb9ced1d8d5185a32ae83c5382ace486213b58344cd52f3f5f4991cd952dff",
+      "queries_sha256": "2c348aa4bd8f71489e0ae7d232ff2c5cc5f55c4ad6a5789a99a20f96a1b1b59b",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.03443319955442735,
+          "centered_value": 0.027983963621742776,
+          "scaled_gradient": 0.016172628926484092,
+          "isovalue": 0.005361584930257575
+        },
+        "max_abs_value_error": 5.960464477539062e-07,
+        "rms_value_error": 2.8409047104562634e-07,
+        "max_abs_centered_value_error": 3.2782554626464844e-07,
+        "max_abs_cube_gradient_error": 6.944940105313435e-05,
+        "isovalue_error": 2.682209014892578e-07
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "fa8c7a85f83a8e2b6eeb691b9ef3ffd314d364ee4d804d23ebcf8ae689a7b599",
+      "compressed_output_sha256": "1f05c587fdb73ad9b2024e4bbce338dfa802b50adfb3c3588def26978e6e36b2",
+      "passed": true
+    },
+    {
+      "fixture": "armadillo-100k-d8-spsr",
+      "input_sha256": "b7eb9ced1d8d5185a32ae83c5382ace486213b58344cd52f3f5f4991cd952dff",
+      "queries_sha256": "2c348aa4bd8f71489e0ae7d232ff2c5cc5f55c4ad6a5789a99a20f96a1b1b59b",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.004568857103776444,
+          "centered_value": 0.023523840765710423,
+          "scaled_gradient": 0.023388817628110882,
+          "isovalue": 0.0
+        },
+        "max_abs_value_error": 2.384185791015625e-07,
+        "rms_value_error": 5.0082398362216096e-08,
+        "max_abs_centered_value_error": 2.384185791015625e-07,
+        "max_abs_cube_gradient_error": 7.937074406072497e-05,
+        "isovalue_error": 0.0
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "84c2bb6622566c2c089b493e6b68fc2c73f433a2c85719ef0b59572f4ac68915",
+      "compressed_output_sha256": "1111875d4f2649cc09f7ae7c1f1fedf0f6cb1b414b3b51759e45e9eed33187b8",
+      "passed": true
+    },
+    {
+      "fixture": "dragon-10k-d7-psr-float",
+      "input_sha256": "d9bb03257dc50953efca9918b24517230d66df22ec06deaa5146f447b7f83984",
+      "queries_sha256": "15cef23b4cd1e120c312c0538de4dba7c9e930dc524c6e3e8b24eca5527ae70c",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.042325570569103355,
+          "centered_value": 0.020090950729404478,
+          "scaled_gradient": 0.016967814073046966,
+          "isovalue": 0.007928879955449209
+        },
+        "max_abs_value_error": 5.960464477539062e-07,
+        "rms_value_error": 3.6746602967770713e-07,
+        "max_abs_centered_value_error": 2.384185791015625e-07,
+        "max_abs_cube_gradient_error": 2.7305297408020124e-05,
+        "isovalue_error": 3.5762786865234375e-07
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "e1a9bac2efc23bbeb2089f1839c56a82551a5c3909e59519365ed8a84c60594c",
+      "compressed_output_sha256": "669fd63e6bd4795083be03fb4df94acf84c0b6c3d0aba904fb81740cc633ebd8",
+      "passed": true
+    },
+    {
+      "fixture": "dragon-10k-d7-spsr-float",
+      "input_sha256": "d9bb03257dc50953efca9918b24517230d66df22ec06deaa5146f447b7f83984",
+      "queries_sha256": "15cef23b4cd1e120c312c0538de4dba7c9e930dc524c6e3e8b24eca5527ae70c",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.009459795921390068,
+          "centered_value": 0.023785353359966583,
+          "scaled_gradient": 0.0255426729221163,
+          "isovalue": 0.0009835489052874467
+        },
+        "max_abs_value_error": 2.384185791015625e-07,
+        "rms_value_error": 4.010069228605876e-08,
+        "max_abs_centered_value_error": 2.682209014892578e-07,
+        "max_abs_cube_gradient_error": 3.754478393602767e-05,
+        "isovalue_error": 5.960464477539063e-08
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "a146fdbb5410661f4be281fce163dc2fe69745671efa1edfcbdb7900422cf3ce",
+      "compressed_output_sha256": "b2b0a6378520dc9125b7b8453de7d15a3b916ac87794e8213d1ea8f364863333",
+      "passed": true
+    },
+    {
+      "fixture": "dragon-10k-d7-psr-double",
+      "input_sha256": "cfc979e6262f412fc2e5ba7b96820b39c55509037d63c6284a559498136c45f1",
+      "queries_sha256": "d3aa1278fee59969fcd54e7ae09e1de8b9418e2b765c7ed39b50de5cfb6e78a0",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 6.146285223304485e-08,
+          "centered_value": 9.425325122575956e-08,
+          "scaled_gradient": 1.8677462074664622e-08,
+          "isovalue": 3.536278263760821e-09
+        },
+        "max_abs_value_error": 9.992007221626409e-16,
+        "rms_value_error": 6.031068993135174e-16,
+        "max_abs_centered_value_error": 1.1657341758564144e-15,
+        "max_abs_cube_gradient_error": 5.684341886080802e-14,
+        "isovalue_error": 1.27675647831893e-15
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "435073f85bb90f6123f074814f316f5ddceaec5e5953e67afdb10505fa69f85e",
+      "compressed_output_sha256": "7d43a41fef4f20a443523b06d362bc93c37bf0888a19c42d2fe5fb95f5a0a686",
+      "passed": true
+    },
+    {
+      "fixture": "dragon-10k-d7-spsr-double",
+      "input_sha256": "cfc979e6262f412fc2e5ba7b96820b39c55509037d63c6284a559498136c45f1",
+      "queries_sha256": "d3aa1278fee59969fcd54e7ae09e1de8b9418e2b765c7ed39b50de5cfb6e78a0",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 2.956122866723976e-09,
+          "centered_value": 9.773596755514704e-08,
+          "scaled_gradient": 2.6412400351582833e-08,
+          "isovalue": 1.290916820782067e-09
+        },
+        "max_abs_value_error": 5.551115123125783e-16,
+        "rms_value_error": 9.865656662712266e-17,
+        "max_abs_centered_value_error": 1.0547118733938987e-15,
+        "max_abs_cube_gradient_error": 1.0302869668521453e-13,
+        "isovalue_error": 6.661338147750939e-16
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "995cbcb921463077e38ad646c088149814fc8639dcffb9416953d52ce0e8393f",
+      "compressed_output_sha256": "7cc2168c40e64e0af24f4d3c0405f218c360158b0facfc1eddaaeb8862a92118",
+      "passed": true
+    },
+    {
+      "fixture": "dragon-100k-d8-psr",
+      "input_sha256": "de86c1dcf4d067479cfe77c5e254499e468068eb665c9059cff5e7b0b6faabda",
+      "queries_sha256": "b86387f93a28cf4d11a911ab0f851baab7a830810a23be9a94f926ea1b7085ed",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.18062182892464415,
+          "centered_value": 0.034589846000817125,
+          "scaled_gradient": 0.038739245446331505,
+          "isovalue": 0.035512027947941914
+        },
+        "max_abs_value_error": 2.0265579223632812e-06,
+        "rms_value_error": 1.7363927827764828e-06,
+        "max_abs_centered_value_error": 3.5762786865234375e-07,
+        "max_abs_cube_gradient_error": 0.00022005982464179397,
+        "isovalue_error": 1.7583370208740234e-06
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "2e6d77e5cfbb08152e38f7bc07a151144a11d48cccd01ef3dde9cb2b944d7d6d",
+      "compressed_output_sha256": "2e689b39f3f6b32612837575d5807c85d83a9342041c644e291e0814bb9d0c33",
+      "passed": true
+    },
+    {
+      "fixture": "dragon-100k-d8-spsr",
+      "input_sha256": "de86c1dcf4d067479cfe77c5e254499e468068eb665c9059cff5e7b0b6faabda",
+      "queries_sha256": "b86387f93a28cf4d11a911ab0f851baab7a830810a23be9a94f926ea1b7085ed",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.011160359919375328,
+          "centered_value": 0.0316620271946418,
+          "scaled_gradient": 0.07836821999825687,
+          "isovalue": 0.0
+        },
+        "max_abs_value_error": 4.76837158203125e-07,
+        "rms_value_error": 6.817684255362585e-08,
+        "max_abs_centered_value_error": 4.76837158203125e-07,
+        "max_abs_cube_gradient_error": 0.00022005982464179397,
+        "isovalue_error": 0.0
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "2e315b11532740c8843a09cb3eac45b4f6a1e71f3b8e185e6f585cb60b39fd2b",
+      "compressed_output_sha256": "c6fc371a65465509bbd928a6f7eb22c9bc66fbed446a06a5380ea47a4bfbe35a",
+      "passed": true
+    },
+    {
+      "fixture": "buddha-10k-d7-psr-float",
+      "input_sha256": "33336a0c1f19ba9820020d2a96ed76308fdde65f288d697533d9cfc9350bac37",
+      "queries_sha256": "947c8e553784b2c5b52d57a50390d7bd661d09bbdd771aaaf46648c041645409",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.1259570555528276,
+          "centered_value": 0.017734038020949926,
+          "scaled_gradient": 0.011528480573611109,
+          "isovalue": 0.027965820342172716
+        },
+        "max_abs_value_error": 1.430511474609375e-06,
+        "rms_value_error": 1.1988186863302548e-06,
+        "max_abs_centered_value_error": 2.384185791015625e-07,
+        "max_abs_cube_gradient_error": 2.65611415670719e-05,
+        "isovalue_error": 1.1920928955078125e-06
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "48f31a23ba672c12ba8c6e13b70331bd2561d6e187e35ce034bf1a81720f48e8",
+      "compressed_output_sha256": "ac8c41f533dee602c50aee0b41d9eafdf4b891f5b85e5f6f5ffbeb97d9bc6037",
+      "passed": true
+    },
+    {
+      "fixture": "buddha-10k-d7-spsr-float",
+      "input_sha256": "33336a0c1f19ba9820020d2a96ed76308fdde65f288d697533d9cfc9350bac37",
+      "queries_sha256": "947c8e553784b2c5b52d57a50390d7bd661d09bbdd771aaaf46648c041645409",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.005491472001658187,
+          "centered_value": 0.0219317532089993,
+          "scaled_gradient": 0.023953800966384615,
+          "isovalue": 0.0
+        },
+        "max_abs_value_error": 2.980232238769531e-07,
+        "rms_value_error": 4.536580445940671e-08,
+        "max_abs_centered_value_error": 2.980232238769531e-07,
+        "max_abs_cube_gradient_error": 4.316185504649184e-05,
+        "isovalue_error": 0.0
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "3cd7f8fd3b850f6decdd9e498a905963fd285d60872151c9d14283d3f96bd6c0",
+      "compressed_output_sha256": "e8946d554873006bc46543b6f65c64068e63aa04cd4034c9918147ebe5ba30ab",
+      "passed": true
+    },
+    {
+      "fixture": "buddha-10k-d7-psr-double",
+      "input_sha256": "a37f9353b6c8f486cd15573e6f99f64b89d43fbb9e4e60b6af319f0b9ec4b3c7",
+      "queries_sha256": "160d172101dee8e7c5337aa2d8c9e7fa989baaa94d700e9194fe9c879a5ff6bf",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 3.2381019130174015e-08,
+          "centered_value": 6.483012959323285e-08,
+          "scaled_gradient": 2.228699748381816e-08,
+          "isovalue": 2.1460358742088316e-09
+        },
+        "max_abs_value_error": 7.771561172376096e-16,
+        "rms_value_error": 2.65439892637539e-16,
+        "max_abs_centered_value_error": 7.771561172376096e-16,
+        "max_abs_cube_gradient_error": 4.973799150320701e-14,
+        "isovalue_error": 7.216449660063518e-16
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "dcba7d0671c8c1e0ec8535fb8444e094a7bea6c62d50a65284fb67bf4ddf73a7",
+      "compressed_output_sha256": "3935b56ca128a70f243a7035cbd413b088ee29508d7a8b2bb79adb57e4041143",
+      "passed": true
+    },
+    {
+      "fixture": "buddha-10k-d7-spsr-double",
+      "input_sha256": "a37f9353b6c8f486cd15573e6f99f64b89d43fbb9e4e60b6af319f0b9ec4b3c7",
+      "queries_sha256": "160d172101dee8e7c5337aa2d8c9e7fa989baaa94d700e9194fe9c879a5ff6bf",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 5.308859098216948e-09,
+          "centered_value": 1.798203742704698e-07,
+          "scaled_gradient": 3.369122227803297e-08,
+          "isovalue": 3.014133392563492e-09
+        },
+        "max_abs_value_error": 4.440892098500626e-16,
+        "rms_value_error": 7.372026150815418e-17,
+        "max_abs_centered_value_error": 1.9984014443252818e-15,
+        "max_abs_cube_gradient_error": 9.947598300641403e-14,
+        "isovalue_error": 1.5543122344752192e-15
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "e0d532ada9b31f90fd038711d6c4228578e9a298e494d6603096470b1d628a5d",
+      "compressed_output_sha256": "68e94f97a08d154e1b5ab5e619448da0d12ed4c657bef8780cceed23573e37fd",
+      "passed": true
+    },
+    {
+      "fixture": "buddha-100k-d8-psr",
+      "input_sha256": "e65e744f098ce4284d74e00148f06379207563b6e9f129d5033cc9f77226fa9a",
+      "queries_sha256": "168f0c131343c045188f7560cb8e42ccb8081df24d3af8b38c5286f59a8711fb",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.030804923750578958,
+          "centered_value": 0.030073731768176033,
+          "scaled_gradient": 0.01643537190113658,
+          "isovalue": 0.0050514652115820095
+        },
+        "max_abs_value_error": 5.960464477539062e-07,
+        "rms_value_error": 2.5251307044820684e-07,
+        "max_abs_centered_value_error": 3.5762786865234375e-07,
+        "max_abs_cube_gradient_error": 6.64564367980347e-05,
+        "isovalue_error": 2.384185791015625e-07
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "fe0c302cf9dcce3e9ae0e6d16a1d45c6f041f8237f38cadb0b9d443233b214b4",
+      "compressed_output_sha256": "9787216551da69465281aad6e4f9ff6a23c0579bf40c321492894f4dac0ec9c6",
+      "passed": true
+    },
+    {
+      "fixture": "buddha-100k-d8-spsr",
+      "input_sha256": "e65e744f098ce4284d74e00148f06379207563b6e9f129d5033cc9f77226fa9a",
+      "queries_sha256": "168f0c131343c045188f7560cb8e42ccb8081df24d3af8b38c5286f59a8711fb",
+      "against_serial": {
+        "bitwise_equal": false,
+        "within_budget": true,
+        "budget_ratios": {
+          "value": 0.008360511265329102,
+          "centered_value": 0.03286553624559232,
+          "scaled_gradient": 0.04693766957044218,
+          "isovalue": 0.0
+        },
+        "max_abs_value_error": 4.172325134277344e-07,
+        "rms_value_error": 7.225887754418777e-08,
+        "max_abs_centered_value_error": 4.172325134277344e-07,
+        "max_abs_cube_gradient_error": 0.0001794323793546937,
+        "isovalue_error": 0.0
+      },
+      "exact_active_keys": true,
+      "exact_support_keys": true,
+      "transform_matches": true,
+      "effective_threads": 4,
+      "output_sha256": "e1dc17410fc638b79a5798f2bb99b65190967fdf75860535ef02c75e370a9624",
+      "compressed_output_sha256": "2e1c2660a9e35f00290059ee73f964348f796288152a658929076428cfd98ab1",
+      "passed": true
+    }
+  ],
+  "checker_sha256": "652930221a89c51fbd42ade2f0b1367c840c2da26e257100a7b069d98850fb2d",
+  "reference_executable_sha256": "da22d128a35524af1d6989be8ed7667b378a31472e6989d85a86f2f7721fb251"
+}
