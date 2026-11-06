@@ -24,9 +24,11 @@ def main(args):
     wp.init()
     environment = cpu_environment()
     threads = args.threads or available_threads(environment)
+    fixture_root = getattr(args, 'fixture_root', None) or ROOT/'.build/fixtures'
+    work_directory = getattr(args, 'work_directory', None) or ROOT/'.build/openmp-validation'
     entries = []
     for name in args.fixtures:
-        directory = ROOT/'.build/fixtures'/name
+        directory = Path(fixture_root)/name
         _, _, parameters, provenance = benchmark_input(argparse.Namespace(fixture=directory))
         baseline = read_output(directory/'oracle_instrumented.txt')
         normal = read_output(directory/'stages.txt')['normal']
@@ -47,7 +49,7 @@ def main(args):
         atol, rtol = (1e-8, 1e-6) if parameters['precision'] == 'double' else (1e-5, 1e-4)
         runs = []
         first = None
-        output = ROOT/'.build/openmp-validation'/name
+        output = Path(work_directory)/name
         output.mkdir(parents=True, exist_ok=True)
         for i in range(args.repeats):
             path = output/f'run-{i}.txt'
@@ -89,6 +91,8 @@ if __name__ == '__main__':
     parser.add_argument('--fixtures', nargs='+', default=['eagle-10k-d7-spsr-float', 'torso-10k-d7-psr-double'])
     parser.add_argument('--threads', type=int)
     parser.add_argument('--repeats', type=int, default=3)
+    parser.add_argument('--fixture-root', type=Path, help='Directory containing the named fixtures')
+    parser.add_argument('--work-directory', type=Path, help='Directory for reproducible reference scratch exports')
     parser.add_argument('--output', type=Path, default=ROOT/'.build/openmp-validation.json')
     args = parser.parse_args()
     if args.repeats < 1 or (args.threads is not None and args.threads < 1):

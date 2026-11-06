@@ -177,40 +177,42 @@ and needs no Warp fork.
 
 ## Performance
 
-Measured on an NVIDIA L40, using the same validated inputs and explicit parameters.
-The C++ baseline runs on a Xeon Platinum 8362 host with a four-core CPU quota;
-OpenMP is explicitly limited to four threads. Both reference builds use `-O2`
-without fast-math. All rows use full depth 4 and density target 1.5.
+Measured on an NVIDIA L40 against pinned C++ PSR/SPSR on a Xeon Platinum 8362
+with a **four-core CPU quota and four OpenMP threads**. The C++ compatibility
+build uses `-O2` without fast-math. All rows use float32, full/base depth 4,
+density target 1.5 and eight iterations. Ratios below are speedups over C++.
 
-The depth-9 eagle is **22.7× faster than the four-thread CPU baseline**, and
-**11.4× faster than the original GPU implementation** with unchanged solve settings.
-Peak GPU pool use fell from **24.89 GiB to 2.34 GiB**.
+| Input | Points | Depth 8 PSR | Depth 8 SPSR | Depth 9 PSR | Depth 9 SPSR |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| Horse | 100,000 | 8.1× | 8.4× | 16.1× | 13.6× |
+| Bunny | 362,271 | 16.4× | 18.5× | 25.7× | 21.6× |
+| Eagle | 796,825 | 13.9× | 13.9× | 25.1× | 27.0× |
+| Torso | 3,488,432 | 14.7× | 15.3× | 24.9× | 21.2× |
+| Drill | 1,961 | 2.3× | 2.6× | 2.8× | 2.8× |
+| Armadillo (subset) | 100,000 | 15.6× | 14.9× | 17.0× | 21.3× |
+| Dragon (subset) | 100,000 | 14.1× | 17.8× | 23.5× | 17.9× |
+| Happy Buddha (subset) | 100,000 | 13.9× | 13.2× | 18.2× | 18.2× |
 
-| SPSR input | Depth | Coefficients | Warp (s) | C++ serial (s) | C++ OpenMP 4 (s) | Peak pool (GiB) |
-| --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| Horse · 100k | 8 | 362,534 | 0.07 | 1.01 | 0.61 | 0.24 |
-| Bunny · 362k | 8 | 1,175,586 | 0.11 | 3.27 | 1.99 | 0.84 |
-| Eagle · 797k | 8 | 832,634 | 0.10 | 2.36 | 1.33 | 0.63 |
-| Torso · 3.49m | 8 | 492,578 | 0.08 | 1.82 | 1.19 | 0.56 |
-| Eagle · 797k | 9 | 3,323,866 | 0.22 | 9.37 | 4.88 | 2.34 |
-| Torso · 1m subset | 9 | 2,051,674 | 0.15 | 6.41 | 3.20 | 1.52 |
+Every depth-9 row was freshly validated and timed on **November 6, 2026**.
+Depth 8 retains the previously recorded measurements. Inputs are byte-identical
+between depths; drill, armadillo, dragon and Happy Buddha are mesh-derived tests.
+All 16 depth-9 profiles pass unchanged GPU/reference and four-thread/reference
+field, gradient, isovalue and exact-tree checks.
 
-These are solve timings: GPU medians include Python orchestration and exclude
-upload and queries; C++ timings exclude parsing, queries, export, and startup.
-Three measured runs follow the first invocation. GPU memory is the process
-CUDA-pool high-water mark. The [full report](docs/results/public-scaling.json)
-includes every run, per-stage timings, support counts, and environment limits.
-All GPU rows were remeasured after the stiffness change. CPU timings retain their
-recorded provenance for the same inputs and unchanged reference build. Both
-depth-9 OpenMP cases were remeasured
-in isolation. See the [stiffness comparison](docs/results/stiffness-performance.json).
+The fresh eagle SPSR result is **0.2097 s GPU / 5.6616 s CPU = 27.0×**.
+Two A–B–B–A rounds against the previously published GPU revision found
+**no regression**: 210.9 ms before versus 209.7 ms now, within timing noise.
+The increase from the earlier 22.7× ratio mainly reflects a slower fresh CPU
+measurement. See [all recheck samples](docs/results/eagle-depth9-recheck.json).
 
-The [performance guide](docs/performance.md) includes PSR, independent sample-count,
-density and depth sweeps, and the earlier torus optimization history. The
-[four-thread official output](docs/results/openmp-scaling.json) passes the same
-field budgets and exact topology checks on all 15 scaling cases.
+These are warm reconstruction timings. GPU timing includes Python orchestration
+and excludes upload, queries, differentiation and meshing; C++ timing excludes
+parsing, queries, export and process startup. Depth-9 rows use five measured runs
+after the first invocation, except eagle SPSR's preplanned 28-sample pooled GPU
+median and seven-run CPU median. Every table measurement passed the isolation check.
 
-```sh
-python -m tools.check_datasets --suite scaling
-python -m tools.check_datasets --suite scaling --benchmark-only --output .build/public-scaling.json
-```
+The [performance guide](docs/performance.md#eight-datasets-at-depths-8-and-9)
+contains absolute GPU/CPU times, memory, methodology, reproduction commands and
+historical sample-count/density sweeps. The [full depth-9 report](docs/results/depth9-datasets.json)
+and [unrounded table](docs/results/dataset-speedups.json) preserve all measurements
+and provenance. The existing `--suite all` catalog remains 71 named cases.

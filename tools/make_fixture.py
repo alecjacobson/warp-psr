@@ -64,11 +64,11 @@ def oracle_parameters(p):
         str(p[key]) for key in ('base_depth','solve_depth','kernel_depth','scale','samples_per_node','cg_accuracy','base_v_cycles')]
 
 
-def generate(args):
+def generate(args, *, output_directory=None):
     if args.base_depth is None:args.base_depth=args.full_depth
     if args.solve_depth is None:args.solve_depth=args.depth
     if args.kernel_depth is None:args.kernel_depth=max(args.depth-2,0)
-    out = ROOT / ".build/fixtures" / args.name
+    out = Path(output_directory) if output_directory is not None else ROOT / ".build/fixtures" / args.name
     out.mkdir(parents=True, exist_ok=True)
     source_metadata=None
     if args.dataset or args.input:
@@ -138,6 +138,11 @@ def generate(args):
         np.testing.assert_array_equal(baseline[key], instrumented[key])
     wp.init()
     revision = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    try:
+        gpu_description = subprocess.check_output(["nvidia-smi", "--query-gpu=name,driver_version,memory.total",
+                                                   "--format=csv,noheader"], text=True, stderr=subprocess.DEVNULL).strip()
+    except (OSError, subprocess.CalledProcessError):
+        gpu_description = None  # Reference generation also runs on CPU-only hosts.
     def checksum(path):
         return hashlib.sha256(path.read_bytes()).hexdigest()
     manifest = {
@@ -159,7 +164,7 @@ def generate(args):
         "query_families":ranges, "query_coverage":coverage,
         "environment": {"python": platform.python_version(), "numpy": np.__version__, "warp": wp.__version__,
                         "devices": [str(d) for d in wp.get_devices()],
-                        "gpu": subprocess.check_output(["nvidia-smi","--query-gpu=name,driver_version,memory.total","--format=csv,noheader"],text=True).strip()},
+                        "gpu": gpu_description},
         "status": "Reference fixture only; not an end-to-end Warp reconstruction comparison",
     }
     (out/"manifest.json").write_text(json.dumps(manifest, indent=2)+"\n")
@@ -196,4 +201,8 @@ if __name__ == "__main__":
     parser.add_argument("--operators", action="store_true", help="Export small explicit matrices and interpolation records")
     parser.add_argument("--topology", action="store_true", help="Export unique global node identities, flags and parent/child relationships")
     parser.add_argument("--solver-trace", action="store_true", help="Export read-only per-update solve diagnostics (small fixtures only)")
-    generate(parser.parse_args())
+    parser.add_argument("--output-directory",type=Path,help="Override the generated fixture directory; source/build paths are unchanged")
+    args=parser.parse_args()
+    output_directory=args.output_directory
+    del args.output_directory
+    generate(args,output_directory=output_directory)

@@ -11,6 +11,40 @@ from tools.make_fixture import ROOT, points_for, read_output
 
 
 @pytest.mark.reference
+def test_fixture_and_openmp_checks_support_explicit_scratch_directories(tmp_path, monkeypatch):
+    from argparse import Namespace
+    from tools.make_fixture import generate
+    from tools.fixture_provenance import verify_fixture
+    from tools.check_openmp import main as check_openmp
+    if not all((ROOT/'.build'/name).exists() for name in ('oracle', 'oracle_instrumented', 'oracle_instrumented_openmp')):
+        pytest.skip('Build the pinned reference first')
+    check_output = subprocess.check_output
+    def without_nvidia_smi(command, *args, **kwargs):
+        if command[0] == 'nvidia-smi':
+            raise FileNotFoundError('No GPU inventory utility on this host')
+        return check_output(command, *args, **kwargs)
+    monkeypatch.setattr(subprocess, 'check_output', without_nvidia_smi)
+    args = Namespace(name='sphere', dataset=None, input=None, max_points=None, shape='sphere',
+                     input_scale=1., translation=[0.,0.,0.], count=64, seed=2026, variant='none',
+                     depth=3, full_depth=2, base_depth=None, solve_depth=None, kernel_depth=None,
+                     scale=1.1, samples_per_node=1.5, cg_accuracy=1e-3, base_v_cycles=1,
+                     weight=2., exact=False, iters=8, precision='float', grid=3,
+                     operators=False, topology=False, solver_trace=False)
+    directory = tmp_path/'fixtures'/'sphere'
+    generate(args, output_directory=directory)
+    identity = verify_fixture(directory)
+    assert json.loads((directory/'manifest.json').read_text())['environment']['gpu'] is None
+    assert identity['parameters']['base_depth'] == 2
+    assert 'output_directory' not in identity['parameters']
+    report = tmp_path/'openmp.json'
+    assert check_openmp(Namespace(fixtures=['sphere'], threads=2, repeats=1,
+                                 fixture_root=directory.parent, work_directory=tmp_path/'reference-work',
+                                 output=report)) == 0
+    assert (tmp_path/'reference-work'/'sphere'/'run-0.txt').is_file()
+    assert json.loads(report.read_text())['all_passed']
+
+
+@pytest.mark.reference
 @pytest.mark.parametrize('precision', ['float', 'double'])
 def test_binary_grid_matches_ordinary_query_evaluation(tmp_path, precision):
     if not (ROOT/'.build/oracle').exists():
