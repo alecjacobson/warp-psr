@@ -216,3 +216,7 @@ contains absolute GPU/CPU times, memory, methodology, reproduction commands and
 historical sample-count/density sweeps. The [full depth-9 report](docs/results/depth9-datasets.json)
 and [unrounded table](docs/results/dataset-speedups.json) preserve all measurements
 and provenance. The existing `--suite all` catalog remains 71 named cases.
+
+The [GPU formulation comparison](docs/gpu-baselines.md) benchmarks SAP's FFT
+solver and NeuralGalerkin's non-learned SPSR, including their different output
+geometry, numerical settings and mesh extraction costs.

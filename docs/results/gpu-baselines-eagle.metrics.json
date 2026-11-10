@@ -1,0 +1,85 @@
+{
+  "note": "Distances between area-weighted random surface samples, in normalized cube units; 200,000 samples/method. Warp self-resampling estimates the sampling floor. These are disagreement measures, not ground-truth reconstruction accuracy.",
+  "metrics": {
+    "d8-warp": {
+      "surface_area": 1.6510992050170898,
+      "vertices": 160446,
+      "triangles": 320332,
+      "distance_to_warp": {
+        "symmetric_mean": 0.0014344054048706272,
+        "symmetric_rms": 0.0016184876156838453,
+        "max_directed_p95": 0.0028068173618656343
+      }
+    },
+    "d8-sap": {
+      "surface_area": 1.3401500672763724,
+      "vertices": 128338,
+      "triangles": 256672,
+      "distance_to_warp": {
+        "symmetric_mean": 0.014930654696648641,
+        "symmetric_rms": 0.027367063758634506,
+        "max_directed_p95": 0.08849504681051237
+      }
+    },
+    "d8-sap-sigma1": {
+      "surface_area": 1.5578547887958418,
+      "vertices": 150539,
+      "triangles": 301002,
+      "distance_to_warp": {
+        "symmetric_mean": 0.008973441454311781,
+        "symmetric_rms": 0.020337018250365546,
+        "max_directed_p95": 0.06524477274444763
+      }
+    },
+    "d8-ng": {
+      "surface_area": 1.8570823669433594,
+      "vertices": 502628,
+      "triangles": 1011614,
+      "distance_to_warp": {
+        "symmetric_mean": 0.007373012097019651,
+        "symmetric_rms": 0.015654731365867203,
+        "max_directed_p95": 0.045195002719240096
+      }
+    },
+    "d9-warp": {
+      "surface_area": 1.7115427255630493,
+      "vertices": 664387,
+      "triangles": 1327666,
+      "distance_to_warp": {
+        "symmetric_mean": 0.0014554005964451501,
+        "symmetric_rms": 0.0016417428419555687,
+        "max_directed_p95": 0.0028402334952722795
+      }
+    },
+    "d9-sap": {
+      "surface_area": 1.4337290771677016,
+      "vertices": 548966,
+      "triangles": 1097924,
+      "distance_to_warp": {
+        "symmetric_mean": 0.011143366873809051,
+        "symmetric_rms": 0.022829156686655198,
+        "max_directed_p95": 0.07524698823007044
+      }
+    },
+    "d9-sap-sigma1": {
+      "surface_area": 1.6341741539070271,
+      "vertices": 632256,
+      "triangles": 1264140,
+      "distance_to_warp": {
+        "symmetric_mean": 0.007981570159534029,
+        "symmetric_rms": 0.018815784103328986,
+        "max_directed_p95": 0.05911324942931197
+      }
+    },
+    "d9-ng": {
+      "surface_area": 1.8811407089233398,
+      "vertices": 546908,
+      "triangles": 1100647,
+      "distance_to_warp": {
+        "symmetric_mean": 0.007125555971673513,
+        "symmetric_rms": 0.01499683151259293,
+        "max_directed_p95": 0.05203761479376659
+      }
+    }
+  }
+}

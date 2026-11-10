@@ -332,3 +332,11 @@ and optional cuDSS with all setup costs included. The default eagle and horse
 cases skip root CG at the existing initial-residual threshold. A stricter fixture
 exercises all seven methods; FSAI halves root iterations but changes its total
 reconstruction time by only about 1.6 ms. Production defaults remain unchanged.
+
+## Other GPU formulations
+
+The [GPU baseline comparison](gpu-baselines.md) measures the official SAP/DPSR
+FFT implementation and NeuralGalerkin's non-learned SPSR on the same real input
+clouds at nominal depths 8 and 9. It records the different boundary conditions,
+bases, smoothing and density settings, with separate field and mesh timings,
+output comparisons and experiments that preserve Warp's reference iterate.

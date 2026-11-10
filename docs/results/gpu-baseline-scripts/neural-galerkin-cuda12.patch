@@ -1,0 +1,16 @@
+diff --git a/csrc/sparse_solve/solve_pcg.cu b/csrc/sparse_solve/solve_pcg.cu
+index cce7404..74d460a 100644
+--- a/csrc/sparse_solve/solve_pcg.cu
++++ b/csrc/sparse_solve/solve_pcg.cu
+@@ -67 +67 @@ std::pair<torch::Tensor, int> solve_pcg_diag(
+-            &zero, vecAx, CUDA_R_32F, CUSPARSE_MV_ALG_DEFAULT, &bufferSize));
++            &zero, vecAx, CUDA_R_32F, CUSPARSE_SPMV_ALG_DEFAULT, &bufferSize));
+@@ -73 +73 @@ std::pair<torch::Tensor, int> solve_pcg_diag(
+-                                  CUSPARSE_MV_ALG_DEFAULT, buffer));
++                                  CUSPARSE_SPMV_ALG_DEFAULT, buffer));
+@@ -102 +102 @@ std::pair<torch::Tensor, int> solve_pcg_diag(
+-                &zero, vecAx, CUDA_R_32F, CUSPARSE_MV_ALG_DEFAULT, buffer));
++                &zero, vecAx, CUDA_R_32F, CUSPARSE_SPMV_ALG_DEFAULT, buffer));
+@@ -112 +112 @@ std::pair<torch::Tensor, int> solve_pcg_diag(
+-                    &zero, vecAx, CUDA_R_32F, CUSPARSE_MV_ALG_DEFAULT, buffer));
++                    &zero, vecAx, CUDA_R_32F, CUSPARSE_SPMV_ALG_DEFAULT, buffer));
