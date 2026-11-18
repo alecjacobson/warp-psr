@@ -55,6 +55,10 @@ field and mesh vertex losses to input points and normals through the finite
 solver, with discrete assignments fixed.
 Use `dtype=wp.vec3d` for both input arrays to run the entire pipeline in float64,
 including normalization, density, assembly, solving, and evaluation.
+For queries inside your own Warp kernel, use `field = result.device_field()`
+and `value, gradient, valid = evaluate_field(field, point)` from `warp_psr`.
+The [device-query API](docs/field-queries.md) supports both precisions, fused
+application kernels, and opt-in reconstruction gradients.
 Production reconstruction uses Warp arrays, kernels, FEM, and sparse algebra;
 NumPy, SciPy, and the C++ reference are used only by tests and visualization.
 Zero or invalid normals are omitted. If all accepted aggregate normals cancel,

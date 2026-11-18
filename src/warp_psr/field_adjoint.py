@@ -3,7 +3,7 @@ from dataclasses import dataclass
 from functools import lru_cache
 from types import SimpleNamespace
 import warp as wp
-from .field import LevelField, basis_key, find_key, reference_evaluation_kernel
+from .field import LevelField, basis_key, find_key, reference_evaluation_kernel, query_vjp_function
 from .keyed import coordinates
 
 wp.set_module_options({'fuse_fp': False})
@@ -34,6 +34,8 @@ def precision_kernels(dtype):
                         if j >= 0:
                             wp.atomic_add(grad, j, g * h)
 
+    query_vjp = query_vjp_function(dtype)
+
     @wp.kernel
     def evaluate_backward(keys: wp.array(dtype=wp.int64), coefficients: wp.array(dtype=dtype),
                           cumulative: wp.array(dtype=dtype), queries: wp.array(dtype=vec3), depth: int,
@@ -41,61 +43,11 @@ def precision_kernels(dtype):
                           grad_coefficients: wp.array(dtype=dtype), grad_cumulative: wp.array(dtype=dtype),
                           grad_queries: wp.array(dtype=vec3)):
         i = wp.tid()
-        gv, gg = grad_value[i], grad_spatial[i]
-        if gv == dtype(0) and gg[0] == dtype(0) and gg[1] == dtype(0) and gg[2] == dtype(0):
+        if grad_value[i] == dtype(0) and grad_spatial[i] == vec3(dtype(0)):
             return
-        original = queries[i]
-        p = vec3(original)
-        ok = wp.isfinite(p[0]) and wp.isfinite(p[1]) and wp.isfinite(p[2]) and wp.min(p) >= dtype(0) and wp.max(p) <= dtype(1)
-        if ok:
-            leaf = int(0)
-            for d in range(depth, -1, -1):
-                n = 1 << d
-                cell = wp.vec3i(wp.clamp(int(wp.ceil(p[0]*dtype(n)))-1,0,n-1),
-                                wp.clamp(int(wp.ceil(p[1]*dtype(n)))-1,0,n-1),
-                                wp.clamp(int(wp.ceil(p[2]*dtype(n)))-1,0,n-1))
-                if find_key(keys,basis_key(d,cell[0],cell[1],cell[2])) >= 0:
-                    leaf = d
-                    break
-            for axis in range(3):
-                if p[axis] == dtype(0):
-                    p[axis] = dtype(1e-6)
-                elif p[axis] == dtype(1):
-                    p[axis] = dtype(1.0-1e-6)
-            qp = vec3(dtype(0))
-            for d in range(wp.max(leaf-1,0),wp.min(leaf+1,depth)+1):
-                n = 1 << d
-                t = p*dtype(n)
-                cell = wp.vec3i(wp.clamp(int(wp.ceil(t[0]))-1,0,n-1),wp.clamp(int(wp.ceil(t[1]))-1,0,n-1),wp.clamp(int(wp.ceil(t[2]))-1,0,n-1))
-                base = wp.vec3i(int(wp.floor(t[0])),int(wp.floor(t[1])),int(wp.floor(t[2])))
-                f = t-vec3(base)
-                for corner in range(8):
-                    node = cell+wp.vec3i(corner//4,(corner//2)%2,corner%2)
-                    if wp.min(node-base) >= 0:
-                        index = find_key(keys,basis_key(d,node[0],node[1],node[2]))
-                        if index >= 0:
-                            h = vec3(dtype(1))-f
-                            sign = vec3(dtype(-1))
-                            for a in range(3):
-                                if node[a] > base[a]:
-                                    h[a] = f[a]
-                                    sign[a] = dtype(1)
-                            basis_gradient = dtype(n)*vec3(sign[0]*h[1]*h[2],h[0]*sign[1]*h[2],h[0]*h[1]*sign[2])
-                            gc = gv*h[0]*h[1]*h[2] + wp.dot(gg,basis_gradient)
-                            c = dtype(coefficients[index])
-                            if d == leaf-1:
-                                c = dtype(cumulative[index])
-                                wp.atomic_add(grad_cumulative,index,gc)
-                            else:
-                                wp.atomic_add(grad_coefficients,index,gc)
-                            xy = c*dtype(n*n)*sign[0]*sign[1]*h[2]
-                            xz = c*dtype(n*n)*sign[0]*h[1]*sign[2]
-                            yz = c*dtype(n*n)*h[0]*sign[1]*sign[2]
-                            qp += gv*c*basis_gradient + vec3(gg[1]*xy+gg[2]*xz,gg[0]*xy+gg[2]*yz,gg[0]*xz+gg[1]*yz)
-            for a in range(3):
-                if original[a] == dtype(0) or original[a] == dtype(1):
-                    qp[a] = dtype(0)
-            wp.atomic_add(grad_queries,i,qp)
+        gradient = query_vjp(keys, coefficients, cumulative, queries[i], depth,
+                             grad_value[i], grad_spatial[i], grad_coefficients, grad_cumulative)
+        wp.atomic_add(grad_queries, i, gradient)
 
     @wp.kernel
     def to_cube(queries: wp.array(dtype=vec3), transforms: wp.array(dtype=mat44), out: wp.array(dtype=vec3)):
@@ -272,6 +224,18 @@ class DifferentiableField:
     @property
     def cumulative(self):
         return self.cube.cumulative
+
+    def device_field(self):
+        """Return a zero-copy handle for queries recorded on this field's tape.
+
+        Call on the query stream so it waits for reconstruction readiness.
+        Record application kernels on the supplied reconstruction tape. The
+        handle shares tracked coefficients and normalization transforms.
+        """
+        from .device_field import _device_field
+        if self.ready is not None:
+            wp.get_stream(self.coefficients.device).wait_event(self.ready)
+        return _device_field(self.cube, transforms=self.transforms)
 
     def evaluate(self, queries, *, centered=False, requires_grad=True):
         """Evaluate with device transforms; opt out of recording for fixed selection.

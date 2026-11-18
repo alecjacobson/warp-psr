@@ -129,6 +129,10 @@ class Reconstruction:
     def evaluate(self, queries):
         return self.field.evaluate(queries)
 
+    def device_field(self):
+        """Return a zero-copy handle for ``evaluate_field`` in a Warp kernel."""
+        return self.field.device_field()
+
 
 def reconstruct(
     positions,

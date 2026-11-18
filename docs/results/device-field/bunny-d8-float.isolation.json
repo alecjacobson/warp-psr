@@ -1,0 +1,2560 @@
+{
+  "idle_scheduling_observations": [
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0089711620083597
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9989813485231284
+        }
+      ],
+      "gpu": []
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9945779803471747
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.927635231669961
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 502 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.000002300515332
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.971156080308159
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 504 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.996355160136702
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.996355160136702
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 504 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.000956321870781
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9915133377021887
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 504 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0026267933268587
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0026267933268587
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 504 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9991541381040765
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9991541381040765
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 504 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.00480387244796
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.00480387244796
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 508 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.997623357641708
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0068606109532052
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 508 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.998753937836731
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9891505345883009
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 508 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0096140003839982
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9999986289517696
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 508 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9867252629036102
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0058849767463987
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 508 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0054057437954493
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0054057437954493
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 512 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9964737022519492
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9964737022519492
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 518 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.005261754245445
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.005261754245445
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 518 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9979710175944216
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9885561966737195
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 518 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9982197682286785
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9982197682286785
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 518 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.994087810969333
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.00346599786527
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 518 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0109740086764016
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0016131382256943
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 520 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9952682845366758
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.00483817188799
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 524 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9959615373796121
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9959615373796121
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 534 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0034955732931838
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0034955732931838
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 534 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9923401537024301
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9923401537024301
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 570 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0014832640288955
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0014832640288955
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 574 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.7653133118196274
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0044737217632609
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 546 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9939176132233044
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 546 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.5072051272074575
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.004840346354397
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.997388214510154
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.997388214510154
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0050959900550984
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9959587537818704
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9969165974563037
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0065023339703068
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 548 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0014667165993578
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0014667165993578
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 548 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9960104544741641
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9960104544741641
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 548 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0057308523232042
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9963314985631744
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 548 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9282593595708112
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.004816832525105
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 548 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.696354048498696
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9987183063994457
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.999769715391945
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.999769715391945
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0025536138511246
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0025536138511246
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.004188138453418
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9946244418967186
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0031835695493887
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0031835695493887
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9775623141236502
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0057612270310632
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 614 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0069894079313664
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.997834958768354
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 614 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9964581911487415
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9964581911487415
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 614 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0019924869768961
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0019924869768961
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 614 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9889316487624037
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.998532926905728
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 582 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9880364415651955
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0068561833092946
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 652 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9989240029326993
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9989240029326993
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 588 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9655949934855603
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9937191195094116
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 590 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9787741695388654
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0081373946250314
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 594 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9826898805122023
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9921388216709734
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 594 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9717768971203861
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.000081078589912
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 594 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9835302829072433
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0019140265129862
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 594 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9854095932555696
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9949766766852354
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 596 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9841402998842477
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0028858294058525
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9977356035550332
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9977356035550332
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9994749143688643
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0086444089961015
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.999012240166627
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.999012240166627
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9990059760317995
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9990059760317995
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.6278713243118432
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9933486623441101
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 578 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0080307426486141
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0009966809540676
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0009966809540676
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.858697786468845
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9879641199157679
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.8705388092322965
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.001587662235008
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 580 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9968724194570554
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9968724194570554
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 582 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0047053466748033
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0047053466748033
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 584 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9913684074337562
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0008100113140777
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 584 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0114106870889379
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0022160444790384
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 584 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9948688049826445
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0044348511844008
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 584 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.001020519484273
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.001020519484273
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 586 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9922274844196383
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9922274844196383
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 584 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0057991916870326
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.996571676166968
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 584 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.004508374562382
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.004508374562382
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 586 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9919194936904423
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9919194936904423
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 586 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 1.0076949399243813
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0076949399243813
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 586 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 636 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9957209863946197
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9957209863946197
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 586 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 702 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9993168770658598
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.008925693191493
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 586 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 674 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694763,
+          "name": "python",
+          "cpu_equivalents": 0.9989222061751428
+        },
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9989222061751428
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 588 MiB",
+        "1694763, /home/horde/projects/warp-psr/.venv/bin/python, 642 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9925509848896343
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 590 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0017257285169945
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 590 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0023123439339172
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 588 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9950737007077529
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 590 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0007317463174807
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 590 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9996990701781224
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 592 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0052267375465598
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 592 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9989563823048431
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 594 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0017758987076717
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 598 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9987232118914435
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 592 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9888684768834516
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 598 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.005648372676829
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 598 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9983770515663163
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0050535383246981
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9930658359235681
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9989140007610894
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0052513533105603
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9941634932213305
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0083497546848317
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9998969749600933
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.002952520276231
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9950883917898229
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.995887165123234
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9993326857475304
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0020445371923319
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0019207543435686
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0040177376263626
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9984141796519219
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0010110877280238
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9951603602404203
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9935961258361296
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 596 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0086267701724152
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 600 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9905211560978884
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 600 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0114054447611145
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 600 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9853396732192868
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0054799474162992
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 610 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.996265071284803
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 624 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9961361015981138
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 624 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0031670915299868
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 634 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.008186918629396
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 646 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9963804684456832
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 596 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9997236141636571
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 650 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9970754105624363
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 662 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9974388698077706
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 664 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0033065645245574
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 664 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9996538730145288
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 664 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9964737665890124
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 670 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.004471953389078
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 670 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9939183092559296
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 674 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0054434381917772
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 686 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9998880328623213
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 686 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9910675117509377
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 686 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.005604608286538
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 688 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0018457268026324
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 688 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9979503751604885
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 598 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9963511821227454
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 598 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0048584015954625
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 600 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0026328146586174
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 604 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0022925788235066
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9986522830930041
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 610 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0000629341616312
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 610 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9899698198133601
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 600 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0058542758734388
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9958486008409975
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 606 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0053358300569013
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 612 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9964371611575702
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9962032994909992
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0045818872218968
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 610 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.003122344683405
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 616 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9965953689668052
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 626 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9993510876705858
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 634 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0003558796871117
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 634 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9989445830168112
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 614 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9909314215872979
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0058119844229805
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.998020046994438
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9983752460646756
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0069262203962845
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.995241453832122
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0031154115916912
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 620 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9947401965215394
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 666 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0016155443002472
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 666 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.002372836800719
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 666 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9918209984506281
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 666 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0078309774892316
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 666 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9972220888494623
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 666 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9972984744348372
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 688 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.004521989327635
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 708 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9902505100018959
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 716 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 1.0082359812111548
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 614 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.995877566074175
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 682 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1694773,
+          "name": "python",
+          "cpu_equivalents": 0.9976510075213713
+        }
+      ],
+      "gpu": [
+        "1694773, /home/horde/projects/warp-psr/.venv/bin/python, 722 MiB"
+      ]
+    }
+  ],
+  "gpu_before": [],
+  "samples": [
+    {
+      "elapsed_seconds": 1.0004720017313957,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 2.0426250994205475,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 3.131744809448719,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 12 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.232884742319584,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1452 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 5.270283222198486,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1452 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 6.31407768279314,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1452 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 7.354489378631115,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1452 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 8.417177431285381,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1452 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 9.48099835216999,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1452 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 10.51808425784111,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1164 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 11.605373926460743,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 12.686339169740677,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1196 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 13.769310913980007,
+      "gpu_processes": [
+        "1695358, /home/horde/projects/warp-psr/.venv/bin/python, 1164 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 14.829226803034544,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    }
+  ],
+  "foreign_work_observed": [],
+  "scope": "One-second process/GPU sampling; records unrelated CPU processes above 0.25 cores. No validation, archive processing or other benchmark runs overlap the measured child."
+}
