@@ -1,0 +1,158 @@
+{
+  "idle_scheduling_observations": [],
+  "gpu_before": [],
+  "samples": [
+    {
+      "elapsed_seconds": 1.000466138124466,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": [
+        {
+          "pid": 128,
+          "name": "python3",
+          "cpu_equivalents": 0.5597390842730667
+        }
+      ]
+    },
+    {
+      "elapsed_seconds": 2.0404285080730915,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": [
+        {
+          "pid": 128,
+          "name": "python3",
+          "cpu_equivalents": 0.2692405110906389
+        }
+      ]
+    },
+    {
+      "elapsed_seconds": 3.083807695657015,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 568 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.170984905213118,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": [
+        {
+          "pid": 128,
+          "name": "python3",
+          "cpu_equivalents": 0.625473008469011
+        }
+      ]
+    },
+    {
+      "elapsed_seconds": 5.190265670418739,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 6.210113640874624,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 7.246882516890764,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": [
+        {
+          "pid": 128,
+          "name": "python3",
+          "cpu_equivalents": 0.45333150991762916
+        }
+      ]
+    },
+    {
+      "elapsed_seconds": 8.265902664512396,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 9.30704053491354,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 940 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 10.347988545894623,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 780 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 11.410901062190533,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 684 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 12.451357401907444,
+      "gpu_processes": [
+        "1695716, /home/horde/projects/warp-psr/.venv/bin/python, 748 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 13.286507986485958,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    }
+  ],
+  "foreign_work_observed": [
+    {
+      "cpu": [
+        {
+          "pid": 128,
+          "name": "python3",
+          "cpu_equivalents": 0.5597390842730667
+        }
+      ],
+      "gpu": []
+    },
+    {
+      "cpu": [
+        {
+          "pid": 128,
+          "name": "python3",
+          "cpu_equivalents": 0.2692405110906389
+        }
+      ],
+      "gpu": []
+    },
+    {
+      "cpu": [
+        {
+          "pid": 128,
+          "name": "python3",
+          "cpu_equivalents": 0.625473008469011
+        }
+      ],
+      "gpu": []
+    },
+    {
+      "cpu": [
+        {
+          "pid": 128,
+          "name": "python3",
+          "cpu_equivalents": 0.45333150991762916
+        }
+      ],
+      "gpu": []
+    }
+  ],
+  "scope": "One-second process/GPU sampling; records unrelated CPU processes above 0.25 cores. No validation, archive processing or other benchmark runs overlap the measured child."
+}

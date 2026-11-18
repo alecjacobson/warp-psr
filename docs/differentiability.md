@@ -2,7 +2,8 @@
 
 `reconstruct_differentiable` is an opt-in, first-order backward path for input
 point positions and normals. The default `reconstruct` function retains its
-forward implementation and does not import or allocate backward machinery.
+forward implementation and does not allocate backward checkpoints or import
+the reconstruction adjoint modules.
 Both float32 and float64 reconstruction are supported on CUDA.
 
 ```python
@@ -35,6 +36,11 @@ field. Returned spatial gradients describe variation with query position;
 `tape.backward` computes variation with reconstruction inputs. Query positions
 can also be tracked. Normalization, its model/cube transform and the computed
 isovalue remain connected to the loss.
+
+The same gradients are available from `evaluate_field(field, p)` inside an
+application kernel; create `field = result.device_field()` on the host. See the
+[single-query API](field-queries.md) for
+kernel argument types, stream ordering, and an example with isovalue centering.
 
 ## Derivative contract
 

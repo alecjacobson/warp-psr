@@ -1,0 +1,93 @@
+{
+  "idle_scheduling_observations": [],
+  "gpu_before": [],
+  "samples": [
+    {
+      "elapsed_seconds": 1.000501610338688,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 2.0441422164440155,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 3.087782632559538,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 568 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.146661061793566,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 5.20640879496932,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 6.266331806778908,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 7.322471171617508,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 8.403057761490345,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 876 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 9.423362340778112,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 652 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 10.467323202639818,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 652 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 11.511801052838564,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 652 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 12.551505703479052,
+      "gpu_processes": [
+        "1696116, /home/horde/projects/warp-psr/.venv/bin/python, 748 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 12.773745231330395,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    }
+  ],
+  "foreign_work_observed": [],
+  "scope": "One-second process/GPU sampling; records unrelated CPU processes above 0.25 cores. No validation, archive processing or other benchmark runs overlap the measured child."
+}

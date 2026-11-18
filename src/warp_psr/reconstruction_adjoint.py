@@ -53,6 +53,10 @@ class DifferentiableReconstruction:
     def evaluate(self, queries, *, centered=False):
         return self.field.evaluate(queries, centered=centered)
 
+    def device_field(self):
+        """Return a field handle connected to the reconstruction tape."""
+        return self.field.device_field()
+
 
 def reconstruct_differentiable(positions, normals, *, tape, **options):
     """Reconstruct outside ``with tape``, then record field losses on that tape.

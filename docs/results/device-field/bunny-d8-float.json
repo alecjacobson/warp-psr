@@ -1,0 +1,780 @@
+{
+  "input": {
+    "input_sha256": "643ab4ff5292451c130dae04ad99167ab59c8a922489243887560e87121bed75",
+    "input_source": {
+      "source_file": "bunny.points.ply",
+      "source_sha256": "859f3a8fda84bd2707abc5ede664b11cde20fef9d5f9ffde36cc52088a486e15",
+      "original_count": 362271,
+      "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+      "ignored_properties": [],
+      "selection": "all rows in original file order",
+      "dataset": "bunny",
+      "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/bunny.points.ply",
+      "description": "Merged Stanford Bunny range scans; normals estimated from scan connectivity by the PoissonRecon project",
+      "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+      "selected_count": 362271
+    },
+    "seed": 2026,
+    "fixture": "bunny-full-d8-spsr",
+    "shape": "bunny"
+  },
+  "points": 362271,
+  "options": {
+    "depth": 8,
+    "full_depth": 4,
+    "base_depth": 4,
+    "solve_depth": 8,
+    "kernel_depth": 6,
+    "scale": 1.1,
+    "samples_per_node": 1.5,
+    "point_weight": 2.0,
+    "exact_interpolation": false,
+    "iters": 8,
+    "base_v_cycles": 1,
+    "cg_accuracy": 0.001
+  },
+  "precision": "float",
+  "baseline_revision": "7a6a6190786aeacce9775d0575e9b13e611d5aae",
+  "production_source_sha256": {
+    "src/warp_psr/__init__.py": "6d4c7c0846b6be083a1f44d17660cbdcf364264a8873ab442fd005fcfa06b663",
+    "src/warp_psr/assembly_adjoint.py": "bcbe7d9feddac5327f37cc93936564ff099a3897983c6f16457ab609a2113d28",
+    "src/warp_psr/cascadic_adjoint.py": "3a8d99d80816056f3f52771aa3300503fe189916ce66247f45a86244d7661d85",
+    "src/warp_psr/constraints.py": "c98dd75d5319eec7628bad58ef7b252a3c1d5ec537c0f0ecfcf9cddfecf2185f",
+    "src/warp_psr/density.py": "804fb18189d1f5313c058308eb2e9cc520e3c03ce65d1ee1ea288dd14191efef",
+    "src/warp_psr/device_field.py": "93047d231c6b5f9847955b7dfe86f5c16717cc338d9fae4c4b2139d66ae5075b",
+    "src/warp_psr/field.py": "ec192abe413bd3b097c96e8990f17440be07693ae8030d994c10351ff9f5e073",
+    "src/warp_psr/field_adjoint.py": "cfba660d5910ecb00ee4f10a71a604d15fcc08f9baf26e875c0ee2e43939c73f",
+    "src/warp_psr/forms.py": "95e7c16387210aaf8590e74a72a0a7f20136347fc3f89ff9dd57c9802268e382",
+    "src/warp_psr/integration.py": "46987df9204c18bf028fe775b35129f409a43eddf8ac79d6ec00dc37267ebbee",
+    "src/warp_psr/keyed.py": "62a4b3609c339761a42574a787a93f5880a48d237edc81f670e8e5bf89512d35",
+    "src/warp_psr/meshing.py": "2c2e029230c07b89e3e7775fa2fb1adce4af8594f0d587535cce4d7c6f124a42",
+    "src/warp_psr/multigrid_adjoint.py": "c5842b6f9bdcc484fc269ec656c4f9ba6f6dc91b1d553fe6bf3fa0c1b2eceb47",
+    "src/warp_psr/normal_field.py": "b3183cc7fcff4cfc1ce192c8e682233fb22f4be70a82ef6a2b75c87beffc97e4",
+    "src/warp_psr/normal_load_adjoint.py": "8550df28322a5d56297bd826e9107966f44e4c035437ded47272c641a390ae46",
+    "src/warp_psr/normal_loads.py": "f472b907ba23c84bebb85d4192bc9f3d98556170b2006540f4c44b1ef0091d37",
+    "src/warp_psr/normal_stencils.py": "5f4c13350e61093a1d7f7389b9e2556568149d40c4cc84bab7057877ec6522fc",
+    "src/warp_psr/normals.py": "65366f3fac600396a2887ec3360a8499e85cccf9b25fd1580407821564bf7be7",
+    "src/warp_psr/ordered_normal_loads.py": "2e1a2cc3ec32f37889e5e88eb626c93a1c2c59545db708ee854dc189b6e8389f",
+    "src/warp_psr/point_location.py": "8b1c0260452cfe2a2f0ed75c2ab8dfc56532a929617eb402094173b0ed99c25d",
+    "src/warp_psr/reconstruction.py": "5e59d4c884dcdf7fcefb745c3ae18e4cb700898f8df20afb8b079465a56bb98d",
+    "src/warp_psr/reconstruction_adjoint.py": "358c8063d8a9767b06a3c9ef2ddfb342c083ab92da83b91c3e52c4f99c928159",
+    "src/warp_psr/relaxation.py": "df2ee54498d86cbc103fc52b229b0ce0c159615dfeea483c31e0dfbc19ae84cf",
+    "src/warp_psr/relaxation_adjoint.py": "ce5c9e30de6a6df053c4c325ce4b3897a825038cf007a11fc49887661db55421",
+    "src/warp_psr/sample_adjoint.py": "4d805fce62d04b0cbf0322eef2f8a9e2bb46bb90e99401993df669bbf0233911",
+    "src/warp_psr/samples.py": "92bcd24b4156163b7897a979f5a5549ed5c01f083450bc9d093dd2eacce81c6b",
+    "src/warp_psr/screening_stencils.py": "5387c3b81e171cfa3ed646032a410ee0d3290b011de21eb5d566de9f5333d780",
+    "src/warp_psr/solver.py": "1e888adaa06f045bc3b2ff8351bd2521dee9b040a6d49c2b8fc4dcb34ecd4906",
+    "src/warp_psr/solver_adjoint.py": "c3d6780c51b4f82041492235d3e5d9eb98bbf57a2594bc747330b4afad5fbd4f",
+    "src/warp_psr/spaces.py": "113a8af1b9fbeaa5e3a30799604915e85271e674279cc6b189d835e6e3089de6",
+    "src/warp_psr/splat_adjoint.py": "5ef1a6708305eded3bcadc492850730a4ede25b2486b56bd89c941f086eb6b88",
+    "src/warp_psr/stiffness.py": "51327ae8942fe159cf759da991a0ad277ed16e5f7ddb84ee70665ff915121425",
+    "src/warp_psr/transfer_stencils.py": "6bcde2cc070f1627cecef52ae36bf3cdcb8b7203451b0a90a3d2195b47f92f3d",
+    "src/warp_psr/transforms.py": "75ea20369232272a70d9d0544644a1269aa6552e9e7a561798118c0c4a3c642c",
+    "src/warp_psr/tree.py": "499fab197832aa9364d56a0fdb3416cfd92335a9bf5c8b1bcf407ada518a8577",
+    "src/warp_psr/tree_metadata.py": "716bda6efa0f8a06688b3f704cfdf5b3b26ee0d996066a1ae71b60a74f8b08d5"
+  },
+  "environment_before": {
+    "captured_utc": "2026-11-18T03:17:30.115647+00:00",
+    "logical_cpus": 128,
+    "affinity_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "visible_cgroup_quotas": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      },
+      {
+        "group": "kubepods.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      }
+    ],
+    "minimum_visible_cpu_quota": 4.0,
+    "cgroup_cpu_counters": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "counters": {
+          "usage_usec": 363504260661,
+          "user_usec": 322816086380,
+          "system_usec": 40688174281,
+          "nr_periods": 7411713,
+          "nr_throttled": 119583,
+          "throttled_usec": 280137313785
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "counters": {
+          "usage_usec": 363504330615,
+          "user_usec": 322816098867,
+          "system_usec": 40688231748,
+          "nr_periods": 7411656,
+          "nr_throttled": 127154,
+          "throttled_usec": 267612372644
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "counters": {
+          "usage_usec": 20222735773777,
+          "user_usec": 15549996516835,
+          "system_usec": 4672739256941,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": "kubepods.slice",
+        "counters": {
+          "usage_usec": 54088893433797,
+          "user_usec": 37158688347137,
+          "system_usec": 16930205086660,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": ".",
+        "counters": {
+          "usage_usec": 69206507944000,
+          "user_usec": 44981091168000,
+          "system_usec": 24225416776000,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      }
+    ],
+    "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+  },
+  "warp": "1.19.0",
+  "queries": [
+    {
+      "count": 1,
+      "kernel_ms": {
+        "baseline": [
+          0.032049601078033445,
+          0.030903360843658446,
+          0.030878400802612303,
+          0.030910720825195314,
+          0.030903038978576658,
+          0.030939838886260985,
+          0.030946879386901854,
+          0.030906240940093994,
+          0.030874559879302977,
+          0.03086400032043457
+        ],
+        "current": [
+          0.03151999950408936,
+          0.030912640094757082,
+          0.030875520706176756,
+          0.03088831901550293,
+          0.030880639553070067,
+          0.030973439216613767,
+          0.03088927984237671,
+          0.030932159423828126,
+          0.030881280899047854,
+          0.03086656093597412
+        ],
+        "fused": [
+          0.031242880821228024,
+          0.03075551986694336,
+          0.03082560062408447,
+          0.03080480098724365,
+          0.030760960578918455,
+          0.030754239559173585,
+          0.030768640041351318,
+          0.030791039466857913,
+          0.03078367948532105,
+          0.030729598999023437
+        ]
+      },
+      "median_ms": {
+        "baseline": 0.030904800891876222,
+        "current": 0.03088879942893982,
+        "fused": 0.030776159763336183
+      },
+      "bitwise_equal": true
+    },
+    {
+      "count": 4096,
+      "kernel_ms": {
+        "baseline": [
+          0.06499775886535644,
+          0.06433824062347412,
+          0.06431136131286622,
+          0.06441472053527833,
+          0.06433119773864746,
+          0.06434304237365722,
+          0.06429791927337647,
+          0.06437024116516113,
+          0.06432415962219237,
+          0.06434080123901367
+        ],
+        "current": [
+          0.06492479801177978,
+          0.06438784122467041,
+          0.06439807891845703,
+          0.06432672023773194,
+          0.06436319828033447,
+          0.06433504104614259,
+          0.06434944152832031,
+          0.06430496215820312,
+          0.06432511806488037,
+          0.06436672210693359
+        ],
+        "fused": [
+          0.06352863788604737,
+          0.06314432144165039,
+          0.06305664062500001,
+          0.06307263851165772,
+          0.06305376052856446,
+          0.06304255962371827,
+          0.06311456203460694,
+          0.06306879997253419,
+          0.0630947208404541,
+          0.06314271926879883
+        ]
+      },
+      "median_ms": {
+        "baseline": 0.0643395209312439,
+        "current": 0.06435631990432739,
+        "fused": 0.06308367967605591
+      },
+      "bitwise_equal": true
+    },
+    {
+      "count": 362271,
+      "kernel_ms": {
+        "baseline": [
+          0.20341344833374025,
+          0.2026633644104004,
+          0.2028441619873047,
+          0.20295616149902346,
+          0.20270687103271484,
+          0.20298656463623047,
+          0.2027561569213867,
+          0.20290399551391602,
+          0.20291936874389646,
+          0.20296415328979492
+        ],
+        "current": [
+          0.20302911758422854,
+          0.20272415161132812,
+          0.20294143676757814,
+          0.20285472869873047,
+          0.20270015716552736,
+          0.20303743362426757,
+          0.20278623580932614,
+          0.20310144424438475,
+          0.20291103363037108,
+          0.20283679962158202
+        ],
+        "fused": [
+          0.2059481620788574,
+          0.2054911994934082,
+          0.20543903350830078,
+          0.2055183982849121,
+          0.20542335510253906,
+          0.20544864654541017,
+          0.2057174491882324,
+          0.20565696716308596,
+          0.20563583374023436,
+          0.205581111907959
+        ]
+      },
+      "median_ms": {
+        "baseline": 0.20291168212890626,
+        "current": 0.20288288116455078,
+        "fused": 0.20554975509643555
+      },
+      "bitwise_equal": true
+    }
+  ],
+  "reconstruction": [
+    {
+      "variant": "baseline",
+      "seconds": 0.1128440834581852
+    },
+    {
+      "variant": "current",
+      "seconds": 0.11993607133626938
+    },
+    {
+      "variant": "current",
+      "seconds": 0.10651997476816177
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.11596379056572914
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.10692433267831802
+    },
+    {
+      "variant": "current",
+      "seconds": 0.11560892313718796
+    },
+    {
+      "variant": "current",
+      "seconds": 0.1066114529967308
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.11606962233781815
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.10825129598379135
+    },
+    {
+      "variant": "current",
+      "seconds": 0.12122796848416328
+    },
+    {
+      "variant": "current",
+      "seconds": 0.10628961399197578
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.1150837205350399
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.10626234114170074
+    },
+    {
+      "variant": "current",
+      "seconds": 0.11566683277487755
+    },
+    {
+      "variant": "current",
+      "seconds": 0.10692974552512169
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.11522145196795464
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.1073019877076149
+    },
+    {
+      "variant": "current",
+      "seconds": 0.10643507540225983
+    },
+    {
+      "variant": "current",
+      "seconds": 0.1061650700867176
+    },
+    {
+      "variant": "baseline",
+      "seconds": 0.10624165087938309
+    }
+  ],
+  "batched_backward": {
+    "count": 362271,
+    "kernel_ms": {
+      "baseline": [
+        0.2536569595336914,
+        0.25265535354614255,
+        0.25289344787597656,
+        0.2526166343688965,
+        0.2520147132873535,
+        0.25221824645996094,
+        0.2520659255981445,
+        0.25277631759643554,
+        0.252425594329834,
+        0.25236192703247073
+      ],
+      "current": [
+        0.24356735229492185,
+        0.24257856369018554,
+        0.24295488357543946,
+        0.24244512557983397,
+        0.24229568481445313,
+        0.24209728240966796,
+        0.2427622413635254,
+        0.2424844741821289,
+        0.24265632629394532,
+        0.2431100845336914
+      ]
+    },
+    "median_ms": {
+      "baseline": 0.25252111434936525,
+      "current": 0.24261744499206545
+    },
+    "gradient_agreement": true,
+    "loss_seeds": {
+      "value": 1,
+      "spatial": [
+        0,
+        0,
+        0
+      ]
+    }
+  },
+  "reconstruction_median_ms": {
+    "baseline": 110.54768972098827,
+    "current": 106.77059926092625
+  },
+  "reconstruction_bitwise_equal": true,
+  "environment_after": {
+    "captured_utc": "2026-11-18T03:17:42.066659+00:00",
+    "logical_cpus": 128,
+    "affinity_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "visible_cgroup_quotas": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      },
+      {
+        "group": "kubepods.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      }
+    ],
+    "minimum_visible_cpu_quota": 4.0,
+    "cgroup_cpu_counters": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "counters": {
+          "usage_usec": 363513780481,
+          "user_usec": 322823146415,
+          "system_usec": 40690634066,
+          "nr_periods": 7411832,
+          "nr_throttled": 119583,
+          "throttled_usec": 280137313785
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "counters": {
+          "usage_usec": 363513850436,
+          "user_usec": 322823158902,
+          "system_usec": 40690691533,
+          "nr_periods": 7411775,
+          "nr_throttled": 127154,
+          "throttled_usec": 267612372644
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "counters": {
+          "usage_usec": 20222748545872,
+          "user_usec": 15550005927819,
+          "system_usec": 4672742618052,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": "kubepods.slice",
+        "counters": {
+          "usage_usec": 54088908808625,
+          "user_usec": 37158698140878,
+          "system_usec": 16930210667747,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": ".",
+        "counters": {
+          "usage_usec": 69206531656000,
+          "user_usec": 44981103984000,
+          "system_usec": 24225427672000,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      }
+    ],
+    "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+  },
+  "methodology": "Only the field evaluation kernel is exchanged: the baseline is loaded from Git and the remaining forward reconstruction code is unchanged. Query event timings use 10 graph replays of 10 launches, in baseline/current/fused/fused/current/baseline order. Reconstruction uses synchronized wall time in ABBA order. Batched backward kernel timings use ABBA order and the same graph repetition count. Compilation, uploads, validation, and garbage collection are outside timing. No other GPU processes are permitted; cgroup counters record CPU throttling."
+}
