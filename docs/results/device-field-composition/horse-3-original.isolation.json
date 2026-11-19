@@ -1,0 +1,37 @@
+{
+  "idle_scheduling_observations": [],
+  "gpu_before": [],
+  "samples": [
+    {
+      "elapsed_seconds": 1.0004851929843426,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 2.0778247602283955,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 3.1569162160158157,
+      "gpu_processes": [
+        "1729292, /home/horde/projects/warp-field-composition/.venv/bin/python, 620 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.218246906995773,
+      "gpu_processes": [
+        "1729292, /home/horde/projects/warp-field-composition/.venv/bin/python, 780 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.9877757877111435,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    }
+  ],
+  "foreign_work_observed": [],
+  "scope": "One-second process/GPU sampling; records unrelated CPU processes above 0.25 cores. No validation, archive processing or other benchmark runs overlap the measured child."
+}

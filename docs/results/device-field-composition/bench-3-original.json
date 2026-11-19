@@ -1,0 +1,1077 @@
+{
+  "variant": "original",
+  "force_first_compile": false,
+  "warp": "1.20.0.dev0",
+  "environment_before": {
+    "captured_utc": "2026-11-19T03:47:36.192814+00:00",
+    "logical_cpus": 128,
+    "affinity_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "visible_cgroup_quotas": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      },
+      {
+        "group": "kubepods.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      }
+    ],
+    "minimum_visible_cpu_quota": 4.0,
+    "cgroup_cpu_counters": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "counters": {
+          "usage_usec": 366461686213,
+          "user_usec": 325448821874,
+          "system_usec": 41012864339,
+          "nr_periods": 7761549,
+          "nr_throttled": 120688,
+          "throttled_usec": 280728561537
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "counters": {
+          "usage_usec": 366461756168,
+          "user_usec": 325448834369,
+          "system_usec": 41012921799,
+          "nr_periods": 7761469,
+          "nr_throttled": 128293,
+          "throttled_usec": 268195811194
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "counters": {
+          "usage_usec": 20329912910541,
+          "user_usec": 15627871577086,
+          "system_usec": 4702041333454,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": "kubepods.slice",
+        "counters": {
+          "usage_usec": 54208905384645,
+          "user_usec": 37239354327110,
+          "system_usec": 16969551057535,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": ".",
+        "counters": {
+          "usage_usec": 69371033644000,
+          "user_usec": 45082117708000,
+          "system_usec": 24288915936000,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      }
+    ],
+    "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+  },
+  "cases": [
+    {
+      "dataset": "bunny",
+      "depth": 8,
+      "precision": "float",
+      "points": 362271,
+      "input": {
+        "input_sha256": "643ab4ff5292451c130dae04ad99167ab59c8a922489243887560e87121bed75",
+        "input_source": {
+          "source_file": "bunny.points.ply",
+          "source_sha256": "859f3a8fda84bd2707abc5ede664b11cde20fef9d5f9ffde36cc52088a486e15",
+          "original_count": 362271,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [],
+          "selection": "all rows in original file order",
+          "dataset": "bunny",
+          "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/bunny.points.ply",
+          "description": "Merged Stanford Bunny range scans; normals estimated from scan connectivity by the PoissonRecon project",
+          "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+          "selected_count": 362271
+        },
+        "seed": 2026,
+        "fixture": "bunny-full-d8-spsr",
+        "shape": "bunny"
+      },
+      "first_reconstruction_seconds": 0.452109407633543,
+      "reconstruction_seconds": [
+        0.09980415925383568,
+        0.1004534550011158,
+        0.11257346346974373,
+        0.10043511912226677,
+        0.10086854547262192,
+        0.10939990729093552,
+        0.0981031283736229
+      ],
+      "queries": [
+        {
+          "count": 1,
+          "first_query_seconds": 0.003550548106431961,
+          "sha256": "a8f342a3f11c1488805d78dd34028f4137119120573f602c206109d969b0dcfa",
+          "kernel_ms": {
+            "batch": [
+              0.03181600093841553,
+              0.031100480556488036,
+              0.03109247922897339,
+              0.031090559959411623,
+              0.0310915207862854,
+              0.031104640960693358,
+              0.031089279651641842
+            ],
+            "composed": [
+              0.031598720550537106,
+              0.030926079750061036,
+              0.030919680595397948,
+              0.03092063903808594,
+              0.030921919345855715,
+              0.03092031955718994,
+              0.030916800498962404
+            ]
+          },
+          "median_ms": {
+            "batch": 0.03109247922897339,
+            "composed": 0.03092063903808594
+          }
+        },
+        {
+          "count": 4096,
+          "first_query_seconds": 0.0005492232739925385,
+          "sha256": "0104c6e900eb19f53b57c2dd44481a9e033f077e03eea44cf73cd0d7d72a0203",
+          "kernel_ms": {
+            "batch": [
+              0.06346496105194091,
+              0.06305376052856446,
+              0.06303040027618409,
+              0.06305888175964355,
+              0.06303328037261963,
+              0.06302239894866943,
+              0.0630291223526001
+            ],
+            "composed": [
+              0.06327263832092285,
+              0.06286399841308594,
+              0.0629030418395996,
+              0.06287968158721924,
+              0.06290016174316407,
+              0.06292096138000489,
+              0.06290336132049561
+            ]
+          },
+          "median_ms": {
+            "batch": 0.06303328037261963,
+            "composed": 0.0629030418395996
+          }
+        },
+        {
+          "count": 362271,
+          "first_query_seconds": 0.011180415749549866,
+          "sha256": "9121602dc3eaef077a978515074e1bc4c0bf3dd2abd33b6e3463468d805e26bd",
+          "kernel_ms": {
+            "batch": [
+              0.19813247680664064,
+              0.19732511520385743,
+              0.1996860885620117,
+              0.2003670310974121,
+              0.20072608947753906,
+              0.20395423889160158,
+              0.20451936721801758
+            ],
+            "composed": [
+              0.20747007369995116,
+              0.20543647766113282,
+              0.2016739273071289,
+              0.2003545570373535,
+              0.19999872207641603,
+              0.19998464584350586,
+              0.1998419189453125
+            ]
+          },
+          "median_ms": {
+            "batch": 0.2003670310974121,
+            "composed": 0.2003545570373535
+          }
+        }
+      ],
+      "reconstruction_median_ms": 100.4534550011158,
+      "reconstruction_sha256": "76ff60da82fb4abfa3ce2849abe398e407f1b7593853a12aecf790244dd63db5"
+    },
+    {
+      "dataset": "horse",
+      "depth": 8,
+      "precision": "float",
+      "points": 100000,
+      "input": {
+        "input_sha256": "2d0405025896714809cb987c88bee7c6a8b7c2fdcdabd4edd328f7dae1c0b404",
+        "input_source": {
+          "source_file": "horse.npts",
+          "source_sha256": "e6fd6bfccccb1aad72c83144acd7543f672f1a59641071ef008ae6055df053ec",
+          "original_count": 100000,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [],
+          "selection": "all rows in original file order",
+          "dataset": "horse",
+          "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/horse.npts",
+          "description": "Curvature-weighted, nonuniform samples of a virtual horse; supplied by the PoissonRecon project",
+          "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+          "selected_count": 100000
+        },
+        "seed": 2026,
+        "fixture": "horse-full-d8-spsr",
+        "shape": "horse"
+      },
+      "first_reconstruction_seconds": 0.07190261036157608,
+      "reconstruction_seconds": [
+        0.05823959782719612,
+        0.05960066616535187,
+        0.05682636797428131,
+        0.05682562664151192,
+        0.05802948772907257,
+        0.05854467675089836,
+        0.05697989836335182
+      ],
+      "queries": [
+        {
+          "count": 1,
+          "first_query_seconds": 0.0005003921687602997,
+          "sha256": "02875b62082135a97b70c0df8c077b29f30b0466715f684af9277d7f2d74e1bf",
+          "kernel_ms": {
+            "batch": [
+              0.02774912118911743,
+              0.027128000259399414,
+              0.027109119892120358,
+              0.027112960815429688,
+              0.02711359977722168,
+              0.02711008071899414,
+              0.027115199565887448
+            ],
+            "composed": [
+              0.027402560710906982,
+              0.0269484806060791,
+              0.026952641010284422,
+              0.026943039894104005,
+              0.026940479278564456,
+              0.02694751977920532,
+              0.02694144010543823
+            ]
+          },
+          "median_ms": {
+            "batch": 0.02711359977722168,
+            "composed": 0.02694751977920532
+          }
+        },
+        {
+          "count": 4096,
+          "first_query_seconds": 0.0005712062120437622,
+          "sha256": "97da1f3d830713347de8baf25b11253d02fa356b92f06a3d438b9c12de30e643",
+          "kernel_ms": {
+            "batch": [
+              0.07636703968048095,
+              0.07595392227172851,
+              0.07587007999420166,
+              0.07593023777008057,
+              0.07591360092163087,
+              0.07594719886779785,
+              0.0759494400024414
+            ],
+            "composed": [
+              0.07628543853759766,
+              0.07574880123138428,
+              0.07567200183868408,
+              0.0756883192062378,
+              0.07571775913238525,
+              0.075764479637146,
+              0.07569407939910888
+            ]
+          },
+          "median_ms": {
+            "batch": 0.07594719886779785,
+            "composed": 0.07571775913238525
+          }
+        },
+        {
+          "count": 100000,
+          "first_query_seconds": 0.004661455750465393,
+          "sha256": "613ab1c7fda51a98d20e984c62f58ff2ccfb8fd0808966175e01afc2bd6cc5b6",
+          "kernel_ms": {
+            "batch": [
+              0.18576543807983398,
+              0.18529920578002929,
+              0.1852956771850586,
+              0.18522815704345702,
+              0.18533119201660156,
+              0.18529151916503905,
+              0.1854035186767578
+            ],
+            "composed": [
+              0.18557920455932617,
+              0.1849862480163574,
+              0.18500127792358398,
+              0.18510656356811522,
+              0.18498367309570313,
+              0.18501951217651366,
+              0.18495168685913085
+            ]
+          },
+          "median_ms": {
+            "batch": 0.18529920578002929,
+            "composed": 0.18500127792358398
+          }
+        }
+      ],
+      "reconstruction_median_ms": 58.02948772907257,
+      "reconstruction_sha256": "1590de98644bc1427ad2dba79b26f965fe827963a44d02e4712cdbc6b75923c0"
+    },
+    {
+      "dataset": "eagle",
+      "depth": 8,
+      "precision": "float",
+      "points": 796825,
+      "input": {
+        "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+        "input_source": {
+          "source_file": "eagle.points.ply",
+          "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+          "original_count": 796825,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [
+            "red",
+            "green",
+            "blue",
+            "alpha"
+          ],
+          "selection": "all rows in original file order",
+          "dataset": "eagle",
+          "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+          "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+          "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+          "selected_count": 796825
+        },
+        "seed": 2026,
+        "fixture": "eagle-full-d8-spsr",
+        "shape": "eagle"
+      },
+      "first_reconstruction_seconds": 0.08012551441788673,
+      "reconstruction_seconds": [
+        0.07877145707607269,
+        0.0896625816822052,
+        0.08141559362411499,
+        0.07920302450656891,
+        0.0926801823079586,
+        0.0774843618273735,
+        0.07764757052063942
+      ],
+      "queries": [
+        {
+          "count": 1,
+          "first_query_seconds": 0.0005346238613128662,
+          "sha256": "847e7f85443918cade372d11d96a41fe0d252b1f1811f246826da587f3e7c301",
+          "kernel_ms": {
+            "batch": [
+              0.029885759353637697,
+              0.029236159324645995,
+              0.029208641052246093,
+              0.029198079109191893,
+              0.02920063972473145,
+              0.029202239513397215,
+              0.029194240570068357
+            ],
+            "composed": [
+              0.029640960693359374,
+              0.029031679630279538,
+              0.029028799533843998,
+              0.029028799533843998,
+              0.029031360149383546,
+              0.02902976036071777,
+              0.02902719974517822
+            ]
+          },
+          "median_ms": {
+            "batch": 0.029202239513397215,
+            "composed": 0.02902976036071777
+          }
+        },
+        {
+          "count": 4096,
+          "first_query_seconds": 0.0005448870360851288,
+          "sha256": "c84346616d49525773bb868c36b0b6b5fb63ffaf1146804c4c0e8c21bda9993f",
+          "kernel_ms": {
+            "batch": [
+              0.06438176155090332,
+              0.06352672100067139,
+              0.06348351955413818,
+              0.06348608016967774,
+              0.06351840019226074,
+              0.06350656032562256,
+              0.06346335887908935
+            ],
+            "composed": [
+              0.06375391960144043,
+              0.06333824157714843,
+              0.06330783843994141,
+              0.06334464073181152,
+              0.06330048084259034,
+              0.06332096099853515,
+              0.0633129596710205
+            ]
+          },
+          "median_ms": {
+            "batch": 0.06350656032562256,
+            "composed": 0.06332096099853515
+          }
+        },
+        {
+          "count": 796825,
+          "first_query_seconds": 0.023902829736471176,
+          "sha256": "632e338dfabd51d1307e234dd0af358e775c4e26654609081575bb20296eca45",
+          "kernel_ms": {
+            "batch": [
+              0.26877952575683595,
+              0.28086816787719726,
+              0.28981727600097656,
+              0.3146044731140137,
+              0.3211996841430664,
+              0.32034656524658206,
+              0.3202051162719727
+            ],
+            "composed": [
+              0.3870563125610352,
+              0.3571100616455078,
+              0.3447951889038086,
+              0.3399382400512695,
+              0.34044254302978516,
+              0.3403459167480469,
+              0.3400326538085937
+            ]
+          },
+          "median_ms": {
+            "batch": 0.3146044731140137,
+            "composed": 0.34044254302978516
+          }
+        }
+      ],
+      "reconstruction_median_ms": 79.20302450656891,
+      "reconstruction_sha256": "bfd5a4f1f225735c7644d6a61495a42d3408e97a1630f601603e89e191829df7"
+    },
+    {
+      "dataset": "eagle",
+      "depth": 9,
+      "precision": "float",
+      "points": 796825,
+      "input": {
+        "input_sha256": "8e872662cde4dff0376044a0a4d629a598be0586a7fb2ace8288fc0b3cab3f43",
+        "input_source": {
+          "source_file": "eagle.points.ply",
+          "source_sha256": "468e41b3679f775b98fe8cc79132cb99e8d6dfc4dcc1bb684e571a90e326e478",
+          "original_count": 796825,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [
+            "red",
+            "green",
+            "blue",
+            "alpha"
+          ],
+          "selection": "all rows in original file order",
+          "dataset": "eagle",
+          "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/eagle.points.ply",
+          "description": "EPFL Scanning 3D Statues from Photos; oriented eagle scan with color",
+          "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+          "selected_count": 796825
+        },
+        "seed": 2026,
+        "fixture": "eagle-full-d8-spsr",
+        "shape": "eagle"
+      },
+      "first_reconstruction_seconds": 0.2381446436047554,
+      "reconstruction_seconds": [
+        0.19637339562177658,
+        0.19332530722022057,
+        0.19157886877655983,
+        0.19191045686602592,
+        0.2230174019932747,
+        0.1933690682053566,
+        0.21005095168948174
+      ],
+      "queries": [
+        {
+          "count": 1,
+          "first_query_seconds": 0.0005100071430206299,
+          "sha256": "8bb807137830bded3ae847b32b9a2c3579ce293b2cfe2061a53fd0ac846f2274",
+          "kernel_ms": {
+            "batch": [
+              0.0325219202041626,
+              0.03196736097335816,
+              0.031991360187530515,
+              0.0319702410697937,
+              0.03198559999465943,
+              0.03196543931961059,
+              0.031966080665588384
+            ],
+            "composed": [
+              0.032379200458526616,
+              0.03181920051574707,
+              0.031813440322875974,
+              0.0318121600151062,
+              0.03181119918823242,
+              0.031808640956878666,
+              0.03181152105331421
+            ]
+          },
+          "median_ms": {
+            "batch": 0.0319702410697937,
+            "composed": 0.0318121600151062
+          }
+        },
+        {
+          "count": 4096,
+          "first_query_seconds": 0.0005727671086788177,
+          "sha256": "056b1abe9b398fea9317c913c1a682001b8f1e1328da40cf447e74c531e162b5",
+          "kernel_ms": {
+            "batch": [
+              0.08433407783508301,
+              0.08389151573181153,
+              0.08385503768920899,
+              0.08391136169433594,
+              0.08387295722961426,
+              0.08388159751892091,
+              0.08388671875
+            ],
+            "composed": [
+              0.08422240257263183,
+              0.08377728462219239,
+              0.0837782382965088,
+              0.08377280235290527,
+              0.08373279571533203,
+              0.08380127906799316,
+              0.08378080368041993
+            ]
+          },
+          "median_ms": {
+            "batch": 0.08388671875,
+            "composed": 0.0837782382965088
+          }
+        },
+        {
+          "count": 796825,
+          "first_query_seconds": 0.02482736110687256,
+          "sha256": "12da7fcb7fbbb721eac5700af623f911852114a7c9b005755b7ed71920e4a554",
+          "kernel_ms": {
+            "batch": [
+              0.469730224609375,
+              0.4767942428588867,
+              0.48983905792236326,
+              0.4901408004760742,
+              0.49024063110351557,
+              0.49063041687011716,
+              0.4908515167236328
+            ],
+            "composed": [
+              0.5345759963989257,
+              0.48594558715820313,
+              0.47405857086181646,
+              0.47488544464111326,
+              0.4741036987304687,
+              0.4736188888549805,
+              0.4729062271118164
+            ]
+          },
+          "median_ms": {
+            "batch": 0.4901408004760742,
+            "composed": 0.4741036987304687
+          }
+        }
+      ],
+      "reconstruction_median_ms": 193.3690682053566,
+      "reconstruction_sha256": "1d4f3dbc4240f84b218608e15fa3844116f6755bef4120c442e56a755463d1fd"
+    },
+    {
+      "dataset": "bunny",
+      "depth": 8,
+      "precision": "double",
+      "points": 362271,
+      "input": {
+        "input_sha256": "643ab4ff5292451c130dae04ad99167ab59c8a922489243887560e87121bed75",
+        "input_source": {
+          "source_file": "bunny.points.ply",
+          "source_sha256": "859f3a8fda84bd2707abc5ede664b11cde20fef9d5f9ffde36cc52088a486e15",
+          "original_count": 362271,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [],
+          "selection": "all rows in original file order",
+          "dataset": "bunny",
+          "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/bunny.points.ply",
+          "description": "Merged Stanford Bunny range scans; normals estimated from scan connectivity by the PoissonRecon project",
+          "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+          "selected_count": 362271
+        },
+        "seed": 2026,
+        "fixture": "bunny-full-d8-spsr",
+        "shape": "bunny"
+      },
+      "first_reconstruction_seconds": 0.3681645505130291,
+      "reconstruction_seconds": [
+        0.12993551418185234,
+        0.13007748126983643,
+        0.13537467643618584,
+        0.12979045510292053,
+        0.14021609351038933,
+        0.1299089975655079,
+        0.1432332955300808
+      ],
+      "queries": [
+        {
+          "count": 1,
+          "first_query_seconds": 0.004037931561470032,
+          "sha256": "2c596d25e85b87da6be7bb29dd3e500f3fe775416eb133682e8e66c5579fbf29",
+          "kernel_ms": {
+            "batch": [
+              0.035777599811553956,
+              0.03519968032836914,
+              0.035172479152679445,
+              0.035183360576629644,
+              0.03516223907470703,
+              0.03516383886337281,
+              0.035160319805145265
+            ],
+            "composed": [
+              0.03525952100753784,
+              0.03476032018661499,
+              0.03475327968597412,
+              0.03474816083908081,
+              0.034749441146850586,
+              0.03475199937820435,
+              0.03475008010864258
+            ]
+          },
+          "median_ms": {
+            "batch": 0.035172479152679445,
+            "composed": 0.03475199937820435
+          }
+        },
+        {
+          "count": 4096,
+          "first_query_seconds": 0.0006253533065319061,
+          "sha256": "e6a03eaa31382781cd977556f79a0f487b5ae11e8256e638b428d161d18b2e9e",
+          "kernel_ms": {
+            "batch": [
+              0.07651552200317382,
+              0.07633471965789795,
+              0.0763651180267334,
+              0.07624159812927246,
+              0.0761904001235962,
+              0.07635007858276367,
+              0.07611296176910401
+            ],
+            "composed": [
+              0.07601664066314698,
+              0.07565855979919434,
+              0.07567168235778808,
+              0.07571648120880127,
+              0.07554912090301513,
+              0.07577375888824463,
+              0.07559232234954834
+            ]
+          },
+          "median_ms": {
+            "batch": 0.07633471965789795,
+            "composed": 0.07567168235778808
+          }
+        },
+        {
+          "count": 362271,
+          "first_query_seconds": 0.013992659747600555,
+          "sha256": "d44d7ab47accdd02337941a29f189a36f5e9758b44bd58c1ebb44a4ce3c8c928",
+          "kernel_ms": {
+            "batch": [
+              0.260285758972168,
+              0.259965763092041,
+              0.26067808151245114,
+              0.2633193588256836,
+              0.26368991851806645,
+              0.26276607513427735,
+              0.2626710319519043
+            ],
+            "composed": [
+              0.3119299125671387,
+              0.3097068786621094,
+              0.30967199325561523,
+              0.30957664489746095,
+              0.3095708847045898,
+              0.3096380805969238,
+              0.30948959350585936
+            ]
+          },
+          "median_ms": {
+            "batch": 0.2626710319519043,
+            "composed": 0.3096380805969238
+          }
+        }
+      ],
+      "reconstruction_median_ms": 130.07748126983643,
+      "reconstruction_sha256": "b8b6accbf45663d5a8f5efa78aa48145afb0f04add94ba789b7dda4b78acb0c1"
+    }
+  ],
+  "environment_after": {
+    "captured_utc": "2026-11-19T03:47:54.093841+00:00",
+    "logical_cpus": 128,
+    "affinity_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "visible_cgroup_quotas": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      },
+      {
+        "group": "kubepods.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      }
+    ],
+    "minimum_visible_cpu_quota": 4.0,
+    "cgroup_cpu_counters": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "counters": {
+          "usage_usec": 366480241643,
+          "user_usec": 325464514416,
+          "system_usec": 41015727226,
+          "nr_periods": 7761728,
+          "nr_throttled": 120688,
+          "throttled_usec": 280728561537
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "counters": {
+          "usage_usec": 366480311597,
+          "user_usec": 325464527008,
+          "system_usec": 41015784589,
+          "nr_periods": 7761648,
+          "nr_throttled": 128293,
+          "throttled_usec": 268195811194
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "counters": {
+          "usage_usec": 20329946785453,
+          "user_usec": 15627898727309,
+          "system_usec": 4702048058144,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": "kubepods.slice",
+        "counters": {
+          "usage_usec": 54208942375101,
+          "user_usec": 37239382260822,
+          "system_usec": 16969560114279,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": ".",
+        "counters": {
+          "usage_usec": 69371079596000,
+          "user_usec": 45082149920000,
+          "system_usec": 24288929676000,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      }
+    ],
+    "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "float": {
+    "cuda_identical_except_exported_kernel_names": true,
+    "normalized_sha256": "18460b08e2c415dc7fffdad72d0f3f3e69298eaafd5eadb4e343ce92b6584ebd",
+    "original_sha256": [
+      "33436e1ca43dcd9db4846ef7b776320fc6395459a98e6707aa2ddf1d5c43a1e8",
+      "d94eb64664499c8da31121fd3941f413599d08d5e6dbeae7514367a71b90cd73"
+    ]
+  },
+  "double": {
+    "cuda_identical_except_exported_kernel_names": true,
+    "normalized_sha256": "7d26450ef23e3afc746752087a881cf59a5d5dd8556758c1af9ca7a495d5657b",
+    "original_sha256": [
+      "cc62cc7aab5ce2ba44fa7d7bdab641d520284c8978f05fd396b7be9e35c8c871",
+      "dfd7e628bfe097814ec19728cc5a8ab00d147804a01f789bf1cecc2123e9bf84"
+    ]
+  }
+}

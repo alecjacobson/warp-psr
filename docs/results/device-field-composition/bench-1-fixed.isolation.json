@@ -1,0 +1,730 @@
+{
+  "idle_scheduling_observations": [],
+  "gpu_before": [],
+  "samples": [
+    {
+      "elapsed_seconds": 1.0005047991871834,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 2.085254281759262,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 3.154618516564369,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 456 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.217000011354685,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 490 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 5.297059591859579,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 490 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 6.3187314830720425,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 490 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 7.397299665957689,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 906 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 8.473146945238113,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 906 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 9.514222096651793,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 906 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 10.645604506134987,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 906 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 11.686566784977913,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1046 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 12.726385943591595,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1046 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 13.784927450120449,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 822 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 14.826862059533596,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 822 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 15.893106333911419,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 822 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 16.952874343842268,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 822 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 17.973086085170507,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 822 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 19.014428209513426,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 824 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 20.058426175266504,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 824 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 21.098601553589106,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 824 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 22.18913061544299,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 824 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 23.276768639683723,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 824 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 24.314748629927635,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 824 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 25.354433864355087,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 824 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 26.39828811213374,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 760 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 27.465173590928316,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 760 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 28.506085753440857,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 760 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 29.56078689545393,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 760 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 30.60211915895343,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 760 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 31.669488985091448,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1580 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 32.7332168109715,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1580 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 33.79313161596656,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1580 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 34.85708198696375,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1580 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 35.917229536920786,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1580 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 36.99331124871969,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1580 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 38.077173449099064,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 972 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 39.14232623577118,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1548 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 40.23073794692755,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 41.31333988159895,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 42.39299587905407,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 43.48568795621395,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 44.52260311320424,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 45.56647891923785,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 46.65341332182288,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 47.71362889185548,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 48.79727275297046,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 750 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 49.88150404766202,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 750 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 50.91882053390145,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 782 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 51.97747614607215,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1006 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 53.0412414483726,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 718 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 54.07848442718387,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1006 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 55.11853360384703,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1006 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 56.15840219333768,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1898 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 57.22526729851961,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1930 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 58.30961528420448,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1930 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 59.36903794109821,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1930 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 60.40632784739137,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1930 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 61.44651833176613,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1930 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 62.533675365149975,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1930 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 63.574500884860754,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1930 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 64.61879348382354,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1962 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 65.67715658247471,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2410 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 66.69749999791384,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2410 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 67.78112051263452,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2410 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 68.82281149178743,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2410 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 69.86279204115272,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2410 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 70.9293675199151,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2058 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 71.98583859205246,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2058 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 73.06487185135484,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2058 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 74.10628443956375,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2058 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 75.15044907480478,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2058 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 76.19002036005259,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 77.23020485043526,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 78.25024211779237,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 79.34078117087483,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 80.37831563130021,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 81.44499769806862,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 82.53190182521939,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 83.60333263501525,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 84.68077147006989,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2060 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 85.75686564296484,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 86.82107682526112,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 87.86220555007458,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 88.95281228795648,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 89.99433635920286,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 91.06089432910085,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 92.11679526790977,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 93.1583909317851,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 94.19842724129558,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 95.24241861701012,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 96.28676236793399,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 3236 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 97.35316643491387,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1924 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 98.43353568762541,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1444 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 99.53804322332144,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 2244 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 100.61773936450481,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1540 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 101.68176947161555,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1540 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 102.76175364851952,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1540 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 103.84089810401201,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1540 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 104.92919834330678,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1540 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 105.9930164963007,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1540 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 107.03028272092342,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1540 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 108.11695112287998,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1540 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 109.1807337924838,
+      "gpu_processes": [
+        "1728399, /home/horde/projects/warp-field-composition/.venv/bin/python, 1508 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 109.42853552475572,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    }
+  ],
+  "foreign_work_observed": [],
+  "scope": "One-second process/GPU sampling; records unrelated CPU processes above 0.25 cores. No validation, archive processing or other benchmark runs overlap the measured child."
+}

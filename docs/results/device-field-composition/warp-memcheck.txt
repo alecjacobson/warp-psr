@@ -1,0 +1,18 @@
+========= COMPUTE-SANITIZER
+.
+----------------------------------------------------------------------
+Ran 1 test in 0.195s
+
+OK
+Warp 1.20.0.dev0 initialized:
+   CUDA Toolkit 12.6, Driver 12.8
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA L40" (47 GiB, sm_89, mempool enabled)
+   Kernel cache:
+     /home/horde/.cache/warp/1.20.0.dev0
+Module make_struct_query_kernel__locals__composed_query_kernel_ad17a158 ad17a15 load on device 'cuda:0' took 3.06 ms  (cached)
+Module make_struct_query_kernel__locals__composed_query_kernel_257c868f 257c868 load on device 'cuda:0' took 1.70 ms  (cached)
+Module make_struct_query_kernel__locals__composed_query_kernel_23e0267d 23e0267 load on device 'cuda:0' took 2.04 ms  (cached)
+Module make_struct_query_kernel__locals__composed_query_kernel_67fedb92 67fedb9 load on device 'cuda:0' took 1.64 ms  (cached)
+========= ERROR SUMMARY: 0 errors
