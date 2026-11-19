@@ -1,0 +1,20 @@
+[
+  {
+    "degree": 1,
+    "resolution": 32,
+    "dofs": 35937,
+    "before_ms": 2.3922715336084366,
+    "after_ms": 1.0696612298488617,
+    "change_percent": -55.286796886496646,
+    "bitwise_equal": true
+  },
+  {
+    "degree": 2,
+    "resolution": 16,
+    "dofs": 35937,
+    "before_ms": 2.7575772255659103,
+    "after_ms": 2.766849473118782,
+    "change_percent": 0.33624616082941206,
+    "bitwise_equal": true
+  }
+]

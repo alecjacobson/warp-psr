@@ -35,10 +35,11 @@ bunny, horse, and eagle, including depth 9 and double precision.
 
 With the pinned Warp 1.19 release, decorate any additional device helper that
 accepts the handle with **`@wp.func(inline=True)`**. Plain `@wp.func` lets the
-compiler leave a helper out of line, which can cause a CUDA local-memory fault
-with this handle. The public evaluator already enforces inlining. Direct calls
-from kernels and composition through explicitly inlined helpers are tested;
-arbitrary out-of-line composition is tracked separately in
+compiler choose its inlining strategy, which can cause a CUDA local-memory fault
+with this handle. Explicit `inline=False` also avoids the reproduced fault;
+`inline=True` remains the supported choice for the pinned release. The public
+evaluator already enforces inlining. The underlying compiler issue is tracked in
+[Warp #2362](https://github.com/NVIDIA/warp/issues/2362), with integration status in
 [issue #101](https://github.com/alecjacobson/warp-psr/issues/101).
 
 The point and launch must match the field's precision and device. Points outside

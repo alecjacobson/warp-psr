@@ -1,0 +1,563 @@
+{
+  "variant": "fixed",
+  "force_first_compile": false,
+  "warp": "1.20.0.dev0",
+  "environment_before": {
+    "captured_utc": "2026-11-19T03:51:34.079114+00:00",
+    "logical_cpus": 128,
+    "affinity_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "visible_cgroup_quotas": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      },
+      {
+        "group": "kubepods.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      }
+    ],
+    "minimum_visible_cpu_quota": 4.0,
+    "cgroup_cpu_counters": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "counters": {
+          "usage_usec": 366538620427,
+          "user_usec": 325511985012,
+          "system_usec": 41026635415,
+          "nr_periods": 7763923,
+          "nr_throttled": 120688,
+          "throttled_usec": 280728561537
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "counters": {
+          "usage_usec": 366538690381,
+          "user_usec": 325511997507,
+          "system_usec": 41026692874,
+          "nr_periods": 7763843,
+          "nr_throttled": 128293,
+          "throttled_usec": 268195811194
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "counters": {
+          "usage_usec": 20330186850921,
+          "user_usec": 15628075069970,
+          "system_usec": 4702111780950,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": "kubepods.slice",
+        "counters": {
+          "usage_usec": 54209215251215,
+          "user_usec": 37239565557160,
+          "system_usec": 16969649694055,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": ".",
+        "counters": {
+          "usage_usec": 69371473352000,
+          "user_usec": 45082389272000,
+          "system_usec": 24289084080000,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      }
+    ],
+    "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+  },
+  "cases": [
+    {
+      "dataset": "horse",
+      "depth": 8,
+      "precision": "float",
+      "points": 100000,
+      "input": {
+        "input_sha256": "2d0405025896714809cb987c88bee7c6a8b7c2fdcdabd4edd328f7dae1c0b404",
+        "input_source": {
+          "source_file": "horse.npts",
+          "source_sha256": "e6fd6bfccccb1aad72c83144acd7543f672f1a59641071ef008ae6055df053ec",
+          "original_count": 100000,
+          "normal_policy": "Use supplied normals; reconstruction applies its own reference normalization",
+          "ignored_properties": [],
+          "selection": "all rows in original file order",
+          "dataset": "horse",
+          "url": "https://www.cs.jhu.edu/~misha/Code/PoissonRecon/horse.npts",
+          "description": "Curvature-weighted, nonuniform samples of a virtual horse; supplied by the PoissonRecon project",
+          "source_readme": "https://github.com/mkazhdan/PoissonRecon/blob/262b0f539d404057d1f36e1adc07fc9388678899/README.md",
+          "selected_count": 100000
+        },
+        "seed": 2026,
+        "fixture": "horse-full-d8-spsr",
+        "shape": "horse"
+      },
+      "first_reconstruction_seconds": 0.40418342128396034,
+      "reconstruction_seconds": [
+        0.05703725665807724,
+        0.058836679905653,
+        0.05909040942788124,
+        0.0606396459043026,
+        0.06022486463189125,
+        0.060513779520988464,
+        0.059693239629268646
+      ],
+      "queries": [
+        {
+          "count": 1,
+          "first_query_seconds": 0.003990974277257919,
+          "sha256": "02875b62082135a97b70c0df8c077b29f30b0466715f684af9277d7f2d74e1bf",
+          "kernel_ms": {
+            "batch": [
+              0.028343360424041748,
+              0.02716671943664551,
+              0.027153599262237548,
+              0.027155840396881105,
+              0.027204480171203617,
+              0.027175679206848147,
+              0.02715712070465088
+            ],
+            "composed": [
+              0.0281548810005188,
+              0.026990718841552734,
+              0.026996479034423825,
+              0.026987519264221195,
+              0.026991040706634523,
+              0.02698911905288696,
+              0.026994240283966065
+            ]
+          },
+          "median_ms": {
+            "batch": 0.02716671943664551,
+            "composed": 0.026991040706634523
+          }
+        },
+        {
+          "count": 4096,
+          "first_query_seconds": 0.0006141550838947296,
+          "sha256": "97da1f3d830713347de8baf25b11253d02fa356b92f06a3d438b9c12de30e643",
+          "kernel_ms": {
+            "batch": [
+              0.07689919948577881,
+              0.07632383823394776,
+              0.07640096187591552,
+              0.07633408069610595,
+              0.07632480144500733,
+              0.07631904125213623,
+              0.07628608226776123
+            ],
+            "composed": [
+              0.07675583839416504,
+              0.07611968040466308,
+              0.07618175983428956,
+              0.07616576194763183,
+              0.07613696098327637,
+              0.07613759994506836,
+              0.07610784053802491
+            ]
+          },
+          "median_ms": {
+            "batch": 0.07632480144500733,
+            "composed": 0.07613759994506836
+          }
+        },
+        {
+          "count": 100000,
+          "first_query_seconds": 0.003503672778606415,
+          "sha256": "613ab1c7fda51a98d20e984c62f58ff2ccfb8fd0808966175e01afc2bd6cc5b6",
+          "kernel_ms": {
+            "batch": [
+              0.19137887954711913,
+              0.1908393669128418,
+              0.1908527946472168,
+              0.190894718170166,
+              0.19076000213623048,
+              0.19082080841064453,
+              0.19094911575317383
+            ],
+            "composed": [
+              0.19170719146728515,
+              0.19067935943603515,
+              0.19058240890502928,
+              0.19063135147094729,
+              0.19058015823364258,
+              0.19058496475219727,
+              0.19062559127807616
+            ]
+          },
+          "median_ms": {
+            "batch": 0.1908527946472168,
+            "composed": 0.19062559127807616
+          }
+        }
+      ],
+      "reconstruction_median_ms": 59.693239629268646,
+      "reconstruction_sha256": "1590de98644bc1427ad2dba79b26f965fe827963a44d02e4712cdbc6b75923c0"
+    }
+  ],
+  "environment_after": {
+    "captured_utc": "2026-11-19T03:51:36.568004+00:00",
+    "logical_cpus": 128,
+    "affinity_cpus": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85,
+      86,
+      87,
+      88,
+      89,
+      90,
+      91,
+      92,
+      93,
+      94,
+      95,
+      96,
+      97,
+      98,
+      99,
+      100,
+      101,
+      102,
+      103,
+      104,
+      105,
+      106,
+      107,
+      108,
+      109,
+      110,
+      111,
+      112,
+      113,
+      114,
+      115,
+      116,
+      117,
+      118,
+      119,
+      120,
+      121,
+      122,
+      123,
+      124,
+      125,
+      126,
+      127
+    ],
+    "visible_cgroup_quotas": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "cpu_max": "400000 100000",
+        "cpu_equivalents": 4.0
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      },
+      {
+        "group": "kubepods.slice",
+        "cpu_max": "max 100000",
+        "cpu_equivalents": null
+      }
+    ],
+    "minimum_visible_cpu_quota": 4.0,
+    "cgroup_cpu_counters": [
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice/cri-containerd-37725048002b4cd48331e49092c0fe79f9275a8222d6c1f58b0ac499d9a4385c.scope",
+        "counters": {
+          "usage_usec": 366541194872,
+          "user_usec": 325514286734,
+          "system_usec": 41026908138,
+          "nr_periods": 7763948,
+          "nr_throttled": 120688,
+          "throttled_usec": 280728561537
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice/kubepods-burstable-poddca26dda_4549_4bbf_a4a9_82b85e4a4106.slice",
+        "counters": {
+          "usage_usec": 366541264827,
+          "user_usec": 325514299228,
+          "system_usec": 41026965598,
+          "nr_periods": 7763868,
+          "nr_throttled": 128293,
+          "throttled_usec": 268195811194
+        }
+      },
+      {
+        "group": "kubepods.slice/kubepods-burstable.slice",
+        "counters": {
+          "usage_usec": 20330191418664,
+          "user_usec": 15628078922455,
+          "system_usec": 4702112496208,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": "kubepods.slice",
+        "counters": {
+          "usage_usec": 54209220056565,
+          "user_usec": 37239569441011,
+          "system_usec": 16969650615554,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      },
+      {
+        "group": ".",
+        "counters": {
+          "usage_usec": 69371479284000,
+          "user_usec": 45082393796000,
+          "system_usec": 24289085488000,
+          "nr_periods": 0,
+          "nr_throttled": 0,
+          "throttled_usec": 0
+        }
+      }
+    ],
+    "limit_note": "Visible cgroup-v2 ancestors only; unavailable limits are unknown, not evidence of an unrestricted host."
+  }
+}

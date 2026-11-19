@@ -1,0 +1,48 @@
+{
+  "idle_scheduling_observations": [],
+  "gpu_before": [],
+  "samples": [
+    {
+      "elapsed_seconds": 1.0004672966897488,
+      "gpu_processes": [
+        "1728991, /home/horde/projects/warp-field-composition/.venv/bin/python, 24 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 2.0430484153330326,
+      "gpu_processes": [
+        "1728991, /home/horde/projects/warp-field-composition/.venv/bin/python, 534 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 3.0834041610360146,
+      "gpu_processes": [
+        "1728991, /home/horde/projects/warp-field-composition/.venv/bin/python, 566 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.14180676266551,
+      "gpu_processes": [
+        "1728991, /home/horde/projects/warp-field-composition/.venv/bin/python, 566 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 5.225563433021307,
+      "gpu_processes": [
+        "1728991, /home/horde/projects/warp-field-composition/.venv/bin/python, 566 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 6.024219498038292,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    }
+  ],
+  "foreign_work_observed": [],
+  "scope": "One-second process/GPU sampling; records unrelated CPU processes above 0.25 cores. No validation, archive processing or other benchmark runs overlap the measured child."
+}

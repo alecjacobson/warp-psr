@@ -1,0 +1,48 @@
+test_struct_query_composition_cuda_0 (warp.tests.test_func_inline.TestFuncInline.test_struct_query_composition_cuda_0)
+Compose struct-valued queries and verify coefficient and point derivatives. ... Warp CUDA error 700: an illegal memory access was encountered (in function wp_memcpy_d2h, /home/horde/projects/warp-field-composition/warp/native/warp.cu:1107)
+Warp CUDA error 700: an illegal memory access was encountered (in function wp_cuda_stream_is_capturing, /home/horde/projects/warp-field-composition/warp/native/warp.cu:3446)
+Warp CUDA error 700: an illegal memory access was encountered (in function wp_cuda_context_synchronize, /home/horde/projects/warp-field-composition/warp/native/warp.cu:2977)
+CUDA synchronization after test 'warp.tests.test_func_inline.TestFuncInline.test_struct_query_composition_cuda_0' failed: Failed to synchronize device cuda:0: Warp CUDA error 700: an illegal memory access was encountered (in function wp_cuda_context_synchronize, /home/horde/projects/warp-field-composition/warp/native/warp.cu:2977)
+ERROR
+
+======================================================================
+ERROR: test_struct_query_composition_cuda_0 (warp.tests.test_func_inline.TestFuncInline.test_struct_query_composition_cuda_0)
+Compose struct-valued queries and verify coefficient and point derivatives.
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/horde/projects/warp-field-composition/warp/tests/unittest_utils.py", line 591, in test_func
+    func(self, device, **kwargs)
+  File "/home/horde/projects/warp-field-composition/warp/tests/test_func_inline.py", line 159, in test_struct_query_composition
+    actual = output.numpy().copy()
+             ^^^^^^^^^^^^^^
+  File "/home/horde/projects/warp-field-composition/warp/_src/types.py", line 5038, in numpy
+    a = self.to("cpu", requires_grad=False)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/horde/projects/warp-field-composition/warp/_src/types.py", line 5137, in to
+    return warp.clone(self, device=device, requires_grad=requires_grad)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/horde/projects/warp-field-composition/warp/_src/context.py", line 10655, in clone
+    warp.copy(arr, src)
+  File "/home/horde/projects/warp-field-composition/warp/_src/context.py", line 15591, in copy
+    raise RuntimeError(f"Warp copy error: {runtime.get_error_string()}")
+RuntimeError: Warp copy error: Warp CUDA error 700: an illegal memory access was encountered (in function wp_memcpy_d2h, /home/horde/projects/warp-field-composition/warp/native/warp.cu:1107)
+
+----------------------------------------------------------------------
+Ran 1 test in 3.403s
+
+FAILED (errors=1)
+Warp 1.20.0.dev0 initialized:
+   CUDA Toolkit 12.6, Driver 12.8
+   Devices:
+     "cpu"      : "x86_64"
+     "cuda:0"   : "NVIDIA L40" (47 GiB, sm_89, mempool enabled)
+   Kernel cache:
+     /home/horde/.cache/warp/1.20.0.dev0
+Module make_struct_query_kernel__locals__composed_query_kernel_b4feb514 b4feb51 load on device 'cuda:0' took 3213.19 ms  (compiled)
+Warp CUDA error 700: an illegal memory access was encountered (in function release_now, /home/horde/projects/warp-field-composition/warp/native/warp.cu:543)
+Warp CUDA error 700: an illegal memory access was encountered (in function release_now, /home/horde/projects/warp-field-composition/warp/native/warp.cu:543)
+Warp CUDA error 700: an illegal memory access was encountered (in function release_now, /home/horde/projects/warp-field-composition/warp/native/warp.cu:543)
+Warp CUDA error 700: an illegal memory access was encountered (in function release_now, /home/horde/projects/warp-field-composition/warp/native/warp.cu:543)
+Warp CUDA error 700: an illegal memory access was encountered (in function release_now, /home/horde/projects/warp-field-composition/warp/native/warp.cu:543)
+Warp CUDA error 700: an illegal memory access was encountered (in function release_now, /home/horde/projects/warp-field-composition/warp/native/warp.cu:543)
+Warp CUDA error 700: an illegal memory access was encountered (in function release_now, /home/horde/projects/warp-field-composition/warp/native/warp.cu:543)
