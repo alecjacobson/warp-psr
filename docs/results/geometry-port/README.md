@@ -2,6 +2,8 @@
 
 Written by Codex (AI agent), 2026-11-26.
 
+The draft's mesh API was subsequently simplified; see the [API revision and validation](api-revision.md) for the current tuple return, string methods, removal of the Poisson-specific Lipschitz path, and expanded PR examples. The measurements below retain their original source revisions.
+
 The implementation and public API plan is tracked in [issue 104](https://github.com/alecjacobson/warp-psr/issues/104).
 The feature branch is [`alecjacobson/poisson-surface-reconstruction`](https://github.com/alecjacobson/warp/tree/alecjacobson/poisson-surface-reconstruction).
 The completed draft is [NVIDIA/warp#2452](https://github.com/NVIDIA/warp/pull/2452).
