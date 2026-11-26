@@ -1,0 +1,4490 @@
+{
+  "idle_scheduling_observations": [
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8199461759941011
+        },
+        {
+          "pid": 1928532,
+          "name": "python",
+          "cpu_equivalents": 1.7598844753044123
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.7903303386781185
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.000646553056087
+        },
+        {
+          "pid": 1928601,
+          "name": "python",
+          "cpu_equivalents": 0.9534462439496677
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1928601, python, 508 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.858317130956
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9895722205363535
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8463133190803854
+        },
+        {
+          "pid": 1928768,
+          "name": "python",
+          "cpu_equivalents": 1.6830094413530392
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1928768, python, 22 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0051731327655382
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8806648820600081
+        },
+        {
+          "pid": 1928862,
+          "name": "python",
+          "cpu_equivalents": 1.416721766792187
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8430626530033409
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0096049448934787
+        },
+        {
+          "pid": 1928933,
+          "name": "python",
+          "cpu_equivalents": 0.971143804135632
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1928933, python, 508 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8095167729856342
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.00522351567539
+        },
+        {
+          "pid": 1929005,
+          "name": "python",
+          "cpu_equivalents": 1.00522351567539
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8772344037876679
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9935929997750479
+        },
+        {
+          "pid": 1929076,
+          "name": "python",
+          "cpu_equivalents": 0.9748459620434432
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929076, python, 520 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8259448503043713
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9980044699155798
+        },
+        {
+          "pid": 1929148,
+          "name": "python",
+          "cpu_equivalents": 0.9980044699155798
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8001772888638026
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929220, python, 356 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9811902483170261
+        },
+        {
+          "pid": 1929220,
+          "name": "python",
+          "cpu_equivalents": 0.9625009102538445
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929220, python, 526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9978393512763143
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9413578785625606
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 722 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0025732923952486
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9841774521678128
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 1148 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0016690290041965
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0016690290041965
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 3580 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9995515052091039
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.009162577374576
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9978551926522076
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9884414644196395
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9989623138092095
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9989623138092095
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.002828208688726
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0122004349381533
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.003616845300741
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9939666833266954
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9964620031352484
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0056885031642784
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9988964279263305
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.989291654580885
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0059223261726753
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0155025388028913
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2264 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0001450431470533
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0001450431470533
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9864229095540927
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9959998310060743
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0058157849655047
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9962365870134524
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9961395280344718
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.005717792727111
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0058407454597225
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0058407454597225
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9962282503749574
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9962282503749574
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.00259650413185
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.00259650413185
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0039423247199897
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0039423247199897
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.003987822662977
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.003987822662977
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9930996309686092
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9930996309686092
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9962489482476857
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9962489482476857
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.999978543956971
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0097822551722355
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9961469887901987
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9961469887901987
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0057638004757103
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.996185097614037
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.99919773826942
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0083646899966625
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9986543086259911
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9986543086259911
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9963497373488959
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.005930023284943
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.006632806465409
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9881624797412732
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4126 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9989852202415174
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0085908473592242
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4132 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0057866264747726
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9962077062226318
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4132 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9960592440105558
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0056367367414265
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9976637392434364
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0074447562948428
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0003253997755162
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9907068863161362
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9954364016968994
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 1.0048273111468702
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0082009356995056
+        },
+        {
+          "pid": 1929307,
+          "name": "nsys",
+          "cpu_equivalents": 0.48009568366643124
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.43208611529978813
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9974313950219919
+        },
+        {
+          "pid": 1929318,
+          "name": "python",
+          "cpu_equivalents": 0.9974313950219919
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9998186515174935
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.998864912434114
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0005050218674416
+        },
+        {
+          "pid": 1929307,
+          "name": "nsys",
+          "cpu_equivalents": 0.5579739545029961
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB",
+        "1929318, python, 4166 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9997966592752956
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2266 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9995790623819908
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2522 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0035257133673081
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2524 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9995557086999903
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2524 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9990892060593562
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2524 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9958019525007966
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2524 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9966644669491712
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2492 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0010541575040965
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2492 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.007390463493078
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2524 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9996434871293957
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2524 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9988319739198399
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2524 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9960617426302518
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9991638106099826
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.003718372963562
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9897920482991035
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0098899416237315
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9960400465699675
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0055789624105493
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9995775291297799
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9991840977942952
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0037176945288104
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9866296943149414
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9959403184993408
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2526 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0154957434087872
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9973882634554295
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9962749042958832
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0027801263050546
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9979300313872341
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.003326526733909
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9927155304076168
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9997681839458257
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0011463944152852
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0029334134800019
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0028372981480769
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9960277998094117
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9965549725753615
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0085350895961778
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9963375229578274
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9996552581622424
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2302 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9960111984941759
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9962399359284109
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0060201248762866
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0031708404683326
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.989079612867681
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0057380327469325
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0008918256035864
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9930496387047248
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0018996425800033
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9976049256143427
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0060512338487546
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9990819228435409
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0001155268599276
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9999637271611677
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0010942924953403
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2310 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8256889697078262
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9957954879061586
+        },
+        {
+          "pid": 1930000,
+          "name": "python",
+          "cpu_equivalents": 0.9574956614482294
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0005537063185588
+        },
+        {
+          "pid": 1930000,
+          "name": "python",
+          "cpu_equivalents": 1.0101744150331602
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB",
+        "1930000, python, 522 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9999647909420636
+        },
+        {
+          "pid": 1930000,
+          "name": "python",
+          "cpu_equivalents": 0.9999647909420636
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB",
+        "1930000, python, 578 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0054731395515764
+        },
+        {
+          "pid": 1930000,
+          "name": "python",
+          "cpu_equivalents": 0.9958972048891803
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB",
+        "1930000, python, 590 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9868851251568642
+        },
+        {
+          "pid": 1930000,
+          "name": "python",
+          "cpu_equivalents": 0.9964665341389697
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB",
+        "1930000, python, 590 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9995498119495012
+        },
+        {
+          "pid": 1930000,
+          "name": "python",
+          "cpu_equivalents": 0.9897503039892119
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB",
+        "1930000, python, 602 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0063292031240698
+        },
+        {
+          "pid": 1930000,
+          "name": "python",
+          "cpu_equivalents": 1.0063292031240698
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB",
+        "1930000, python, 592 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0047949245300902
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.001152208788461
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9915206763643216
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9984072899397026
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9967719241078374
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0091224434439239
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9961995158156937
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0058815341620746
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8815286166809533
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0049580014298856
+        },
+        {
+          "pid": 1930133,
+          "name": "python",
+          "cpu_equivalents": 0.9861737397209157
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB",
+        "1930133, python, 472 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8400578647594339
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9983756624890301
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2536 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0057721555325139
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9997006687005994
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9987662579983702
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0003236111923297
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9994929595097495
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9995600114595538
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9989770162721258
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9902434715479562
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.99996062179352
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.999426373902754
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0062041122137884
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0001542122536822
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0000025405111574
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9998722397272182
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9997819792222612
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0025791740008845
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9990201502834047
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9996926863861263
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9983437407191857
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9964783746698055
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0032374466056577
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0012751541956089
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9994246314677067
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9974503729889845
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.99858360559721
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9977627164937819
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0024937524601996
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0038816425768298
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9957291063483734
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.000318410358521
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0071841509395376
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9983654905727332
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9902158286329945
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9955992528200289
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0057239184769289
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0074619833669873
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9984326633305309
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9995006316118764
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0000775366164445
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9987932505054119
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0003201236527273
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9904922158997758
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0121775420531747
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9997592220606976
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9944228011274663
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.996399068541891
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.998617625246133
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.002948440266016
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9988181753827375
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8813544642556185
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9934074004375681
+        },
+        {
+          "pid": 1930504,
+          "name": "python",
+          "cpu_equivalents": 1.0027791683662246
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0051183435783535
+        },
+        {
+          "pid": 1930504,
+          "name": "python",
+          "cpu_equivalents": 1.0051183435783535
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB",
+        "1930504, python, 540 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9992405472055066
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.000215046493094
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.001279512816852
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9988372334794042
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0030161516218765
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9924213074228806
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0059696703051355
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.998009983938462
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9994736642057953
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9992841956365335
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9948016595132021
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9993272257744403
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0057462545904932
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0001191742018927
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.002890935846769
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0000278854892133
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.994500287360342
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0023752578431835
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9977393985443276
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.002536593070769
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9969507963166425
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0069396666300294
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9960656622758917
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9974607531840535
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.00262040925332
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0054940512523471
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9955355280370455
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9969901337383659
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0058698640124517
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9975124845596591
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9986644364141765
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9962035150210061
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.995768387249836
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0032272566145966
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9989765301152057
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9958209382928004
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9976428088860905
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2312 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0095982738796876
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0004290223906225
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9935326198890794
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9994386748798961
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.009601144095019
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9904397697917499
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9998520678278305
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9963366304478339
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0009203194083804
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0027073474776769
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0103552612890434
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9897535269595148
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2316 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0067142533631221
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9955663861080755
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0045866016918517
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9979102409765601
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9967530372707498
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0059036188036476
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9962427160426457
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0000784243703646
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9953434546060337
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0056406405734726
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9963238793295537
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.005599877953822
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9926122267684154
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0000750890071817
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0061111260914366
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2380 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9972426153581186
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0024774019925673
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9961786778094226
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9961954313271452
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0028716021875725
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9995585531042003
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9970757304483452
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9984123959363743
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.005855577332376
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9905267699290771
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2444 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9963045367088137
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2448 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9997763758522838
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0067746439036422
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.8067533839194947
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9805742427592999
+        },
+        {
+          "pid": 1930814,
+          "name": "python",
+          "cpu_equivalents": 0.9709607697910715
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9593217103057039
+        },
+        {
+          "pid": 1930814,
+          "name": "python",
+          "cpu_equivalents": 0.9593217103057039
+        },
+        {
+          "pid": 1930891,
+          "name": "python",
+          "cpu_equivalents": 1.2132598100925078
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB",
+        "1930891, python, 458 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.006073169605368
+        },
+        {
+          "pid": 1930814,
+          "name": "python",
+          "cpu_equivalents": 1.006073169605368
+        },
+        {
+          "pid": 1930891,
+          "name": "python",
+          "cpu_equivalents": 0.996670616618402
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB",
+        "1930891, python, 1354 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9943559770199697
+        },
+        {
+          "pid": 1930814,
+          "name": "python",
+          "cpu_equivalents": 0.98488592009597
+        },
+        {
+          "pid": 1930891,
+          "name": "python",
+          "cpu_equivalents": 0.9943559770199697
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB",
+        "1930814, python, 458 MiB",
+        "1930891, python, 1358 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9984972166796626
+        },
+        {
+          "pid": 1930814,
+          "name": "python",
+          "cpu_equivalents": 1.0080981514554286
+        },
+        {
+          "pid": 1930891,
+          "name": "python",
+          "cpu_equivalents": 1.0080981514554286
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB",
+        "1930814, python, 458 MiB",
+        "1930891, python, 1370 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.006868031926767
+        },
+        {
+          "pid": 1930814,
+          "name": "python",
+          "cpu_equivalents": 0.9974580503199748
+        },
+        {
+          "pid": 1930891,
+          "name": "python",
+          "cpu_equivalents": 0.9880480687131826
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB",
+        "1930814, python, 470 MiB",
+        "1930891, python, 1376 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9983957784297156
+        },
+        {
+          "pid": 1930814,
+          "name": "python",
+          "cpu_equivalents": 0.9695959002057815
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB",
+        "1930814, python, 536 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9867690745894169
+        },
+        {
+          "pid": 1930814,
+          "name": "python",
+          "cpu_equivalents": 0.9867690745894169
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB",
+        "1930814, python, 630 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0054131927145986
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9970156630308749
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9963009100258787
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9999858771940938
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0094538571727152
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9963422202180506
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9961990252487196
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0097107567225319
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9998832846474026
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9999790465408103
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9973727690195912
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9988774676419468
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9965276884379133
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9988911202714035
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9998969267818534
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9986955998530187
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0064163288852075
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.997754156821822
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9968459127225797
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0024540867594918
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9979991598180347
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0121760226275398
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.997917521387849
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.996251881286168
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9962100773421393
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0059155733460903
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9920910047050597
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9966862717934873
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.000058856746291
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9997227513771373
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0059089462583348
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0064690767800153
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2322 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9888706017061636
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2326 MiB",
+        "1931049, python, 1354 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.7968514173191984
+        },
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 0.9792631875488945
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2330 MiB",
+        "1931049, python, 1354 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0061496991127326
+        },
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 1.0061496991127326
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2330 MiB",
+        "1931049, python, 1354 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9998051237749904
+        },
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 1.0094186345805192
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2330 MiB",
+        "1931049, python, 1356 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 1.0060191481955052
+        },
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 0.986856878706067
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2332 MiB",
+        "1931049, python, 1358 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 2.2306145042548526
+        },
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 0.674807749186342
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2342 MiB",
+        "1931049, python, 1358 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1923939,
+          "name": "python",
+          "cpu_equivalents": 0.9988701803650372
+        },
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 0.9988701803650372
+        }
+      ],
+      "gpu": [
+        "1923939, python, 2332 MiB",
+        "1931049, python, 1362 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 0.9999319186508439
+        }
+      ],
+      "gpu": [
+        "1931049, python, 1370 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 0.9964052766013557
+        }
+      ],
+      "gpu": [
+        "1931049, python, 1370 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 1.0057408355514819
+        }
+      ],
+      "gpu": [
+        "1931049, python, 1370 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 0.9959240105638564
+        }
+      ],
+      "gpu": [
+        "1931049, python, 1370 MiB"
+      ]
+    },
+    {
+      "cpu": [
+        {
+          "pid": 1931049,
+          "name": "python",
+          "cpu_equivalents": 1.0059549499564258
+        }
+      ],
+      "gpu": [
+        "1931049, python, 1370 MiB"
+      ]
+    }
+  ],
+  "gpu_before": [],
+  "samples": [
+    {
+      "elapsed_seconds": 1.0004235580563545,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 2.0434871912002563,
+      "gpu_processes": [
+        "1931322, python, 354 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 3.1107331961393356,
+      "gpu_processes": [
+        "1931322, python, 822 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.151527728885412,
+      "gpu_processes": [
+        "1931322, python, 822 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 5.1950949393212795,
+      "gpu_processes": [
+        "1931322, python, 822 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 6.239179700613022,
+      "gpu_processes": [
+        "1931322, python, 824 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 7.279612403362989,
+      "gpu_processes": [
+        "1931322, python, 1068 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 8.324326314032078,
+      "gpu_processes": [
+        "1931322, python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 9.367260362952948,
+      "gpu_processes": [
+        "1931322, python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 10.429846961051226,
+      "gpu_processes": [
+        "1931322, python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 11.471081748604774,
+      "gpu_processes": [
+        "1931322, python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 12.490965690463781,
+      "gpu_processes": [
+        "1931322, python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 13.53508834168315,
+      "gpu_processes": [
+        "1931322, python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 14.579013399779797,
+      "gpu_processes": [
+        "1931322, python, 1036 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 15.618933968245983,
+      "gpu_processes": [
+        "1931322, python, 1198 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 16.682348731905222,
+      "gpu_processes": [
+        "1931322, python, 974 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 17.724367443472147,
+      "gpu_processes": [
+        "1931322, python, 974 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 18.79683292284608,
+      "gpu_processes": [
+        "1931322, python, 974 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 19.853881374001503,
+      "gpu_processes": [
+        "1931322, python, 1102 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 20.909856598824263,
+      "gpu_processes": [
+        "1931322, python, 1102 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 21.94703109934926,
+      "gpu_processes": [
+        "1931322, python, 2570 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 23.015978161245584,
+      "gpu_processes": [
+        "1931322, python, 3882 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 24.079068154096603,
+      "gpu_processes": [
+        "1931322, python, 2282 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 25.100131899118423,
+      "gpu_processes": [
+        "1931322, python, 2186 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 26.13935461267829,
+      "gpu_processes": [
+        "1931322, python, 2282 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 27.20632566139102,
+      "gpu_processes": [
+        "1931322, python, 2282 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 28.24738784134388,
+      "gpu_processes": [
+        "1931322, python, 2282 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 29.29127663373947,
+      "gpu_processes": [
+        "1931322, python, 2276 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 30.358011908829212,
+      "gpu_processes": [
+        "1931322, python, 2628 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 31.40005600452423,
+      "gpu_processes": [
+        "1931322, python, 2628 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 32.44332506135106,
+      "gpu_processes": [
+        "1931322, python, 2628 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 33.487557761371136,
+      "gpu_processes": [
+        "1931322, python, 2628 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 34.531549729406834,
+      "gpu_processes": [
+        "1931322, python, 2628 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 35.57538838684559,
+      "gpu_processes": [
+        "1931322, python, 2628 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 36.619580022990704,
+      "gpu_processes": [
+        "1931322, python, 2628 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 37.66331583634019,
+      "gpu_processes": [
+        "1931322, python, 1764 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 37.96768847852945,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    }
+  ],
+  "foreign_work_observed": [],
+  "scope": "One-second process/GPU sampling; records unrelated CPU processes above 0.25 cores. No validation, archive processing or other benchmark runs overlap the measured child.",
+  "report_sanitization": "GPU executable paths reduced to basenames; cgroup identifiers replaced by ancestry labels. Numerical measurements and counters are unchanged.",
+  "measured_port_revision": "05eb3fe8c60690561e40feb8b1ab44089bc86070"
+}

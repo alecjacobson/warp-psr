@@ -1,0 +1,144 @@
+{
+  "idle_scheduling_observations": [],
+  "gpu_before": [],
+  "samples": [
+    {
+      "elapsed_seconds": 1.000442586839199,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 2.0858472660183907,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 3.1572526581585407,
+      "gpu_processes": [
+        "1933827, python, 760 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 4.195437975227833,
+      "gpu_processes": [
+        "1933827, python, 716 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 5.253550194203854,
+      "gpu_processes": [
+        "1933827, python, 972 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 6.293006971478462,
+      "gpu_processes": [
+        "1933827, python, 1198 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 7.331746764481068,
+      "gpu_processes": [
+        "1933827, python, 1038 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 8.37603247910738,
+      "gpu_processes": [
+        "1933827, python, 974 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 9.415076956152916,
+      "gpu_processes": [
+        "1933827, python, 1134 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 10.493887063115835,
+      "gpu_processes": [
+        "1933827, python, 974 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 11.531840350478888,
+      "gpu_processes": [
+        "1933827, python, 1102 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 12.5899956561625,
+      "gpu_processes": [
+        "1933827, python, 1102 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 13.645427390933037,
+      "gpu_processes": [
+        "1933827, python, 1290 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 14.687766384333372,
+      "gpu_processes": [
+        "1933827, python, 3882 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 15.750170461833477,
+      "gpu_processes": [
+        "1933827, python, 2186 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 16.791126880794764,
+      "gpu_processes": [
+        "1933827, python, 2186 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 17.849681068211794,
+      "gpu_processes": [
+        "1933827, python, 2628 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 18.891014613211155,
+      "gpu_processes": [
+        "1933827, python, 3364 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 19.932001870125532,
+      "gpu_processes": [
+        "1933827, python, 1764 MiB"
+      ],
+      "foreign_cpu_over_quarter_core": []
+    },
+    {
+      "elapsed_seconds": 20.885485641658306,
+      "gpu_processes": [],
+      "foreign_cpu_over_quarter_core": []
+    }
+  ],
+  "foreign_work_observed": [],
+  "scope": "One-second process/GPU sampling; records unrelated CPU processes above 0.25 cores. No validation, archive processing or other benchmark runs overlap the measured child.",
+  "report_sanitization": "GPU executable paths reduced to basenames; cgroup identifiers replaced by ancestry labels. Numerical measurements and counters are unchanged.",
+  "measured_port_revision": "e426fed8fe8222c2dec7badf7278adadb0c93b6c"
+}

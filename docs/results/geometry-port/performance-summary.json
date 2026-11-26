@@ -1,0 +1,555 @@
+{
+  "selected_runs": [
+    12,
+    13,
+    14,
+    15
+  ],
+  "selection": "Fixed run indices; require no observed foreign work; do not select by timing.",
+  "bitwise_outputs_equal": true,
+  "cases": [
+    {
+      "dataset": "bunny",
+      "depth": 8,
+      "precision": "float",
+      "points": 362271,
+      "reconstruction": {
+        "baseline_ms": 100.42203217744827,
+        "geometry_ms": 100.56634619832039,
+        "delta_ms": 0.1443140208721161,
+        "change_percent": 0.14370752885890514,
+        "baseline_samples": 14,
+        "geometry_samples": 14
+      },
+      "queries": [
+        {
+          "count": 1,
+          "batch": {
+            "baseline_ms": 0.0310916793346405,
+            "geometry_ms": 0.03109248042106628,
+            "delta_ms": 8.010864257813888e-07,
+            "change_percent": 0.0025765299363822436,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.030934720039367675,
+            "geometry_ms": 0.030937280654907223,
+            "delta_ms": 2.560615539548561e-06,
+            "change_percent": 0.008277480889717914,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.10154023766517639,
+            "geometry_ms": 0.10116957128047943,
+            "delta_ms": -0.00037066638469696045,
+            "change_percent": -0.3650438419488533,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 4096,
+          "batch": {
+            "baseline_ms": 0.06305872201919556,
+            "geometry_ms": 0.06301520109176637,
+            "delta_ms": -4.352092742919422e-05,
+            "change_percent": -0.06901650721045094,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.06285072088241578,
+            "geometry_ms": 0.06282160043716431,
+            "delta_ms": -2.9120445251468174e-05,
+            "change_percent": -0.04633271479248524,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.13389252126216888,
+            "geometry_ms": 0.13630837202072144,
+            "delta_ms": 0.0024158507585525513,
+            "change_percent": 1.80432091036824,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 362271,
+          "batch": {
+            "baseline_ms": 0.20228400230407717,
+            "geometry_ms": 0.1993073558807373,
+            "delta_ms": -0.0029766464233398626,
+            "change_percent": -1.4715184539730974,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.20168720245361327,
+            "geometry_ms": 0.20143792152404782,
+            "delta_ms": -0.000249280929565443,
+            "change_percent": -0.12359779229065282,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.2711322158575058,
+            "geometry_ms": 0.27155131101608276,
+            "delta_ms": 0.00041909515857696533,
+            "change_percent": 0.15457224706827422,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        }
+      ]
+    },
+    {
+      "dataset": "horse",
+      "depth": 8,
+      "precision": "float",
+      "points": 100000,
+      "reconstruction": {
+        "baseline_ms": 58.905474841594696,
+        "geometry_ms": 59.767380356788635,
+        "delta_ms": 0.8619055151939392,
+        "change_percent": 1.4632010309936883,
+        "baseline_samples": 14,
+        "geometry_samples": 14
+      },
+      "queries": [
+        {
+          "count": 1,
+          "batch": {
+            "baseline_ms": 0.02711120009422302,
+            "geometry_ms": 0.027133119106292725,
+            "delta_ms": 2.1919012069705063e-05,
+            "change_percent": 0.08084854965300092,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.02696768045425415,
+            "geometry_ms": 0.02697328090667725,
+            "delta_ms": 5.6004524231004216e-06,
+            "change_percent": 0.020767275230060278,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.09874999523162842,
+            "geometry_ms": 0.09827315807342529,
+            "delta_ms": -0.000476837158203125,
+            "change_percent": -0.4828730949147375,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 4096,
+          "batch": {
+            "baseline_ms": 0.076494882106781,
+            "geometry_ms": 0.07673264026641846,
+            "delta_ms": 0.0002377581596374606,
+            "change_percent": 0.3108157736691153,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.07634511947631836,
+            "geometry_ms": 0.07657743930816652,
+            "delta_ms": 0.00023231983184815452,
+            "change_percent": 0.30430213934005135,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.14850497245788574,
+            "geometry_ms": 0.15105679631233215,
+            "delta_ms": 0.002551823854446411,
+            "change_percent": 1.7183423640377393,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 100000,
+          "batch": {
+            "baseline_ms": 0.1998201560974121,
+            "geometry_ms": 0.20211088180541992,
+            "delta_ms": 0.0022907257080078125,
+            "change_percent": 1.1463937136006797,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.19939263343811037,
+            "geometry_ms": 0.2018172836303711,
+            "delta_ms": 0.0024246501922607355,
+            "change_percent": 1.216017939305325,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.2716872841119766,
+            "geometry_ms": 0.2754870802164078,
+            "delta_ms": 0.0037997961044311523,
+            "change_percent": 1.3985918100108963,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        }
+      ]
+    },
+    {
+      "dataset": "eagle",
+      "depth": 8,
+      "precision": "float",
+      "points": 796825,
+      "reconstruction": {
+        "baseline_ms": 78.09420302510262,
+        "geometry_ms": 78.79021763801575,
+        "delta_ms": 0.6960146129131317,
+        "change_percent": 0.8912500364328002,
+        "baseline_samples": 14,
+        "geometry_samples": 14
+      },
+      "queries": [
+        {
+          "count": 1,
+          "batch": {
+            "baseline_ms": 0.02920080065727234,
+            "geometry_ms": 0.02911888003349304,
+            "delta_ms": -8.192062377929826e-05,
+            "change_percent": -0.2805423890282821,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.029053120613098143,
+            "geometry_ms": 0.028971840143203732,
+            "delta_ms": -8.128046989441112e-05,
+            "change_percent": -0.27976502413227244,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.09879656136035919,
+            "geometry_ms": 0.09877420961856842,
+            "delta_ms": -2.2351741790771484e-05,
+            "change_percent": -0.022624007842986238,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 4096,
+          "batch": {
+            "baseline_ms": 0.06269312143325806,
+            "geometry_ms": 0.06316336154937743,
+            "delta_ms": 0.0004702401161193748,
+            "change_percent": 0.7500665230395054,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.06254415988922118,
+            "geometry_ms": 0.06292575836181641,
+            "delta_ms": 0.0003815984725952237,
+            "change_percent": 0.6101264662777606,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.1340191811323166,
+            "geometry_ms": 0.13720616698265076,
+            "delta_ms": 0.0031869858503341675,
+            "change_percent": 2.3780072549373976,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 796825,
+          "batch": {
+            "baseline_ms": 0.3178159999847412,
+            "geometry_ms": 0.32059535980224607,
+            "delta_ms": 0.0027793598175048784,
+            "change_percent": 0.8745185319928295,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.3412598419189453,
+            "geometry_ms": 0.34312273025512696,
+            "delta_ms": 0.001862888336181645,
+            "change_percent": 0.5458856001650858,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.3457162529230118,
+            "geometry_ms": 0.3459695726633072,
+            "delta_ms": 0.00025331974029541016,
+            "change_percent": 0.0732738880956818,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        }
+      ]
+    },
+    {
+      "dataset": "eagle",
+      "depth": 9,
+      "precision": "float",
+      "points": 796825,
+      "reconstruction": {
+        "baseline_ms": 193.36026348173618,
+        "geometry_ms": 192.40651279687881,
+        "delta_ms": -0.9537506848573685,
+        "change_percent": -0.4932506129665337,
+        "baseline_samples": 14,
+        "geometry_samples": 14
+      },
+      "queries": [
+        {
+          "count": 1,
+          "batch": {
+            "baseline_ms": 0.03204303979873657,
+            "geometry_ms": 0.0319812798500061,
+            "delta_ms": -6.175994873047069e-05,
+            "change_percent": -0.19274060488139177,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.031892960071563725,
+            "geometry_ms": 0.0318286395072937,
+            "delta_ms": -6.432056427002619e-05,
+            "change_percent": -0.20167637035163333,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.10149925947189331,
+            "geometry_ms": 0.10280124843120575,
+            "delta_ms": 0.001301988959312439,
+            "change_percent": 1.2827571019599304,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 4096,
+          "batch": {
+            "baseline_ms": 0.08428544044494629,
+            "geometry_ms": 0.08422911643981934,
+            "delta_ms": -5.6324005126950905e-05,
+            "change_percent": -0.06682530794122066,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.08404112339019776,
+            "geometry_ms": 0.08409152030944825,
+            "delta_ms": 5.039691925048939e-05,
+            "change_percent": 0.05996697475889601,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.15714392066001892,
+            "geometry_ms": 0.15800632536411285,
+            "delta_ms": 0.0008624047040939331,
+            "change_percent": 0.5487992793305363,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 796825,
+          "batch": {
+            "baseline_ms": 0.505102081298828,
+            "geometry_ms": 0.4985155296325684,
+            "delta_ms": -0.006586551666259655,
+            "change_percent": -1.304004063757347,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.47325551986694336,
+            "geometry_ms": 0.47130895614624024,
+            "delta_ms": -0.0019465637207031206,
+            "change_percent": -0.41131347422009856,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.5732383579015732,
+            "geometry_ms": 0.5563125014305115,
+            "delta_ms": -0.016925856471061707,
+            "change_percent": -2.9526733927962123,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        }
+      ]
+    },
+    {
+      "dataset": "bunny",
+      "depth": 8,
+      "precision": "double",
+      "points": 362271,
+      "reconstruction": {
+        "baseline_ms": 129.75703366100788,
+        "geometry_ms": 131.69336505234241,
+        "delta_ms": 1.9363313913345337,
+        "change_percent": 1.4922747050408303,
+        "baseline_samples": 14,
+        "geometry_samples": 14
+      },
+      "queries": [
+        {
+          "count": 1,
+          "batch": {
+            "baseline_ms": 0.034876000881195066,
+            "geometry_ms": 0.035055519342422486,
+            "delta_ms": 0.00017951846122742088,
+            "change_percent": 0.5147335035314171,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.03445024013519287,
+            "geometry_ms": 0.03461152076721191,
+            "delta_ms": 0.00016128063201904103,
+            "change_percent": 0.4681553202129374,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.1021362841129303,
+            "geometry_ms": 0.10340847074985504,
+            "delta_ms": 0.0012721866369247437,
+            "change_percent": 1.2455775613670284,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 4096,
+          "batch": {
+            "baseline_ms": 0.07684815883636474,
+            "geometry_ms": 0.07791791915893553,
+            "delta_ms": 0.0010697603225707925,
+            "change_percent": 1.3920441800676864,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.07648175954818726,
+            "geometry_ms": 0.07790031909942627,
+            "delta_ms": 0.0014185595512390126,
+            "change_percent": 1.8547684567131961,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.14885328710079193,
+            "geometry_ms": 0.153467059135437,
+            "delta_ms": 0.004613772034645081,
+            "change_percent": 3.0995432647187737,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        },
+        {
+          "count": 362271,
+          "batch": {
+            "baseline_ms": 0.26129807472229005,
+            "geometry_ms": 0.2608561611175537,
+            "delta_ms": -0.00044191360473633257,
+            "change_percent": -0.16912241133273387,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "composed": {
+            "baseline_ms": 0.3105468845367432,
+            "geometry_ms": 0.310462875366211,
+            "delta_ms": -8.400917053219548e-05,
+            "change_percent": -0.0270520087997439,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          },
+          "batch_host": {
+            "baseline_ms": 0.33387355506420135,
+            "geometry_ms": 0.3354158252477646,
+            "delta_ms": 0.0015422701835632324,
+            "change_percent": 0.46193241727894296,
+            "baseline_samples": 14,
+            "geometry_samples": 14
+          }
+        }
+      ]
+    }
+  ],
+  "throttling": {
+    "12": [
+      {
+        "usage_usec": 18776603,
+        "nr_periods": 178,
+        "nr_throttled": 0,
+        "throttled_usec": 0
+      },
+      {
+        "usage_usec": 18776603,
+        "nr_periods": 178,
+        "nr_throttled": 0,
+        "throttled_usec": 0
+      }
+    ],
+    "13": [
+      {
+        "usage_usec": 19231848,
+        "nr_periods": 180,
+        "nr_throttled": 0,
+        "throttled_usec": 0
+      },
+      {
+        "usage_usec": 19231848,
+        "nr_periods": 180,
+        "nr_throttled": 0,
+        "throttled_usec": 0
+      }
+    ],
+    "14": [
+      {
+        "usage_usec": 18672609,
+        "nr_periods": 180,
+        "nr_throttled": 0,
+        "throttled_usec": 0
+      },
+      {
+        "usage_usec": 18672593,
+        "nr_periods": 180,
+        "nr_throttled": 0,
+        "throttled_usec": 0
+      }
+    ],
+    "15": [
+      {
+        "usage_usec": 18689882,
+        "nr_periods": 180,
+        "nr_throttled": 0,
+        "throttled_usec": 0
+      },
+      {
+        "usage_usec": 18689587,
+        "nr_periods": 180,
+        "nr_throttled": 0,
+        "throttled_usec": 0
+      }
+    ]
+  }
+}

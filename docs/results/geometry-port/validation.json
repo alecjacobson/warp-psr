@@ -1,0 +1,297 @@
+{
+  "baseline": "6c5ebe54ee49743d3cb1836aead9905afc3490fe",
+  "measured_feature": "e426fed8fe8222c2dec7badf7278adadb0c93b6c",
+  "published_feature": "57473e17b32b65d3264b9a593967dd78d403614d",
+  "final_edit": "Only a stale private module docstring changed after e426fed; executable code is unchanged.",
+  "upstream_main": "98d6b5ed56800213e94cc191f0c0588239d6049e",
+  "compiler_prerequisite": "51ac591",
+  "gpu": "NVIDIA L40 48 GB",
+  "driver": "570.158.01",
+  "cuda_toolkit": "12.6.85",
+  "cpu_quota": 4,
+  "checks": [
+    {
+      "log": "external-current.log",
+      "result": "715 passed, 6 CPU-only skips, 1 existing mixed-precision FEM xfail; current native build; private numerical code unchanged by final host validation optimization.",
+      "original_log_sha256": "d7c438c5bfc86fb0a1eb2ad395adcd59b650d9f9ca084eb9c9c065e862533eb5",
+      "result_excerpt": [
+        "SKIPPED [4] tests/test_assembly_adjoint.py:27: production Nanogrid geometry requires CUDA",
+        "SKIPPED [1] tests/test_relaxation_adjoint.py:150: CUDA stream handoff",
+        "SKIPPED [1] tests/test_sample_adjoint.py:83: public classification uses CUDA",
+        "715 passed, 6 skipped, 1 xfailed in 458.80s (0:07:38)"
+      ]
+    },
+    {
+      "log": "warp-suite-current.log",
+      "result": "124 passed across public API, inline compiler, dense/sparse MC, and FEM fp64; before adding fixed-reference test.",
+      "original_log_sha256": "34fa92888ffa78cb7e4f45e33109f397211c36188b15e07270eadc56efdaaeef",
+      "result_excerpt": [
+        "ok",
+        "Check that vertices lie on the sphere and that the mesh is structurally valid. ... ok",
+        "Check that vertices lie on the sphere and that the mesh is structurally valid. ... ok",
+        "Ran 124 tests in 448.195s",
+        "OK"
+      ]
+    },
+    {
+      "log": "reference-test.log",
+      "result": "Added fixed CPU-oracle field test passes in both screened and unscreened configurations.",
+      "original_log_sha256": "62b78f79c4ca3ec505ec18e6be417318b26ded89f3740ff425650ac4fcf08528",
+      "result_excerpt": [
+        "Ran 1 test in 59.264s",
+        "OK"
+      ]
+    },
+    {
+      "log": "api-final.log",
+      "result": "All 22 API tests pass on final production source; together with the 103 related checks above, 125 distinct native tests pass.",
+      "original_log_sha256": "e7d013733ce58e6766ef8ee729200d1b503d20ab94832e10aff083e8b6e44f59",
+      "result_excerpt": [
+        "Ran 22 tests in 3.628s",
+        "OK"
+      ]
+    },
+    {
+      "log": "memcheck.log",
+      "result": "3 cases pass; zero errors. Run before the main rebase; port kernel arithmetic and native code used by these tests are unchanged.",
+      "original_log_sha256": "f61687c1282f625edd7174f8621f37dbcafd35384707c7304fd714c41db9a35c",
+      "result_excerpt": [
+        "Ran 3 tests in 56.068s",
+        "OK",
+        "========= ERROR SUMMARY: 0 errors"
+      ]
+    },
+    {
+      "log": "docs-verified.log",
+      "result": "Documentation builds with warnings treated as errors.",
+      "original_log_sha256": "6b17881b03dd1abff3a0b8cf4ebe8b88ea9e9b280445581a878c864d46d8308e",
+      "result_excerpt": [
+        "build succeeded."
+      ]
+    },
+    {
+      "log": "precommit.log",
+      "result": "All changed files pass pre-commit.",
+      "original_log_sha256": "93e4bc03a85057275fb60e5f77a815241b78e934d2d039b4136f57dd28d82e53",
+      "result_excerpt": [
+        "warp: regenerate generated files...............................................Passed",
+        "warp: check version consistency and regenerate version.h.......................Passed",
+        "warp: check project skills.................................(no files to check)Skipped",
+        "ruff (legacy alias)............................................................Passed",
+        "ruff format....................................................................Passed",
+        "uv-lock....................................................(no files to check)Skipped",
+        "typos..........................................................................Passed",
+        "clang-format...............................................(no files to check)Skipped"
+      ]
+    },
+    {
+      "log": "precommit-final.log",
+      "result": "Fixed numerical-reference test passes pre-commit.",
+      "original_log_sha256": "4cc95f09680e3d6e0bec6fb7a161664593fa398d1f8d7a96440a913518f2e601",
+      "result_excerpt": [
+        "warp: regenerate generated files...............................................Passed",
+        "warp: check version consistency and regenerate version.h.......................Passed",
+        "warp: check project skills.................................(no files to check)Skipped",
+        "ruff (legacy alias)............................................................Passed",
+        "ruff format....................................................................Passed",
+        "uv-lock....................................................(no files to check)Skipped",
+        "typos..........................................................................Passed",
+        "clang-format...............................................(no files to check)Skipped"
+      ]
+    },
+    {
+      "log": "precommit-api-final.log",
+      "result": "Final host validation optimization passes pre-commit.",
+      "original_log_sha256": "4cc95f09680e3d6e0bec6fb7a161664593fa398d1f8d7a96440a913518f2e601",
+      "result_excerpt": [
+        "warp: regenerate generated files...............................................Passed",
+        "warp: check version consistency and regenerate version.h.......................Passed",
+        "warp: check project skills.................................(no files to check)Skipped",
+        "ruff (legacy alias)............................................................Passed",
+        "ruff format....................................................................Passed",
+        "uv-lock....................................................(no files to check)Skipped",
+        "typos..........................................................................Passed",
+        "clang-format...............................................(no files to check)Skipped"
+      ]
+    },
+    {
+      "log": "precommit-docstring.log",
+      "result": "Final private module docstring cleanup passes pre-commit; executable code unchanged.",
+      "original_log_sha256": "4cc95f09680e3d6e0bec6fb7a161664593fa398d1f8d7a96440a913518f2e601",
+      "result_excerpt": [
+        "warp: regenerate generated files...............................................Passed",
+        "warp: check version consistency and regenerate version.h.......................Passed",
+        "warp: check project skills.................................(no files to check)Skipped",
+        "ruff (legacy alias)............................................................Passed",
+        "ruff format....................................................................Passed",
+        "uv-lock....................................................(no files to check)Skipped",
+        "typos..........................................................................Passed",
+        "clang-format...............................................(no files to check)Skipped"
+      ]
+    },
+    {
+      "log": "example.log",
+      "result": "Headless ellipsoid example succeeds: 9,922 vertices and 19,840 triangles.",
+      "original_log_sha256": "6197307bf0a90c30b9261c05a42224c165d10150fdf1a95d9c8308484d1498ec",
+      "result_excerpt": [
+        "Extracted 9922 vertices and 19840 triangles."
+      ]
+    },
+    {
+      "log": "asv-smoke.log",
+      "result": "ASV float32, depth-6 setup, reconstruct and evaluate smoke succeeds.",
+      "original_log_sha256": "22b70ebd9d7353d473cd911a89c297a58c8e21ba7366005710bd82c190804d03",
+      "result_excerpt": [
+        "ASV reconstruction and evaluation smoke passed"
+      ]
+    },
+    {
+      "log": "build-current.log",
+      "result": "Native library rebuilt from current main with CUDA 12.6.85; build succeeds.",
+      "original_log_sha256": "e0af75c6312e3056db53634473bd3fbeb339ce8e9b9ab129662f0e756f1d0ac1",
+      "result_excerpt": [
+        "Warp build succeeded"
+      ]
+    }
+  ],
+  "raw_inventory": [
+    {
+      "file": "raw/bench-0-original-isolation.json",
+      "original_sha256": "ac74026b7fee7e70601557dda49311bf073c1ad906567490e92051d1cf37e312"
+    },
+    {
+      "file": "raw/bench-0-original.json",
+      "original_sha256": "2cb98ce76d955c0fca5b2f07e8ca970e637afe66522876bc7efb1cf38e33bbc3"
+    },
+    {
+      "file": "raw/bench-1-port-isolation.json",
+      "original_sha256": "b4bd6a30a965d676f2c3eb72e8aa5de54bcc3a852efe16bfcd47a7a84faeaa71"
+    },
+    {
+      "file": "raw/bench-1-port.json",
+      "original_sha256": "d1a341a2fb0f04fa0888ae24566d128a41e0a557ad8ff362cb912e2fe2731314"
+    },
+    {
+      "file": "raw/bench-10-port-isolation.json",
+      "original_sha256": "2fceba083e00265420e979e2f9c04a01b5f1dd49cab5f2f7485030b200e2c786"
+    },
+    {
+      "file": "raw/bench-10-port.json",
+      "original_sha256": "f09e18c62eb5ed75f627268edb68bcce17d1cabf007c5355e65ce4adf8f913c0"
+    },
+    {
+      "file": "raw/bench-11-original-isolation.json",
+      "original_sha256": "a6285e8c5d5217bd61f21d60f997183eb7631a32c022f9dcb558e2f177ef24e3"
+    },
+    {
+      "file": "raw/bench-11-original.json",
+      "original_sha256": "0403cecf7ec900f85e468f93f206210dfc8057cc98bbb7bad717dcd959d2bb84"
+    },
+    {
+      "file": "raw/bench-12-original-isolation.json",
+      "original_sha256": "184057a2cc042a86e8eb1fa52486c4151f18b2981c8eb182668a8799cdb6e9d8"
+    },
+    {
+      "file": "raw/bench-12-original.json",
+      "original_sha256": "88d2253328ba8504752375b7a74c0ceae4075b0b8d1be70afb667af6a85ec314"
+    },
+    {
+      "file": "raw/bench-13-port-isolation.json",
+      "original_sha256": "3303c8e5df1c5ba29b7b74a6e35647feb02d48c68ec1534726c0d68515866e64"
+    },
+    {
+      "file": "raw/bench-13-port.json",
+      "original_sha256": "ad5397ec1f9ae827ede46276adf55f7ffee73d615df8b2d343fa29be2645d9f4"
+    },
+    {
+      "file": "raw/bench-14-port-isolation.json",
+      "original_sha256": "9f4e4c5eb872179e4cfe86de7d5c7f9883dd071dc698428135f6b2de74d893f2"
+    },
+    {
+      "file": "raw/bench-14-port.json",
+      "original_sha256": "3c7ba616c4d94a0cd060b7fbbbde51d3333c58ec7740ea217ffefbdfc00c5307"
+    },
+    {
+      "file": "raw/bench-15-original-isolation.json",
+      "original_sha256": "7678bf61e80eb42a91eb128cfaac377ef301fe467cc761852c9fd120679fc0f2"
+    },
+    {
+      "file": "raw/bench-15-original.json",
+      "original_sha256": "94b42bce88e4b1c0112c554f2205d467578b706419a7d6896054884d216147ef"
+    },
+    {
+      "file": "raw/bench-2-port-isolation.json",
+      "original_sha256": "f05910a9df9809ce1de45322f64895634aff49a8e85e1e1400a71073bf9b2ffb"
+    },
+    {
+      "file": "raw/bench-2-port.json",
+      "original_sha256": "950d6db397faea7e228e9a89417bf3a793e85e0a3a3f1f67777ea2f134a12484"
+    },
+    {
+      "file": "raw/bench-3-original-isolation.json",
+      "original_sha256": "db609ba68a28fa671e366edf997a992195fd15453c8cc225a5b105dfec74d466"
+    },
+    {
+      "file": "raw/bench-3-original.json",
+      "original_sha256": "64c6677357c76dec5a8f10f9efb6975420895396d2b9c1c5275ba47073f45742"
+    },
+    {
+      "file": "raw/bench-4-original-isolation.json",
+      "original_sha256": "53fed91fab39cfe76e312f759a503b7ddeab0607db17f5c50f0ed90f77d8b8b2"
+    },
+    {
+      "file": "raw/bench-4-original.json",
+      "original_sha256": "668722d8015bc2e8311261b2b14d93c21a308f48fa9ffe5893e3ad09daf6865d"
+    },
+    {
+      "file": "raw/bench-5-port-isolation.json",
+      "original_sha256": "c7b197464a49448b7d951ddabb656d33521522f3389ac33d980e766072348151"
+    },
+    {
+      "file": "raw/bench-5-port.json",
+      "original_sha256": "1ea3b79c732983f373e1435bb44244d0dc1b95321e5c657c546834ab71d85e5c"
+    },
+    {
+      "file": "raw/bench-6-port-isolation.json",
+      "original_sha256": "d27c9f76d65fcb04ab5a6dde84962b1b945290f17d25f978032367c83cf2d46d"
+    },
+    {
+      "file": "raw/bench-6-port.json",
+      "original_sha256": "89dbcd29fe8b1ea6b60331e10c81314b0dbe840544e9c2381ef6bfcbb2e366c0"
+    },
+    {
+      "file": "raw/bench-7-original-isolation.json",
+      "original_sha256": "18e2502aa1b8b60f93585af2048beb02d14fd28bd5312b3a6a9b910106ac6ec4"
+    },
+    {
+      "file": "raw/bench-7-original.json",
+      "original_sha256": "5bc88fe695bc658db0dcf136f7f71df2eeff623891d8a86a0f2bc9e49f7fb431"
+    },
+    {
+      "file": "raw/bench-8-original-isolation.json",
+      "original_sha256": "62035a60694f9a93df51fc7be8181c6ad05b9af888a947a7461b4cdd1264766d"
+    },
+    {
+      "file": "raw/bench-8-original.json",
+      "original_sha256": "540645963e679c70488258c1ca0b90f95748277b199716737832659d806d50b2"
+    },
+    {
+      "file": "raw/bench-9-port-isolation.json",
+      "original_sha256": "ceb07e7f73e215292493f92ff33aeda1eed303b4f7325c3a5fa5ade999e3a2bc"
+    },
+    {
+      "file": "raw/bench-9-port.json",
+      "original_sha256": "1af5c9b9d16ca4e2b9fe578fe35f66b7b2cc18da44d88d586d259f37c5d9b57b"
+    },
+    {
+      "file": "raw/paired-isolation.json",
+      "original_sha256": "76f20bb6b7b4fd2138ec329759f7d399159078982813341943a34a04b13a5d98"
+    },
+    {
+      "file": "raw/paired.json",
+      "original_sha256": "3d5707dc032dd3680be76cf8ccd2799d64e013ef3f3d07a6a355606c1d749add"
+    }
+  ],
+  "draft_pr": "https://github.com/NVIDIA/warp/pull/2452",
+  "all_16_process_outputs_bitwise_equal": true
+}
